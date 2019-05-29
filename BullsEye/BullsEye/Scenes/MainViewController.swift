@@ -9,6 +9,17 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    @IBOutlet private weak var slider: UISlider!
+}
+
+
+// MARK: - Computed Properties
+
+extension MainViewController {
+    
+    var currentSliderValue: Int {
+        return lroundf(slider.value)
+    }
 }
 
 
@@ -30,6 +41,6 @@ extension MainViewController {
 extension MainViewController {
     
     @IBAction func hitMeButtonTapped(_ sender: UIButton) {
-        display(alertMessage: "Well done!", titled: "I'm Hit!")
+        display(alertMessage: "The value of the slider is \(currentSliderValue)", titled: "I'm Hit!")
     }
 }

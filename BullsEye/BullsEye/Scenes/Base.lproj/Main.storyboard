@@ -36,19 +36,22 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="lRO-0y-ci2">
-                                <rect key="frame" x="101.5" y="75.5" width="693" height="30"/>
+                                <rect key="frame" x="103" y="75.5" width="690" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAq-Cm-j2r">
-                                        <rect key="frame" x="0.0" y="4.5" width="12" height="21.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAq-Cm-j2r">
+                                        <rect key="frame" x="0.0" y="4.5" width="9" height="21.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="H0Z-RJ-sX6">
-                                        <rect key="frame" x="19" y="0.0" width="634" height="31"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="H0Z-RJ-sX6">
+                                        <rect key="frame" x="16" y="0.0" width="634" height="31"/>
+                                        <connections>
+                                            <action selector="sliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="7yD-g5-4cG"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUl-Wg-Irf">
-                                        <rect key="frame" x="660" y="4.5" width="33" height="21.5"/>
+                                        <rect key="frame" x="657" y="4.5" width="33" height="21.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -63,7 +66,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="s1b-zO-Udc">
-                                <rect key="frame" x="44" y="370" width="808" height="44"/>
+                                <rect key="frame" x="44" y="354" width="808" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxQ-P0-Y1C">
                                         <rect key="frame" x="0.0" y="0.0" width="88" height="44"/>
@@ -122,12 +125,15 @@
                             <constraint firstItem="H0Z-RJ-sX6" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.78" id="7Aa-Ax-alt"/>
                             <constraint firstItem="agF-eS-to7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9Iz-Yz-wRZ"/>
                             <constraint firstItem="37g-73-bIz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AFK-Nm-yPD"/>
-                            <constraint firstAttribute="bottom" secondItem="s1b-zO-Udc" secondAttribute="bottom" id="I6q-Ve-R3A"/>
+                            <constraint firstAttribute="bottom" secondItem="s1b-zO-Udc" secondAttribute="bottom" constant="16" id="I6q-Ve-R3A"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="s1b-zO-Udc" secondAttribute="trailing" id="NyT-Gp-p0U"/>
                             <constraint firstItem="agF-eS-to7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wod-jv-6Jt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="slider" destination="H0Z-RJ-sX6" id="zvq-uJ-hfI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
