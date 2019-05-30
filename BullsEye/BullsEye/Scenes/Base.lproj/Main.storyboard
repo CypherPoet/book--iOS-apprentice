@@ -64,9 +64,19 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agF-eS-to7">
-                                <rect key="frame" x="425.5" y="192" width="45" height="30"/>
-                                <state key="normal" title="Hit Me"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agF-eS-to7">
+                                <rect key="frame" x="393" y="187" width="110" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="Cwh-OK-9qd"/>
+                                    <constraint firstAttribute="height" constant="40" id="fNb-Ay-uT8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                <state key="normal" title="Hit Me" backgroundImage="Button--Default">
+                                    <color key="titleColor" red="0.56228298611111116" green="0.31124614582747417" blue="0.087629335990510759" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleShadowColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="highlighted" backgroundImage="Button--Pressed"/>
                                 <connections>
                                     <action selector="hitMeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5wd-cv-d5B"/>
                                 </connections>
@@ -164,6 +174,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Button--Default" width="950" height="511"/>
+        <image name="Button--Pressed" width="950" height="511"/>
         <image name="Home Screen Background" width="950.5" height="511"/>
     </resources>
 </document>
