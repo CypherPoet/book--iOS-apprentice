@@ -82,21 +82,26 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="s1b-zO-Udc">
-                                <rect key="frame" x="44" y="354" width="808" height="44"/>
+                                <rect key="frame" x="44" y="368" width="808" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxQ-P0-Y1C">
-                                        <rect key="frame" x="0.0" y="0.0" width="88" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxQ-P0-Y1C">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" red="0.92518446180555558" green="0.73544295063724907" blue="0.42261890584563022" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="88" id="GNd-2d-pgF"/>
-                                            <constraint firstAttribute="height" constant="44" id="Lef-No-gs7"/>
+                                            <constraint firstAttribute="width" constant="30" id="GNd-2d-pgF"/>
+                                            <constraint firstAttribute="height" constant="30" id="Lef-No-gs7"/>
                                         </constraints>
-                                        <state key="normal" title="Start Over"/>
+                                        <color key="tintColor" red="0.45880425499999999" green="0.42457667529999998" blue="0.85103040929999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                        <state key="normal" title="Start Over" image="start-over">
+                                            <color key="titleColor" red="0.45880425499999999" green="0.42457667529999998" blue="0.85103040929999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
                                         <connections>
                                             <action selector="startOverButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FrU-kh-EyN"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Uar-aC-kpP">
-                                        <rect key="frame" x="230.5" y="9" width="129.5" height="26"/>
+                                        <rect key="frame" x="209.5" y="2" width="129.5" height="26"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6f-7D-xVB">
                                                 <rect key="frame" x="0.0" y="0.0" width="56.5" height="26"/>
@@ -117,7 +122,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qgd-dr-GAp">
-                                        <rect key="frame" x="477.5" y="9" width="137.5" height="26"/>
+                                        <rect key="frame" x="465" y="2" width="137.5" height="26"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xT-sT-q83">
                                                 <rect key="frame" x="0.0" y="0.0" width="64.5" height="26"/>
@@ -137,10 +142,18 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oai-lw-WAH">
-                                        <rect key="frame" x="786" y="11" width="22" height="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oai-lw-WAH">
+                                        <rect key="frame" x="778" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" red="0.92305105924606323" green="0.73390084505081177" blue="0.41953557729721069" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                        <state key="normal" image="info-filled-50"/>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Oai-lw-WAH" firstAttribute="width" secondItem="UxQ-P0-Y1C" secondAttribute="width" id="gA7-bh-8G4"/>
+                                    <constraint firstItem="Oai-lw-WAH" firstAttribute="height" secondItem="UxQ-P0-Y1C" secondAttribute="height" id="ril-RM-TnC"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -177,5 +190,7 @@
         <image name="Button--Default" width="950" height="511"/>
         <image name="Button--Pressed" width="950" height="511"/>
         <image name="Home Screen Background" width="950.5" height="511"/>
+        <image name="info-filled-50" width="50" height="50"/>
+        <image name="start-over" width="32" height="36.5"/>
     </resources>
 </document>

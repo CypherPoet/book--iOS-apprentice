@@ -80,9 +80,9 @@
 		F31624822299435E0059E49C /* BullsEye */ = {
 			isa = PBXGroup;
 			children = (
+				F3C7D0A4229C020300E91527 /* Scenes */,
 				F3C7D0A7229CD4B900E91527 /* Extensions */,
 				F3C7D0A5229C020A00E91527 /* Content */,
-				F3C7D0A4229C020300E91527 /* Scenes */,
 				F31624832299435E0059E49C /* AppDelegate.swift */,
 				F316248F2299435F0059E49C /* Info.plist */,
 			);
