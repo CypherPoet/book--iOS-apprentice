@@ -7,5 +7,6 @@ target 'BullsEye' do
 
   # Pods for BullsEye
   pod 'SwiftLint'
+  pod 'R.swift'
 
 end

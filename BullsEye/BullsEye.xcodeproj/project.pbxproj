@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		F31624892299435E0059E49C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31624872299435E0059E49C /* Main.storyboard */; };
 		F316248B2299435F0059E49C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F316248A2299435F0059E49C /* Assets.xcassets */; };
 		F316248E2299435F0059E49C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F316248C2299435F0059E49C /* LaunchScreen.storyboard */; };
+		F36651D122A027E100221AE3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36651D022A027E100221AE3 /* R.generated.swift */; };
 		F3C7D0A9229CD4C300E91527 /* UIViewController+DisplayAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7D0A8229CD4C300E91527 /* UIViewController+DisplayAlertMessage.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		F316248A2299435F0059E49C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F316248D2299435F0059E49C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F316248F2299435F0059E49C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F36651D022A027E100221AE3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		F3C7D0A8229CD4C300E91527 /* UIViewController+DisplayAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DisplayAlertMessage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 				F3C7D0A5229C020A00E91527 /* Content */,
 				F31624832299435E0059E49C /* AppDelegate.swift */,
 				F316248F2299435F0059E49C /* Info.plist */,
+				F36651D022A027E100221AE3 /* R.generated.swift */,
 			);
 			path = BullsEye;
 			sourceTree = "<group>";
@@ -123,10 +126,12 @@
 			buildConfigurationList = F31624922299435F0059E49C /* Build configuration list for PBXNativeTarget "BullsEye" */;
 			buildPhases = (
 				6C366A601ACE15612DB0FE51 /* [CP] Check Pods Manifest.lock */,
+				F3C861B722A0261F006DCCA3 /* ShellScript */,
 				F316247C2299435E0059E49C /* Sources */,
 				F316247D2299435E0059E49C /* Frameworks */,
 				F316247E2299435E0059E49C /* Resources */,
 				F3C7D0A6229C08C400E91527 /* Run Script */,
+				EB4E3DFE57F290167789ADD8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -206,6 +211,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EB4E3DFE57F290167789ADD8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BullsEye/Pods-BullsEye-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BullsEye/Pods-BullsEye-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BullsEye/Pods-BullsEye-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F3C7D0A6229C08C400E91527 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -224,6 +246,25 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		F3C861B722A0261F006DCCA3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -234,6 +275,7 @@
 				F31624862299435E0059E49C /* MainViewController.swift in Sources */,
 				F3C7D0A9229CD4C300E91527 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F31624842299435E0059E49C /* AppDelegate.swift in Sources */,
+				F36651D122A027E100221AE3 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

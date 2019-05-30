@@ -108,6 +108,7 @@ extension MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupSlider()
         startNewGame()
     }
     
@@ -156,4 +157,9 @@ private extension MainViewController {
         slider.setValue(startingSliderValue, animated: true)
     }
     
+    
+    func setupSlider() {
+        slider.setThumbImage(R.image.sliderBullseye(), for: .normal)
+        slider.setThumbImage(R.image.sliderBullseyePressed(), for: .highlighted)
+    }
 }
