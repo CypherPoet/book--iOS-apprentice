@@ -71,9 +71,9 @@
                                     <constraint firstAttribute="width" constant="110" id="Cwh-OK-9qd"/>
                                     <constraint firstAttribute="height" constant="40" id="fNb-Ay-uT8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
                                 <size key="titleShadowOffset" width="0.0" height="1"/>
-                                <state key="normal" title="Hit Me" backgroundImage="Button--Default">
+                                <state key="normal" title="Hit Me!" backgroundImage="Button--Default">
                                     <color key="titleColor" red="0.56228298611111116" green="0.31124614582747417" blue="0.087629335990510759" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <color key="titleShadowColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -83,18 +83,18 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="s1b-zO-Udc">
-                                <rect key="frame" x="44" y="368" width="808" height="30"/>
+                                <rect key="frame" x="44" y="363" width="808" height="35"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxQ-P0-Y1C">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <color key="backgroundColor" red="0.92518446180555558" green="0.73544295063724907" blue="0.42261890584563022" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                        <color key="backgroundColor" red="1" green="0.52789507120000001" blue="0.06439671625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="GNd-2d-pgF"/>
-                                            <constraint firstAttribute="height" constant="30" id="Lef-No-gs7"/>
+                                            <constraint firstAttribute="width" constant="35" id="GNd-2d-pgF"/>
+                                            <constraint firstAttribute="height" constant="35" id="Lef-No-gs7"/>
                                         </constraints>
                                         <color key="tintColor" red="0.45880425499999999" green="0.42457667529999998" blue="0.85103040929999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                                        <state key="normal" title="Start Over" image="start-over">
+                                        <state key="normal" image="start-over">
                                             <color key="titleColor" red="0.45880425499999999" green="0.42457667529999998" blue="0.85103040929999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <connections>
@@ -102,7 +102,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Uar-aC-kpP">
-                                        <rect key="frame" x="209.5" y="2" width="129.5" height="26"/>
+                                        <rect key="frame" x="210.5" y="4.5" width="129.5" height="26"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6f-7D-xVB">
                                                 <rect key="frame" x="0.0" y="0.0" width="56.5" height="26"/>
@@ -123,7 +123,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qgd-dr-GAp">
-                                        <rect key="frame" x="465" y="2" width="137.5" height="26"/>
+                                        <rect key="frame" x="464" y="4.5" width="137.5" height="26"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xT-sT-q83">
                                                 <rect key="frame" x="0.0" y="0.0" width="64.5" height="26"/>
@@ -144,8 +144,8 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oai-lw-WAH">
-                                        <rect key="frame" x="778" y="0.0" width="30" height="30"/>
-                                        <color key="backgroundColor" red="0.92305105924606323" green="0.73390084505081177" blue="0.41953557729721069" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <rect key="frame" x="773" y="0.0" width="35" height="35"/>
+                                        <color key="backgroundColor" red="1" green="0.52789507120000001" blue="0.06439671625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                         <state key="normal" image="info-filled-50"/>
@@ -181,6 +181,9 @@
                         <outlet property="currentScoreLabel" destination="x3S-aA-vW1" id="HFp-Bw-Css"/>
                         <outlet property="slider" destination="H0Z-RJ-sX6" id="zvq-uJ-hfI"/>
                         <outlet property="targetValueLabel" destination="4VC-ly-9x2" id="slb-mu-BE7"/>
+                        <outletCollection property="roundedButtons" destination="agF-eS-to7" collectionClass="NSMutableArray" id="Cg0-da-k1n"/>
+                        <outletCollection property="roundedButtons" destination="UxQ-P0-Y1C" collectionClass="NSMutableArray" id="u81-BS-1oh"/>
+                        <outletCollection property="roundedButtons" destination="Oai-lw-WAH" collectionClass="NSMutableArray" id="jLe-Rm-Wmo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

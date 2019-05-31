@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     @IBOutlet private weak var currentRoundLabel: UILabel!
     @IBOutlet private weak var currentScoreLabel: UILabel!
     
+    @IBOutlet private var roundedButtons: [UIButton]!
     
     var currentTargetValue = 0 {
         didSet {
@@ -108,7 +109,7 @@ extension MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupSlider()
+        styleUI()
         startNewGame()
     }
     
@@ -157,9 +158,30 @@ private extension MainViewController {
         slider.setValue(startingSliderValue, animated: true)
     }
     
+
+    func styleUI() {
+        styleSlider()
+        styleButtons()
+    }
     
-    func setupSlider() {
+    
+    func styleSlider() {
         slider.setThumbImage(R.image.sliderBullseye(), for: .normal)
         slider.setThumbImage(R.image.sliderBullseyePressed(), for: .highlighted)
+        
+        let trackInsets = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+        let minTrackImage = R.image.sliderMinTrack()!.resizableImage(withCapInsets: trackInsets)
+        let maxTrackImage = R.image.sliderMaxTrack()!.resizableImage(withCapInsets: trackInsets)
+        
+        slider.setMinimumTrackImage(minTrackImage, for: .normal)
+        slider.setMaximumTrackImage(maxTrackImage, for: .normal)
+    }
+    
+    
+    
+    func styleButtons() {
+        for button in roundedButtons {
+            button.layer.cornerRadius = button.frame.width / 5
+        }
     }
 }
