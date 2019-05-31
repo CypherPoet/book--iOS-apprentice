@@ -35,7 +35,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VC-ly-9x2">
                                         <rect key="frame" x="324.5" y="0.0" width="36" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
-                                        <color key="textColor" red="0.63369654605263159" green="0.048096556680357068" blue="0.0048351736332150654" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" red="0.93967013888888884" green="0.49604723484932062" blue="0.060511671300392894" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -93,7 +93,7 @@
                                             <constraint firstAttribute="height" constant="35" id="Lef-No-gs7"/>
                                         </constraints>
                                         <color key="tintColor" red="0.45880425499999999" green="0.42457667529999998" blue="0.85103040929999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
                                         <state key="normal" image="start-over">
                                             <color key="titleColor" red="0.45880425499999999" green="0.42457667529999998" blue="0.85103040929999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
@@ -147,8 +147,11 @@
                                         <rect key="frame" x="773" y="0.0" width="35" height="35"/>
                                         <color key="backgroundColor" red="1" green="0.52789507120000001" blue="0.06439671625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                        <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
                                         <state key="normal" image="info-filled-50"/>
+                                        <connections>
+                                            <segue destination="6qV-Sv-SE0" kind="presentation" modalTransitionStyle="flipHorizontal" id="OQz-IU-ygT"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -188,6 +191,67 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="mjr-E6-FzK">
+            <objects>
+                <viewController id="6qV-Sv-SE0" customClass="AboutViewController" customModule="BullsEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QrZ-cp-fwA">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home Screen Background" translatesAutoresizingMaskIntoConstraints="NO" id="vC4-hU-bXW">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gtJ-qC-GJm">
+                                <rect key="frame" x="44" y="37.5" width="808" height="339"/>
+                                <subviews>
+                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYg-Tt-2lx">
+                                        <rect key="frame" x="81" y="0.0" width="646" height="275"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WO2-Dx-iuf">
+                                        <rect key="frame" x="349" y="299" width="110" height="40"/>
+                                        <color key="backgroundColor" red="1" green="0.52789507120000001" blue="0.06439671625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="110" id="Jls-41-Mng"/>
+                                            <constraint firstAttribute="height" constant="40" id="jxG-wm-Uui"/>
+                                        </constraints>
+                                        <state key="normal" title="Close"/>
+                                        <connections>
+                                            <action selector="unwindFromAboutWithUnwindSegue:" destination="6an-dC-XWW" eventType="touchUpInside" id="73C-i4-xWf"/>
+                                            <segue destination="Tga-BD-cil" kind="unwind" unwindAction="unwindFromAboutWithUnwindSegue:" id="sWc-8y-V3U"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vC4-hU-bXW" secondAttribute="trailing" id="DqK-1V-gCE"/>
+                            <constraint firstItem="vC4-hU-bXW" firstAttribute="top" secondItem="8LM-3e-PeO" secondAttribute="top" id="HZz-Ls-VII"/>
+                            <constraint firstItem="8LM-3e-PeO" firstAttribute="trailing" secondItem="gtJ-qC-GJm" secondAttribute="trailing" id="Oq5-LX-Ap4"/>
+                            <constraint firstAttribute="bottom" secondItem="vC4-hU-bXW" secondAttribute="bottom" id="Pkc-QN-BTg"/>
+                            <constraint firstItem="eYg-Tt-2lx" firstAttribute="width" secondItem="8LM-3e-PeO" secondAttribute="width" multiplier="0.8" id="SRM-ln-NVV"/>
+                            <constraint firstItem="gtJ-qC-GJm" firstAttribute="leading" secondItem="8LM-3e-PeO" secondAttribute="leading" id="Xtu-yA-zQQ"/>
+                            <constraint firstItem="vC4-hU-bXW" firstAttribute="leading" secondItem="QrZ-cp-fwA" secondAttribute="leading" id="aP6-K9-7me"/>
+                            <constraint firstItem="eYg-Tt-2lx" firstAttribute="height" secondItem="8LM-3e-PeO" secondAttribute="height" multiplier="0.7" id="epH-eg-H7O"/>
+                            <constraint firstItem="gtJ-qC-GJm" firstAttribute="centerY" secondItem="QrZ-cp-fwA" secondAttribute="centerY" id="rQ8-YG-ThG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8LM-3e-PeO"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="eYg-Tt-2lx" id="hJE-ag-2rA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6an-dC-XWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Tga-BD-cil" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="232" y="1709"/>
         </scene>
     </scenes>
     <resources>

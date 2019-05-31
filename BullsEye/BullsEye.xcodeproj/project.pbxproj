@@ -14,6 +14,9 @@
 		F316248B2299435F0059E49C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F316248A2299435F0059E49C /* Assets.xcassets */; };
 		F316248E2299435F0059E49C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F316248C2299435F0059E49C /* LaunchScreen.storyboard */; };
 		F36651D122A027E100221AE3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36651D022A027E100221AE3 /* R.generated.swift */; };
+		F36651D422A119B400221AE3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36651D322A119B400221AE3 /* AboutViewController.swift */; };
+		F36651D822A12FFB00221AE3 /* BullsEye.html in Resources */ = {isa = PBXBuildFile; fileRef = F36651D722A12FFB00221AE3 /* BullsEye.html */; };
+		F36651DB22A1333A00221AE3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F36651DA22A1333A00221AE3 /* WebKit.framework */; };
 		F3C7D0A9229CD4C300E91527 /* UIViewController+DisplayAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7D0A8229CD4C300E91527 /* UIViewController+DisplayAlertMessage.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +32,9 @@
 		F316248D2299435F0059E49C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F316248F2299435F0059E49C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F36651D022A027E100221AE3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		F36651D322A119B400221AE3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		F36651D722A12FFB00221AE3 /* BullsEye.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = BullsEye.html; path = BullsEye/Content/BullsEye.html; sourceTree = SOURCE_ROOT; };
+		F36651DA22A1333A00221AE3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F3C7D0A8229CD4C300E91527 /* UIViewController+DisplayAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DisplayAlertMessage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -37,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36651DB22A1333A00221AE3 /* WebKit.framework in Frameworks */,
 				65FB07C0746CAB7EE7C44216 /* Pods_BullsEye.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +63,7 @@
 		E90B81320974949C2DF3D717 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F36651DA22A1333A00221AE3 /* WebKit.framework */,
 				F003FB4DA1E86982BE87AC70 /* Pods_BullsEye.framework */,
 			);
 			name = Frameworks;
@@ -92,9 +100,18 @@
 			path = BullsEye;
 			sourceTree = "<group>";
 		};
+		F36651D222A1195B00221AE3 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				F36651D322A119B400221AE3 /* AboutViewController.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		F3C7D0A4229C020300E91527 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F36651D222A1195B00221AE3 /* About */,
 				F316248C2299435F0059E49C /* LaunchScreen.storyboard */,
 				F31624872299435E0059E49C /* Main.storyboard */,
 				F31624852299435E0059E49C /* MainViewController.swift */,
@@ -106,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				F316248A2299435F0059E49C /* Assets.xcassets */,
+				F36651D722A12FFB00221AE3 /* BullsEye.html */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -181,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F316248E2299435F0059E49C /* LaunchScreen.storyboard in Resources */,
+				F36651D822A12FFB00221AE3 /* BullsEye.html in Resources */,
 				F316248B2299435F0059E49C /* Assets.xcassets in Resources */,
 				F31624892299435E0059E49C /* Main.storyboard in Resources */,
 			);
@@ -275,6 +294,7 @@
 				F31624862299435E0059E49C /* MainViewController.swift in Sources */,
 				F3C7D0A9229CD4C300E91527 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F31624842299435E0059E49C /* AppDelegate.swift in Sources */,
+				F36651D422A119B400221AE3 /* AboutViewController.swift in Sources */,
 				F36651D122A027E100221AE3 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

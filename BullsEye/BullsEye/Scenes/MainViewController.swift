@@ -141,6 +141,14 @@ extension MainViewController {
 
 }
 
+// MARK: - Navigation
+
+extension MainViewController {
+    
+    @IBAction func unwindFromAbout(unwindSegue: UIStoryboardSegue) {}
+    
+}
+
 
 // MARK: - Private Helper Methods
 
