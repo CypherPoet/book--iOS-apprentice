@@ -99,6 +99,16 @@ extension MainViewController {
         }
     }
     
+    
+    var newGameTransition: CATransition {
+        let transition = CATransition()
+        
+        transition.type = .fade
+        transition.duration = 0.8
+        transition.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        
+        return transition
+    }
 }
 
 
@@ -157,6 +167,8 @@ private extension MainViewController {
     func startNewGame() {
         currentScore = 0
         currentRound = 1
+        
+        view.layer.add(newGameTransition, forKey: nil)
     }
     
     
@@ -192,4 +204,5 @@ private extension MainViewController {
             button.layer.cornerRadius = button.frame.width / 5
         }
     }
+    
 }
