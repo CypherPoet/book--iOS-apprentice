@@ -12,10 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    private var checklistModelController = ChecklistModelController()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        performInjections()
+        
         return true
     }
 
@@ -33,4 +37,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
     }
+}
+
+
+// MARK: - Private Helper Methods
+
+private extension AppDelegate {
+    
+    func performInjections() {
+        guard
+            let rootNavController = window?.rootViewController as? UINavigationController,
+            let checklistListVC = rootNavController.topViewController as? ChecklistListViewController
+        else {
+            preconditionFailure("Unable to find expected view controllers")
+        }
+        
+        checklistListVC.modelController = checklistModelController
+    }
+    
 }
