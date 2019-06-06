@@ -66,7 +66,7 @@
             </objects>
             <point key="canvasLocation" x="955.07246376811599" y="40.848214285714285"/>
         </scene>
-        <!--Add Item-->
+        <!--Add Checklist-->
         <scene sceneID="x8h-UP-XRh">
             <objects>
                 <tableViewController id="kO1-Ax-KD6" customClass="AddChecklistViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
@@ -84,14 +84,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aDK-VG-yPT">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the List" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aDK-VG-yPT">
                                                     <rect key="frame" x="8" y="0.0" width="398" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="43.5" id="lmD-Sh-Kue"/>
                                                     </constraints>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="nameTextFieldReturned:" destination="kO1-Ax-KD6" eventType="editingDidEndOnExit" id="rCW-9a-F1I"/>
+                                                        <outlet property="delegate" destination="kO1-Ax-KD6" id="8PM-R8-zrG"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -110,18 +114,22 @@
                             <outlet property="delegate" destination="kO1-Ax-KD6" id="FlA-uF-hcI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Item" largeTitleDisplayMode="never" id="nsC-Zt-Sg2">
+                    <navigationItem key="navigationItem" title="Add Checklist" largeTitleDisplayMode="never" id="nsC-Zt-Sg2">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PhN-Xe-yFs">
                             <connections>
                                 <segue destination="6Fi-Zo-6Dv" kind="unwind" unwindAction="unwindFromCancelingAddWithUnwindSegue:" id="Gtp-Za-MV8"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Lgd-m8-gCc">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="Lgd-m8-gCc">
                             <connections>
-                                <segue destination="6Fi-Zo-6Dv" kind="unwind" unwindAction="unwindFromSubmittingAddWithUnwindSegue:" id="Bg8-Av-bGJ"/>
+                                <segue destination="6Fi-Zo-6Dv" kind="unwind" identifier="Unwind From Submit" unwindAction="unwindFromSubmittingAddWithUnwindSegue:" id="Bg8-Av-bGJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="Lgd-m8-gCc" id="cc4-ZA-0os"/>
+                        <outlet property="nameTextField" destination="aDK-VG-yPT" id="A9y-vi-XUE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4p-Ve-zvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6Fi-Zo-6Dv" userLabel="Exit" sceneMemberID="exit"/>

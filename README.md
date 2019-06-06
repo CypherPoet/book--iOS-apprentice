@@ -45,6 +45,12 @@ _ _.
 
 ### Topics Covered
 
+- Handling `UITextFieldDelegate` events to dynamically enable/disable submission buttons.
+
+  <div style="text-align: center;">
+    <img src="./Checklists/Screenshots/enable-disable-submit-button.gif" width="500px"/>
+  </div>
+
 - Implementing a custom `UIPickerView` with custom cell views.
 
 <br>
