@@ -12,14 +12,25 @@ class ChecklistListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     var modelController: ChecklistItemsModelController!
-    private var checklistTableDataSource: TableViewDataSource<ChecklistItem>!
+    private var checklistTableDataSource: TableViewDataSource<Checklist>!
 }
+
+
+// MARK: - Computeds
+
+extension ChecklistListViewController {
+    var newRowIndexPath: IndexPath {
+        let nextRowIndex = tableView.numberOfRows(inSection: 0)
+        
+        return IndexPath(row: nextRowIndex, section: 0)
+    }
+}
+
 
 
 // MARK: - Lifecycle
 
 extension ChecklistListViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,17 +45,18 @@ extension ChecklistListViewController {
 // MARK: - Navigation
 
 extension ChecklistListViewController {
-    @IBAction func unwindFromCancelingAdd(unwindSegue: UIStoryboardSegue) {}
-    
-    @IBAction func unwindFromSubmittingAdd(unwindSegue: UIStoryboardSegue) {
-        
-    }
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        assert(
+            segue.identifier == R.segue.checklistListViewController.showAddNewItemView.identifier,
+            "Unkown segue"
+        )
         
+        guard let addChecklistVC = segue.destination as? AddChecklistViewController else {
+            fatalError()
+        }
+        
+        addChecklistVC.delegate = self
     }
-    
 }
 
 
@@ -52,24 +64,6 @@ extension ChecklistListViewController {
 
 extension ChecklistListViewController {
     
-    @IBAction func addItemTapped() {
-        modelController.createNewItem { (newItemResult) in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                
-                switch newItemResult {
-                case .success(let newItem):
-                    let newRowIndex = self.tableView.numberOfRows(inSection: 0)
-                    let newRowIndexPath = IndexPath(row: newRowIndex, section: 0)
-                    
-                    self.checklistTableDataSource.models.append(newItem)
-                    self.tableView.insertRows(at: [newRowIndexPath], with: .automatic)
-                case .failure:
-                    fatalError()
-                }
-            }
-        }
-    }
 }
 
 
@@ -79,17 +73,31 @@ extension ChecklistListViewController {
 extension ChecklistListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else {
-            preconditionFailure("Failed to find cell")
-        }
-        
-//        cell.accessoryType = cell.accessoryType == .none ? .checkmark : .none
         checklistTableDataSource.models[indexPath.row].isChecked.toggle()
         
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
+}
+
+
+// MARK: - AddChecklistViewControllerDelegate
+
+extension ChecklistListViewController: AddChecklistViewControllerDelegate {
+    
+    func addChecklistViewControllerDidCancel(_ viewController: AddChecklistViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    func addChecklistViewController(
+        _ viewController: AddChecklistViewController,
+        didFinishAdding newChecklist: Checklist
+    ) {
+        navigationController?.popViewController(animated: true)
+        add(newChecklist, at: newRowIndexPath)
+    }
 }
 
 
@@ -112,7 +120,7 @@ private extension ChecklistListViewController {
     }
 
     
-    func setupTableView(with checklists: [ChecklistItem]) {
+    func setupTableView(with checklists: [Checklist]) {
         let dataSource = TableViewDataSource(
             models: checklists,
             cellReuseIdentifier: R.reuseIdentifier.checklistTableCell.identifier,
@@ -132,18 +140,35 @@ private extension ChecklistListViewController {
     }
     
     
-    func configure(_ cell: UITableViewCell, with checklist: ChecklistItem) {
+    func configure(_ cell: UITableViewCell, with checklist: Checklist) {
         cell.textLabel?.text = checklist.title
         cell.accessoryType = checklist.isChecked ? .checkmark : .none
     }
     
     
     func cellDeletedFromTable(_ cell: UITableViewCell, at indexPath: IndexPath) {
-        modelController.removeItem(at: indexPath.row) { [weak self] result in
+        modelController.removeChecklist(at: indexPath.row) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
                     self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+                case .failure:
+                    fatalError()
+                }
+            }
+        }
+    }
+    
+    
+    func add(_ checklist: Checklist, at indexPath: IndexPath) {
+        modelController.add(checklist, at: indexPath.row) { [weak self] (newItemResult) in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                switch newItemResult {
+                case .success(let newItem):
+                    self.checklistTableDataSource.models.append(newItem)
+                    self.tableView.insertRows(at: [indexPath], with: .automatic)
                 case .failure:
                     fatalError()
                 }

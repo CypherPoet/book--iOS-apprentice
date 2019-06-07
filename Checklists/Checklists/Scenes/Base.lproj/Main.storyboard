@@ -93,7 +93,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
-                                                        <action selector="nameTextFieldReturned:" destination="kO1-Ax-KD6" eventType="editingDidEndOnExit" id="rCW-9a-F1I"/>
+                                                        <action selector="doneButtonTapped" destination="kO1-Ax-KD6" eventType="editingDidEndOnExit" id="f57-1o-m8Z"/>
                                                         <outlet property="delegate" destination="kO1-Ax-KD6" id="8PM-R8-zrG"/>
                                                     </connections>
                                                 </textField>
@@ -117,12 +117,12 @@
                     <navigationItem key="navigationItem" title="Add Checklist" largeTitleDisplayMode="never" id="nsC-Zt-Sg2">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PhN-Xe-yFs">
                             <connections>
-                                <segue destination="6Fi-Zo-6Dv" kind="unwind" unwindAction="unwindFromCancelingAddWithUnwindSegue:" id="Gtp-Za-MV8"/>
+                                <action selector="cancelButtonTapped" destination="kO1-Ax-KD6" id="VDY-fQ-ige"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="Lgd-m8-gCc">
                             <connections>
-                                <segue destination="6Fi-Zo-6Dv" kind="unwind" identifier="Unwind From Submit" unwindAction="unwindFromSubmittingAddWithUnwindSegue:" id="Bg8-Av-bGJ"/>
+                                <action selector="doneButtonTapped" destination="kO1-Ax-KD6" id="RSZ-wh-rcO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -132,7 +132,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4p-Ve-zvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="6Fi-Zo-6Dv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1947.826086956522" y="40.848214285714285"/>
         </scene>

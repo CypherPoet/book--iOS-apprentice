@@ -12,7 +12,8 @@ class AddChecklistViewController: UITableViewController {
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var doneButton: UIBarButtonItem!
     
-    var checklist: ChecklistItem?
+    var checklist: Checklist?
+    weak var delegate: AddChecklistViewControllerDelegate?
 }
 
 
@@ -20,8 +21,8 @@ class AddChecklistViewController: UITableViewController {
 
 extension AddChecklistViewController {
 
-    var checklistFromForm: ChecklistItem {
-        return ChecklistItem(title: nameTextField.text ?? "", iconName: "", isChecked: false)
+    var checklistFromForm: Checklist {
+        return Checklist(title: nameTextField.text ?? "", iconName: "", isChecked: false)
     }
     
 }
@@ -47,29 +48,20 @@ extension AddChecklistViewController {
 
 // MARK: - Navigation
 
-extension AddChecklistViewController {
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == R.segue.addChecklistViewController.unwindFromSubmit.identifier else {
-            return
-        }
-        
-        checklist = checklistFromForm
-    }
-
-}
+extension AddChecklistViewController {}
 
 
 // MARK: - Event Handling
 
 extension AddChecklistViewController {
     
-    /**
-     Allow the name text field's "return" button to submit the form
-     */
-    @IBAction func nameTextFieldReturned(_ sender: UITextField) {
-        sender.resignFirstResponder()
-        performSegue(withIdentifier: R.segue.addChecklistViewController.unwindFromSubmit.identifier, sender: self)
+    @IBAction func cancelButtonTapped() {
+        delegate?.addChecklistViewControllerDidCancel(self)
+    }
+    
+    
+    @IBAction func doneButtonTapped() {
+        delegate?.addChecklistViewController(self, didFinishAdding: checklistFromForm)
     }
 }
 

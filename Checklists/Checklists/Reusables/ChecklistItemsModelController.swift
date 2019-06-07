@@ -15,7 +15,7 @@ final class ChecklistItemsModelController {
         case noData
     }
     
-    private var checklists: [ChecklistItem] = []
+    private var checklists: [Checklist] = []
 }
 
 
@@ -23,12 +23,12 @@ final class ChecklistItemsModelController {
 
 extension ChecklistItemsModelController {
     
-    func loadChecklists(then completionHandler: @escaping (Result<[ChecklistItem], Error>) -> Void) {
+    func loadChecklists(then completionHandler: @escaping (Result<[Checklist], Error>) -> Void) {
         
         let checklists = [
-            ChecklistItem(title: "To Do", iconName: "", isChecked: false),
-            ChecklistItem(title: "Trades", iconName: "", isChecked: false),
-            ChecklistItem(title: "The Swiftness", iconName: "", isChecked: false)
+            Checklist(title: "To Do", iconName: "", isChecked: false),
+            Checklist(title: "Trades", iconName: "", isChecked: false),
+            Checklist(title: "The Swiftness", iconName: "", isChecked: false)
         ]
         
         self.checklists = checklists
@@ -36,17 +36,14 @@ extension ChecklistItemsModelController {
     }
     
     
-    func createNewItem(then completionHandler: @escaping (Result<ChecklistItem, Error>) -> Void) {
-        
-        let newChecklist = ChecklistItem(title: "New Checklist", iconName: "", isChecked: false)
-        
+    func add(_ newChecklist: Checklist, at index: Int, then completionHandler: @escaping (Result<Checklist, Error>) -> Void) {
         checklists.append(newChecklist)
         
         completionHandler(.success(newChecklist))
     }
     
     
-    func removeItem(at index: Int, then completionHandler: @escaping (Result<Void, Error>) -> Void) {
+    func removeChecklist(at index: Int, then completionHandler: @escaping (Result<Void, Error>) -> Void) {
         checklists.remove(at: index)
         
         completionHandler(.success(()))

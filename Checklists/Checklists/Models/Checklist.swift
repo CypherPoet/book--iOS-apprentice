@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ChecklistItem {
+struct Checklist {
     var title: String
     var iconName: String
     var isChecked: Bool = false

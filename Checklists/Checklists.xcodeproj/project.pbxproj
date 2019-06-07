@@ -17,9 +17,10 @@
 		F32E29AB22A4839D00599C32 /* ChecklistListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32E29AA22A4839D00599C32 /* ChecklistListViewController.swift */; };
 		F32E29AE22A4896E00599C32 /* UIViewController+DisplayAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32E29AD22A4896E00599C32 /* UIViewController+DisplayAlertMessage.swift */; };
 		F32E29B122A4899100599C32 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32E29B022A4899100599C32 /* TableViewDataSource.swift */; };
-		F32E29B422A48ADE00599C32 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32E29B322A48ADE00599C32 /* ChecklistItem.swift */; };
+		F32E29B422A48ADE00599C32 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32E29B322A48ADE00599C32 /* Checklist.swift */; };
 		F32E29B622A48CB900599C32 /* ChecklistItemsModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32E29B522A48CB900599C32 /* ChecklistItemsModelController.swift */; };
 		F36BAFE822A8A18800B1CEDB /* AddChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36BAFE722A8A18800B1CEDB /* AddChecklistViewController.swift */; };
+		F36BB00F22A9B9F400B1CEDB /* AddChecklistViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36BB00E22A9B9F400B1CEDB /* AddChecklistViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +38,10 @@
 		F32E29AA22A4839D00599C32 /* ChecklistListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChecklistListViewController.swift; path = Checklists/Scenes/ChecklistListViewController.swift; sourceTree = SOURCE_ROOT; };
 		F32E29AD22A4896E00599C32 /* UIViewController+DisplayAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DisplayAlertMessage.swift"; sourceTree = "<group>"; };
 		F32E29B022A4899100599C32 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
-		F32E29B322A48ADE00599C32 /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
+		F32E29B322A48ADE00599C32 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		F32E29B522A48CB900599C32 /* ChecklistItemsModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItemsModelController.swift; sourceTree = "<group>"; };
 		F36BAFE722A8A18800B1CEDB /* AddChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChecklistViewController.swift; sourceTree = "<group>"; };
+		F36BB00E22A9B9F400B1CEDB /* AddChecklistViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChecklistViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +154,7 @@
 		F32E29B222A48A4D00599C32 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F32E29B322A48ADE00599C32 /* ChecklistItem.swift */,
+				F32E29B322A48ADE00599C32 /* Checklist.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				F36BAFE722A8A18800B1CEDB /* AddChecklistViewController.swift */,
+				F36BB00E22A9B9F400B1CEDB /* AddChecklistViewControllerDelegate.swift */,
 			);
 			path = "Add Checklist";
 			sourceTree = "<group>";
@@ -326,7 +329,8 @@
 				F32E29AE22A4896E00599C32 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F32E29A622A481AF00599C32 /* R.generated.swift in Sources */,
 				F32E29AB22A4839D00599C32 /* ChecklistListViewController.swift in Sources */,
-				F32E29B422A48ADE00599C32 /* ChecklistItem.swift in Sources */,
+				F32E29B422A48ADE00599C32 /* Checklist.swift in Sources */,
+				F36BB00F22A9B9F400B1CEDB /* AddChecklistViewControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
