@@ -20,15 +20,6 @@ class ChecklistItemTableViewCell: UITableViewCell {
             configure(with: viewModel)
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        let tintedCheckmarkImage = checkmarkImageView.image?.withRenderingMode(.alwaysTemplate)
-        
-        checkmarkImageView.image = tintedCheckmarkImage
-        checkmarkImageView.tintColor = #colorLiteral(red: 0.09115665406, green: 0.5695676208, blue: 0.9993852973, alpha: 1)
-    }
 }
 
 
