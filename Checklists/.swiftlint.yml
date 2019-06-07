@@ -1,6 +1,7 @@
 disabled_rules: # rule identifiers to exclude from running
   - vertical_whitespace
   - trailing_whitespace
+  - trailing_comma
 
 opt_in_rules: # some rules are only opt-in
   -

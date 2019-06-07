@@ -9,7 +9,7 @@
 import UIKit
 
 
-final class ChecklistItemsModelController {
+final class ChecklistModelController {
     
     enum Error: Swift.Error {
         case noData
@@ -21,14 +21,19 @@ final class ChecklistItemsModelController {
 
 // MARK: - Core Methods
 
-extension ChecklistItemsModelController {
+extension ChecklistModelController {
     
     func loadChecklists(then completionHandler: @escaping (Result<[Checklist], Error>) -> Void) {
+        let dummyItems = [
+            ChecklistItem(title: "Item 1", isChecked: false),
+            ChecklistItem(title: "Item 2", isChecked: false),
+            ChecklistItem(title: "Item 3", isChecked: false),
+        ]
         
         let checklists = [
-            Checklist(title: "To Do", iconName: "", isChecked: false),
-            Checklist(title: "Trades", iconName: "", isChecked: false),
-            Checklist(title: "The Swiftness", iconName: "", isChecked: false)
+            Checklist(title: "To Do", iconName: "", items: dummyItems),
+            Checklist(title: "Trades", iconName: "", items: dummyItems),
+            Checklist(title: "The Swiftness", iconName: "", items: dummyItems)
         ]
         
         self.checklists = checklists

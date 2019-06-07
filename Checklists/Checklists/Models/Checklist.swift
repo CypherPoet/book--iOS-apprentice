@@ -11,5 +11,16 @@ import Foundation
 struct Checklist {
     var title: String
     var iconName: String
-    var isChecked: Bool = false
+    
+    var items: [ChecklistItem] = []
+}
+
+
+
+extension Checklist {
+    init(title: String, iconName: String) {
+        self.title = title
+        self.iconName = iconName
+        self.items = [ChecklistItem]()
+    }
 }

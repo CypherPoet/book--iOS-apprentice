@@ -22,7 +22,7 @@ class AddChecklistViewController: UITableViewController {
 extension AddChecklistViewController {
 
     var checklistFromForm: Checklist {
-        return Checklist(title: nameTextField.text ?? "", iconName: "", isChecked: false)
+        return Checklist(title: nameTextField.text ?? "", iconName: "")
     }
     
 }

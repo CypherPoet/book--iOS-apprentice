@@ -11,7 +11,7 @@ import UIKit
 class ChecklistListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
-    var modelController: ChecklistItemsModelController!
+    var modelController: ChecklistModelController!
     private var checklistTableDataSource: TableViewDataSource<Checklist>!
 }
 
@@ -46,16 +46,36 @@ extension ChecklistListViewController {
 
 extension ChecklistListViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        assert(
-            segue.identifier == R.segue.checklistListViewController.showAddNewItemView.identifier,
-            "Unkown segue"
-        )
-        
+        switch segue.identifier {
+        case R.segue.checklistListViewController.showChecklistItemList.identifier:
+            handleSegueToChecklistItemList(using: segue)
+        case R.segue.checklistListViewController.showAddItemView.identifier:
+            handleSegueToAddChecklist(using: segue)
+        default:
+            preconditionFailure("Uknown segue")
+        }
+    }
+    
+    
+    func handleSegueToAddChecklist(using segue: UIStoryboardSegue) {
         guard let addChecklistVC = segue.destination as? AddChecklistViewController else {
             fatalError()
         }
         
         addChecklistVC.delegate = self
+    }
+    
+    
+    func handleSegueToChecklistItemList(using segue: UIStoryboardSegue) {
+        guard
+            let checklistItemListVC = segue.destination as? ChecklistItemListViewController,
+            let selectedRowIndex = tableView.indexPathForSelectedRow
+        else {
+            fatalError()
+        }
+        
+        let checklist = checklistTableDataSource.models[selectedRowIndex.row]
+        checklistItemListVC.modelController = ChecklistItemsModelController(checklist: checklist)
     }
 }
 
@@ -63,21 +83,6 @@ extension ChecklistListViewController {
 // MARK: - Event Handling
 
 extension ChecklistListViewController {
-    
-}
-
-
-
-// MARK: - UITableViewDelegate
-
-extension ChecklistListViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        checklistTableDataSource.models[indexPath.row].isChecked.toggle()
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-        tableView.reloadRows(at: [indexPath], with: .automatic)
-    }
     
 }
 
@@ -135,14 +140,12 @@ private extension ChecklistListViewController {
         self.checklistTableDataSource = dataSource
         
         tableView.dataSource = dataSource
-        tableView.delegate = self
         tableView.reloadData()
     }
     
     
     func configure(_ cell: UITableViewCell, with checklist: Checklist) {
         cell.textLabel?.text = checklist.title
-        cell.accessoryType = checklist.isChecked ? .checkmark : .none
     }
     
     
