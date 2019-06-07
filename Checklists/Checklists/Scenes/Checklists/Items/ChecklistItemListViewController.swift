@@ -25,6 +25,7 @@ extension ChecklistItemListViewController {
 
         assert(modelController != nil, "No model controller set")
         
+        title = modelController.checklistTitle
         setupTableView(with: modelController.checklistItems)
     }
 }
@@ -35,7 +36,7 @@ extension ChecklistItemListViewController {
 extension ChecklistItemListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dataSource.models[indexPath.row].isChecked.toggle()
+//        dataSource.models[indexPath.row].isChecked.toggle()
         
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -49,12 +50,18 @@ extension ChecklistItemListViewController: UITableViewDelegate {
 private extension ChecklistItemListViewController {
     
     func setupTableView(with checklistItems: [ChecklistItem]) {
+        let cellReuseId = R.reuseIdentifier.checklistItemTableCell.identifier
+        
         let dataSource = TableViewDataSource(
             models: checklistItems,
-            cellReuseIdentifier: R.reuseIdentifier.checklistItemTableCell.identifier,
+            cellReuseIdentifier: cellReuseId,
             cellConfigurator: { (checklistItem, cell) in
-                cell.textLabel?.text = checklistItem.title
-                cell.accessoryType = checklistItem.isChecked ? .checkmark : .none
+                guard let cell = cell as? ChecklistItemTableViewCell else { fatalError() }
+                
+                cell.viewModel = ChecklistItemTableViewCell.ViewModel(
+                    isChecked: checklistItem.isChecked,
+                    title: checklistItem.title
+                )
             }
 //            cellDeletionHandler: { [weak self] (checklistItem, cell, indexPath) in
 //
@@ -62,7 +69,11 @@ private extension ChecklistItemListViewController {
         )
         
         self.dataSource = dataSource
+        
         tableView.dataSource = dataSource
         tableView.delegate = self
+        
+        let cellNib = ChecklistItemTableViewCell.nib
+        tableView.register(cellNib, forCellReuseIdentifier: cellReuseId)
     }
 }

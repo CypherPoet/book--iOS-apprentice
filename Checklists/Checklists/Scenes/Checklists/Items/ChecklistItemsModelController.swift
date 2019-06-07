@@ -25,4 +25,8 @@ extension ChecklistItemsModelController {
     var checklistItems: [ChecklistItem] {
         return checklist.items
     }
+    
+    var checklistTitle: String {
+        return checklist.title
+    }
 }
