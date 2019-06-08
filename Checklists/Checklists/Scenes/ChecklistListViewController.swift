@@ -19,10 +19,20 @@ class ChecklistListViewController: UIViewController {
 // MARK: - Computeds
 
 extension ChecklistListViewController {
+    
     var newRowIndexPath: IndexPath {
         let nextRowIndex = tableView.numberOfRows(inSection: 0)
         
         return IndexPath(row: nextRowIndex, section: 0)
+    }
+    
+    
+    var checklistForSelectedRow: Checklist {
+        guard let selectedRowIndex = tableView.indexPathForSelectedRow else {
+            preconditionFailure("Unable to find tableView.indexPathForSelectedRow")
+        }
+        
+        return checklistTableDataSource.models[selectedRowIndex.row]
     }
 }
 
@@ -45,12 +55,16 @@ extension ChecklistListViewController {
 // MARK: - Navigation
 
 extension ChecklistListViewController {
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case R.segue.checklistListViewController.showChecklistItemList.identifier:
             handleSegueToChecklistItemList(using: segue)
-        case R.segue.checklistListViewController.showAddItemView.identifier:
+        case R.segue.checklistListViewController.showAddChecklistView.identifier:
             handleSegueToAddChecklist(using: segue)
+        case R.segue.checklistListViewController.showEditChecklistView.identifier:
+            guard let cell = sender as? UITableViewCell else { fatalError() }
+            handleSegueToEditChecklist(using: segue, and: cell)
         default:
             preconditionFailure("Uknown segue")
         }
@@ -58,50 +72,59 @@ extension ChecklistListViewController {
     
     
     func handleSegueToAddChecklist(using segue: UIStoryboardSegue) {
-        guard let addChecklistVC = segue.destination as? AddChecklistViewController else {
-            fatalError()
+        guard let viewController = segue.destination as? AddEditChecklistViewController else {
+            preconditionFailure("Segue destination doesn't match expected view controller")
         }
         
-        addChecklistVC.delegate = self
+        viewController.newChecklistId = modelController.nextId
+        viewController.delegate = self
+    }
+    
+    
+    func handleSegueToEditChecklist(using segue: UIStoryboardSegue, and cell: UITableViewCell) {
+        guard let viewController = segue.destination as? AddEditChecklistViewController else {
+            preconditionFailure("Segue destination doesn't match expected view controller")
+        }
+        
+        viewController.delegate = self
+        viewController.checklistToEdit = checklistFor(cell)
     }
     
     
     func handleSegueToChecklistItemList(using segue: UIStoryboardSegue) {
-        guard
-            let checklistItemListVC = segue.destination as? ChecklistItemListViewController,
-            let selectedRowIndex = tableView.indexPathForSelectedRow
-        else {
-            fatalError()
+        guard let viewController = segue.destination as? ChecklistItemListViewController else {
+            preconditionFailure("Segue destination doesn't match expected view controller")
         }
         
-        let checklist = checklistTableDataSource.models[selectedRowIndex.row]
-        checklistItemListVC.modelController = ChecklistItemsModelController(checklist: checklist)
+        viewController.modelController = ChecklistItemsModelController(checklist: checklistForSelectedRow)
     }
 }
 
 
-// MARK: - Event Handling
+// MARK: - AddEditChecklistViewControllerDelegate
 
-extension ChecklistListViewController {
+extension ChecklistListViewController: AddEditChecklistViewControllerDelegate {
     
-}
-
-
-// MARK: - AddChecklistViewControllerDelegate
-
-extension ChecklistListViewController: AddChecklistViewControllerDelegate {
-    
-    func addChecklistViewControllerDidCancel(_ viewController: AddChecklistViewController) {
+    func addEditChecklistViewControllerDidCancel(_ viewController: AddEditChecklistViewController) {
         navigationController?.popViewController(animated: true)
     }
     
     
-    func addChecklistViewController(
-        _ viewController: AddChecklistViewController,
+    func addEditChecklistViewController(
+        _ viewController: AddEditChecklistViewController,
         didFinishAdding newChecklist: Checklist
     ) {
         navigationController?.popViewController(animated: true)
         add(newChecklist, at: newRowIndexPath)
+    }
+    
+    
+    func addEditChecklistViewController(
+        _ viewController: AddEditChecklistViewController,
+        didFinishEditing checklist: Checklist
+    ) {
+        navigationController?.popViewController(animated: true)
+        update(checklist)
     }
 }
 
@@ -175,6 +198,30 @@ private extension ChecklistListViewController {
                 case .failure:
                     fatalError()
                 }
+            }
+        }
+    }
+    
+    
+    func checklistFor(_ cell: UITableViewCell) -> Checklist {
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            preconditionFailure("Unable to find index path for cell")
+        }
+        
+        return checklistTableDataSource.models[indexPath.row]
+    }
+    
+    
+    func update(_ checklist: Checklist) {
+        modelController.update(checklist) { [weak self] result in
+            switch result {
+            case .success(let updatedChecklist, let updatedIndex):
+                let updatedChecklistIndexPath = IndexPath(row: updatedIndex, section: 0)
+                
+                self?.checklistTableDataSource.models[updatedIndex] = updatedChecklist
+                self?.tableView.reloadRows(at: [updatedChecklistIndexPath], with: .automatic)
+            case .failure:
+                fatalError()
             }
         }
     }

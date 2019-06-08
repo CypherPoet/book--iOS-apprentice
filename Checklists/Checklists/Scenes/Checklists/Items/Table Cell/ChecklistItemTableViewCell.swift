@@ -12,7 +12,6 @@ class ChecklistItemTableViewCell: UITableViewCell {
     @IBOutlet private weak var checkmarkImageView: UIImageView!
     @IBOutlet private weak var itemTitleLabel: UILabel!
     
-    
     var viewModel: ViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }

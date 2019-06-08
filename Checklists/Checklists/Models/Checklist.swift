@@ -8,17 +8,21 @@
 
 import Foundation
 
-struct Checklist {
+struct Checklist: Identifiable {
+    typealias ID = String
+    typealias IdentifiedValue = Checklist
+
+    var id: ID
     var title: String
     var iconName: String
-    
     var items: [ChecklistItem] = []
 }
 
 
 
 extension Checklist {
-    init(title: String, iconName: String) {
+    init(id: ID, title: String, iconName: String) {
+        self.id = id
         self.title = title
         self.iconName = iconName
         self.items = [ChecklistItem]()

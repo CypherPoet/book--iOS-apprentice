@@ -40,6 +40,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="2Ph-cI-eYq" kind="show" identifier="Show Checklist Item List" id="Mkh-Fv-v8P"/>
+                                            <segue destination="kO1-Ax-KD6" kind="show" identifier="Show Edit Checklist View" trigger="accessoryAction" id="bqU-6x-p6o"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -57,7 +58,7 @@
                     <navigationItem key="navigationItem" title="Checklists" id="biI-vg-QeN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bh1-9M-r9Y">
                             <connections>
-                                <segue destination="kO1-Ax-KD6" kind="show" identifier="Show Add Item View" id="iYe-RG-tMb"/>
+                                <segue destination="kO1-Ax-KD6" kind="show" identifier="Show Add Checklist View" id="iYe-RG-tMb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -102,7 +103,7 @@
         <!--Add Checklist-->
         <scene sceneID="x8h-UP-XRh">
             <objects>
-                <tableViewController id="kO1-Ax-KD6" customClass="AddChecklistViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="kO1-Ax-KD6" customClass="AddEditChecklistViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ad9-n4-zYH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -187,4 +188,7 @@
             <point key="canvasLocation" x="159" y="41"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bqU-6x-p6o"/>
+    </inferredMetricsTieBreakers>
 </document>
