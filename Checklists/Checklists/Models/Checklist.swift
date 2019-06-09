@@ -10,7 +10,6 @@ import Foundation
 
 struct Checklist: Identifiable {
     typealias ID = String
-    typealias IdentifiedValue = Checklist
 
     var id: ID
     var title: String
