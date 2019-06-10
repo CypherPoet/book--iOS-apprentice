@@ -45,8 +45,8 @@ extension ChecklistListViewController {
         super.viewDidLoad()
         
         assert(modelController != nil, "No model controller was set")
-        
-        loadChecklists()
+
+        setupTableView(with: modelController.checklists)
     }
 }
 
@@ -132,21 +132,6 @@ extension ChecklistListViewController: AddEditChecklistViewControllerDelegate {
 // MARK: - Private Helper Methods
 
 private extension ChecklistListViewController {
-    
-    func loadChecklists() {
-        modelController.loadChecklists { [weak self] checklistsResult in
-            DispatchQueue.main.async {
-                switch checklistsResult {
-                case .success(let checklists):
-                    self?.setupTableView(with: checklists)
-                case .failure(let error):
-                    print(error)
-                    fatalError("Error while loading checklists:\n\n\(error.localizedDescription)")
-                }
-            }
-        }
-    }
-
     
     func setupTableView(with checklists: [Checklist]) {
         let dataSource = TableViewDataSource(

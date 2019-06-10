@@ -10,13 +10,23 @@ import UIKit
 
 
 final class ChecklistModelController {
+    private var dataLoader: ChecklistLoader
     
+    private(set) var checklists: [Checklist] = []
+
+    init(dataLoader: ChecklistLoader = ChecklistLoader()) {
+        self.dataLoader = dataLoader
+    }
+}
+
+
+// MARK: - Error Type
+
+extension ChecklistModelController {
     enum Error: Swift.Error {
         case noData(message: String)
         case invalidAccess(_ message: String)
     }
-    
-    private var checklists: [Checklist] = []
 }
 
 
@@ -27,7 +37,6 @@ extension ChecklistModelController {
     var nextId: Checklist.ID {
         return .init(checklists.count + 1)
     }
-    
 }
 
 
@@ -36,21 +45,23 @@ extension ChecklistModelController {
 extension ChecklistModelController {
     typealias UpdateCompletionHandler = (Result<(Checklist, index: Int), Error>) -> Void
     
-    func loadChecklists(then completionHandler: @escaping (Result<[Checklist], Error>) -> Void) {
-        let dummyItems = [
-            ChecklistItem(title: "Item 1", isChecked: false),
-            ChecklistItem(title: "Item 2", isChecked: false),
-            ChecklistItem(title: "Item 3", isChecked: false),
-        ]
-        
-        let checklists = [
-            Checklist(id: "1", title: "Swift Magic", iconName: "", items: dummyItems),
-            Checklist(id: "2", title: "Trades", iconName: "", items: dummyItems),
-            Checklist(id: "3", title: "The Swiftness", iconName: "", items: dummyItems)
-        ]
-        
-        self.checklists = checklists
-        completionHandler(.success(checklists))
+    
+    func loadSavedChecklists() {
+        dataLoader.loadSavedChecklists { [weak self] dataResult in
+            switch dataResult {
+            case .success(let checklists):
+                self?.checklists = checklists
+            case .failure(let error):
+                fatalError(
+                    "Error while attempting to load saved checklists:\n\n\(error.localizedDescription)"
+                )
+            }
+        }
+    }
+    
+    
+    func saveChecklists() {
+        dataLoader.save(checklists)
     }
     
     
@@ -80,4 +91,22 @@ extension ChecklistModelController {
         completionHandler(.success((checklist, index)))
     }
     
+}
+
+
+private extension ChecklistModelController {
+    
+    func makeDummyChecklists() -> [Checklist] {
+        let dummyItems: [Checklist.Item] = [
+            .init(id: "1", title: "Item 1", isChecked: false),
+            .init(id: "2", title: "Item 2", isChecked: false),
+            .init(id: "3", title: "Item 3", isChecked: false),
+        ]
+        
+        return [
+            Checklist(id: "1", title: "Swift Magic", iconName: "", items: dummyItems),
+            Checklist(id: "2", title: "Trades", iconName: "", items: dummyItems),
+            Checklist(id: "3", title: "The Swiftness", iconName: "", items: dummyItems)
+        ]
+    }
 }

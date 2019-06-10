@@ -22,7 +22,7 @@ final class ChecklistItemsModelController {
 
 extension ChecklistItemsModelController {
     
-    var checklistItems: [ChecklistItem] {
+    var checklistItems: [Checklist.Item] {
         return checklist.items
     }
     

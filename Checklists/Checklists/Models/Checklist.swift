@@ -14,9 +14,8 @@ struct Checklist: Identifiable {
     var id: ID
     var title: String
     var iconName: String
-    var items: [ChecklistItem] = []
+    var items: [Item] = []
 }
-
 
 
 extension Checklist {
@@ -24,6 +23,9 @@ extension Checklist {
         self.id = id
         self.title = title
         self.iconName = iconName
-        self.items = [ChecklistItem]()
+        self.items = [Item]()
     }
 }
+
+
+extension Checklist: Codable {}

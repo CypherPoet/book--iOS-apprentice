@@ -12,7 +12,7 @@ class ChecklistItemListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var modelController: ChecklistItemsModelController!
-    var dataSource: TableViewDataSource<ChecklistItem>!
+    var dataSource: TableViewDataSource<Checklist.Item>!
 }
 
 
@@ -36,8 +36,6 @@ extension ChecklistItemListViewController {
 extension ChecklistItemListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        dataSource.models[indexPath.row].isChecked.toggle()
-        
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
@@ -49,7 +47,7 @@ extension ChecklistItemListViewController: UITableViewDelegate {
 
 private extension ChecklistItemListViewController {
     
-    func setupTableView(with checklistItems: [ChecklistItem]) {
+    func setupTableView(with checklistItems: [Checklist.Item]) {
         let cellReuseId = R.reuseIdentifier.checklistItemTableCell.identifier
         
         let dataSource = TableViewDataSource(
