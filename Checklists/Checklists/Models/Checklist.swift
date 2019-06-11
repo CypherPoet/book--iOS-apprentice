@@ -8,19 +8,13 @@
 
 import Foundation
 
-struct Checklist: Identifiable {
-    typealias ID = String
-
-    var id: ID
+final class Checklist: NSObject {
     var title: String
     var iconName: String
     var items: [Item] = []
-}
 
 
-extension Checklist {
-    init(id: ID, title: String, iconName: String) {
-        self.id = id
+    init(title: String, iconName: String) {
         self.title = title
         self.iconName = iconName
         self.items = [Item]()

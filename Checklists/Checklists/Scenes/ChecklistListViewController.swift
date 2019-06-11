@@ -12,7 +12,7 @@ class ChecklistListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     var modelController: ChecklistModelController!
-    private var checklistTableDataSource: TableViewDataSource<Checklist>!
+    private var tableDataSource: TableViewDataSource<Checklist>!
 }
 
 
@@ -32,7 +32,7 @@ extension ChecklistListViewController {
             preconditionFailure("Unable to find tableView.indexPathForSelectedRow")
         }
         
-        return checklistTableDataSource.models[selectedRowIndex.row]
+        return tableDataSource.models[selectedRowIndex.row]
     }
 }
 
@@ -76,7 +76,6 @@ extension ChecklistListViewController {
             preconditionFailure("Segue destination doesn't match expected view controller")
         }
         
-        viewController.newChecklistId = modelController.nextId
         viewController.delegate = self
     }
     
@@ -96,22 +95,64 @@ extension ChecklistListViewController {
             preconditionFailure("Segue destination doesn't match expected view controller")
         }
         
-        viewController.modelController = ChecklistItemsModelController(checklist: checklistForSelectedRow)
+        viewController.checklist = checklistForSelectedRow
+        viewController.modelController = modelController
     }
 }
 
 
-// MARK: - AddEditChecklistViewControllerDelegate
+// MARK: - ChecklistItemViewControllerDelegate
 
-extension ChecklistListViewController: AddEditChecklistViewControllerDelegate {
+//extension ChecklistListViewController: ChecklistItemViewControllerDelegate {
+//
+//    func checklistItemViewController(
+//        _ controller: UIViewController,
+//        didFinishAdding checklistItem: Checklist.Item,
+//        in checklist: Checklist
+//    ) {
+//        modelController.update(checklist) { [weak self] updateResult in
+//            DispatchQueue.main.async {
+//                switch updateResult {
+//                case .success(let updatedChecklist):
+//                    self?.checklistUpdated(updatedChecklist)
+//                case .failure(let error):
+//                    fatalError("\(error.localizedDescription)")
+//                }
+//            }
+//        }
+//    }
+//
+//
+//    func checklistItemViewController(
+//        _ controller: UIViewController,
+//        didFinishUpdating checklistItem: Checklist.Item,
+//        in checklist: Checklist
+//    ) {
+//        modelController.update(checklistItem, with: checklist.id) { [weak self] updateResult in
+//            DispatchQueue.main.async {
+//                switch updateResult {
+//                case .success(let updatedChecklist):
+//                    self?.checklistUpdated(updatedChecklist)
+//                case .failure(let error):
+//                    fatalError("\(error.localizedDescription)")
+//                }
+//            }
+//        }
+//    }
+//}
+
+
+// MARK: - ChecklistFormViewControllerDelegate
+
+extension ChecklistListViewController: ChecklistFormViewControllerDelegate {
     
-    func addEditChecklistViewControllerDidCancel(_ viewController: AddEditChecklistViewController) {
+    func checklistFormViewControllerDidCancel(_ viewController: UIViewController) {
         navigationController?.popViewController(animated: true)
     }
     
     
-    func addEditChecklistViewController(
-        _ viewController: AddEditChecklistViewController,
+    func checklistFormViewController(
+        _ viewController: UIViewController,
         didFinishAdding newChecklist: Checklist
     ) {
         navigationController?.popViewController(animated: true)
@@ -119,12 +160,12 @@ extension ChecklistListViewController: AddEditChecklistViewControllerDelegate {
     }
     
     
-    func addEditChecklistViewController(
-        _ viewController: AddEditChecklistViewController,
+    func checklistFormViewController(
+        _ viewController: UIViewController,
         didFinishEditing checklist: Checklist
     ) {
         navigationController?.popViewController(animated: true)
-        update(checklist)
+        checklistUpdated(checklist)
     }
 }
 
@@ -145,7 +186,7 @@ private extension ChecklistListViewController {
             }
         )
 
-        self.checklistTableDataSource = dataSource
+        self.tableDataSource = dataSource
         
         tableView.dataSource = dataSource
         tableView.reloadData()
@@ -172,13 +213,13 @@ private extension ChecklistListViewController {
     
     
     func add(_ checklist: Checklist, at indexPath: IndexPath) {
-        modelController.add(checklist, at: indexPath.row) { [weak self] (newItemResult) in
+        modelController.create(checklist) { [weak self] result in
             guard let self = self else { return }
 
             DispatchQueue.main.async {
-                switch newItemResult {
-                case .success(let newItem):
-                    self.checklistTableDataSource.models.append(newItem)
+                switch result {
+                case .success(let newChecklist):
+                    self.tableDataSource.models.append(newChecklist)
                     self.tableView.insertRows(at: [indexPath], with: .automatic)
                 case .failure:
                     fatalError()
@@ -193,21 +234,18 @@ private extension ChecklistListViewController {
             preconditionFailure("Unable to find index path for cell")
         }
         
-        return checklistTableDataSource.models[indexPath.row]
+        return tableDataSource.models[indexPath.row]
     }
     
     
-    func update(_ checklist: Checklist) {
-        modelController.update(checklist) { [weak self] result in
-            switch result {
-            case .success(let updatedChecklist, let updatedIndex):
-                let updatedChecklistIndexPath = IndexPath(row: updatedIndex, section: 0)
-                
-                self?.checklistTableDataSource.models[updatedIndex] = updatedChecklist
-                self?.tableView.reloadRows(at: [updatedChecklistIndexPath], with: .automatic)
-            case .failure:
-                fatalError()
-            }
+    func checklistUpdated(_ checklist: Checklist) {
+        guard let updatedDataSourceIndex = tableDataSource.models.firstIndex(of: checklist) else {
+            preconditionFailure("Unable to find checklist in data source models")
         }
+        
+        let updatedChecklistIndexPath = IndexPath(row: updatedDataSourceIndex, section: 0)
+        
+        tableDataSource.models[updatedDataSourceIndex] = checklist
+        tableView.reloadRows(at: [updatedChecklistIndexPath], with: .automatic)
     }
 }

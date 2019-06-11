@@ -41,6 +41,7 @@ extension AppDelegate {
 
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        checklistModelController.saveChecklistData()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -48,6 +49,7 @@ extension AppDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
+        checklistModelController.saveChecklistData()
     }
 }
 

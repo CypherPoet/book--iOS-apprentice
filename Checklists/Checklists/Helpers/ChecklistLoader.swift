@@ -12,6 +12,13 @@ import Foundation
 final class ChecklistLoader {}
 
 
+extension ChecklistLoader {
+    enum Error: Swift.Error {
+        case noData
+    }
+}
+
+
 // MARK: - Computeds
 
 extension ChecklistLoader {
@@ -41,12 +48,16 @@ extension ChecklistLoader {
         queue.async {
             do {
                 let decoder = JSONDecoder()
-                let data = try Data(contentsOf: url)
-                let checklists = try decoder.decode([Checklist].self, from: data)
-                
-                completionHandler(.success(checklists))
+
+                if let data = try? Data(contentsOf: url) {
+                    let checklists = try decoder.decode([Checklist].self, from: data)
+                    
+                    completionHandler(.success(checklists))
+                } else {
+                    completionHandler(.failure(.noData))
+                }
             } catch {
-                completionHandler(.failure(error))
+                fatalError("Error while attempting to decode saved checklists data:\n\n\(error.localizedDescription)\n\(error)")
             }
         }
     }

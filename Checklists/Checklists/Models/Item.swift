@@ -9,23 +9,15 @@
 import Foundation
 
 extension Checklist {
-    typealias ItemId = String
-    
-    struct Item: Identifiable {
-        var id: ItemId
+    final class Item: NSObject {
         var title: String
         var isChecked: Bool
+
+        init(title: String) {
+            self.title = title
+            self.isChecked = false
+        }
     }
 }
-
-
-extension Checklist.Item {
-    init(id: Checklist.ItemId, title: String) {
-        self.id = id
-        self.title = title
-        self.isChecked = false
-    }
-}
-
 
 extension Checklist.Item: Codable {}

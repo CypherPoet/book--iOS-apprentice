@@ -13,9 +13,9 @@ class AddEditChecklistViewController: UITableViewController {
     @IBOutlet private weak var doneButton: UIBarButtonItem!
     
     var checklistToEdit: Checklist?
-    var newChecklistId: Checklist.ID!
     
-    weak var delegate: AddEditChecklistViewControllerDelegate?
+    weak var delegate: ChecklistFormViewControllerDelegate?
+    lazy var nameTextFieldHandler = BarItemTogglingTextFieldHandler(barItem: doneButton)
 }
 
 
@@ -23,7 +23,7 @@ class AddEditChecklistViewController: UITableViewController {
 
 extension AddEditChecklistViewController {
     var checklistFromChanges: Checklist {
-        var checklist = checklistToEdit ?? Checklist(id: newChecklistId, title: "", iconName: "")
+        let checklist = checklistToEdit ?? Checklist(title: "", iconName: "")
 
         checklist.title = nameTextField.text!
         
@@ -44,7 +44,7 @@ extension AddEditChecklistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        assert(checklistToEdit != nil || newChecklistId != nil)
+        nameTextField.delegate = nameTextFieldHandler
         setupUI()
     }
     
@@ -62,49 +62,16 @@ extension AddEditChecklistViewController {
 extension AddEditChecklistViewController {
     
     @IBAction func cancelButtonTapped() {
-        delegate?.addEditChecklistViewControllerDidCancel(self)
+        delegate?.checklistFormViewControllerDidCancel(self)
     }
     
     
     @IBAction func doneButtonTapped() {
         if checklistToEdit == nil {
-            delegate?.addEditChecklistViewController(self, didFinishAdding: checklistFromChanges)
+            delegate?.checklistFormViewController(self, didFinishAdding: checklistFromChanges)
         } else {
-            delegate?.addEditChecklistViewController(self, didFinishEditing: checklistFromChanges)
+            delegate?.checklistFormViewController(self, didFinishEditing: checklistFromChanges)
         }
-    }
-}
-
-
-// MARK: - UITableViewDelegate
-
-extension AddEditChecklistViewController {
-
-}
-
-
-
-// MARK: - UITextFieldDelegate
-
-extension AddEditChecklistViewController: UITextFieldDelegate {
-    
-    /**
-      Invoked every time the user changes the text, whether by tapping on the keyboard or via cut/paste.
-     */
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let oldText = textField.text ?? ""
-        let stringRange = Range(range, in: oldText)!
-        let newText = oldText.replacingCharacters(in: stringRange, with: string)
-        
-        doneButton.isEnabled = !newText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-        
-        return true
-    }
-    
-    
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        doneButton.isEnabled = false
-        return true
     }
 }
 
