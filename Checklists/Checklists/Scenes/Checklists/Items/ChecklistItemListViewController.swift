@@ -129,10 +129,10 @@ private extension ChecklistItemListViewController {
             cellReuseIdentifier: cellReuseId,
             cellConfigurator: { [weak self] (checklistItem, cell) in
                 self?.configure(cell, with: checklistItem)
+            },
+            cellDeletionHandler: { [weak self] (_, _, indexPath) in
+                self?.cellDeleted(at: indexPath)
             }
-//            cellDeletionHandler: { [weak self] (checklistItem, cell, indexPath) in
-//
-//            }
         )
         
         self.dataSource = dataSource
@@ -163,5 +163,11 @@ private extension ChecklistItemListViewController {
         let indexPath = IndexPath(row: updatedDataSourceIndex, section: 0)
 
         tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    
+    func cellDeleted(at indexPath: IndexPath) {
+        checklist.items.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
