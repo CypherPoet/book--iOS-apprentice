@@ -11,8 +11,6 @@ import UIKit
 class ChecklistItemListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-//    weak var delegate: ChecklistItemsViewControllerDelegate?
-    
     var checklist: Checklist!
     var modelController: ChecklistModelController!
     var dataSource: TableViewDataSource<Checklist.Item>!
@@ -41,6 +39,7 @@ extension ChecklistItemListViewController {
         title = checklist.title
         render(with: checklistItems)
     }
+    
 }
 
 
@@ -90,7 +89,6 @@ extension ChecklistItemListViewController: UITableViewDelegate {
 extension ChecklistItemListViewController: ChecklistItemFormViewControllerDelegate {
     
     func checklistItemFormViewController(_ viewController: UIViewController, didFinishAdding newItem: Checklist.Item) {
-        // TODO: Perform an unwind segue here instead?
         navigationController?.popViewController(animated: true)
 
         checklist.items.append(newItem)

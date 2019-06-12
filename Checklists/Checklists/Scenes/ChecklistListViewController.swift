@@ -41,12 +41,30 @@ extension ChecklistListViewController {
 // MARK: - Lifecycle
 
 extension ChecklistListViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         assert(modelController != nil, "No model controller was set")
-
+        
         setupTableView(with: modelController.checklists)
+    }
+
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.delegate = self
+        
+        if
+            let checklistRow = UserDefaults.Keys.currentChecklistIndexPathRow.get(),
+            let checklistSection = UserDefaults.Keys.currentChecklistIndexPathSection.get()
+        {
+            performSegue(
+                withIdentifier: R.segue.checklistListViewController.showChecklistItemList.identifier,
+                sender: IndexPath(row: checklistRow, section: checklistSection)
+            )
+        }
     }
 }
 
@@ -56,10 +74,17 @@ extension ChecklistListViewController {
 
 extension ChecklistListViewController {
     
+    @IBAction func unwindToChecklistsList(unwindSegue: UIStoryboardSegue) {}
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case R.segue.checklistListViewController.showChecklistItemList.identifier:
-            handleSegueToChecklistItemList(using: segue)
+            guard let indexPath = sender as? IndexPath ?? tableView.indexPathForSelectedRow else {
+                preconditionFailure("Unable to find index path for checklist")
+            }
+            
+            handleSegueToChecklistItemList(using: segue, and: indexPath)
         case R.segue.checklistListViewController.showAddChecklistView.identifier:
             handleSegueToAddChecklist(using: segue)
         case R.segue.checklistListViewController.showEditChecklistView.identifier:
@@ -90,57 +115,35 @@ extension ChecklistListViewController {
     }
     
     
-    func handleSegueToChecklistItemList(using segue: UIStoryboardSegue) {
+    func handleSegueToChecklistItemList(using segue: UIStoryboardSegue, and indexPath: IndexPath) {
         guard let viewController = segue.destination as? ChecklistItemListViewController else {
             preconditionFailure("Segue destination doesn't match expected view controller")
         }
+
+        UserDefaults.Keys.currentChecklistIndexPathRow.set(indexPath.row)
+        UserDefaults.Keys.currentChecklistIndexPathSection.set(indexPath.section)
         
-        viewController.checklist = checklistForSelectedRow
+        viewController.checklist = tableDataSource.models[indexPath.row]
         viewController.modelController = modelController
     }
 }
 
 
-// MARK: - ChecklistItemViewControllerDelegate
+// MARK: - UINavigationControllerDelegate
 
-//extension ChecklistListViewController: ChecklistItemViewControllerDelegate {
-//
-//    func checklistItemViewController(
-//        _ controller: UIViewController,
-//        didFinishAdding checklistItem: Checklist.Item,
-//        in checklist: Checklist
-//    ) {
-//        modelController.update(checklist) { [weak self] updateResult in
-//            DispatchQueue.main.async {
-//                switch updateResult {
-//                case .success(let updatedChecklist):
-//                    self?.checklistUpdated(updatedChecklist)
-//                case .failure(let error):
-//                    fatalError("\(error.localizedDescription)")
-//                }
-//            }
-//        }
-//    }
-//
-//
-//    func checklistItemViewController(
-//        _ controller: UIViewController,
-//        didFinishUpdating checklistItem: Checklist.Item,
-//        in checklist: Checklist
-//    ) {
-//        modelController.update(checklistItem, with: checklist.id) { [weak self] updateResult in
-//            DispatchQueue.main.async {
-//                switch updateResult {
-//                case .success(let updatedChecklist):
-//                    self?.checklistUpdated(updatedChecklist)
-//                case .failure(let error):
-//                    fatalError("\(error.localizedDescription)")
-//                }
-//            }
-//        }
-//    }
-//}
-
+extension ChecklistListViewController: UINavigationControllerDelegate {
+    func navigationController(
+        _ navigationController: UINavigationController,
+        willShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        if viewController === self {
+            UserDefaults.Keys.currentChecklistIndexPathRow.removeValue()
+            UserDefaults.Keys.currentChecklistIndexPathSection.removeValue()
+        }
+    }
+}
+    
 
 // MARK: - ChecklistFormViewControllerDelegate
 

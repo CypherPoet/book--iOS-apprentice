@@ -92,13 +92,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OLK-b8-5ap"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Checklist Title" largeTitleDisplayMode="never" id="p3o-dQ-lO1">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YeX-f5-VKG">
-                            <connections>
-                                <segue destination="7vi-9t-256" kind="show" identifier="Add Checklist Item " id="dn2-ln-Sd9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="b6r-6k-egj"/>
                     <connections>
                         <outlet property="tableView" destination="bRR-dy-Ln7" id="sRp-Qx-oz9"/>
                         <segue destination="7vi-9t-256" kind="show" identifier="Edit Checklist Item" id="qVa-I5-Du9"/>
@@ -265,6 +259,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="bqU-6x-p6o"/>
-        <segue reference="qVa-I5-Du9"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -32,6 +32,7 @@
 		F36BB03922AE617600B1CEDB /* AddEditChecklistItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36BB03822AE617600B1CEDB /* AddEditChecklistItemTableViewController.swift */; };
 		F36BB03B22AE6B6700B1CEDB /* ButtonTogglingTextFieldHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36BB03A22AE6B6700B1CEDB /* ButtonTogglingTextFieldHandler.swift */; };
 		F38EF83022AFAE250031BE50 /* ChecklistItemFormViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EF82F22AFAE250031BE50 /* ChecklistItemFormViewControllerDelegate.swift */; };
+		F38EF83222AFBB6A0031BE50 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EF83122AFBB6A0031BE50 /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		F36BB03822AE617600B1CEDB /* AddEditChecklistItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditChecklistItemTableViewController.swift; sourceTree = "<group>"; };
 		F36BB03A22AE6B6700B1CEDB /* ButtonTogglingTextFieldHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTogglingTextFieldHandler.swift; sourceTree = "<group>"; };
 		F38EF82F22AFAE250031BE50 /* ChecklistItemFormViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItemFormViewControllerDelegate.swift; sourceTree = "<group>"; };
+		F38EF83122AFBB6A0031BE50 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				F36BB03122ADE1C500B1CEDB /* ChecklistLoader.swift */,
+				F38EF83122AFBB6A0031BE50 /* UserDefaults.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				F36BB02D22ACD74500B1CEDB /* FileManager+UserDocumentsDirectory.swift in Sources */,
 				F36BB03622AE2E6800B1CEDB /* ChecklistItemViewControllerDelegate.swift in Sources */,
 				F32E29B422A48ADE00599C32 /* Checklist.swift in Sources */,
+				F38EF83222AFBB6A0031BE50 /* UserDefaults.swift in Sources */,
 				F36BB02022AB6C7100B1CEDB /* Identifiable.swift in Sources */,
 				F36BB01222AA0C1700B1CEDB /* ChecklistItemListViewController.swift in Sources */,
 				F36BB00F22A9B9F400B1CEDB /* ChecklistFormViewControllerDelegate.swift in Sources */,
