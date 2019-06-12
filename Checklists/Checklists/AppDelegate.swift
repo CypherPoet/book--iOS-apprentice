@@ -13,7 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    private lazy var checklistModelController = ChecklistModelController()
+    private lazy var stateController = StateController()
+    private lazy var checklistModelController = ChecklistModelController(stateController: stateController)
 }
 
 
@@ -66,6 +67,7 @@ private extension AppDelegate {
             preconditionFailure("Unable to find expected view controllers")
         }
         
+        checklistListVC.stateController = stateController
         checklistListVC.modelController = checklistModelController
     }
     

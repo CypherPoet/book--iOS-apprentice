@@ -12,6 +12,8 @@ class ChecklistListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     var modelController: ChecklistModelController!
+    var stateController: StateController!
+    
     private var tableDataSource: TableViewDataSource<Checklist>!
 }
 
@@ -46,6 +48,7 @@ extension ChecklistListViewController {
         super.viewDidLoad()
         
         assert(modelController != nil, "No model controller was set")
+        assert(stateController != nil, "No state controller was set")
         
         setupTableView(with: modelController.checklists)
     }
@@ -56,10 +59,10 @@ extension ChecklistListViewController {
         
         navigationController?.delegate = self
         
-        if let indexPathToRestore = modelController.indexPathOfCurrentChecklist {
+        if let indexPathToRestore = stateController.indexPathOfCurrentChecklist {
             guard tableDataSource.models.count > indexPathToRestore.row else {
                 // Reset because something is out of sync
-                modelController.indexPathOfCurrentChecklist = nil
+                stateController.indexPathOfCurrentChecklist = nil
                 return
             }
             
@@ -123,7 +126,7 @@ extension ChecklistListViewController {
             preconditionFailure("Segue destination doesn't match expected view controller")
         }
 
-        modelController.indexPathOfCurrentChecklist = indexPath
+        stateController.indexPathOfCurrentChecklist = indexPath
         viewController.checklist = tableDataSource.models[indexPath.row]
         viewController.modelController = modelController
     }
@@ -139,7 +142,7 @@ extension ChecklistListViewController: UINavigationControllerDelegate {
         animated: Bool
     ) {
         if viewController === self {
-            modelController.indexPathOfCurrentChecklist = nil
+            stateController.indexPathOfCurrentChecklist = nil
         }
     }
 }
