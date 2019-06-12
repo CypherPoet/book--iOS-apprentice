@@ -23,6 +23,31 @@ final class ChecklistModelController {
 // MARK: - Computeds
 
 extension ChecklistModelController {
+    
+    /// Used to load the app on the view of a checklist if that's what it previously exited on
+    var indexPathOfCurrentChecklist: IndexPath? {
+        get {
+            if
+                let row = UserDefaults.Keys.currentChecklistIndexPathRow.get(),
+                let section = UserDefaults.Keys.currentChecklistIndexPathSection.get()
+            {
+                return IndexPath(row: row, section: section)
+            } else {
+                return nil
+            }
+        }
+        
+        set {
+            if let newValue = newValue {
+                UserDefaults.Keys.currentChecklistIndexPathRow.set(newValue.row)
+                UserDefaults.Keys.currentChecklistIndexPathSection.set(newValue.section)
+            } else {
+                UserDefaults.Keys.currentChecklistIndexPathRow.removeValue()
+                UserDefaults.Keys.currentChecklistIndexPathSection.removeValue()
+            }
+        }
+    }
+    
 }
 
 
@@ -37,7 +62,7 @@ extension ChecklistModelController {
     
     
     func loadSavedChecklists() {
-        dataLoader.loadSavedChecklists { [weak self] dataResult in
+        dataLoader.loadSavedChecklists { [weak self] dataResult in            
             switch dataResult {
             case .success(let checklists):
                 self?.checklists = checklists

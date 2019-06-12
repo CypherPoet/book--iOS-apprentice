@@ -56,13 +56,16 @@ extension ChecklistListViewController {
         
         navigationController?.delegate = self
         
-        if
-            let checklistRow = UserDefaults.Keys.currentChecklistIndexPathRow.get(),
-            let checklistSection = UserDefaults.Keys.currentChecklistIndexPathSection.get()
-        {
+        if let indexPathToRestore = modelController.indexPathOfCurrentChecklist {
+            guard tableDataSource.models.count > indexPathToRestore.row else {
+                // Reset because something is out of sync
+                modelController.indexPathOfCurrentChecklist = nil
+                return
+            }
+            
             performSegue(
                 withIdentifier: R.segue.checklistListViewController.showChecklistItemList.identifier,
-                sender: IndexPath(row: checklistRow, section: checklistSection)
+                sender: indexPathToRestore
             )
         }
     }
@@ -120,9 +123,7 @@ extension ChecklistListViewController {
             preconditionFailure("Segue destination doesn't match expected view controller")
         }
 
-        UserDefaults.Keys.currentChecklistIndexPathRow.set(indexPath.row)
-        UserDefaults.Keys.currentChecklistIndexPathSection.set(indexPath.section)
-        
+        modelController.indexPathOfCurrentChecklist = indexPath
         viewController.checklist = tableDataSource.models[indexPath.row]
         viewController.modelController = modelController
     }
@@ -138,8 +139,7 @@ extension ChecklistListViewController: UINavigationControllerDelegate {
         animated: Bool
     ) {
         if viewController === self {
-            UserDefaults.Keys.currentChecklistIndexPathRow.removeValue()
-            UserDefaults.Keys.currentChecklistIndexPathSection.removeValue()
+            modelController.indexPathOfCurrentChecklist = nil
         }
     }
 }
