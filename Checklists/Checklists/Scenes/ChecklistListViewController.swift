@@ -50,7 +50,17 @@ extension ChecklistListViewController {
         assert(modelController != nil, "No model controller was set")
         assert(stateController != nil, "No state controller was set")
         
-        setupTableView(with: modelController.checklists)
+        modelController.loadChecklists { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let checklists):
+                    self?.render(with: checklists)
+                case .failure:
+                    // TODO: Better handling here
+                    fatalError()
+                }
+            }
+        }
     }
 
     
@@ -58,19 +68,6 @@ extension ChecklistListViewController {
         super.viewDidAppear(animated)
         
         navigationController?.delegate = self
-        
-        if let indexPathToRestore = stateController.indexPathOfCurrentChecklist {
-            guard tableDataSource.models.count > indexPathToRestore.row else {
-                // Reset because something is out of sync
-                stateController.indexPathOfCurrentChecklist = nil
-                return
-            }
-            
-            performSegue(
-                withIdentifier: R.segue.checklistListViewController.showChecklistItemList.identifier,
-                sender: indexPathToRestore
-            )
-        }
     }
 }
 
@@ -179,6 +176,24 @@ extension ChecklistListViewController: ChecklistFormViewControllerDelegate {
 // MARK: - Private Helper Methods
 
 private extension ChecklistListViewController {
+    
+    func render(with checklists: [Checklist]) {
+        setupTableView(with: checklists)
+        
+        if let indexPathToRestore = stateController.indexPathOfCurrentChecklist {
+            guard checklists.count > indexPathToRestore.row else {
+                // Reset because something is out of sync
+                stateController.indexPathOfCurrentChecklist = nil
+                return
+            }
+            
+            performSegue(
+                withIdentifier: R.segue.checklistListViewController.showChecklistItemList.identifier,
+                sender: indexPathToRestore
+            )
+        }
+    }
+    
     
     func setupTableView(with checklists: [Checklist]) {
         let dataSource = TableViewDataSource(

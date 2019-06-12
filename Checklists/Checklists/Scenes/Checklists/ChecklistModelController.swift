@@ -29,12 +29,16 @@ final class ChecklistModelController {
 // MARK: - Computeds
 
 extension ChecklistModelController {
+    var firstChecklist: Checklist {
+        return Checklist(title: "My First List", iconName: "")
+    }
 }
 
 
 // MARK: - Core Methods
 
 extension ChecklistModelController {
+    typealias ChecklistsCompletionHandler = (Result<[Checklist], Error>) -> Void
     typealias ChecklistUpdateCompletionHandler = (Result<Checklist, Error>) -> Void
     
     typealias ItemUpdateCompletionHandler = (
@@ -42,17 +46,27 @@ extension ChecklistModelController {
     ) -> Void
     
     
-    func loadSavedChecklists() {
-        dataLoader.loadSavedChecklists { [weak self] dataResult in
-            switch dataResult {
-            case .success(let checklists):
-                self?.checklists = checklists
-            case .failure(.noData):
-                self?.checklists = []
+    func loadChecklists(then completionHandler: @escaping ChecklistsCompletionHandler) {
+        if UserDefaults.Keys.isFirstRunOfApp.get(defaultValue: false) {
+            UserDefaults.Keys.isFirstRunOfApp.set(false)
+            
+            checklists.append(firstChecklist)
+            stateController.indexPathOfCurrentChecklist = IndexPath(row: 0, section: 0)
+            
+            completionHandler(.success(checklists))
+        } else {
+            dataLoader.loadSavedChecklists { [weak self] dataResult in
+                switch dataResult {
+                case .success(let checklists):
+                    self?.checklists = checklists
+                    completionHandler(.success(checklists))
+                case .failure(.noData):
+                    self?.checklists = []
+                    completionHandler(.success([]))
+                }
             }
         }
     }
-    
     
     func saveChecklistData() {
         dataLoader.save(checklists)

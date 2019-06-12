@@ -16,7 +16,7 @@ _A game testing the user's ability to drag a slider the a specific number_.
   <img src="./BullsEye/Screenshots/screen-recording-gif.gif" width="700px"/>
 </div>
 
-### Topics Covered
+### Topics Covered / Challenges Encountered
 
 - Sliders, labels, and other common UIKit controls.
 - Building responsive interfaces that adapt to all screen sizes.
@@ -43,7 +43,7 @@ _ _.
   <img src="" width=""/>
 </div>
 
-### Topics Covered
+### Topics Covered / Challenges Encountered
 
 - Handling `UITextFieldDelegate` events to dynamically enable/disable submission buttons.
 

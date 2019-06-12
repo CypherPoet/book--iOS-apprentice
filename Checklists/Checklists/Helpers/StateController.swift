@@ -10,6 +10,13 @@ import Foundation
 
 
 final class StateController {
+    static var defaultDefaults = [
+        UserDefaults.Keys.isFirstRunOfApp.keyName: true
+    ]
+    
+    init(initialUserDefaults: [String: Any] = defaultDefaults) {
+        setupUserDefaults(with: initialUserDefaults)
+    }
 }
 
 
@@ -39,5 +46,15 @@ extension StateController {
                 UserDefaults.Keys.currentChecklistIndexPathSection.removeValue()
             }
         }
+    }
+}
+
+
+// MARK: - Private Helpers
+
+private extension StateController {
+    
+    func setupUserDefaults(with initialUserDefaults: [String: Any]) {
+        UserDefaults.standard.register(defaults: initialUserDefaults)
     }
 }

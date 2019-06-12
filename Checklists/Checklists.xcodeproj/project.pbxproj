@@ -33,6 +33,7 @@
 		F36BB03B22AE6B6700B1CEDB /* ButtonTogglingTextFieldHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36BB03A22AE6B6700B1CEDB /* ButtonTogglingTextFieldHandler.swift */; };
 		F38EF83022AFAE250031BE50 /* ChecklistItemFormViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EF82F22AFAE250031BE50 /* ChecklistItemFormViewControllerDelegate.swift */; };
 		F38EF83222AFBB6A0031BE50 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EF83122AFBB6A0031BE50 /* UserDefaults.swift */; };
+		F38EF83722B0F73C0031BE50 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EF83622B0F73C0031BE50 /* StateController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		F36BB03A22AE6B6700B1CEDB /* ButtonTogglingTextFieldHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTogglingTextFieldHandler.swift; sourceTree = "<group>"; };
 		F38EF82F22AFAE250031BE50 /* ChecklistItemFormViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItemFormViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F38EF83122AFBB6A0031BE50 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		F38EF83622B0F73C0031BE50 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 			children = (
 				F36BB03122ADE1C500B1CEDB /* ChecklistLoader.swift */,
 				F38EF83122AFBB6A0031BE50 /* UserDefaults.swift */,
+				F38EF83622B0F73C0031BE50 /* StateController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F32E29B622A48CB900599C32 /* ChecklistModelController.swift in Sources */,
+				F38EF83722B0F73C0031BE50 /* StateController.swift in Sources */,
 				F36BB03922AE617600B1CEDB /* AddEditChecklistItemTableViewController.swift in Sources */,
 				F36BB03222ADE1C500B1CEDB /* ChecklistLoader.swift in Sources */,
 				F36BB02422AB916300B1CEDB /* R.generated.swift in Sources */,
