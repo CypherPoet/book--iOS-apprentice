@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Circle Check.png",
+      "filename" : "Circle-Check.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Circle Check@2x.png",
+      "filename" : "Circle-Check@2x.png",
       "scale" : "2x"
     },
     {
