@@ -40,8 +40,10 @@ extension ChecklistModelController {
         return Checklist(title: "My First List", iconName: "")
     }
     
-    var checklistsByNameDesc: [Checklist] {
-        return checklists.sorted { $0.title < $1.title }
+    var checklistsByNameAsc: [Checklist] {
+        return checklists.sorted {
+            return $0.title.localizedStandardCompare($1.title) == .orderedAscending
+        }
     }
 }
 

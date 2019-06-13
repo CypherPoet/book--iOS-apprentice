@@ -54,7 +54,7 @@ extension ChecklistListViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    self.render(with: self.modelController.checklistsByNameDesc)
+                    self.render(with: self.modelController.checklistsByNameAsc)
                     self.modelController.addObserver(self)
                 case .failure:
                     // TODO: Better handling here
@@ -290,7 +290,7 @@ private extension ChecklistListViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
-            self.tableDataSource.models = self.modelController.checklistsByNameDesc
+            self.tableDataSource.models = self.modelController.checklistsByNameAsc
             self.tableView.reloadData()
         }
     }
