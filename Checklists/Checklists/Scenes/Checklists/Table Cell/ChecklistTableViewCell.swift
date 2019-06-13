@@ -47,11 +47,16 @@ extension ChecklistTableViewCell {
     
     struct ViewModel {
         var title: String
+        var totalItemCount: Int
         var unfinishedItemCount: Int
         var iconName: UIImage?
         
         var subtitleText: String {
-            return "\(unfinishedItemCount) Remaining"
+            if totalItemCount == 0 {
+                return "(No Items)"
+            } else {
+                return unfinishedItemCount == 0 ? "All Done!" : "\(unfinishedItemCount) Remaining"
+            }
         }
     }
 }

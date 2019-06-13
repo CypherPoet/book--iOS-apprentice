@@ -255,6 +255,7 @@ private extension ChecklistListViewController {
         
         cell.viewModel = ChecklistTableViewCell.ViewModel(
             title: checklist.title,
+            totalItemCount: checklist.items.count,
             unfinishedItemCount: checklist.uncheckedCount,
             iconName: nil
         )
