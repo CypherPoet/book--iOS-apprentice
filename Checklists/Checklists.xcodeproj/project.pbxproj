@@ -36,6 +36,7 @@
 		F38EF83722B0F73C0031BE50 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EF83622B0F73C0031BE50 /* StateController.swift */; };
 		F38EF84622B235AF0031BE50 /* ChecklistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EF84422B235AF0031BE50 /* ChecklistTableViewCell.swift */; };
 		F38EF84722B235AF0031BE50 /* ChecklistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F38EF84522B235AF0031BE50 /* ChecklistTableViewCell.xib */; };
+		F38EF84922B25B580031BE50 /* ChecklistModelControllerObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EF84822B25B580031BE50 /* ChecklistModelControllerObserving.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		F38EF83622B0F73C0031BE50 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		F38EF84422B235AF0031BE50 /* ChecklistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistTableViewCell.swift; sourceTree = "<group>"; };
 		F38EF84522B235AF0031BE50 /* ChecklistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChecklistTableViewCell.xib; sourceTree = "<group>"; };
+		F38EF84822B25B580031BE50 /* ChecklistModelControllerObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistModelControllerObserving.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +134,6 @@
 				F32E29AC22A4896000599C32 /* Extensions */,
 				F36BB02E22ACD93C00B1CEDB /* Helpers */,
 				F32E29B222A48A4D00599C32 /* Models */,
-				F36BB01E22AB6C5500B1CEDB /* Protocols */,
 				F32E29AF22A4898300599C32 /* Reusables */,
 				F32E29A822A4820C00599C32 /* Scenes */,
 			);
@@ -165,6 +166,7 @@
 				F36BAFE522A8A08900B1CEDB /* Add-Edit Checklist */,
 				F32E29B522A48CB900599C32 /* ChecklistModelController.swift */,
 				F32E29AA22A4839D00599C32 /* ChecklistListViewController.swift */,
+				F38EF84822B25B580031BE50 /* ChecklistModelControllerObserving.swift */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -181,6 +183,7 @@
 		F32E29AF22A4898300599C32 /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				F36BB01E22AB6C5500B1CEDB /* Protocols */,
 				F32E29B022A4899100599C32 /* TableViewDataSource.swift */,
 				F36BB03A22AE6B6700B1CEDB /* ButtonTogglingTextFieldHandler.swift */,
 			);
@@ -422,6 +425,7 @@
 				F36BB03922AE617600B1CEDB /* AddEditChecklistItemTableViewController.swift in Sources */,
 				F36BB03222ADE1C500B1CEDB /* ChecklistLoader.swift in Sources */,
 				F36BB02422AB916300B1CEDB /* R.generated.swift in Sources */,
+				F38EF84922B25B580031BE50 /* ChecklistModelControllerObserving.swift in Sources */,
 				F36BB01C22AA39D500B1CEDB /* ChecklistItemTableViewCell.swift in Sources */,
 				F36BB03B22AE6B6700B1CEDB /* ButtonTogglingTextFieldHandler.swift in Sources */,
 				F32E29B122A4899100599C32 /* TableViewDataSource.swift in Sources */,

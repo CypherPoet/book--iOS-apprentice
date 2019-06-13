@@ -21,13 +21,12 @@ class ChecklistListViewController: UIViewController {
 // MARK: - Computeds
 
 extension ChecklistListViewController {
-    
     var newRowIndexPath: IndexPath {
         let nextRowIndex = tableView.numberOfRows(inSection: 0)
         
         return IndexPath(row: nextRowIndex, section: 0)
     }
-    
+
     
     var checklistForSelectedRow: Checklist {
         guard let selectedRowIndex = tableView.indexPathForSelectedRow else {
@@ -37,7 +36,6 @@ extension ChecklistListViewController {
         return tableDataSource.models[selectedRowIndex.row]
     }
 }
-
 
 
 // MARK: - Lifecycle
@@ -51,10 +49,13 @@ extension ChecklistListViewController {
         assert(stateController != nil, "No state controller was set")
         
         modelController.loadChecklists { [weak self] result in
+            guard let self = self else { return }
+
             DispatchQueue.main.async {
                 switch result {
-                case .success(let checklists):
-                    self?.render(with: checklists)
+                case .success:
+                    self.render(with: self.modelController.checklistsByNameDesc)
+                    self.modelController.addObserver(self)
                 case .failure:
                     // TODO: Better handling here
                     fatalError()
@@ -174,7 +175,17 @@ extension ChecklistListViewController: ChecklistFormViewControllerDelegate {
         didFinishEditing checklist: Checklist
     ) {
         navigationController?.popViewController(animated: true)
-        checklistUpdated(checklist)
+        checklistsUpdated()
+    }
+}
+
+
+// MARK: - ChecklistModelControllerDelegate
+
+extension ChecklistListViewController: ChecklistModelControllerObserving {
+
+    func checklistModelControllerDidUpdate(_ controller: ChecklistModelController) {
+        checklistsUpdated()
     }
 }
 
@@ -201,7 +212,6 @@ extension ChecklistListViewController: UITableViewDelegate {
         )
     }
 }
-
 
 
 // MARK: - Private Helper Methods
@@ -235,8 +245,8 @@ private extension ChecklistListViewController {
             cellConfigurator: { [weak self] (checklist, cell) in
                 self?.configure(cell, with: checklist)
             },
-            cellDeletionHandler: { [weak self] (_, cell, indexPath) in
-                self?.cellDeletedFromTable(cell, at: indexPath)
+            cellDeletionHandler: { [weak self] (checklist, _, _) in
+                self?.modelController.delete(checklist)
             }
         )
 
@@ -260,36 +270,10 @@ private extension ChecklistListViewController {
             iconName: nil
         )
     }
-    
-    
-    func cellDeletedFromTable(_ cell: UITableViewCell, at indexPath: IndexPath) {
-        modelController.removeChecklist(at: indexPath.row) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    self?.tableView.deleteRows(at: [indexPath], with: .automatic)
-                case .failure:
-                    fatalError()
-                }
-            }
-        }
-    }
-    
+
     
     func add(_ checklist: Checklist, at indexPath: IndexPath) {
-        modelController.create(checklist) { [weak self] result in
-            guard let self = self else { return }
-
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let newChecklist):
-                    self.tableDataSource.models.append(newChecklist)
-                    self.tableView.insertRows(at: [indexPath], with: .automatic)
-                case .failure:
-                    fatalError()
-                }
-            }
-        }
+        modelController.create(checklist)
     }
     
     
@@ -300,16 +284,14 @@ private extension ChecklistListViewController {
         
         return tableDataSource.models[indexPath.row]
     }
+
     
-    
-    func checklistUpdated(_ checklist: Checklist) {
-        guard let updatedDataSourceIndex = tableDataSource.models.firstIndex(of: checklist) else {
-            preconditionFailure("Unable to find checklist in data source models")
+    func checklistsUpdated() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            self.tableDataSource.models = self.modelController.checklistsByNameDesc
+            self.tableView.reloadData()
         }
-        
-        let updatedChecklistIndexPath = IndexPath(row: updatedDataSourceIndex, section: 0)
-        
-        tableDataSource.models[updatedDataSourceIndex] = checklist
-        tableView.reloadRows(at: [updatedChecklistIndexPath], with: .automatic)
     }
 }
