@@ -15,9 +15,18 @@ class ChecklistItemTableViewCell: UITableViewCell {
     var viewModel: ViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
-            
             configure(with: viewModel)
         }
+    }
+    
+    /**
+        ???: Even though the image asset is configured with "Render as Template Image",
+        and the XIB has the checkmarkImageView's tint color set, it still renders initially
+        without tinting. Not quite sure why, but this StackOverflow is related: https://stackoverflow.com/a/50135807
+    */
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        checkmarkImageView.tintColorDidChange()
     }
 }
 

@@ -72,7 +72,6 @@ extension ChecklistListViewController {
 }
 
 
-
 // MARK: - Navigation
 
 extension ChecklistListViewController {
@@ -82,7 +81,7 @@ extension ChecklistListViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case R.segue.checklistListViewController.showChecklistItemList.identifier:
+        case R.segue.checklistListViewController.showChecklistItems.identifier:
             guard let indexPath = sender as? IndexPath ?? tableView.indexPathForSelectedRow else {
                 preconditionFailure("Unable to find index path for checklist")
             }
@@ -92,6 +91,7 @@ extension ChecklistListViewController {
             handleSegueToAddChecklist(using: segue)
         case R.segue.checklistListViewController.showEditChecklistView.identifier:
             guard let cell = sender as? UITableViewCell else { fatalError() }
+            
             handleSegueToEditChecklist(using: segue, and: cell)
         default:
             preconditionFailure("Uknown segue")
@@ -133,6 +133,7 @@ extension ChecklistListViewController {
 // MARK: - UINavigationControllerDelegate
 
 extension ChecklistListViewController: UINavigationControllerDelegate {
+    
     func navigationController(
         _ navigationController: UINavigationController,
         willShow viewController: UIViewController,
@@ -173,6 +174,31 @@ extension ChecklistListViewController: ChecklistFormViewControllerDelegate {
 }
 
 
+// MARK: - UITableViewDelegate
+
+extension ChecklistListViewController: UITableViewDelegate {
+    
+    /// Show Items
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(
+            withIdentifier: R.segue.checklistListViewController.showChecklistItems.identifier,
+            sender: indexPath
+        )
+    }
+    
+    /// Show Edit View
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) else { fatalError() }
+        
+        performSegue(
+            withIdentifier: R.segue.checklistListViewController.showEditChecklistView.identifier,
+            sender: cell
+        )
+    }
+}
+
+
+
 // MARK: - Private Helper Methods
 
 private extension ChecklistListViewController {
@@ -188,7 +214,7 @@ private extension ChecklistListViewController {
             }
             
             performSegue(
-                withIdentifier: R.segue.checklistListViewController.showChecklistItemList.identifier,
+                withIdentifier: R.segue.checklistListViewController.showChecklistItems.identifier,
                 sender: indexPathToRestore
             )
         }
@@ -196,9 +222,11 @@ private extension ChecklistListViewController {
     
     
     func setupTableView(with checklists: [Checklist]) {
+        let cellReuseID = R.reuseIdentifier.checklistTableViewCell.identifier
+        
         let dataSource = TableViewDataSource(
             models: checklists,
-            cellReuseIdentifier: R.reuseIdentifier.checklistTableCell.identifier,
+            cellReuseIdentifier: cellReuseID,
             cellConfigurator: { [weak self] (checklist, cell) in
                 self?.configure(cell, with: checklist)
             },
@@ -208,14 +236,23 @@ private extension ChecklistListViewController {
         )
 
         self.tableDataSource = dataSource
-        
         tableView.dataSource = dataSource
+        tableView.delegate = self
+        tableView.register(ChecklistTableViewCell.nib, forCellReuseIdentifier: cellReuseID)
         tableView.reloadData()
     }
     
     
     func configure(_ cell: UITableViewCell, with checklist: Checklist) {
-        cell.textLabel?.text = checklist.title
+        guard let cell = cell as? ChecklistTableViewCell else {
+            preconditionFailure("Unknown cell type")
+        }
+        
+        cell.viewModel = ChecklistTableViewCell.ViewModel(
+            title: checklist.title,
+            unfinishedItemCount: checklist.uncheckedCount,
+            iconName: nil
+        )
     }
     
     

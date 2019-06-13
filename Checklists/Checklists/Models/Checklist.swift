@@ -21,5 +21,16 @@ final class Checklist: NSObject {
     }
 }
 
-
 extension Checklist: Codable {}
+
+
+// MARK: - Core Methods and Computeds
+
+extension Checklist {
+    
+    var uncheckedCount: Int {
+        return items.reduce(0) { (totalCount, item) -> Int in
+            return item.isChecked ? totalCount : totalCount + 1
+        }
+    }
+}
