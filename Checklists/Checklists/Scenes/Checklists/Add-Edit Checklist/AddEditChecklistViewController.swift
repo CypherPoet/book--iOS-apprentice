@@ -23,7 +23,7 @@ class AddEditChecklistViewController: UITableViewController {
 
 extension AddEditChecklistViewController {
     var checklistFromChanges: Checklist {
-        let checklist = checklistToEdit ?? Checklist(title: "", iconName: "")
+        let checklist = checklistToEdit ?? Checklist(title: "")
 
         checklist.title = nameTextField.text!
         

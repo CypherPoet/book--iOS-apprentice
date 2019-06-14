@@ -37,7 +37,7 @@ final class ChecklistModelController {
 extension ChecklistModelController {
     
     var firstChecklist: Checklist {
-        return Checklist(title: "My First List", iconName: "")
+        return Checklist(title: "My First List")
     }
     
     var checklistsByNameAsc: [Checklist] {
@@ -68,9 +68,7 @@ extension ChecklistModelController {
         if UserDefaults.Keys.isFirstRunOfApp.get(defaultValue: false) {
             UserDefaults.Keys.isFirstRunOfApp.set(false)
             
-            checklists.append(firstChecklist)
-            stateController.indexPathOfCurrentChecklist = IndexPath(row: 0, section: 0)
-            
+            setupInitialChecklist()
             completionHandler?(.success( () ))
         } else {
             dataLoader.loadSavedChecklists { [weak self] dataResult in
@@ -79,7 +77,7 @@ extension ChecklistModelController {
                     self?.checklists = checklists
                     completionHandler?(.success( () ))
                 case .failure(.noData):
-                    self?.checklists = []
+                    self?.setupInitialChecklist()
                     completionHandler?(.success( () ))
                 }
             }
@@ -112,5 +110,18 @@ extension ChecklistModelController {
         let removed = checklists.remove(at: index)
         
         completionHandler?(.success(removed))
+    }
+}
+
+
+// MARK: - Private Helpers
+
+private extension ChecklistModelController {
+    
+    func setupInitialChecklist() {
+        checklists.removeAll()
+        checklists.append(firstChecklist)
+        
+        stateController.indexPathOfCurrentChecklist = IndexPath(row: 0, section: 0)
     }
 }

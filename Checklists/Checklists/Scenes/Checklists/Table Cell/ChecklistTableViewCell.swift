@@ -11,6 +11,8 @@ import UIKit
 class ChecklistTableViewCell: UITableViewCell {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
+    @IBOutlet private var iconImageView: UIImageView!
+    
     
     var viewModel: ViewModel! {
         didSet {
@@ -36,6 +38,7 @@ class ChecklistTableViewCell: UITableViewCell {
     func render(with viewModel: ViewModel) {
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitleText
+        iconImageView.image = viewModel.categoryIcon
     }
     
 }
@@ -49,7 +52,7 @@ extension ChecklistTableViewCell {
         var title: String
         var totalItemCount: Int
         var unfinishedItemCount: Int
-        var iconName: UIImage?
+        var categoryIcon: UIImage?
         
         var subtitleText: String {
             if totalItemCount == 0 {
