@@ -38,6 +38,9 @@
 		F38EF84722B235AF0031BE50 /* ChecklistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F38EF84522B235AF0031BE50 /* ChecklistTableViewCell.xib */; };
 		F38EF84922B25B580031BE50 /* ChecklistModelControllerObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EF84822B25B580031BE50 /* ChecklistModelControllerObserving.swift */; };
 		F39DBD6D22B3AD420080F2E4 /* Checklist+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39DBD6C22B3AD420080F2E4 /* Checklist+Category.swift */; };
+		F39DBD6F22B3CE040080F2E4 /* ChecklistCategoryPickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39DBD6E22B3CE040080F2E4 /* ChecklistCategoryPickerViewControllerDelegate.swift */; };
+		F39DBD7122B3CF2C0080F2E4 /* ChecklistCategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39DBD7022B3CF2C0080F2E4 /* ChecklistCategoryPickerViewController.swift */; };
+		F39DBD7422B51EC30080F2E4 /* AddEditChecklistViewController+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39DBD7322B51EC30080F2E4 /* AddEditChecklistViewController+ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,9 @@
 		F38EF84522B235AF0031BE50 /* ChecklistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChecklistTableViewCell.xib; sourceTree = "<group>"; };
 		F38EF84822B25B580031BE50 /* ChecklistModelControllerObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistModelControllerObserving.swift; sourceTree = "<group>"; };
 		F39DBD6C22B3AD420080F2E4 /* Checklist+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checklist+Category.swift"; sourceTree = "<group>"; };
+		F39DBD6E22B3CE040080F2E4 /* ChecklistCategoryPickerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistCategoryPickerViewControllerDelegate.swift; sourceTree = "<group>"; };
+		F39DBD7022B3CF2C0080F2E4 /* ChecklistCategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistCategoryPickerViewController.swift; sourceTree = "<group>"; };
+		F39DBD7322B51EC30080F2E4 /* AddEditChecklistViewController+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEditChecklistViewController+ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,7 +210,9 @@
 			isa = PBXGroup;
 			children = (
 				F36BAFE722A8A18800B1CEDB /* AddEditChecklistViewController.swift */,
+				F39DBD7322B51EC30080F2E4 /* AddEditChecklistViewController+ViewModel.swift */,
 				F36BB00E22A9B9F400B1CEDB /* ChecklistFormViewControllerDelegate.swift */,
+				F39DBD7222B3D4EF0080F2E4 /* Pick Category */,
 			);
 			path = "Add-Edit Checklist";
 			sourceTree = "<group>";
@@ -273,6 +281,15 @@
 				F39DBD6C22B3AD420080F2E4 /* Checklist+Category.swift */,
 			);
 			path = Checklist;
+			sourceTree = "<group>";
+		};
+		F39DBD7222B3D4EF0080F2E4 /* Pick Category */ = {
+			isa = PBXGroup;
+			children = (
+				F39DBD6E22B3CE040080F2E4 /* ChecklistCategoryPickerViewControllerDelegate.swift */,
+				F39DBD7022B3CF2C0080F2E4 /* ChecklistCategoryPickerViewController.swift */,
+			);
+			path = "Pick Category";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,11 +461,14 @@
 				F32E298E22A47D3B00599C32 /* AppDelegate.swift in Sources */,
 				F32E29AE22A4896E00599C32 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F32E29AB22A4839D00599C32 /* ChecklistListViewController.swift in Sources */,
+				F39DBD7122B3CF2C0080F2E4 /* ChecklistCategoryPickerViewController.swift in Sources */,
+				F39DBD6F22B3CE040080F2E4 /* ChecklistCategoryPickerViewControllerDelegate.swift in Sources */,
 				F38EF83022AFAE250031BE50 /* ChecklistItemFormViewControllerDelegate.swift in Sources */,
 				F39DBD6D22B3AD420080F2E4 /* Checklist+Category.swift in Sources */,
 				F36BB01622AA197F00B1CEDB /* Checklist+Item.swift in Sources */,
 				F36BB02D22ACD74500B1CEDB /* FileManager+UserDocumentsDirectory.swift in Sources */,
 				F36BB03622AE2E6800B1CEDB /* ChecklistItemViewControllerDelegate.swift in Sources */,
+				F39DBD7422B51EC30080F2E4 /* AddEditChecklistViewController+ViewModel.swift in Sources */,
 				F32E29B422A48ADE00599C32 /* Checklist.swift in Sources */,
 				F38EF83222AFBB6A0031BE50 /* UserDefaults.swift in Sources */,
 				F36BB02022AB6C7100B1CEDB /* Identifiable.swift in Sources */,

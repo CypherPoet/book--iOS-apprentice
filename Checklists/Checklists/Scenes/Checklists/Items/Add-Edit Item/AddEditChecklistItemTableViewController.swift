@@ -9,13 +9,19 @@
 import UIKit
 
 class AddEditChecklistItemTableViewController: UITableViewController {
-    @IBOutlet private weak var itemTextField: UITextField!
-    @IBOutlet private weak var doneButton: UIBarButtonItem!
-    
+    @IBOutlet private var titleTextField: UITextField!
+    @IBOutlet private var doneButton: UIBarButtonItem!
+
     var itemToEdit: Checklist.Item?
     
     weak var delegate: ChecklistItemFormViewControllerDelegate?
-    lazy var itemTextFieldHandler = BarItemTogglingTextFieldHandler(barItem: doneButton)
+    
+    lazy var titleTextFieldHandler = EmptyTextFieldChecker(
+        isEmpty: titleTextField.hasText,
+        changeHandler: { [weak self] isTitleTextEmpty in
+            self?.doneButton.isEnabled = isTitleTextEmpty
+        }
+    )
 }
 
 
@@ -27,7 +33,7 @@ extension AddEditChecklistItemTableViewController {
     var checklistItemFromChanges: Checklist.Item {
         let item = itemToEdit ?? Checklist.Item(title: "")
         
-        item.title = itemTextField.text!
+        item.title = titleTextField.text!
         
         return item
     }
@@ -46,15 +52,17 @@ extension AddEditChecklistItemTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        itemTextField.delegate = itemTextFieldHandler
-        setupUI()
+        titleTextField.delegate = titleTextFieldHandler
+        title = viewTitle
+        
+        setupUI(with: itemToEdit)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        itemTextField.becomeFirstResponder()
+        titleTextField.becomeFirstResponder()
     }
 }
 
@@ -83,12 +91,8 @@ extension AddEditChecklistItemTableViewController {
 
 private extension AddEditChecklistItemTableViewController {
     
-    func setupUI() {
-        title = viewTitle
-        
-        if let itemToEdit = itemToEdit {
-            itemTextField.text = itemToEdit.title
-            doneButton.isEnabled = true
-        }
+    func setupUI(with itemToEdit: Checklist.Item?) {
+        doneButton.isEnabled = itemToEdit != nil
+        titleTextField.text = itemToEdit?.title
     }
 }

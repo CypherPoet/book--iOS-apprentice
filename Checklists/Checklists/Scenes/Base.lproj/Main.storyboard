@@ -148,12 +148,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="XKW-3d-6Sc" id="Klb-GK-Nb0"/>
-                        <outlet property="itemTextField" destination="YR5-6l-gas" id="ICQ-bJ-g7B"/>
+                        <outlet property="titleTextField" destination="YR5-6l-gas" id="ICQ-bJ-g7B"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bj3-LW-OXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2978" y="-105"/>
+            <point key="canvasLocation" x="2976.811594202899" y="-105.13392857142857"/>
         </scene>
         <!--Add/Edit Checklist-->
         <scene sceneID="x8h-UP-XRh">
@@ -196,6 +196,44 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Category" id="1WH-Nh-L5w">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="tuk-lW-9gU">
+                                        <rect key="frame" x="0.0" y="135" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tuk-lW-9gU" id="Trd-kj-7F5">
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photos" translatesAutoresizingMaskIntoConstraints="NO" id="TCC-tq-BDb">
+                                                    <rect key="frame" x="330" y="4.5" width="42" height="42"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="TCC-tq-BDb" secondAttribute="height" multiplier="1:1" id="9PI-cC-Z5e"/>
+                                                        <constraint firstAttribute="height" constant="42" id="faB-Sj-h2X"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXG-mi-T9f">
+                                                    <rect key="frame" x="8" y="15" width="326" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OXG-mi-T9f" firstAttribute="centerY" secondItem="TCC-tq-BDb" secondAttribute="centerY" id="8h2-0T-fbm"/>
+                                                <constraint firstAttribute="trailing" secondItem="TCC-tq-BDb" secondAttribute="trailing" constant="4" id="GI1-OW-DPI"/>
+                                                <constraint firstItem="TCC-tq-BDb" firstAttribute="top" secondItem="Trd-kj-7F5" secondAttribute="top" constant="4" id="Qtn-Po-qxl"/>
+                                                <constraint firstAttribute="bottom" secondItem="TCC-tq-BDb" secondAttribute="bottom" constant="4" id="V8i-iy-BAJ"/>
+                                                <constraint firstItem="OXG-mi-T9f" firstAttribute="leading" secondItem="Trd-kj-7F5" secondAttribute="leading" constant="8" id="wrd-QU-zbw"/>
+                                                <constraint firstItem="OXG-mi-T9f" firstAttribute="trailing" secondItem="TCC-tq-BDb" secondAttribute="leading" constant="4" id="yLu-0E-7IR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="d8d-Rv-8Js" kind="show" identifier="Show Category Picker" id="0TC-mw-l4E"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="kO1-Ax-KD6" id="oeP-Uk-qfW"/>
@@ -215,8 +253,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="categoryIconImageView" destination="TCC-tq-BDb" id="fx7-Qn-0XW"/>
+                        <outlet property="categoryLabel" destination="OXG-mi-T9f" id="UUN-hT-jGq"/>
                         <outlet property="doneButton" destination="Lgd-m8-gCc" id="cc4-ZA-0os"/>
-                        <outlet property="nameTextField" destination="aDK-VG-yPT" id="A9y-vi-XUE"/>
+                        <outlet property="titleTextField" destination="aDK-VG-yPT" id="A9y-vi-XUE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4p-Ve-zvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -241,7 +281,64 @@
             </objects>
             <point key="canvasLocation" x="159" y="41"/>
         </scene>
+        <!--Select A Category-->
+        <scene sceneID="ltz-6q-11h">
+            <objects>
+                <viewController title="Select A Category" id="d8d-Rv-8Js" customClass="ChecklistCategoryPickerViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oPJ-8t-G2e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oJZ-zD-FHr">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Category Table Cell" textLabel="uJS-Cp-grF" imageView="Ywo-cK-GIu" style="IBUITableViewCellStyleDefault" id="3Af-t8-fT3">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Af-t8-fT3" id="v1W-eV-3vb">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uJS-Cp-grF">
+                                                    <rect key="frame" x="73" y="0.0" width="321" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Experiments" id="Ywo-cK-GIu">
+                                                    <rect key="frame" x="20" y="2" width="38" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oJZ-zD-FHr" firstAttribute="top" secondItem="3eW-8L-CZW" secondAttribute="top" id="G57-Lh-rjy"/>
+                            <constraint firstItem="3eW-8L-CZW" firstAttribute="bottom" secondItem="oJZ-zD-FHr" secondAttribute="bottom" id="kAO-d7-J0d"/>
+                            <constraint firstItem="3eW-8L-CZW" firstAttribute="trailing" secondItem="oJZ-zD-FHr" secondAttribute="trailing" id="lSf-1Z-sFR"/>
+                            <constraint firstItem="oJZ-zD-FHr" firstAttribute="leading" secondItem="3eW-8L-CZW" secondAttribute="leading" id="zJb-sg-D34"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3eW-8L-CZW"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="oJZ-zD-FHr" id="uG8-gU-Psz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DmN-sw-JeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1983" y="694"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Experiments" width="38" height="38"/>
+        <image name="Photos" width="36" height="36"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="KrH-sH-tAs"/>
         <segue reference="Wm2-kn-rVM"/>

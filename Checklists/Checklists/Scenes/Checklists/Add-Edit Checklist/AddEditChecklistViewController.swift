@@ -9,30 +9,45 @@
 import UIKit
 
 class AddEditChecklistViewController: UITableViewController {
-    @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var doneButton: UIBarButtonItem!
+    @IBOutlet private var categoryLabel: UILabel!
+    @IBOutlet private var categoryIconImageView: UIImageView!
     
     var checklistToEdit: Checklist?
     
+    var viewModel: AddEditChecklistViewController.ViewModel! {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.render(with: viewModel)
+            }
+        }
+    }
+    
     weak var delegate: ChecklistFormViewControllerDelegate?
-    lazy var nameTextFieldHandler = BarItemTogglingTextFieldHandler(barItem: doneButton)
+    
+    lazy var titleTextFieldChecker = EmptyTextFieldChecker(
+        isEmpty: titleTextField.hasText,
+        changeHandler: { [weak self] isTitleTextEmpty in
+            guard let self = self else { return }
+
+            self.doneButton.isEnabled = (
+                !isTitleTextEmpty &&
+                self.viewModel.checklistCategory != nil
+            )
+        }
+    )
 }
 
 
 // MARK: - Computeds
 
 extension AddEditChecklistViewController {
-    var checklistFromChanges: Checklist {
-        let checklist = checklistToEdit ?? Checklist(title: "")
-
-        checklist.title = nameTextField.text!
-        
-        return checklist
-    }
-
     
     var viewTitle: String {
-        return checklistToEdit != nil ? "Edit Checklist" : "Add Checklist"
+        return checklistToEdit == nil ? "Add Checklist" : "Edit Checklist"
     }
 }
 
@@ -44,17 +59,42 @@ extension AddEditChecklistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameTextField.delegate = nameTextFieldHandler
-        setupUI()
+        title = viewTitle
+        
+        viewModel = .init(
+            checklistTitle: checklistToEdit?.title ?? "",
+            checklistCategory: checklistToEdit?.category
+        )
+        
+        titleTextField.delegate = titleTextFieldChecker
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        nameTextField.becomeFirstResponder()
+        titleTextField.becomeFirstResponder()
     }
 }
+
+
+// MARK: - Navigation
+
+extension AddEditChecklistViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            segue.identifier == R.segue.addEditChecklistViewController.showCategoryPicker.identifier,
+            let pickerVC = segue.destination as? ChecklistCategoryPickerViewController
+        else {
+            preconditionFailure("Unknwown Segue")
+        }
+        
+        pickerVC.availableCategories = Checklist.Category.allCases
+        pickerVC.delegate = self
+    }
+}
+
 
 
 // MARK: - Event Handling
@@ -67,11 +107,21 @@ extension AddEditChecklistViewController {
     
     
     @IBAction func doneButtonTapped() {
-        if checklistToEdit == nil {
-            delegate?.checklistFormViewController(self, didFinishAdding: checklistFromChanges)
-        } else {
-            delegate?.checklistFormViewController(self, didFinishEditing: checklistFromChanges)
-        }
+        submitChecklistFromChanges()
+    }
+}
+
+
+// MARK: - ChecklistCategoryPickerViewControllerDelegate
+
+extension AddEditChecklistViewController: ChecklistCategoryPickerViewControllerDelegate {
+    
+    func checklistCategoryPickerViewController(
+        _ controller: UIViewController,
+        didPick category: Checklist.Category
+    ) {
+        viewModel.checklistCategory = category
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -80,12 +130,31 @@ extension AddEditChecklistViewController {
 
 private extension AddEditChecklistViewController {
     
-    func setupUI() {
-        title = viewTitle
-
+    func render(with viewModel: AddEditChecklistViewController.ViewModel) {
+        titleTextField.text = viewModel.checklistTitleText
+        categoryLabel.text = viewModel.checklistCategoryText
+        categoryIconImageView.image = viewModel.checklistIconImage
+        
+        doneButton.isEnabled = titleTextField.hasText
+    }
+    
+    
+    func submitChecklistFromChanges() {
+        guard let category = viewModel.checklistCategory else {
+            preconditionFailure("No category set")
+        }
+        
+        let title = viewModel.checklistTitle
+        
         if let checklistToEdit = checklistToEdit {
-            nameTextField.text = checklistToEdit.title
-            doneButton.isEnabled = true
+            checklistToEdit.title = title
+            checklistToEdit.category = category
+            
+            delegate?.checklistFormViewController(self, didFinishEditing: checklistToEdit)
+        } else {
+            let newChecklist = Checklist(title: title, category: category)
+            
+            delegate?.checklistFormViewController(self, didFinishAdding: newChecklist)
         }
     }
 }

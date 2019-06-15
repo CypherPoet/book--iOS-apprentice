@@ -1,5 +1,5 @@
 //
-//  BarItemTogglingTextFieldHandler.swift
+//  EmptyTextFieldHandler.swift
 //  Checklists
 //
 //  Created by Brian Sipple on 6/10/19.
@@ -8,18 +8,25 @@
 
 import UIKit
 
-final class BarItemTogglingTextFieldHandler: NSObject {
-    var barItem: UIBarItem
+final class EmptyTextFieldChecker: NSObject {
+    typealias ChangeHandler = (Bool) -> Void
     
-    init(barItem: UIBarItem) {
-        self.barItem = barItem
+    var changeHandler: ChangeHandler
+    
+    var isEmpty = false {
+        didSet { changeHandler(isEmpty) }
+    }
+
+    init(isEmpty: Bool, changeHandler: @escaping ChangeHandler) {
+        self.isEmpty = isEmpty
+        self.changeHandler = changeHandler
     }
 }
 
 
 // MARK: - UITextFieldDelegate
 
-extension BarItemTogglingTextFieldHandler: UITextFieldDelegate {
+extension EmptyTextFieldChecker: UITextFieldDelegate {
     
     /**
      Invoked every time the user changes the text, whether by tapping on the keyboard or via cut/paste.
@@ -29,14 +36,21 @@ extension BarItemTogglingTextFieldHandler: UITextFieldDelegate {
         let stringRange = Range(range, in: oldText)!
         let newText = oldText.replacingCharacters(in: stringRange, with: string)
         
-        barItem.isEnabled = !newText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        isEmpty = newText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         
         return true
     }
     
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        barItem.isEnabled = false
+        isEmpty = true
+        
         return true
     }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        isEmpty = !textField.hasText
+    }
+    
 }

@@ -267,7 +267,7 @@ private extension ChecklistListViewController {
             title: checklist.title,
             totalItemCount: checklist.items.count,
             unfinishedItemCount: checklist.uncheckedCount,
-            categoryIcon: UIImage(named: checklist.category.iconName)
+            categoryIcon: checklist.category.iconImage
         )
     }
 
