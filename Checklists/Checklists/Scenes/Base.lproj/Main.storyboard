@@ -343,4 +343,5 @@
         <segue reference="KrH-sH-tAs"/>
         <segue reference="Wm2-kn-rVM"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.99607843137254903" green="0.13231524806892453" blue="0.28142175411854287" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

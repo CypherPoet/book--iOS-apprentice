@@ -21,6 +21,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="Circle-Check" translatesAutoresizingMaskIntoConstraints="NO" id="w3r-rd-gqK">
                         <rect key="frame" x="8" y="7" width="30" height="30"/>
+                        <color key="tintColor" red="0.45880425499999999" green="0.42457667529999998" blue="0.85103040929999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="w3r-rd-gqK" secondAttribute="height" multiplier="1:1" id="dQM-6W-41c"/>
                             <constraint firstAttribute="height" constant="30" id="yKj-Nz-yrd"/>
