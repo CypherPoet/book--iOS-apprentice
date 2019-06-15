@@ -16,12 +16,13 @@ class AddEditChecklistViewController: UITableViewController {
     
     var checklistToEdit: Checklist?
     
-    var viewModel: AddEditChecklistViewController.ViewModel! {
+    var selectedChecklistCategory: Checklist.Category? {
         didSet {
-            guard let viewModel = viewModel else { return }
-            
             DispatchQueue.main.async { [weak self] in
-                self?.render(with: viewModel)
+                guard let self = self else { return }
+                
+                self.categoryLabel.text = self.selectedChecklistCategory?.title ?? "Select a Category"
+                self.categoryIconImageView.image = self.selectedChecklistCategory?.iconImage
             }
         }
     }
@@ -29,13 +30,12 @@ class AddEditChecklistViewController: UITableViewController {
     weak var delegate: ChecklistFormViewControllerDelegate?
     
     lazy var titleTextFieldChecker = EmptyTextFieldChecker(
-        isEmpty: titleTextField.hasText,
         changeHandler: { [weak self] isTitleTextEmpty in
             guard let self = self else { return }
 
             self.doneButton.isEnabled = (
                 !isTitleTextEmpty &&
-                self.viewModel.checklistCategory != nil
+                self.selectedChecklistCategory != nil
             )
         }
     )
@@ -60,13 +60,11 @@ extension AddEditChecklistViewController {
         super.viewDidLoad()
         
         title = viewTitle
-        
-        viewModel = .init(
-            checklistTitle: checklistToEdit?.title ?? "",
-            checklistCategory: checklistToEdit?.category
-        )
+        titleTextField.text = checklistToEdit?.title
+        selectedChecklistCategory = checklistToEdit?.category
         
         titleTextField.delegate = titleTextFieldChecker
+        titleTextFieldChecker.isEmpty = !titleTextField.hasText
     }
     
     
@@ -120,7 +118,7 @@ extension AddEditChecklistViewController: ChecklistCategoryPickerViewControllerD
         _ controller: UIViewController,
         didPick category: Checklist.Category
     ) {
-        viewModel.checklistCategory = category
+        selectedChecklistCategory = category
         navigationController?.popViewController(animated: true)
     }
 }
@@ -130,21 +128,13 @@ extension AddEditChecklistViewController: ChecklistCategoryPickerViewControllerD
 
 private extension AddEditChecklistViewController {
     
-    func render(with viewModel: AddEditChecklistViewController.ViewModel) {
-        titleTextField.text = viewModel.checklistTitleText
-        categoryLabel.text = viewModel.checklistCategoryText
-        categoryIconImageView.image = viewModel.checklistIconImage
-        
-        doneButton.isEnabled = titleTextField.hasText
-    }
-    
-    
     func submitChecklistFromChanges() {
-        guard let category = viewModel.checklistCategory else {
-            preconditionFailure("No category set")
+        guard
+            let category = selectedChecklistCategory,
+            let title = titleTextField.text
+        else {
+            preconditionFailure("Incomplete data for creating checklist")
         }
-        
-        let title = viewModel.checklistTitle
         
         if let checklistToEdit = checklistToEdit {
             checklistToEdit.title = title

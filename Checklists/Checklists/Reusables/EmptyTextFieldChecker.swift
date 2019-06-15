@@ -17,7 +17,7 @@ final class EmptyTextFieldChecker: NSObject {
         didSet { changeHandler(isEmpty) }
     }
 
-    init(isEmpty: Bool, changeHandler: @escaping ChangeHandler) {
+    init(isEmpty: Bool = false, changeHandler: @escaping ChangeHandler) {
         self.isEmpty = isEmpty
         self.changeHandler = changeHandler
     }
