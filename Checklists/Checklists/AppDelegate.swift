@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import UserNotifications
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private lazy var stateController = StateController()
     private lazy var checklistModelController = ChecklistModelController(stateController: stateController)
+    
+    private lazy var notificationCenter = UNUserNotificationCenter.current()
 }
 
 
@@ -30,6 +34,7 @@ extension AppDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         performInjections()
+        setupNotifications()
         
         return true
     }
@@ -69,4 +74,17 @@ private extension AppDelegate {
         checklistListVC.modelController = checklistModelController
     }
     
+    
+    func setupNotifications() {
+        notificationCenter.requestAuthorization(options: [.alert, .sound]) { (wasGranted, error) in
+            guard error == nil else {
+                print("Error while requesting notification authorization:\n\n\(error!.localizedDescription)")
+                return
+            }
+            
+            print("Notification permission \(wasGranted ? "granted" : "denied")")
+        }
+        
+        notificationCenter.add(CustomNotification.sample.request)
+    }
 }

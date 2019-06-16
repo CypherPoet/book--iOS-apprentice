@@ -11,7 +11,6 @@
 		F32E298E22A47D3B00599C32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32E298D22A47D3B00599C32 /* AppDelegate.swift */; };
 		F32E299322A47D3B00599C32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32E299122A47D3B00599C32 /* Main.storyboard */; };
 		F32E299522A47D3C00599C32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F32E299422A47D3C00599C32 /* Assets.xcassets */; };
-		F32E299822A47D3C00599C32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32E299622A47D3C00599C32 /* LaunchScreen.storyboard */; };
 		F32E29A422A481AB00599C32 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F32E29A322A481AB00599C32 /* .swiftlint.yml */; };
 		F32E29AB22A4839D00599C32 /* ChecklistListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32E29AA22A4839D00599C32 /* ChecklistListViewController.swift */; };
 		F32E29AE22A4896E00599C32 /* UIViewController+DisplayAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32E29AD22A4896E00599C32 /* UIViewController+DisplayAlertMessage.swift */; };
@@ -40,6 +39,8 @@
 		F39DBD6D22B3AD420080F2E4 /* Checklist+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39DBD6C22B3AD420080F2E4 /* Checklist+Category.swift */; };
 		F39DBD6F22B3CE040080F2E4 /* ChecklistCategoryPickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39DBD6E22B3CE040080F2E4 /* ChecklistCategoryPickerViewControllerDelegate.swift */; };
 		F39DBD7122B3CF2C0080F2E4 /* ChecklistCategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39DBD7022B3CF2C0080F2E4 /* ChecklistCategoryPickerViewController.swift */; };
+		F39DBD7622B542320080F2E4 /* CustomNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39DBD7522B542320080F2E4 /* CustomNotification.swift */; };
+		F39DBD7822B62C5E0080F2E4 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39DBD7722B62C5E0080F2E4 /* DateFormat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +51,6 @@
 		F32E298D22A47D3B00599C32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F32E299222A47D3B00599C32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F32E299422A47D3C00599C32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F32E299722A47D3C00599C32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F32E299922A47D3C00599C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F32E29A322A481AB00599C32 /* .swiftlint.yml */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F32E29AA22A4839D00599C32 /* ChecklistListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChecklistListViewController.swift; path = Checklists/Scenes/ChecklistListViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -80,6 +80,8 @@
 		F39DBD6C22B3AD420080F2E4 /* Checklist+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checklist+Category.swift"; sourceTree = "<group>"; };
 		F39DBD6E22B3CE040080F2E4 /* ChecklistCategoryPickerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistCategoryPickerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F39DBD7022B3CF2C0080F2E4 /* ChecklistCategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistCategoryPickerViewController.swift; sourceTree = "<group>"; };
+		F39DBD7522B542320080F2E4 /* CustomNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotification.swift; sourceTree = "<group>"; };
+		F39DBD7722B62C5E0080F2E4 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +161,6 @@
 			children = (
 				F32E29A922A4830D00599C32 /* Checklists */,
 				F32E299122A47D3B00599C32 /* Main.storyboard */,
-				F32E299622A47D3C00599C32 /* LaunchScreen.storyboard */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -248,6 +249,8 @@
 				F36BB03122ADE1C500B1CEDB /* ChecklistLoader.swift */,
 				F38EF83122AFBB6A0031BE50 /* UserDefaults.swift */,
 				F38EF83622B0F73C0031BE50 /* StateController.swift */,
+				F39DBD7522B542320080F2E4 /* CustomNotification.swift */,
+				F39DBD7722B62C5E0080F2E4 /* DateFormat.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -354,7 +357,6 @@
 				F38EF84722B235AF0031BE50 /* ChecklistTableViewCell.xib in Resources */,
 				F36BB01D22AA39D500B1CEDB /* ChecklistItemTableViewCell.xib in Resources */,
 				F32E29A422A481AB00599C32 /* .swiftlint.yml in Resources */,
-				F32E299822A47D3C00599C32 /* LaunchScreen.storyboard in Resources */,
 				F32E299522A47D3C00599C32 /* Assets.xcassets in Resources */,
 				F32E299322A47D3B00599C32 /* Main.storyboard in Resources */,
 			);
@@ -455,6 +457,7 @@
 				F36BB03B22AE6B6700B1CEDB /* EmptyTextFieldChecker.swift in Sources */,
 				F32E29B122A4899100599C32 /* TableViewDataSource.swift in Sources */,
 				F36BAFE822A8A18800B1CEDB /* AddEditChecklistViewController.swift in Sources */,
+				F39DBD7622B542320080F2E4 /* CustomNotification.swift in Sources */,
 				F32E298E22A47D3B00599C32 /* AppDelegate.swift in Sources */,
 				F32E29AE22A4896E00599C32 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F32E29AB22A4839D00599C32 /* ChecklistListViewController.swift in Sources */,
@@ -468,6 +471,7 @@
 				F32E29B422A48ADE00599C32 /* Checklist.swift in Sources */,
 				F38EF83222AFBB6A0031BE50 /* UserDefaults.swift in Sources */,
 				F36BB02022AB6C7100B1CEDB /* Identifiable.swift in Sources */,
+				F39DBD7822B62C5E0080F2E4 /* DateFormat.swift in Sources */,
 				F36BB01222AA0C1700B1CEDB /* ChecklistItemListViewController.swift in Sources */,
 				F38EF84622B235AF0031BE50 /* ChecklistTableViewCell.swift in Sources */,
 				F36BB00F22A9B9F400B1CEDB /* ChecklistFormViewControllerDelegate.swift in Sources */,
@@ -483,14 +487,6 @@
 				F32E299222A47D3B00599C32 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F32E299622A47D3C00599C32 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F32E299722A47D3C00599C32 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
