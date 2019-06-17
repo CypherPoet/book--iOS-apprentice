@@ -3,12 +3,14 @@ disabled_rules: # rule identifiers to exclude from running
   - trailing_whitespace
   - trailing_comma
   - type_name
+  - nesting
   - identifier_name
 
 opt_in_rules: # some rules are only opt-in
-  -
   # Find all the available rules by running:
   # swiftlint rules
+  - closure_spacing
+  - yoda_condition
 
 included: # paths to include during linting. `--path` is ignored if present.
   - Checklists

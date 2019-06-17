@@ -37,28 +37,36 @@ _A game testing the user's ability to drag a slider the a specific number_.
 
 ## [Checklists](./Checklists/)
 
-_ _.
+_List of lists with scheduling support and reminder notifications... Table Views and To-Do on steroids._
 
 <div style="text-align: center;">
-  <img src="" width=""/>
+  <img src="./Checklists/Screenshots/checklist-items.png" width="500px"/>
 </div>
 
 ### Topics Covered / Challenges Encountered
 
+- Table Views and more table views.
+- Designing deep navigation flows, utilizing segues and protocols to communicate and handle actions along the way.
 - Handling `UITextFieldDelegate` events to dynamically enable/disable submission buttons.
 
   <div style="text-align: center;">
     <img src="./Checklists/Screenshots/enable-disable-submit-button.gif" width="500px"/>
   </div>
 
-- Implementing a custom `UIPickerView` with custom cell views.
+- Registering and managing local notifications for instances of checklist items.
+- Architecting an app data model.
+- Using user documents to saving and load data across application instances.
+- Using `UserDefaults` to saving and load user preferences and app view state across application instances.
+- Using a custom global theme color.
+
 
 <br>
 
 ### 📸 Moar Screenshots
 
 <div style="text-align: center;">
-  <img src="" width=""/>
+  <img src="./Checklists/Screenshots/item-form.gif" width="500px"/>
+  <img src="./Checklists/Screenshots/create-checklist.gif" width="500px"/>
 </div>
 
 <br>

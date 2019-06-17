@@ -140,9 +140,12 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6xQ-ve-u7v">
                                                     <rect key="frame" x="345" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="reminderSwitchToggled:" destination="7vi-9t-256" eventType="valueChanged" id="Nhw-Sq-ThM"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ua8-VA-Hbu">
-                                                    <rect key="frame" x="20" y="11.5" width="86" height="21"/>
+                                                    <rect key="frame" x="20" y="11.5" width="325" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -150,6 +153,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="6xQ-ve-u7v" secondAttribute="trailing" constant="20" id="WmU-Ah-nyK"/>
+                                                <constraint firstItem="Ua8-VA-Hbu" firstAttribute="trailing" secondItem="6xQ-ve-u7v" secondAttribute="leading" id="WyV-EP-yCq"/>
                                                 <constraint firstItem="6xQ-ve-u7v" firstAttribute="centerY" secondItem="ItE-po-IPc" secondAttribute="centerY" id="d7N-bp-PaT"/>
                                                 <constraint firstItem="Ua8-VA-Hbu" firstAttribute="centerY" secondItem="6xQ-ve-u7v" secondAttribute="centerY" id="x0U-Zc-zwk"/>
                                                 <constraint firstItem="Ua8-VA-Hbu" firstAttribute="leading" secondItem="ItE-po-IPc" secondAttribute="leading" constant="20" id="y2q-08-BQR"/>
@@ -185,6 +189,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="3vx-HC-GTI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Mb-tc-hQ7" secondAttribute="trailing" constant="8" id="FY2-8X-zBr"/>
                                                 <constraint firstItem="5Mb-tc-hQ7" firstAttribute="leading" secondItem="RZH-0J-lyU" secondAttribute="leading" constant="20" id="GVo-oj-NVO"/>
                                                 <constraint firstItem="cgl-uB-zeJ" firstAttribute="centerY" secondItem="RZH-0J-lyU" secondAttribute="centerY" id="RDS-xv-vdI"/>
                                                 <constraint firstItem="5Mb-tc-hQ7" firstAttribute="centerY" secondItem="RZH-0J-lyU" secondAttribute="centerY" id="SNa-kt-tcP"/>

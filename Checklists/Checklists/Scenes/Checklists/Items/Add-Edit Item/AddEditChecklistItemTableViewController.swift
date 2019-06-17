@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import UserNotifications
+
 
 class AddEditChecklistItemTableViewController: UITableViewController {
     @IBOutlet private var titleTextField: UITextField!
@@ -17,8 +19,9 @@ class AddEditChecklistItemTableViewController: UITableViewController {
     @IBOutlet var clearDueDateButton: UIButton!
     
     var itemToEdit: Checklist.Item?
+    weak var delegate: ChecklistItemFormViewControllerDelegate?
     
-    var selectedDueDate: Date? {
+    private var selectedDueDate: Date? {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.selectedDueDateChanged()
@@ -26,11 +29,11 @@ class AddEditChecklistItemTableViewController: UITableViewController {
         }
     }
     
-    let dueDateIndexPath = IndexPath(row: 1, section: 1)
-    let dueDatePickerIndexPath = IndexPath(row: 2, section: 1)
-    let visibleDatePickerHeight = CGFloat(217)
+    private let dueDateIndexPath = IndexPath(row: 1, section: 1)
+    private let dueDatePickerIndexPath = IndexPath(row: 2, section: 1)
+    private let visibleDatePickerHeight = CGFloat(217)
     
-    var isDatePickerVisible = false {
+    private var isDatePickerVisible = false {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.dueDatePickerVisibilityChanged()
@@ -38,13 +41,14 @@ class AddEditChecklistItemTableViewController: UITableViewController {
         }
     }
     
-    weak var delegate: ChecklistItemFormViewControllerDelegate?
     
-    lazy var nameTextFieldHandler = EmptyTextFieldChecker(
+    private lazy var nameTextFieldHandler = EmptyTextFieldChecker(
         changeHandler: { [weak self] isNameTextEmpty in
             self?.doneButton.isEnabled = !isNameTextEmpty
         }
     )
+    
+    private lazy var notificationCenter = UNUserNotificationCenter.current()
 }
 
 
@@ -100,6 +104,14 @@ extension AddEditChecklistItemTableViewController {
         selectedDueDate = nil
     }
     
+    @IBAction func reminderSwitchToggled(_ reminderSwitch: UISwitch) {
+        titleTextField.resignFirstResponder()
+        
+        if reminderSwitch.isOn {
+            requestNotificationPermissions()
+        }
+    }
+    
     
     @IBAction func cancelButtonTapped() {
         delegate?.checklistItemFormViewControllerDidCancel(self)
@@ -150,7 +162,7 @@ private extension AddEditChecklistItemTableViewController {
     
     func setupUI(with item: Checklist.Item?) {
         titleTextField.text = item?.title
-        remindMeSwitch.isOn = item?.shouldRemind ?? false
+        remindMeSwitch.isOn = item?.wantsReminder ?? false
         
         clearDueDateButton.alpha = item?.dueDate != nil ? 1.0 : 0.0
         selectedDueDate = item?.dueDate
@@ -169,19 +181,19 @@ private extension AddEditChecklistItemTableViewController {
             preconditionFailure("Incomplete data")
         }
         
-        let shouldRemind = remindMeSwitch.isOn
+        let wantsReminder = remindMeSwitch.isOn
         
         if let itemToEdit = itemToEdit {
             itemToEdit.title = title
             itemToEdit.dueDate = selectedDueDate
-            itemToEdit.shouldRemind = shouldRemind
+            itemToEdit.wantsReminder = wantsReminder
             
             delegate?.checklistItemFormViewController(self, didFinishEditing: itemToEdit)
         } else {
             let newItem = Checklist.Item(
                 title: title,
                 dueDate: selectedDueDate,
-                shouldRemind: shouldRemind
+                wantsReminder: wantsReminder
             )
             
             delegate?.checklistItemFormViewController(self, didFinishAdding: newItem)
@@ -233,5 +245,15 @@ private extension AddEditChecklistItemTableViewController {
                 self.dueDateLabel.textColor = dueDateLabelColor
             }
         )
+    }
+    
+    func requestNotificationPermissions() {
+        notificationCenter.requestAuthorization(options: [.badge, .sound]) { (wasGranted, error) in
+            if let error = error {
+                print("Error while requesting notification authorization:\n\n\(error.localizedDescription)")
+            } else {
+                print("Notification permission \(wasGranted ? "granted" : "denied")")
+            }
+        }
     }
 }

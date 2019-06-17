@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import UserNotifications
+
 
 class ChecklistItemListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -94,15 +96,19 @@ extension ChecklistItemListViewController: ChecklistItemFormViewControllerDelega
         checklist.items.append(newItem)
         dataSource.models.append(newItem)
         
-        let indexPath = IndexPath(row: dataSource.models.count - 1, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+        if newItem.reminderState == .needsScheduling {
+            newItem.scheduleReminder()
+        }
+        
+        let newIndexPath = IndexPath(row: dataSource.models.count - 1, section: 0)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
     }
     
 
-    func checklistItemFormViewController(
-        _ viewController: UIViewController,
-        didFinishEditing item: Checklist.Item
-    ) {
+    func checklistItemFormViewController(_ viewController: UIViewController, didFinishEditing item: Checklist.Item) {
         navigationController?.popViewController(animated: true)
         itemUpdated(item)
     }
@@ -158,9 +164,21 @@ private extension ChecklistItemListViewController {
             preconditionFailure("Unable to find checklist in data source models")
         }
         
-        let indexPath = IndexPath(row: updatedDataSourceIndex, section: 0)
-
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        switch checklistItem.reminderState {
+        case .needsScheduling, .needsRescheduling:
+            checklistItem.scheduleReminder()
+        case .needsCanceling:
+            checklistItem.cancelReminder()
+        default:
+            break
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            let indexPath = IndexPath(row: updatedDataSourceIndex, section: 0)
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
     }
     
     

@@ -11,17 +11,23 @@ import UserNotifications
 
 
 enum CustomNotification {
-    case sample
+    static let calendar = Calendar(identifier: .gregorian)
     
+    case checklistItemReminder(for: Checklist.Item, dueAt: Date)
     
     var request: UNNotificationRequest {
+        return UNNotificationRequest(
+            identifier: self.identifier,
+            content: self.content,
+            trigger: self.trigger
+        )
+    }
+
+    
+    var identifier: String {
         switch self {
-        case .sample:
-            return UNNotificationRequest(
-                identifier: "sample",
-                content: self.content,
-                trigger: self.trigger
-            )
+        case .checklistItemReminder(let item, _):
+            return item.notificationID
         }
     }
     
@@ -30,10 +36,10 @@ enum CustomNotification {
         let content = UNMutableNotificationContent()
 
         switch self {
-        case .sample:
-            content.title = "Hello!"
-            content.body = "This is a test notification."
-            content.sound = .default
+        case .checklistItemReminder(let item, _):
+            content.title = "📌 Reminder 📌"
+            content.body = item.title
+            content.sound = .default            
         }
         
         return content
@@ -42,9 +48,13 @@ enum CustomNotification {
 
     var trigger: UNNotificationTrigger {
         switch self {
-        case .sample:
-            return UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        case .checklistItemReminder(_, let dueDate):
+            let dateComponents = CustomNotification.calendar.dateComponents(
+                [.year, .month, .hour, .minute],
+                from: dueDate
+            )
+                
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         }
     }
 }
-

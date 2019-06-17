@@ -23,6 +23,11 @@ class AddEditChecklistViewController: UITableViewController {
                 
                 self.categoryLabel.text = self.selectedChecklistCategory?.title ?? "Select a Category"
                 self.categoryIconImageView.image = self.selectedChecklistCategory?.iconImage
+                
+                self.doneButton.isEnabled = (
+                    !self.titleTextFieldChecker.isEmpty &&
+                    self.selectedChecklistCategory != nil
+                )
             }
         }
     }
