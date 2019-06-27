@@ -28,6 +28,7 @@
 		F34877DD22C4E86F00C2167F /* TagLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F34877DC22C4E86F00C2167F /* TagLocation.storyboard */; };
 		F34877DF22C4EB0700C2167F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F34877DE22C4EB0700C2167F /* .swiftlint.yml */; };
 		F34877E522C4ECC300C2167F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877E422C4ECC300C2167F /* R.generated.swift */; };
+		F34877E722C5079700C2167F /* CurrentLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877E622C5079700C2167F /* CurrentLocationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		F34877DC22C4E86F00C2167F /* TagLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TagLocation.storyboard; sourceTree = "<group>"; };
 		F34877DE22C4EB0700C2167F /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F34877E422C4ECC300C2167F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		F34877E622C5079700C2167F /* CurrentLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 			children = (
 				F34877A322C4A9C000C2167F /* CurrentLocationViewController.swift */,
 				F34877DC22C4E86F00C2167F /* TagLocation.storyboard */,
+				F34877E622C5079700C2167F /* CurrentLocationView.swift */,
 			);
 			path = "Tag Location";
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				F34877A622C4A9C000C2167F /* SecondViewController.swift in Sources */,
 				F34877A422C4A9C000C2167F /* CurrentLocationViewController.swift in Sources */,
 				F34877D322C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift in Sources */,
+				F34877E722C5079700C2167F /* CurrentLocationView.swift in Sources */,
 				F34877D022C4D9A600C2167F /* NavigationControlling.swift in Sources */,
 				F34877CE22C4D9A600C2167F /* NavigationCoordinator.swift in Sources */,
 				F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */,

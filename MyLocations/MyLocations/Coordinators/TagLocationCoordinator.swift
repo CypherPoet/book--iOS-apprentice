@@ -26,6 +26,8 @@ final class TagLocationCoordinator: NavigationCoordinator {
             named: R.storyboard.tagLocation.name
         )
         
+        currentLocationVC.tabBarItem = UITabBarItem(title: "Tag", image: UIImage(systemName: "tag.fill"), tag: 0)
+        
         navController.setViewControllers([currentLocationVC], animated: true)
     }
     
