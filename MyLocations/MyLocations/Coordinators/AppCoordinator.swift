@@ -11,17 +11,17 @@ import UIKit
 final class AppCoordinator: NavigationCoordinator {
     var navController: UINavigationController
     private let window: UIWindow
-//    private let stateController: StateController
+    private let stateController: StateController
     private var mainCoordinator: MainCoordinator?
     
     
     init(
         navController: UINavigationController,
-//        stateController: StateController,
+        stateController: StateController,
         window: UIWindow
     ) {
         self.navController = navController
-//        self.stateController = stateController
+        self.stateController = stateController
         self.window = window
     }
 
@@ -40,7 +40,7 @@ final class AppCoordinator: NavigationCoordinator {
 extension AppCoordinator {
     
     func showMain() {
-        mainCoordinator = MainCoordinator()
+        mainCoordinator = MainCoordinator(stateController: stateController)
         
         navController.setViewControllers([mainCoordinator!.rootViewController], animated: true)
         navController.isNavigationBarHidden = true

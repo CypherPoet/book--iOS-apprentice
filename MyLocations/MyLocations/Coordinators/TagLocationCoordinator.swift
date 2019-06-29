@@ -11,11 +11,16 @@ import UIKit
 
 final class TagLocationCoordinator: NavigationCoordinator {
     var navController: UINavigationController
+    private let stateController: StateController
     
     
     // TODO: Should the navController be optional here?
-    init(navController: UINavigationController = UINavigationController()) {
+    init(
+        navController: UINavigationController = UINavigationController(),
+        stateController: StateController
+    ) {
         self.navController = navController
+        self.stateController = stateController
         
         start()
     }
@@ -26,6 +31,7 @@ final class TagLocationCoordinator: NavigationCoordinator {
             named: R.storyboard.tagLocation.name
         )
         
+        currentLocationVC.locationManager = stateController.locationManager
         currentLocationVC.tabBarItem = UITabBarItem(title: "Tag", image: UIImage(systemName: "tag.fill"), tag: 0)
         
         navController.setViewControllers([currentLocationVC], animated: true)

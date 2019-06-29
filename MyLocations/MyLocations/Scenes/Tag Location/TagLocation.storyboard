@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="oE9-xy-rgh">
-                                <rect key="frame" x="12" y="68" width="390" height="248.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="oE9-xy-rgh">
+                                <rect key="frame" x="12" y="136" width="390" height="350.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Reading Status Message Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQG-Gh-4D1">
                                         <rect key="frame" x="42.5" y="0.0" width="305" height="20.5"/>
@@ -25,7 +25,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0FD-TW-Fwn">
-                                        <rect key="frame" x="0.0" y="56.5" width="390" height="49"/>
+                                        <rect key="frame" x="0.0" y="84.5" width="390" height="49"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiD-uT-05F">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="20.5"/>
@@ -64,13 +64,13 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Address Label Goes Here. It's probably going to take up a few lines)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NX-xX-bc5">
-                                        <rect key="frame" x="0.0" y="141.5" width="390" height="41"/>
+                                        <rect key="frame" x="0.0" y="197.5" width="390" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qf1-RO-4Ox">
-                                        <rect key="frame" x="64.5" y="218.5" width="261" height="30"/>
+                                        <rect key="frame" x="64.5" y="302.5" width="261" height="48"/>
                                         <state key="normal" title="Tag Location"/>
                                     </button>
                                 </subviews>
@@ -83,7 +83,10 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pes-DC-9vH">
-                                <rect key="frame" x="76.5" y="808" width="261" height="30"/>
+                                <rect key="frame" x="76.5" y="735" width="261" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="sG8-Px-KSd"/>
+                                </constraints>
                                 <state key="normal" title="Get My Location"/>
                                 <connections>
                                     <action selector="getLocationTapped:" destination="TcV-cz-uK2" eventType="touchUpInside" id="rRs-Xr-LY8"/>
@@ -93,10 +96,10 @@
                         <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="oE9-xy-rgh" firstAttribute="leading" secondItem="6Vq-63-ROa" secondAttribute="leading" constant="12" id="FPx-Fv-TPf"/>
-                            <constraint firstItem="oE9-xy-rgh" firstAttribute="top" secondItem="6Vq-63-ROa" secondAttribute="top" constant="24" id="OEI-ch-itY"/>
+                            <constraint firstItem="oE9-xy-rgh" firstAttribute="top" secondItem="6Vq-63-ROa" secondAttribute="top" constant="48" id="OEI-ch-itY"/>
                             <constraint firstItem="6Vq-63-ROa" firstAttribute="trailing" secondItem="oE9-xy-rgh" secondAttribute="trailing" constant="12" id="U3a-Jf-nmg"/>
                             <constraint firstItem="Pes-DC-9vH" firstAttribute="centerX" secondItem="TcV-cz-uK2" secondAttribute="centerX" id="Um5-lm-z1D"/>
-                            <constraint firstItem="6Vq-63-ROa" firstAttribute="bottom" secondItem="Pes-DC-9vH" secondAttribute="bottom" constant="24" id="e8Q-j2-4w2"/>
+                            <constraint firstItem="6Vq-63-ROa" firstAttribute="bottom" secondItem="Pes-DC-9vH" secondAttribute="bottom" constant="30" id="e8Q-j2-4w2"/>
                             <constraint firstItem="Pes-DC-9vH" firstAttribute="height" secondItem="qf1-RO-4Ox" secondAttribute="height" id="k6t-ZP-mUq"/>
                             <constraint firstItem="Pes-DC-9vH" firstAttribute="width" secondItem="qf1-RO-4Ox" secondAttribute="width" id="oph-0A-DVP"/>
                         </constraints>
@@ -110,6 +113,8 @@
                             <outlet property="tagLocationButton" destination="qf1-RO-4Ox" id="AMa-vD-ZTV"/>
                         </connections>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mainView" destination="TcV-cz-uK2" id="goi-8G-xOn"/>
                     </connections>

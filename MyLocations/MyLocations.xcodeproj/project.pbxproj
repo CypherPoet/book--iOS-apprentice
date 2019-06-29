@@ -29,6 +29,10 @@
 		F34877DF22C4EB0700C2167F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F34877DE22C4EB0700C2167F /* .swiftlint.yml */; };
 		F34877E522C4ECC300C2167F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877E422C4ECC300C2167F /* R.generated.swift */; };
 		F34877E722C5079700C2167F /* CurrentLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877E622C5079700C2167F /* CurrentLocationView.swift */; };
+		F34877E922C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877E822C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift */; };
+		F370828222C661FB0083C235 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F370828122C661FB0083C235 /* StateController.swift */; };
+		F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */; };
+		F370828622C679B40083C235 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F370828522C679B40083C235 /* Double+Formatting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,10 @@
 		F34877DE22C4EB0700C2167F /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F34877E422C4ECC300C2167F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		F34877E622C5079700C2167F /* CurrentLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationView.swift; sourceTree = "<group>"; };
+		F34877E822C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowLocationServicesDeniedAlert.swift"; sourceTree = "<group>"; };
+		F370828122C661FB0083C235 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
+		F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentLocationView+ViewModel.swift"; sourceTree = "<group>"; };
+		F370828522C679B40083C235 /* Double+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +120,12 @@
 		F348779E22C4A9C000C2167F /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
+				F370828022C661EC0083C235 /* Helpers */,
 				F34877B222C4A9C100C2167F /* Info.plist */,
 				F348779F22C4A9C000C2167F /* AppDelegate.swift */,
 				F34877A122C4A9C000C2167F /* SceneDelegate.swift */,
 				F34877C422C4D83C00C2167F /* Content */,
 				F34877B922C4AAFE00C2167F /* Coordinators */,
-				F34877BB22C4AB7800C2167F /* Extensions */,
 				F34877BA22C4AB7300C2167F /* Models */,
 				F34877AA22C4A9C000C2167F /* MyLocations.xcdatamodeld */,
 				F34877BC22C4AB9F00C2167F /* Reusables */,
@@ -160,6 +168,8 @@
 			children = (
 				F34877D122C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift */,
 				F34877D222C4DA2D00C2167F /* UIViewController+DisplayPromptMessage.swift */,
+				F34877E822C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift */,
+				F370828522C679B40083C235 /* Double+Formatting.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -167,6 +177,7 @@
 		F34877BC22C4AB9F00C2167F /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				F34877BB22C4AB7800C2167F /* Extensions */,
 				F34877BD22C4ABA800C2167F /* Protocols */,
 				F34877C722C4D98900C2167F /* TableViewDataSource.swift */,
 			);
@@ -198,6 +209,7 @@
 				F34877A322C4A9C000C2167F /* CurrentLocationViewController.swift */,
 				F34877DC22C4E86F00C2167F /* TagLocation.storyboard */,
 				F34877E622C5079700C2167F /* CurrentLocationView.swift */,
+				F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */,
 			);
 			path = "Tag Location";
 			sourceTree = "<group>";
@@ -214,6 +226,14 @@
 			children = (
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		F370828022C661EC0083C235 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F370828122C661FB0083C235 /* StateController.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,15 +393,19 @@
 				F34877D922C4DB6100C2167F /* TagLocationCoordinator.swift in Sources */,
 				F34877CD22C4D9A600C2167F /* Coordinator.swift in Sources */,
 				F34877AC22C4A9C000C2167F /* MyLocations.xcdatamodeld in Sources */,
+				F370828222C661FB0083C235 /* StateController.swift in Sources */,
 				F34877A622C4A9C000C2167F /* SecondViewController.swift in Sources */,
 				F34877A422C4A9C000C2167F /* CurrentLocationViewController.swift in Sources */,
 				F34877D322C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F34877E722C5079700C2167F /* CurrentLocationView.swift in Sources */,
 				F34877D022C4D9A600C2167F /* NavigationControlling.swift in Sources */,
+				F34877E922C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift in Sources */,
 				F34877CE22C4D9A600C2167F /* NavigationCoordinator.swift in Sources */,
 				F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */,
+				F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */,
 				F34877D422C4DA2D00C2167F /* UIViewController+DisplayPromptMessage.swift in Sources */,
 				F34877A222C4A9C000C2167F /* SceneDelegate.swift in Sources */,
+				F370828622C679B40083C235 /* Double+Formatting.swift in Sources */,
 				F34877E522C4ECC300C2167F /* R.generated.swift in Sources */,
 				F34877CF22C4D9A600C2167F /* Storyboarded.swift in Sources */,
 				F34877C822C4D98900C2167F /* TableViewDataSource.swift in Sources */,
@@ -515,6 +539,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QRXXH2RKAG;
 				INFOPLIST_FILE = MyLocations/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,6 +559,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QRXXH2RKAG;
 				INFOPLIST_FILE = MyLocations/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

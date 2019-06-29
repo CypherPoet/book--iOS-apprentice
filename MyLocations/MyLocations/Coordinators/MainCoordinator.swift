@@ -9,15 +9,17 @@
 import UIKit
 
 final class MainCoordinator: Coordinator {
+    private let stateController: StateController
     private let tabBarController: UITabBarController
     private let tagLocationsCoordinator: TagLocationCoordinator
 
     var rootViewController: UIViewController { tabBarController }
     
     
-    init() {
+    init(stateController: StateController) {
+        self.stateController = stateController
         self.tabBarController = UITabBarController()
-        self.tagLocationsCoordinator = TagLocationCoordinator()
+        self.tagLocationsCoordinator = TagLocationCoordinator(stateController: stateController)
     }
     
     

@@ -24,7 +24,19 @@ class CurrentLocationView: UIView {
     
     
     weak var delegate: CurrentLocationViewDelegate?
+    
+    var viewModel: ViewModel! {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            render(with: viewModel)
+        }
+    }
+
+    var canTagLocation: Bool = false {
+        didSet { tagLocationButton.isHidden = !canTagLocation }
+    }
 }
+
 
 
 // MARK: - Event Handling
@@ -33,5 +45,19 @@ extension CurrentLocationView {
 
     @IBAction func getLocationTapped(_ sender: UIButton) {
         delegate?.viewDidSelectGetLocation(self)
+    }
+}
+
+
+
+// MARK: - Private Helpers
+
+private extension CurrentLocationView {
+    
+    func render(with viewModel: ViewModel) {
+        latitudeLabel.text = viewModel.latitudeText
+        longitudeLabel.text = viewModel.longitudeText
+        addressLabel.text = viewModel.currentAddressText
+        locationStatusLabel.text = viewModel.locationStatusMessage
     }
 }
