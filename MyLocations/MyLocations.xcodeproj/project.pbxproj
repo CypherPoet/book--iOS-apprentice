@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6DB6E36BB30F55886E38F50B /* Pods_MyLocations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4A6D33B83505234A0085B56 /* Pods_MyLocations.framework */; };
+		F32053C722C8D3A500E41B41 /* GeocodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32053C622C8D3A500E41B41 /* GeocodingService.swift */; };
 		F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348779F22C4A9C000C2167F /* AppDelegate.swift */; };
 		F34877A222C4A9C000C2167F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877A122C4A9C000C2167F /* SceneDelegate.swift */; };
 		F34877A422C4A9C000C2167F /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877A322C4A9C000C2167F /* CurrentLocationViewController.swift */; };
@@ -32,13 +33,15 @@
 		F34877E922C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877E822C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift */; };
 		F370828222C661FB0083C235 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F370828122C661FB0083C235 /* StateController.swift */; };
 		F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */; };
-		F370828622C679B40083C235 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F370828522C679B40083C235 /* Double+Formatting.swift */; };
+		F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3789B2722C94847000E6455 /* Double+Formatting.swift */; };
+		F3789B2A22C94847000E6455 /* CLPlacemark+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3789B2822C94847000E6455 /* CLPlacemark+Formatting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2BF378F025A8F8C9B7461BB3 /* Pods-MyLocations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLocations.release.xcconfig"; path = "Target Support Files/Pods-MyLocations/Pods-MyLocations.release.xcconfig"; sourceTree = "<group>"; };
 		657DD1DF8B95249F7F6AAA07 /* Pods-MyLocations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLocations.debug.xcconfig"; path = "Target Support Files/Pods-MyLocations/Pods-MyLocations.debug.xcconfig"; sourceTree = "<group>"; };
 		D4A6D33B83505234A0085B56 /* Pods_MyLocations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyLocations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F32053C622C8D3A500E41B41 /* GeocodingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingService.swift; sourceTree = "<group>"; };
 		F348779C22C4A9C000C2167F /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F348779F22C4A9C000C2167F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F34877A122C4A9C000C2167F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +68,8 @@
 		F34877E822C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowLocationServicesDeniedAlert.swift"; sourceTree = "<group>"; };
 		F370828122C661FB0083C235 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentLocationView+ViewModel.swift"; sourceTree = "<group>"; };
-		F370828522C679B40083C235 /* Double+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
+		F3789B2722C94847000E6455 /* Double+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
+		F3789B2822C94847000E6455 /* CLPlacemark+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Formatting.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F32053C522C8D12600E41B41 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F32053C622C8D3A500E41B41 /* GeocodingService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F348779322C4A9C000C2167F = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +132,7 @@
 		F348779E22C4A9C000C2167F /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
+				F32053C522C8D12600E41B41 /* Services */,
 				F370828022C661EC0083C235 /* Helpers */,
 				F34877B222C4A9C100C2167F /* Info.plist */,
 				F348779F22C4A9C000C2167F /* AppDelegate.swift */,
@@ -166,10 +179,10 @@
 		F34877BB22C4AB7800C2167F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F3789B2222C94491000E6455 /* Formatting */,
 				F34877D122C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift */,
 				F34877D222C4DA2D00C2167F /* UIViewController+DisplayPromptMessage.swift */,
 				F34877E822C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift */,
-				F370828522C679B40083C235 /* Double+Formatting.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -177,6 +190,7 @@
 		F34877BC22C4AB9F00C2167F /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				F37EA25F22CA5CBD00D3F42F /* Constants */,
 				F34877BB22C4AB7800C2167F /* Extensions */,
 				F34877BD22C4ABA800C2167F /* Protocols */,
 				F34877C722C4D98900C2167F /* TableViewDataSource.swift */,
@@ -234,6 +248,22 @@
 				F370828122C661FB0083C235 /* StateController.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F3789B2222C94491000E6455 /* Formatting */ = {
+			isa = PBXGroup;
+			children = (
+				F3789B2822C94847000E6455 /* CLPlacemark+Formatting.swift */,
+				F3789B2722C94847000E6455 /* Double+Formatting.swift */,
+			);
+			path = Formatting;
+			sourceTree = "<group>";
+		};
+		F37EA25F22CA5CBD00D3F42F /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,8 +423,10 @@
 				F34877D922C4DB6100C2167F /* TagLocationCoordinator.swift in Sources */,
 				F34877CD22C4D9A600C2167F /* Coordinator.swift in Sources */,
 				F34877AC22C4A9C000C2167F /* MyLocations.xcdatamodeld in Sources */,
+				F3789B2A22C94847000E6455 /* CLPlacemark+Formatting.swift in Sources */,
 				F370828222C661FB0083C235 /* StateController.swift in Sources */,
 				F34877A622C4A9C000C2167F /* SecondViewController.swift in Sources */,
+				F32053C722C8D3A500E41B41 /* GeocodingService.swift in Sources */,
 				F34877A422C4A9C000C2167F /* CurrentLocationViewController.swift in Sources */,
 				F34877D322C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F34877E722C5079700C2167F /* CurrentLocationView.swift in Sources */,
@@ -402,10 +434,10 @@
 				F34877E922C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift in Sources */,
 				F34877CE22C4D9A600C2167F /* NavigationCoordinator.swift in Sources */,
 				F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */,
+				F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */,
 				F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */,
 				F34877D422C4DA2D00C2167F /* UIViewController+DisplayPromptMessage.swift in Sources */,
 				F34877A222C4A9C000C2167F /* SceneDelegate.swift in Sources */,
-				F370828622C679B40083C235 /* Double+Formatting.swift in Sources */,
 				F34877E522C4ECC300C2167F /* R.generated.swift in Sources */,
 				F34877CF22C4D9A600C2167F /* Storyboarded.swift in Sources */,
 				F34877C822C4D98900C2167F /* TableViewDataSource.swift in Sources */,

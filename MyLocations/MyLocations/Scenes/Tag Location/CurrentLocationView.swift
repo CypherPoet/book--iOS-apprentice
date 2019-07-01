@@ -10,18 +10,18 @@ import UIKit
 
 
 protocol CurrentLocationViewDelegate: class {
-    func viewDidSelectGetLocation(_ view: CurrentLocationView)
+    func viewDidSelectFetchLocation(_ view: CurrentLocationView)
+    func viewDidSelectStopLocationFetch(_ view: CurrentLocationView)
 }
 
 
 class CurrentLocationView: UIView {
-    @IBOutlet var locationStatusLabel: UILabel!
+    @IBOutlet var locationReadingHeaderLabel: UILabel!
     @IBOutlet var latitudeLabel: UILabel!
     @IBOutlet var longitudeLabel: UILabel!
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var tagLocationButton: UIButton!
     @IBOutlet var getLocationButton: UIButton!
-    
     
     weak var delegate: CurrentLocationViewDelegate?
     
@@ -31,7 +31,7 @@ class CurrentLocationView: UIView {
             render(with: viewModel)
         }
     }
-
+    
     var canTagLocation: Bool = false {
         didSet { tagLocationButton.isHidden = !canTagLocation }
     }
@@ -44,7 +44,11 @@ class CurrentLocationView: UIView {
 extension CurrentLocationView {
 
     @IBAction func getLocationTapped(_ sender: UIButton) {
-        delegate?.viewDidSelectGetLocation(self)
+        if viewModel.isFetchingLocation {
+            delegate?.viewDidSelectStopLocationFetch(self)
+        } else {
+            delegate?.viewDidSelectFetchLocation(self)
+        }
     }
 }
 
@@ -57,7 +61,10 @@ private extension CurrentLocationView {
     func render(with viewModel: ViewModel) {
         latitudeLabel.text = viewModel.latitudeText
         longitudeLabel.text = viewModel.longitudeText
-        addressLabel.text = viewModel.currentAddressText
-        locationStatusLabel.text = viewModel.locationStatusMessage
+        addressLabel.text = viewModel.decodedAddressText
+        
+        locationReadingHeaderLabel.text = viewModel.locationReadingHeaderText
+        
+        getLocationButton.setTitle(viewModel.locationFetchButtonText, for: .normal)
     }
 }

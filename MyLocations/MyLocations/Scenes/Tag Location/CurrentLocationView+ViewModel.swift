@@ -14,9 +14,19 @@ extension CurrentLocationView {
     struct ViewModel {
         var currentLatitude: Double?
         var currentLongitude: Double?
-        var currentAddress: String?
-        var isFetchingLocation: Bool = false
         var locationErrorMessage: String?
+        var isFetchingLocation: Bool = false
+        
+        var stopFetchLocationButtonTitle = "Stop"
+        var fetchLocationButtonTitle = "Get My Location"
+
+        var startFetchingLocationMessage = "Tap \"Get My Location\" to Start"
+        var locationFetchInProgressMessage = "Searching for New Cooridinates..."
+
+        var decodedAddress: String?
+        var decodedAddressErrorMessage: String?
+        var addressDecodingInProgressMessage = "Searching for Address..."
+        var isDecodingAddress: Bool = false
     }
 }
 
@@ -28,20 +38,26 @@ extension CurrentLocationView.ViewModel {
     var latitudeText: String { currentLatitude?.coordinateFormat ?? "_ _ _ _" }
     var longitudeText: String { currentLongitude?.coordinateFormat ?? "_ _ _ _" }
     
-    var currentAddressText: String {
-        ""
+
+    var locationReadingHeaderText: String? {
+        if isFetchingLocation {
+            return locationFetchInProgressMessage
+        } else {
+            return locationErrorMessage ?? startFetchingLocationMessage
+        }
     }
     
     
-    var locationStatusMessage: String? {
-        guard locationErrorMessage == nil else {
-            return locationErrorMessage
-        }
-        
-        if isFetchingLocation {
-            return "Searching..."
+    var decodedAddressText: String? {
+        if isDecodingAddress {
+            return addressDecodingInProgressMessage
         } else {
-            return "Tap \"Get My Location\" to start."
+            return decodedAddressErrorMessage ?? decodedAddress
         }
+    }
+    
+    
+    var locationFetchButtonText: String {
+        return isFetchingLocation ? stopFetchLocationButtonTitle : fetchLocationButtonTitle
     }
 }

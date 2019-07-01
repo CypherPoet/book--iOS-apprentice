@@ -15,29 +15,86 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
     @IBOutlet var mainView: CurrentLocationView!
     
     var locationManager: CLLocationManager!
+    var geocodingService: GeocodingService = GeocodingService()
     
-    private var currentLocation: CLLocation? {
-        didSet {
-            DispatchQueue.main.async { self.currentLocationChanged() }
-        }
+    enum AddressDecodingState {
+        case unstarted
+        case inProgress
+        case finished(result: String?)
+        case error(message: String)
     }
     
-    
-    private var lastLocationError: Error? {
-        didSet {
-            DispatchQueue.main.async { self.lastLocationErrorChanged() }
-        }
+    enum LocationFetchState {
+        case unstarted
+        case stopped
+        case inProgress
+        case found(newBest: CLLocation)
+        case error(message: String)
+        case servicesDisabled
     }
+
     
-    
-    private var isLocationServicesEnabled: Bool = false {
+    private var currentAddressDecodingState: AddressDecodingState = .unstarted {
         didSet {
-            if !isLocationServicesEnabled {
-                DispatchQueue.main.async {
-                    self.mainView.viewModel.locationErrorMessage = "Location Services Disabled"
-                    self.stopUpdatingLocation()
+            DispatchQueue.main.async {
+                switch self.currentAddressDecodingState {
+                case .unstarted:
+                    self.mainView.viewModel.isDecodingAddress = false
+                    self.mainView.viewModel.decodedAddress = nil
+                    self.mainView.viewModel.decodedAddressErrorMessage = nil
+                case .error(let message):
+                    self.mainView.viewModel.isDecodingAddress = false
+                    self.mainView.viewModel.decodedAddressErrorMessage = message
+                case .finished(let result):
+                    self.mainView.viewModel.isDecodingAddress = false
+                    self.mainView.viewModel.decodedAddress = result
+                    self.mainView.viewModel.decodedAddressErrorMessage = nil
+                case .inProgress:
+                    self.mainView.viewModel.isDecodingAddress = true
+                    self.mainView.viewModel.decodedAddress = nil
+                    self.mainView.viewModel.decodedAddressErrorMessage = nil
                 }
             }
+        }
+    }
+    
+    
+    private var currentLocationFetchState: LocationFetchState = .unstarted {
+        didSet {
+            DispatchQueue.main.async {
+                switch self.currentLocationFetchState {
+                case .unstarted:
+                    self.mainView.viewModel.isFetchingLocation = false
+                    self.mainView.viewModel.currentLatitude = nil
+                    self.mainView.viewModel.currentLongitude = nil
+                case .stopped:
+                    self.mainView.viewModel.isFetchingLocation = false
+                case .error(let message):
+                    self.mainView.viewModel.isFetchingLocation = false
+                    self.mainView.viewModel.locationErrorMessage = message
+                    self.mainView.viewModel.decodedAddress = nil
+                    self.mainView.viewModel.currentLatitude = nil
+                    self.mainView.viewModel.currentLongitude = nil
+                case .servicesDisabled:
+                    self.mainView.viewModel.isFetchingLocation = false
+                    self.mainView.viewModel.locationErrorMessage = "Location Service Disabled"
+                    self.stopUpdatingLocation()
+                case .found(let newBest):
+                    self.bestLocationReading = newBest
+                case .inProgress:
+                    self.mainView.viewModel.isFetchingLocation = true
+                    self.mainView.viewModel.locationErrorMessage = nil
+                }
+                
+                self.mainView.canTagLocation = self.canTagLocation
+            }
+        }
+    }
+    
+
+    private var bestLocationReading: CLLocation? {
+        didSet {
+            DispatchQueue.main.async { self.bestLocationReadingChanged(from: oldValue, to: self.bestLocationReading) }
         }
     }
 }
@@ -49,7 +106,15 @@ extension CurrentLocationViewController {
         CLLocationManager.authorizationStatus()
     }
     
-    var canTagLocation: Bool { currentLocation != nil }
+
+    var canTagLocation: Bool {
+        switch currentLocationFetchState {
+        case .found:
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 
@@ -66,7 +131,9 @@ extension CurrentLocationViewController {
         mainView.delegate = self
         mainView.viewModel = .init()
         
-        currentLocation = nil
+        currentLocationFetchState = .unstarted
+        currentAddressDecodingState = .unstarted
+        
         setupLocationManager()
     }
 }
@@ -78,19 +145,33 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("locationManager::didFailWithError: \(error.localizedDescription)")
-        lastLocationError = error
+        handle(locationManagerError: error)
     }
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("didUpdateLocations::lastLocation: \(locations.last!)")
-        lastLocationError = nil
-        currentLocation = locations.last
+        guard let newLocation = locations.last else { fatalError() }
+        print("didUpdateLocations::lastLocation: \(newLocation)")
+        
+        guard
+            newLocation.timestamp.timeIntervalSinceNow > -5,  // guard against old (cached and irrelevant) results.
+            newLocation.horizontalAccuracy > 0  // guard against invalid results
+        else { return }
+        
+        if bestLocationReading == nil || newLocation.horizontalAccuracy < bestLocationReading!.horizontalAccuracy {
+            // 🔑 Lower accuracy here means MORE accurate. We'll want to use that
+            currentLocationFetchState = .found(newBest: newLocation)
+        }
     }
     
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        isLocationServicesEnabled = CLLocationManager.locationServicesEnabled()
+        if !CLLocationManager.locationServicesEnabled() {
+            currentLocationFetchState = .servicesDisabled
+        } else {
+            // TODO: When would this happen?
+            currentLocationFetchState = .unstarted
+        }
     }
     
     
@@ -108,18 +189,23 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
 
 extension CurrentLocationViewController: CurrentLocationViewDelegate {
     
-    func viewDidSelectGetLocation(_ view: CurrentLocationView) {
+    func viewDidSelectFetchLocation(_ view: CurrentLocationView) {
         switch locationAuthStatus {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .denied, .restricted:
-            isLocationServicesEnabled = false
+            currentLocationFetchState = .servicesDisabled
             showLocationServicesDeniedAlert()
         case .authorizedAlways, .authorizedWhenInUse:
             startUpdatingLocation()
         @unknown default:
             locationManager.requestWhenInUseAuthorization()
         }
+    }
+    
+    
+    func viewDidSelectStopLocationFetch(_ view: CurrentLocationView) {
+        stopUpdatingLocation()
     }
 }
 
@@ -129,34 +215,48 @@ private extension CurrentLocationViewController {
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        isLocationServicesEnabled = CLLocationManager.locationServicesEnabled()
     }
     
     
-    func currentLocationChanged() {
-        mainView.viewModel.currentLatitude = currentLocation?.coordinate.latitude
-        mainView.viewModel.currentLongitude = currentLocation?.coordinate.longitude
+    func bestLocationReadingChanged(from oldBest: CLLocation?, to newBest: CLLocation?) {
+        mainView.viewModel.isFetchingLocation = false
+        mainView.viewModel.locationErrorMessage = nil
+        mainView.viewModel.currentLatitude = newBest?.coordinate.latitude
+        mainView.viewModel.currentLongitude = newBest?.coordinate.longitude
         
-        mainView.canTagLocation = canTagLocation
+        currentAddressDecodingState = .unstarted
+        
+        guard let newLocationReading = newBest else {
+            mainView.canTagLocation = false
+            return
+        }
+
+        mainView.canTagLocation = true
+
+        if
+            oldBest == nil ||
+            newLocationReading.horizontalAccuracy <= locationManager.desiredAccuracy // "equal to or better than desired"
+        {
+            print("Sufficient Location accuracy found: \(newLocationReading.horizontalAccuracy)\n\t\t--Stopping Location Manager")
+            reverseGeocode(location: newLocationReading)
+        }
     }
+
     
     
-    func lastLocationErrorChanged() {
-        switch lastLocationError {
-        case .none:
-            mainView.viewModel.locationErrorMessage = nil
+    func handle(locationManagerError error: Error) {
+        switch error {
         case (let clError as CLError):
             switch clError.code {
             case .locationUnknown:
-                break
+                currentLocationFetchState = .error(message: "Unable to Determine Location")
             case .denied:
-                isLocationServicesEnabled = false
+                currentLocationFetchState = .servicesDisabled
             default:
-                mainView.viewModel.locationErrorMessage = "Error Getting Location"
+                currentLocationFetchState = .error(message: "Error Getting Location")
             }
         default:
             break
-//            mainView.viewModel.locationErrorMessage = nil
         }
     }
     
@@ -165,14 +265,52 @@ private extension CurrentLocationViewController {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
 
-        mainView.viewModel.isFetchingLocation = true
+        currentLocationFetchState = .inProgress
     }
     
     
     func stopUpdatingLocation() {
+        switch currentLocationFetchState {
+        case .found(let bestLocationReading):
+            // Make sure we always try to reverse-geocode at least once if we got any location readings
+            switch currentAddressDecodingState {
+            case .finished:
+                break
+            default:
+                reverseGeocode(location: bestLocationReading)
+            }
+        default:
+            break
+        }
+        
         locationManager.delegate = nil
         locationManager.stopUpdatingLocation()
 
-        mainView.viewModel.isFetchingLocation = false
+        currentLocationFetchState = .stopped
+    }
+    
+    
+    func reverseGeocode(location: CLLocation) {
+        currentAddressDecodingState = .inProgress
+        
+        geocodingService.reverseGeocode(location) { [weak self] result in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let placemark):
+                    self.currentAddressDecodingState = .finished(result: placemark.multilineFormattedAddress)
+                case .failure(.noPlacemarks):
+                    self.currentAddressDecodingState = .error(message: "⚠️ No address could be determined from these coordinates.")
+                case .failure(.coreLocationError):
+                    self.currentAddressDecodingState = .error(
+                        message: """
+                            An error occurred while attempting to find an address for these
+                            coordinates.
+                            """
+                    )
+                }
+            }
+        }
     }
 }

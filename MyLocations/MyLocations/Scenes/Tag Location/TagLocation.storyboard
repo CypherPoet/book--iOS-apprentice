@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="oE9-xy-rgh">
-                                <rect key="frame" x="12" y="136" width="390" height="350.5"/>
+                                <rect key="frame" x="12" y="136" width="390" height="238.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Reading Status Message Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQG-Gh-4D1">
                                         <rect key="frame" x="42.5" y="0.0" width="305" height="20.5"/>
@@ -69,8 +69,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qf1-RO-4Ox">
-                                        <rect key="frame" x="64.5" y="302.5" width="261" height="48"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qf1-RO-4Ox">
+                                        <rect key="frame" x="64.5" y="238.5" width="261" height="48"/>
                                         <state key="normal" title="Tag Location"/>
                                     </button>
                                 </subviews>
@@ -108,7 +108,7 @@
                             <outlet property="addressLabel" destination="3NX-xX-bc5" id="Vvu-4s-afl"/>
                             <outlet property="getLocationButton" destination="Pes-DC-9vH" id="pvh-Cm-J4x"/>
                             <outlet property="latitudeLabel" destination="K72-xN-fXK" id="4rv-Z0-b2B"/>
-                            <outlet property="locationStatusLabel" destination="AQG-Gh-4D1" id="NHS-Mv-MPH"/>
+                            <outlet property="locationReadingHeaderLabel" destination="AQG-Gh-4D1" id="NHS-Mv-MPH"/>
                             <outlet property="longitudeLabel" destination="HfW-ea-Mdh" id="e01-fF-gI9"/>
                             <outlet property="tagLocationButton" destination="qf1-RO-4Ox" id="AMa-vD-ZTV"/>
                         </connections>
