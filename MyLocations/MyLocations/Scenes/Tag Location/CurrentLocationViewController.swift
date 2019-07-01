@@ -91,10 +91,11 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
         }
     }
     
-
+    
     private var bestLocationReading: CLLocation? {
         didSet {
-            DispatchQueue.main.async { self.bestLocationReadingChanged(from: oldValue, to: self.bestLocationReading) }
+            guard let newReading = bestLocationReading else { return }
+            DispatchQueue.main.async { self.bestLocationReadingSet(from: oldValue, to: newReading) }
         }
     }
 }
@@ -109,11 +110,26 @@ extension CurrentLocationViewController {
 
     var canTagLocation: Bool {
         switch currentLocationFetchState {
-        case .found:
-            return true
-        default:
+        case .inProgress:
             return false
+        default:
+            return bestLocationReading != nil
         }
+    }
+    
+    
+    /// Regardless of accuracy, if the coordinate from a new reading is not significantly different
+    /// from the previous reading and it has been more than 10 seconds since
+    /// we've received that original reading, we'll take it as a sign that
+    /// we're sufficiently locked in.
+    func shouldStop(afterReading newLocation: CLLocation, comparedTo previousLocation: CLLocation) -> Bool {
+        let timeFromLast = newLocation.timestamp.timeIntervalSince(previousLocation.timestamp)
+        let distanceFromLast = newLocation.distance(from: previousLocation)
+        
+        print("Distance from last: \(distanceFromLast)")
+        print("Time from last: \(timeFromLast)")
+        
+        return distanceFromLast < 1 && timeFromLast > 10
     }
 }
 
@@ -150,17 +166,27 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let newLocation = locations.last else { fatalError() }
-        print("didUpdateLocations::lastLocation: \(newLocation)")
+        guard let newLocationReading = locations.last else { fatalError() }
+        print("didUpdateLocations::lastLocation: \(newLocationReading)")
         
         guard
-            newLocation.timestamp.timeIntervalSinceNow > -5,  // guard against old (cached and irrelevant) results.
-            newLocation.horizontalAccuracy > 0  // guard against invalid results
+            newLocationReading.timestamp.timeIntervalSinceNow > -5,  // guard against old (cached and irrelevant) results.
+            newLocationReading.horizontalAccuracy > 0  // guard against invalid results
         else { return }
         
-        if bestLocationReading == nil || newLocation.horizontalAccuracy < bestLocationReading!.horizontalAccuracy {
+        if
+            bestLocationReading == nil ||
+            newLocationReading.horizontalAccuracy < bestLocationReading!.horizontalAccuracy
+        {
             // 🔑 Lower accuracy here means MORE accurate. We'll want to use that
-            currentLocationFetchState = .found(newBest: newLocation)
+            currentLocationFetchState = .found(newBest: newLocationReading)
+        }
+        
+        guard let bestLocationReading = bestLocationReading else { return }
+        
+        if shouldStop(afterReading: newLocationReading, comparedTo: bestLocationReading) {
+            print("Forcing stop")
+            stopUpdatingLocation()
         }
     }
     
@@ -218,31 +244,23 @@ private extension CurrentLocationViewController {
     }
     
     
-    func bestLocationReadingChanged(from oldBest: CLLocation?, to newBest: CLLocation?) {
+    func bestLocationReadingSet(from oldBest: CLLocation?, to newBest: CLLocation) {
         mainView.viewModel.isFetchingLocation = false
         mainView.viewModel.locationErrorMessage = nil
-        mainView.viewModel.currentLatitude = newBest?.coordinate.latitude
-        mainView.viewModel.currentLongitude = newBest?.coordinate.longitude
+        mainView.viewModel.currentLatitude = newBest.coordinate.latitude
+        mainView.viewModel.currentLongitude = newBest.coordinate.longitude
         
         currentAddressDecodingState = .unstarted
         
-        guard let newLocationReading = newBest else {
-            mainView.canTagLocation = false
-            return
-        }
-
-        mainView.canTagLocation = true
-
         if
             oldBest == nil ||
-            newLocationReading.horizontalAccuracy <= locationManager.desiredAccuracy // "equal to or better than desired"
+            newBest.horizontalAccuracy <= locationManager.desiredAccuracy // "equal to or better than desired"
         {
-            print("Sufficient Location accuracy found: \(newLocationReading.horizontalAccuracy)\n\t\t--Stopping Location Manager")
-            reverseGeocode(location: newLocationReading)
+            print("Sufficient Location accuracy found: \(newBest.horizontalAccuracy)\n\t\t--Beginning to reverse geocode")
+            reverseGeocode(location: newBest)
         }
     }
 
-    
     
     func handle(locationManagerError error: Error) {
         switch error {
@@ -262,31 +280,33 @@ private extension CurrentLocationViewController {
     
     
     func startUpdatingLocation() {
+        // assume that the current best is no longer relevant
+        bestLocationReading = nil
+        
+        currentLocationFetchState = .inProgress
+
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
-
-        currentLocationFetchState = .inProgress
     }
     
     
     func stopUpdatingLocation() {
         switch currentLocationFetchState {
         case .found(let bestLocationReading):
-            // Make sure we always try to reverse-geocode at least once if we got any location readings
-            switch currentAddressDecodingState {
-            case .finished:
+            if case AddressDecodingState.finished = currentAddressDecodingState {
                 break
-            default:
+            } else {
+                // Make sure we always try to reverse-geocode at least once if we got any location readings
                 reverseGeocode(location: bestLocationReading)
             }
         default:
             break
         }
         
+        currentLocationFetchState = .stopped
+
         locationManager.delegate = nil
         locationManager.stopUpdatingLocation()
-
-        currentLocationFetchState = .stopped
     }
     
     
@@ -301,7 +321,9 @@ private extension CurrentLocationViewController {
                 case .success(let placemark):
                     self.currentAddressDecodingState = .finished(result: placemark.multilineFormattedAddress)
                 case .failure(.noPlacemarks):
-                    self.currentAddressDecodingState = .error(message: "⚠️ No address could be determined from these coordinates.")
+                    self.currentAddressDecodingState = .error(
+                        message: "⚠️ No address could be determined from these coordinates."
+                    )
                 case .failure(.coreLocationError):
                     self.currentAddressDecodingState = .error(
                         message: """
