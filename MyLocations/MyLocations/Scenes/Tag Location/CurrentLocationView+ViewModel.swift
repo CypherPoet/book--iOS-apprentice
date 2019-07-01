@@ -21,7 +21,7 @@ extension CurrentLocationView {
         var fetchLocationButtonTitle = "Get My Location"
 
         var startFetchingLocationMessage = "Tap \"Get My Location\" to Start"
-        var locationFetchInProgressMessage = "Searching for New Cooridinates..."
+        var locationFetchInProgressMessage = "Searching for New Coordinates..."
 
         var decodedAddress: String?
         var decodedAddressErrorMessage: String?

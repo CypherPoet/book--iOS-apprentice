@@ -33,6 +33,8 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
         case servicesDisabled
     }
 
+    private var locationFetchTimer: Timer?
+    
     
     private var currentAddressDecodingState: AddressDecodingState = .unstarted {
         didSet {
@@ -161,6 +163,12 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("locationManager::didFailWithError: \(error.localizedDescription)")
+        
+        guard let error = error as? CLError else {
+            currentLocationFetchState = .error(message: "Error Getting Location")
+            return
+        }
+        
         handle(locationManagerError: error)
     }
     
@@ -236,6 +244,23 @@ extension CurrentLocationViewController: CurrentLocationViewDelegate {
 }
 
 
+// MARK: - Event Handling
+
+extension CurrentLocationViewController {
+    
+    @objc func didTimeOutFetchingLocation() {
+        print("Timing out fetch")
+        currentLocationFetchState = .error(message: "Location Fetch Timed Out")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.stopUpdatingLocation()
+        }
+    }
+}
+
+
+// MARK: - Private Helpers
+
 private extension CurrentLocationViewController {
     
     func setupLocationManager() {
@@ -262,19 +287,14 @@ private extension CurrentLocationViewController {
     }
 
     
-    func handle(locationManagerError error: Error) {
-        switch error {
-        case (let clError as CLError):
-            switch clError.code {
-            case .locationUnknown:
-                currentLocationFetchState = .error(message: "Unable to Determine Location")
-            case .denied:
-                currentLocationFetchState = .servicesDisabled
-            default:
-                currentLocationFetchState = .error(message: "Error Getting Location")
-            }
+    func handle(locationManagerError error: CLError) {
+        switch error.code {
+        case .locationUnknown:
+            currentLocationFetchState = .error(message: "Unable to Determine Location")
+        case .denied:
+            currentLocationFetchState = .servicesDisabled
         default:
-            break
+            currentLocationFetchState = .error(message: "Error Getting Location")
         }
     }
     
@@ -284,7 +304,9 @@ private extension CurrentLocationViewController {
         bestLocationReading = nil
         
         currentLocationFetchState = .inProgress
-
+        
+        locationFetchTimer = makeLocationFetchTimer()
+        
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
@@ -304,7 +326,7 @@ private extension CurrentLocationViewController {
         }
         
         currentLocationFetchState = .stopped
-
+        locationFetchTimer?.invalidate()
         locationManager.delegate = nil
         locationManager.stopUpdatingLocation()
     }
@@ -334,5 +356,16 @@ private extension CurrentLocationViewController {
                 }
             }
         }
+    }
+    
+    
+    func makeLocationFetchTimer() -> Timer {
+        return Timer.scheduledTimer(
+            timeInterval: 60,
+            target: self,
+            selector: #selector(didTimeOutFetchingLocation),
+            userInfo: nil,
+            repeats: false
+        )
     }
 }
