@@ -29,8 +29,7 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
         case stopped
         case inProgress
         case found(newBest: CLLocation)
-        case error(message: String)
-        case servicesDisabled
+        case error(LocationDetectionError)
     }
 
     private var locationFetchTimer: Timer?
@@ -71,16 +70,12 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                     self.mainView.viewModel.currentLongitude = nil
                 case .stopped:
                     self.mainView.viewModel.isFetchingLocation = false
-                case .error(let message):
+                case .error(let error):
                     self.mainView.viewModel.isFetchingLocation = false
-                    self.mainView.viewModel.locationErrorMessage = message
+                    self.mainView.viewModel.locationErrorMessage = error.message
                     self.mainView.viewModel.decodedAddress = nil
                     self.mainView.viewModel.currentLatitude = nil
                     self.mainView.viewModel.currentLongitude = nil
-                case .servicesDisabled:
-                    self.mainView.viewModel.isFetchingLocation = false
-                    self.mainView.viewModel.locationErrorMessage = "Location Service Disabled"
-                    self.stopUpdatingLocation()
                 case .found(let newBest):
                     self.bestLocationReading = newBest
                 case .inProgress:
@@ -128,9 +123,6 @@ extension CurrentLocationViewController {
         let timeFromLast = newLocation.timestamp.timeIntervalSince(previousLocation.timestamp)
         let distanceFromLast = newLocation.distance(from: previousLocation)
         
-        print("Distance from last: \(distanceFromLast)")
-        print("Time from last: \(timeFromLast)")
-        
         return distanceFromLast < 1 && timeFromLast > 10
     }
 }
@@ -165,7 +157,7 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
         print("locationManager::didFailWithError: \(error.localizedDescription)")
         
         guard let error = error as? CLError else {
-            currentLocationFetchState = .error(message: "Error Getting Location")
+            currentLocationFetchState = .error(.misc)
             return
         }
         
@@ -201,7 +193,8 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if !CLLocationManager.locationServicesEnabled() {
-            currentLocationFetchState = .servicesDisabled
+            currentLocationFetchState = .error(.servicesDisabled)
+            stopUpdatingLocation()
         } else {
             // TODO: When would this happen?
             currentLocationFetchState = .unstarted
@@ -228,7 +221,7 @@ extension CurrentLocationViewController: CurrentLocationViewDelegate {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .denied, .restricted:
-            currentLocationFetchState = .servicesDisabled
+            currentLocationFetchState = .error(.servicesDisabled)
             showLocationServicesDeniedAlert()
         case .authorizedAlways, .authorizedWhenInUse:
             startUpdatingLocation()
@@ -249,8 +242,7 @@ extension CurrentLocationViewController: CurrentLocationViewDelegate {
 extension CurrentLocationViewController {
     
     @objc func didTimeOutFetchingLocation() {
-        print("Timing out fetch")
-        currentLocationFetchState = .error(message: "Location Fetch Timed Out")
+        currentLocationFetchState = .error(.timedOut)
         
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.stopUpdatingLocation()
@@ -290,11 +282,11 @@ private extension CurrentLocationViewController {
     func handle(locationManagerError error: CLError) {
         switch error.code {
         case .locationUnknown:
-            currentLocationFetchState = .error(message: "Unable to Determine Location")
+            currentLocationFetchState = .error(.locationUnknown)
         case .denied:
-            currentLocationFetchState = .servicesDisabled
+            currentLocationFetchState = .error(.servicesDisabled)
         default:
-            currentLocationFetchState = .error(message: "Error Getting Location")
+            currentLocationFetchState = .error(.misc)
         }
     }
     

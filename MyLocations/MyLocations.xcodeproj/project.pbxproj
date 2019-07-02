@@ -35,6 +35,7 @@
 		F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */; };
 		F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3789B2722C94847000E6455 /* Double+Formatting.swift */; };
 		F3789B2A22C94847000E6455 /* CLPlacemark+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3789B2822C94847000E6455 /* CLPlacemark+Formatting.swift */; };
+		F37EA26222CAD70200D3F42F /* LocationErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37EA26122CAD70200D3F42F /* LocationErrorMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentLocationView+ViewModel.swift"; sourceTree = "<group>"; };
 		F3789B2722C94847000E6455 /* Double+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
 		F3789B2822C94847000E6455 /* CLPlacemark+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Formatting.swift"; sourceTree = "<group>"; };
+		F37EA26122CAD70200D3F42F /* LocationErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationErrorMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +264,7 @@
 		F37EA25F22CA5CBD00D3F42F /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				F37EA26122CAD70200D3F42F /* LocationErrorMessage.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				F34877AC22C4A9C000C2167F /* MyLocations.xcdatamodeld in Sources */,
 				F3789B2A22C94847000E6455 /* CLPlacemark+Formatting.swift in Sources */,
 				F370828222C661FB0083C235 /* StateController.swift in Sources */,
+				F37EA26222CAD70200D3F42F /* LocationErrorMessage.swift in Sources */,
 				F34877A622C4A9C000C2167F /* SecondViewController.swift in Sources */,
 				F32053C722C8D3A500E41B41 /* GeocodingService.swift in Sources */,
 				F34877A422C4A9C000C2167F /* CurrentLocationViewController.swift in Sources */,
