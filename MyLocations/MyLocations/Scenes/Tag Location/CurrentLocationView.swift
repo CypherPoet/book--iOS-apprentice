@@ -12,6 +12,7 @@ import UIKit
 protocol CurrentLocationViewDelegate: class {
     func viewDidSelectFetchLocation(_ view: CurrentLocationView)
     func viewDidSelectStopLocationFetch(_ view: CurrentLocationView)
+    func viewDidSelectTagLocation(_ view: CurrentLocationView)
 }
 
 
@@ -49,6 +50,11 @@ extension CurrentLocationView {
         } else {
             delegate?.viewDidSelectFetchLocation(self)
         }
+    }
+    
+    
+    @IBAction func tagLocationTapped(_ sender: UIButton) {
+        delegate?.viewDidSelectTagLocation(self)
     }
 }
 

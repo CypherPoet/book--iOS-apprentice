@@ -14,13 +14,14 @@ import CoreLocation
 class CurrentLocationViewController: UIViewController, Storyboarded {
     @IBOutlet var mainView: CurrentLocationView!
     
+    weak var delegate: CurrentLocationControllerDelegate?
     var locationManager: CLLocationManager!
     var geocodingService: GeocodingService = GeocodingService()
     
     enum AddressDecodingState {
         case unstarted
         case inProgress
-        case finished(result: String?)
+        case finished(CLPlacemark)
         case error(message: String)
     }
     
@@ -41,21 +42,24 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                 switch self.currentAddressDecodingState {
                 case .unstarted:
                     self.mainView.viewModel.isDecodingAddress = false
-                    self.mainView.viewModel.decodedAddress = nil
+                    self.mainView.viewModel.currentPlacemark = nil
                     self.mainView.viewModel.decodedAddressErrorMessage = nil
                 case .error(let message):
                     self.mainView.viewModel.isDecodingAddress = false
                     self.mainView.viewModel.decodedAddressErrorMessage = message
-                case .finished(let result):
+                case .finished(let placemark):
                     self.mainView.viewModel.isDecodingAddress = false
-                    self.mainView.viewModel.decodedAddress = result
+                    self.mainView.viewModel.currentPlacemark = placemark
                     self.mainView.viewModel.decodedAddressErrorMessage = nil
                 case .inProgress:
                     self.mainView.viewModel.isDecodingAddress = true
-                    self.mainView.viewModel.decodedAddress = nil
+                    self.mainView.viewModel.currentPlacemark = nil
                     self.mainView.viewModel.decodedAddressErrorMessage = nil
                 }
+
+                self.mainView.canTagLocation = self.canTagLocation
             }
+            
         }
     }
     
@@ -66,16 +70,14 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                 switch self.currentLocationFetchState {
                 case .unstarted:
                     self.mainView.viewModel.isFetchingLocation = false
-                    self.mainView.viewModel.currentLatitude = nil
-                    self.mainView.viewModel.currentLongitude = nil
+                    self.mainView.viewModel.currentLocation = nil
                 case .stopped:
                     self.mainView.viewModel.isFetchingLocation = false
                 case .error(let error):
                     self.mainView.viewModel.isFetchingLocation = false
                     self.mainView.viewModel.locationErrorMessage = error.message
-                    self.mainView.viewModel.decodedAddress = nil
-                    self.mainView.viewModel.currentLatitude = nil
-                    self.mainView.viewModel.currentLongitude = nil
+                    self.mainView.viewModel.currentLocation = nil
+                    self.currentAddressDecodingState = .unstarted
                 case .found(let newBest):
                     self.bestLocationReading = newBest
                 case .inProgress:
@@ -98,6 +100,8 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
 }
 
 
+// MARK: - Computeds
+
 extension CurrentLocationViewController {
     
     var locationAuthStatus: CLAuthorizationStatus {
@@ -106,12 +110,10 @@ extension CurrentLocationViewController {
     
 
     var canTagLocation: Bool {
-        switch currentLocationFetchState {
-        case .inProgress:
-            return false
-        default:
-            return bestLocationReading != nil
-        }
+        return (
+            mainView.viewModel.currentLocation != nil &&
+            mainView.viewModel.currentPlacemark != nil
+        )
     }
     
     
@@ -200,21 +202,24 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
             currentLocationFetchState = .unstarted
         }
     }
-    
-    
-    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
-        stopUpdatingLocation()
-    }
-    
-    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
-        startUpdatingLocation()
-    }
 }
 
 
 // MARK: - CurrentLocationViewDelegate
 
 extension CurrentLocationViewController: CurrentLocationViewDelegate {
+    
+    func viewDidSelectTagLocation(_ view: CurrentLocationView) {
+        guard
+            let location = view.viewModel.currentLocation,
+            let placemark = view.viewModel.currentPlacemark
+        else {
+            preconditionFailure("Tag Location selected without required information")
+        }
+        
+        delegate?.viewController(self, didSelectTag: location, at: placemark)
+    }
+    
     
     func viewDidSelectFetchLocation(_ view: CurrentLocationView) {
         switch locationAuthStatus {
@@ -264,11 +269,8 @@ private extension CurrentLocationViewController {
     func bestLocationReadingSet(from oldBest: CLLocation?, to newBest: CLLocation) {
         mainView.viewModel.isFetchingLocation = false
         mainView.viewModel.locationErrorMessage = nil
-        mainView.viewModel.currentLatitude = newBest.coordinate.latitude
-        mainView.viewModel.currentLongitude = newBest.coordinate.longitude
-        
-        currentAddressDecodingState = .unstarted
-        
+        mainView.viewModel.currentLocation = newBest
+
         if
             oldBest == nil ||
             newBest.horizontalAccuracy <= locationManager.desiredAccuracy // "equal to or better than desired"
@@ -333,7 +335,7 @@ private extension CurrentLocationViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let placemark):
-                    self.currentAddressDecodingState = .finished(result: placemark.multilineFormattedAddress)
+                    self.currentAddressDecodingState = .finished(placemark)
                 case .failure(.noPlacemarks):
                     self.currentAddressDecodingState = .error(
                         message: "⚠️ No address could be determined from these coordinates."

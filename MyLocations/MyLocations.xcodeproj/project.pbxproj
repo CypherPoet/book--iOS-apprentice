@@ -36,6 +36,7 @@
 		F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3789B2722C94847000E6455 /* Double+Formatting.swift */; };
 		F3789B2A22C94847000E6455 /* CLPlacemark+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3789B2822C94847000E6455 /* CLPlacemark+Formatting.swift */; };
 		F37EA26222CAD70200D3F42F /* LocationErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37EA26122CAD70200D3F42F /* LocationErrorMessage.swift */; };
+		F37EA26422CBB12900D3F42F /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37EA26322CBB12900D3F42F /* LocationDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		F3789B2722C94847000E6455 /* Double+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
 		F3789B2822C94847000E6455 /* CLPlacemark+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Formatting.swift"; sourceTree = "<group>"; };
 		F37EA26122CAD70200D3F42F /* LocationErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationErrorMessage.swift; sourceTree = "<group>"; };
+		F37EA26322CBB12900D3F42F /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 				F34877DC22C4E86F00C2167F /* TagLocation.storyboard */,
 				F34877E622C5079700C2167F /* CurrentLocationView.swift */,
 				F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */,
+				F37EA26322CBB12900D3F42F /* LocationDetailsViewController.swift */,
 			);
 			path = "Tag Location";
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				F34877D022C4D9A600C2167F /* NavigationControlling.swift in Sources */,
 				F34877E922C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift in Sources */,
 				F34877CE22C4D9A600C2167F /* NavigationCoordinator.swift in Sources */,
+				F37EA26422CBB12900D3F42F /* LocationDetailsViewController.swift in Sources */,
 				F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */,
 				F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */,
 				F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */,

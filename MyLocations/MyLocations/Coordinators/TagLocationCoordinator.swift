@@ -7,6 +7,16 @@
 //
 
 import UIKit
+import CoreLocation
+
+
+protocol CurrentLocationControllerDelegate: class {
+    func viewController(
+        _ controller: CurrentLocationViewController,
+        didSelectTag location: CLLocation,
+        at placemark: CLPlacemark
+    )
+}
 
 
 final class TagLocationCoordinator: NavigationCoordinator {
@@ -14,7 +24,6 @@ final class TagLocationCoordinator: NavigationCoordinator {
     private let stateController: StateController
     
     
-    // TODO: Should the navController be optional here?
     init(
         navController: UINavigationController = UINavigationController(),
         stateController: StateController
@@ -31,10 +40,33 @@ final class TagLocationCoordinator: NavigationCoordinator {
             named: R.storyboard.tagLocation.name
         )
         
+        currentLocationVC.delegate = self
         currentLocationVC.locationManager = stateController.locationManager
         currentLocationVC.tabBarItem = UITabBarItem(title: "Tag", image: UIImage(systemName: "tag.fill"), tag: 0)
         
         navController.setViewControllers([currentLocationVC], animated: true)
     }
+}
+
+
+// MARK: - CurrentLocationControllerDelegate
+
+extension TagLocationCoordinator: CurrentLocationControllerDelegate {
+    
+    func viewController(
+        _ controller: CurrentLocationViewController,
+        didSelectTag location: CLLocation,
+        at placemark: CLPlacemark
+    ) {
+        let locationDetailsVC = LocationDetailsViewController.instantiateFromStoryboard(
+            named: R.storyboard.tagLocation.name
+        )
+        
+        locationDetailsVC.location = location
+        locationDetailsVC.placemark = placemark
+        
+        navController.pushViewController(locationDetailsVC, animated: true)
+    }
+    
     
 }
