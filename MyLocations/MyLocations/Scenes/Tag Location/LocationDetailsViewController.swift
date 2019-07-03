@@ -11,14 +11,54 @@ import CoreLocation
 
 
 class LocationDetailsViewController: UITableViewController, Storyboarded {
-    var location: CLLocation!
-    var placemark: CLPlacemark!
+    @IBOutlet var descriptionTextView: UITextView!
+    @IBOutlet private var categoryLabel: UILabel!
+    @IBOutlet private var latitudeLabel: UILabel!
+    @IBOutlet private var longitudeLabel: UILabel!
+    @IBOutlet private var addressLabel: UILabel!
+    @IBOutlet private var dateLabel: UILabel!
     
+    var viewModel: LocationDetailsViewModel!
+    weak var delegate: LocationDetailsViewControllerDelegate?
+}
+
+
+// MARK: - Lifecycle
+
+extension LocationDetailsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        assert(location != nil, "No location was set")
-        assert(placemark != nil, "No placemark was set")
+        assert(viewModel != nil, "No viewModel was set")
+        
+        render(with: viewModel)
+    }
+}
+
+
+// MARK: - Event Handling
+
+extension LocationDetailsViewController {
+    
+    @IBAction func cancelTapped() {
+        delegate?.viewControllerDidCancel(self)
+    }
+    
+    @IBAction func doneButtonTapped() {
+        print("Done button tapped")
+    }
+}
+
+
+// MARK: - Private Helpers
+
+private extension LocationDetailsViewController {
+    
+    func render(with viewModel: LocationDetailsViewModel) {
+        latitudeLabel.text = viewModel.latitudeText
+        longitudeLabel.text = viewModel.longitudeText
+        addressLabel.text = viewModel.addressText
+        dateLabel.text = viewModel.dateText
     }
 }

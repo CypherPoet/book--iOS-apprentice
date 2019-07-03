@@ -110,10 +110,16 @@ extension CurrentLocationViewController {
     
 
     var canTagLocation: Bool {
-        return (
-            mainView.viewModel.currentLocation != nil &&
-            mainView.viewModel.currentPlacemark != nil
-        )
+        if mainView.viewModel.currentLocation != nil {
+            switch currentAddressDecodingState {
+            case .inProgress:
+                return false
+            default:
+                return true
+            }
+        }
+        
+        return false
     }
     
     
@@ -136,10 +142,7 @@ extension CurrentLocationViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        title = "Current Location"
-        
+
         mainView.delegate = self
         mainView.viewModel = .init()
         
@@ -147,6 +150,13 @@ extension CurrentLocationViewController {
         currentAddressDecodingState = .unstarted
         
         setupLocationManager()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        stopUpdatingLocation()
     }
 }
 
@@ -210,12 +220,11 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
 extension CurrentLocationViewController: CurrentLocationViewDelegate {
     
     func viewDidSelectTagLocation(_ view: CurrentLocationView) {
-        guard
-            let location = view.viewModel.currentLocation,
-            let placemark = view.viewModel.currentPlacemark
-        else {
+        guard let location = view.viewModel.currentLocation else {
             preconditionFailure("Tag Location selected without required information")
         }
+        
+        let placemark = view.viewModel.currentPlacemark
         
         delegate?.viewController(self, didSelectTag: location, at: placemark)
     }
