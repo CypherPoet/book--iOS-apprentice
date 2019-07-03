@@ -46,17 +46,32 @@ extension CurrentLocationView.ViewModel {
         }
     }
     
-    
     var decodedAddressText: String? {
         if isDecodingAddress {
             return addressDecodingInProgressMessage
         } else {
-            return decodedAddressErrorMessage ?? currentPlacemark?.multilineFormattedAddress
+            return decodedAddressErrorMessage ?? formattedPlacemarkAddress
         }
     }
     
     
     var locationFetchButtonText: String {
         return isFetchingLocation ? stopFetchLocationButtonTitle : fetchLocationButtonTitle
+    }
+}
+
+
+// MARK: - Private Helpers
+
+private extension CurrentLocationView.ViewModel {
+    
+    var formattedPlacemarkAddress: String? {
+        [
+            currentPlacemark?.name,
+            currentPlacemark?.formattedMainLine,
+            currentPlacemark?.formattedLocalityLine,
+        ]
+        .compactMap({ $0 })
+        .joined(separator: "\n")
     }
 }

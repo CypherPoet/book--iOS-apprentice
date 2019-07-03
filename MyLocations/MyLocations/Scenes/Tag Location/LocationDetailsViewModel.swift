@@ -31,14 +31,12 @@ extension LocationDetailsViewModel {
         guard let placemark = placemark else { return "Unknown Address" }
         
         return [
-            placemark.thoroughfare,
-            placemark.subThoroughfare,
-            placemark.locality,
-            placemark.administrativeArea,
-            placemark.postalCode,
+            placemark.name,
+            placemark.formattedMainLine,
+            placemark.formattedLocalityLine,
             placemark.country,
         ]
         .compactMap({ $0 })
-        .joined(separator: ", ")
+        .joined(separator: "\n")
     }
 }
