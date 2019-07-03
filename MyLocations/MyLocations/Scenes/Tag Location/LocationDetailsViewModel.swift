@@ -39,6 +39,6 @@ extension LocationDetailsViewModel {
             placemark.country,
         ]
         .compactMap({ $0 })
-        .joined(separator: ",")
+        .joined(separator: ", ")
     }
 }
