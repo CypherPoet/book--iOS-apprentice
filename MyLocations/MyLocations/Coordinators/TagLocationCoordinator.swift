@@ -1,99 +1,87 @@
 //
-//  TagLocationCoordinator.swift
+//  LocationDetailsCoordinator.swift
 //  MyLocations
 //
-//  Created by Brian Sipple on 6/27/19.
+//  Created by Brian Sipple on 7/4/19.
 //  Copyright © 2019 CypherPoet. All rights reserved.
 //
 
 import UIKit
 import CoreLocation
 
-
 // TODO: Place protocols in separate files
 
-protocol CurrentLocationControllerDelegate: class {
-    func viewController(
-        _ controller: CurrentLocationViewController,
-        didSelectTag location: CLLocation,
-        at placemark: CLPlacemark?
-    )
+protocol TagLocationCoordinatorDelegate: class {
+    func coordinatorDidCancel(_ coordinator: TagLocationCoordinator)
 }
 
-protocol LocationDetailsViewControllerDelegate: class {
-    func viewControllerDidCancel(_ controller: LocationDetailsViewController)
+protocol TagLocationViewControllerDelegate: class {
+    func viewControllerDidCancel(_ controller: TagLocationViewController)
+//    func viewController(_ controller: LocationDetailsViewController, didSubmit location: Location)
 }
+
+protocol LocationCategoryViewControllerDelegate: class {
+    func viewControllerDidCancel(_ controller: LocationCategoryViewControllerDelegate)
+}
+
 
 
 final class TagLocationCoordinator: NavigationCoordinator {
     var navController: UINavigationController
-    private let stateController: StateController
-    
+    private weak var delegate: TagLocationCoordinatorDelegate?
+    private let coordinate: CLLocationCoordinate2D
+    private let placemark: CLPlacemark?
     
     init(
-        navController: UINavigationController = UINavigationController(),
-        stateController: StateController
+        navController: UINavigationController,
+        delegate: TagLocationCoordinatorDelegate?,
+        coordinate: CLLocationCoordinate2D,
+        placemark: CLPlacemark?
     ) {
         self.navController = navController
-        self.stateController = stateController
-        
-        start()
+        self.delegate = delegate
+        self.coordinate = coordinate
+        self.placemark = placemark
     }
-
+    
     
     func start() {
-        let currentLocationVC = CurrentLocationViewController.instantiateFromStoryboard(
+        let tagLocationVC = TagLocationViewController.instantiateFromStoryboard(
             named: R.storyboard.tagLocation.name
         )
         
-        currentLocationVC.delegate = self
-        currentLocationVC.locationManager = stateController.locationManager
-        currentLocationVC.tabBarItem = UITabBarItem(title: "Tag", image: UIImage(systemName: "tag.fill"), tag: 0)
+        tagLocationVC.delegate = self
+        tagLocationVC.title = "Tag Location"
         
-        navController.navigationBar.prefersLargeTitles = false
-        navController.navigationBar.isHidden = true
-        navController.setViewControllers([currentLocationVC], animated: true)
-    }
-}
-
-
-// MARK: - CurrentLocationControllerDelegate
-
-extension TagLocationCoordinator: CurrentLocationControllerDelegate {
-    
-    func viewController(
-        _ controller: CurrentLocationViewController,
-        didSelectTag location: CLLocation,
-        at placemark: CLPlacemark?
-    ) {
-        let locationDetailsVC = LocationDetailsViewController.instantiateFromStoryboard(
-            named: R.storyboard.tagLocation.name
-        )
-        
-        locationDetailsVC.delegate = self
-        locationDetailsVC.title = "Tag Location"
-        
-        locationDetailsVC.viewModel = .init(
-            coordinate: location.coordinate,
+        tagLocationVC.viewModel = .init(
+            coordinate: coordinate,
             placemark: placemark,
-            description: "",
+            locationDescription: "",
             date: Date()
         )
-
+        
         navController.navigationBar.isHidden = false
-        navController.pushViewController(locationDetailsVC, animated: true)
+        navController.pushViewController(tagLocationVC, animated: true)
     }
 }
-
 
 
 // MARK: - LocationDetailsViewControllerDelegate
 
-extension TagLocationCoordinator: LocationDetailsViewControllerDelegate {
+extension TagLocationCoordinator: TagLocationViewControllerDelegate {
     
-    func viewControllerDidCancel(_ controller: LocationDetailsViewController) {
+    func viewControllerDidCancel(_ controller: TagLocationViewController) {
+        delegate?.coordinatorDidCancel(self)
+    }
+}
+
+
+extension TagLocationCoordinator: LocationCategoryViewControllerDelegate {
+    
+    func viewControllerDidCancel(_ controller: LocationCategoryViewControllerDelegate) {
         navController.popViewController(animated: true)
-        navController.navigationBar.isHidden = true
     }
     
+    
 }
+

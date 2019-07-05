@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Current Location View Controller-->
+        <scene sceneID="byA-OV-efZ">
+            <objects>
+                <viewController storyboardIdentifier="CurrentLocationViewController" id="1Hf-Se-Lw2" customClass="CurrentLocationViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ChJ-t3-s1M" customClass="CurrentLocationView" customModule="MyLocations" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="gpS-gx-m0G">
+                                <rect key="frame" x="22" y="60" width="370" height="205.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Reading Header Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwB-6a-YHn">
+                                        <rect key="frame" x="49" y="0.0" width="272" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cZp-FK-iqC">
+                                        <rect key="frame" x="0.0" y="78" width="370" height="53"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhZ-uh-2Bb">
+                                                <rect key="frame" x="0.0" y="0.0" width="370" height="20.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdN-0K-dIQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="66" height="20.5"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Latitude Reading Goes Here)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yd7-UI-Swo">
+                                                        <rect key="frame" x="66" y="0.0" width="304" height="20.5"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHz-PV-5DM">
+                                                <rect key="frame" x="0.0" y="32.5" width="370" height="20.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHJ-Gn-kge">
+                                                        <rect key="frame" x="0.0" y="0.0" width="80.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Longitude Reading Goes Here)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qu-Ea-8h0">
+                                                        <rect key="frame" x="80.5" y="0.0" width="289.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Address Description Goes Here)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jb5-Ex-GnK">
+                                        <rect key="frame" x="0.0" y="185" width="370" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wX3-v8-iZ8">
+                                        <rect key="frame" x="65" y="205.5" width="240" height="48"/>
+                                        <state key="normal" title="Tag Location"/>
+                                        <connections>
+                                            <action selector="tagLocationTapped:" destination="ChJ-t3-s1M" eventType="touchUpInside" id="V15-yE-MrM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Jb5-Ex-GnK" secondAttribute="trailing" id="07i-tm-HnI"/>
+                                    <constraint firstAttribute="trailing" secondItem="cZp-FK-iqC" secondAttribute="trailing" id="7jB-pA-6uC"/>
+                                    <constraint firstItem="Jb5-Ex-GnK" firstAttribute="leading" secondItem="gpS-gx-m0G" secondAttribute="leading" id="QqK-LS-Wjz"/>
+                                    <constraint firstItem="cZp-FK-iqC" firstAttribute="leading" secondItem="gpS-gx-m0G" secondAttribute="leading" id="q8W-z8-8l8"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwJ-hu-FLT">
+                                <rect key="frame" x="87" y="792" width="240" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Kv4-8g-9ad"/>
+                                    <constraint firstAttribute="width" constant="240" id="vpM-FL-nwY"/>
+                                </constraints>
+                                <state key="normal" title="Get Current Location"/>
+                                <connections>
+                                    <action selector="getLocationTapped:" destination="ChJ-t3-s1M" eventType="touchUpInside" id="lkt-qh-hxc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8bE-tC-x0G" firstAttribute="trailing" secondItem="gpS-gx-m0G" secondAttribute="trailing" constant="22" id="71j-Nx-Bbj"/>
+                            <constraint firstItem="FwJ-hu-FLT" firstAttribute="centerX" secondItem="ChJ-t3-s1M" secondAttribute="centerX" id="8no-fD-hTB"/>
+                            <constraint firstItem="wX3-v8-iZ8" firstAttribute="width" secondItem="FwJ-hu-FLT" secondAttribute="width" id="8yH-CN-4Vt"/>
+                            <constraint firstItem="wX3-v8-iZ8" firstAttribute="height" secondItem="FwJ-hu-FLT" secondAttribute="height" id="B5p-uH-7bb"/>
+                            <constraint firstItem="gpS-gx-m0G" firstAttribute="top" secondItem="8bE-tC-x0G" secondAttribute="top" constant="16" id="Cpz-LX-lQ5"/>
+                            <constraint firstItem="8bE-tC-x0G" firstAttribute="bottom" secondItem="FwJ-hu-FLT" secondAttribute="bottom" constant="22" id="SRN-5x-a2b"/>
+                            <constraint firstItem="gpS-gx-m0G" firstAttribute="leading" secondItem="8bE-tC-x0G" secondAttribute="leading" constant="22" id="nqg-6h-Lpj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8bE-tC-x0G"/>
+                        <connections>
+                            <outlet property="addressLabel" destination="Jb5-Ex-GnK" id="7i6-Db-33u"/>
+                            <outlet property="getLocationButton" destination="FwJ-hu-FLT" id="m3d-23-uvp"/>
+                            <outlet property="latitudeLabel" destination="yd7-UI-Swo" id="fKL-vM-QfD"/>
+                            <outlet property="locationReadingHeaderLabel" destination="NwB-6a-YHn" id="d3b-db-WAf"/>
+                            <outlet property="longitudeLabel" destination="1qu-Ea-8h0" id="2at-3p-FYe"/>
+                            <outlet property="tagLocationButton" destination="wX3-v8-iZ8" id="gjv-YX-bQm"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="mainView" destination="ChJ-t3-s1M" id="dvL-nh-qI4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v7w-kk-tUI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="108"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,5 +1,5 @@
 //
-//  LocationDetailsViewModel.swift
+//  TagLocationViewModel.swift
 //  MyLocations
 //
 //  Created by Brian Sipple on 7/2/19.
@@ -9,18 +9,18 @@
 import Foundation
 import CoreLocation
 
-struct LocationDetailsViewModel {
+struct TagLocationViewModel {
     var coordinate: CLLocationCoordinate2D
     var placemark: CLPlacemark?
 //    var category: Location.Category
-    var description: String
+    var locationDescription: String
     var date: Date
     
 //    var selectedPhoto: UIImage?
 }
 
 
-extension LocationDetailsViewModel {
+extension TagLocationViewModel {
     
     var latitudeText: String { coordinate.latitude.coordinateFormat }
     var longitudeText: String { coordinate.longitude.coordinateFormat }
