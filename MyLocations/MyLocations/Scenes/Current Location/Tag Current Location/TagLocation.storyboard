@@ -14,6 +14,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ihm-yM-dAr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <gestureRecognizers/>
                         <sections>
                             <tableViewSection id="AC3-fp-hOw">
                                 <cells>
@@ -199,6 +200,7 @@
                         <connections>
                             <outlet property="dataSource" destination="sSQ-BL-Hgk" id="2sq-aE-rZF"/>
                             <outlet property="delegate" destination="sSQ-BL-Hgk" id="hbE-Xe-q04"/>
+                            <outletCollection property="gestureRecognizers" destination="Umi-CV-k6a" appends="YES" id="mYE-Iw-grK"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Tag Location" id="wS1-q4-geQ">
@@ -225,6 +227,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHK-qs-FZv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Umi-CV-k6a">
+                    <connections>
+                        <action selector="tableViewTapped:" destination="sSQ-BL-Hgk" id="5T2-KA-d8Z"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-87" y="161"/>
         </scene>

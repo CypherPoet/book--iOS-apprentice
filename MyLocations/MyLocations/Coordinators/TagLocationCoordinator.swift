@@ -98,7 +98,6 @@ extension TagLocationCoordinator: TagLocationViewControllerDelegate {
     func viewControllerDidCancel(_ controller: TagLocationViewController) {
         delegate?.coordinatorDidCancel(self)
     }
-    
 }
 
 

@@ -17,7 +17,7 @@ class TagLocationViewController: UITableViewController, Storyboarded {
     @IBOutlet private var addressLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
     @IBOutlet private var descriptionCell: UITableViewCell!
-
+    
     private lazy var descriptionTextView: UITextView = makeDescriptionTextView()
     
     private enum CellIndexPath {
@@ -76,6 +76,10 @@ extension TagLocationViewController {
     @IBAction func doneButtonTapped() {
         print("Done button tapped")
     }
+    
+    @IBAction func tableViewTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+        potentiallyHideKeyboardOnTap(from: gestureRecognizer)
+    }
 }
 
 
@@ -113,5 +117,14 @@ private extension TagLocationViewController {
         textView.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         
         return textView
+    }
+    
+    
+    func potentiallyHideKeyboardOnTap(from gestureRecognizer: UIGestureRecognizer) {
+        let pointTouched = gestureRecognizer.location(in: tableView)
+        
+        if !descriptionCell.point(inside: pointTouched, with: nil) {
+            descriptionTextView.resignFirstResponder()
+        }
     }
 }
