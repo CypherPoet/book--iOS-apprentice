@@ -20,6 +20,10 @@ class TagLocationViewController: UITableViewController, Storyboarded {
 
     private lazy var descriptionTextView: UITextView = makeDescriptionTextView()
     
+    private enum CellIndexPath {
+        static let category: (section: Int, row: Int) = (1, 0)
+    }
+    
     var viewModel: TagLocationViewModel!
     weak var delegate: TagLocationViewControllerDelegate?
 }
@@ -35,7 +39,28 @@ extension TagLocationViewController {
         assert(viewModel != nil, "No viewModel was set")
         
         setupUI()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         render(with: viewModel)
+    }
+}
+
+
+// MARK: - UITableViewDelegate
+
+extension TagLocationViewController {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath.section, indexPath.row) {
+        case (CellIndexPath.category.section, CellIndexPath.category.row):
+            delegate?.viewControllerDidSelectChooseCategory(self)
+        default:
+            break
+        }
     }
 }
 
@@ -75,6 +100,7 @@ private extension TagLocationViewController {
     func render(with viewModel: TagLocationViewModel) {
         latitudeLabel.text = viewModel.latitudeText
         longitudeLabel.text = viewModel.longitudeText
+        categoryLabel.text = viewModel.categoryLabelText
         addressLabel.text = viewModel.addressText
         dateLabel.text = viewModel.dateText
     }

@@ -64,22 +64,6 @@ extension CurrentLocationCoordinator: CurrentLocationControllerDelegate {
         didSelectTag location: CLLocation,
         at placemark: CLPlacemark?
     ) {
-//        let locationDetailsVC = LocationDetailsViewController.instantiateFromStoryboard(
-//            named: R.storyboard.currentLocation.name
-//        )
-//
-//        locationDetailsVC.delegate = self
-//        locationDetailsVC.title = "Tag Location"
-//
-//        locationDetailsVC.viewModel = .init(
-//            coordinate: location.coordinate,
-//            placemark: placemark,
-//            description: "",
-//            date: Date()
-//        )
-//
-//        navController.navigationBar.isHidden = false
-//        navController.pushViewController(locationDetailsVC, animated: true)
         tagLocationCoordinator = TagLocationCoordinator(
             navController: navController,
             delegate: self,

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -225,7 +226,49 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHK-qs-FZv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40.579710144927539" y="185.49107142857142"/>
+            <point key="canvasLocation" x="-87" y="161"/>
+        </scene>
+        <!--Category List View Controller-->
+        <scene sceneID="k3r-vw-OgS">
+            <objects>
+                <viewController storyboardIdentifier="CategoryListViewController" id="Sif-tU-4EV" customClass="CategoryListViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Shq-4H-foa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ln6-Rz-k5G">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Category Table Cell" id="LSa-jy-MSx">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LSa-jy-MSx" id="CDC-va-mXy">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ln6-Rz-k5G" firstAttribute="top" secondItem="BTD-U7-fsz" secondAttribute="top" id="Lt2-7f-fxs"/>
+                            <constraint firstItem="BTD-U7-fsz" firstAttribute="trailing" secondItem="ln6-Rz-k5G" secondAttribute="trailing" id="VdS-DI-E2e"/>
+                            <constraint firstItem="BTD-U7-fsz" firstAttribute="bottom" secondItem="ln6-Rz-k5G" secondAttribute="bottom" id="cgQ-7S-fha"/>
+                            <constraint firstItem="ln6-Rz-k5G" firstAttribute="leading" secondItem="BTD-U7-fsz" secondAttribute="leading" id="hBz-8x-wUR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BTD-U7-fsz"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="ln6-Rz-k5G" id="Rnd-aI-BKN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3k0-5f-9sY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="728" y="161"/>
         </scene>
     </scenes>
 </document>

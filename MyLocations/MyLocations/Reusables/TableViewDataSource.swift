@@ -13,7 +13,7 @@ class TableViewDataSource<Model>: NSObject, UITableViewDataSource {
     typealias CellConfigurator = (Model, UITableViewCell) -> Void
     typealias CellDeletionHandler = (Model, UITableViewCell, IndexPath) -> Void
     
-    private var models: [Model]
+    var models: [Model]
     
     private let cellReuseIdentifier: String
     private let cellConfigurator: CellConfigurator?
@@ -75,15 +75,5 @@ class TableViewDataSource<Model>: NSObject, UITableViewDataSource {
             cellDeletionHandler?(model, cell, indexPath)
         }
         
-    }
-}
-
-
-// MARK: - Core Methods
-
-extension TableViewDataSource {
-
-    func model(at index: Int) -> Model {
-        return models[index]
     }
 }

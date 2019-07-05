@@ -17,11 +17,14 @@ protocol TagLocationCoordinatorDelegate: class {
 
 protocol TagLocationViewControllerDelegate: class {
     func viewControllerDidCancel(_ controller: TagLocationViewController)
-//    func viewController(_ controller: LocationDetailsViewController, didSubmit location: Location)
+    func viewController(_ controller: TagLocationViewController, didSave location: Location)
+    func viewControllerDidSelectChooseCategory(_ controller: TagLocationViewController)
 }
 
-protocol LocationCategoryViewControllerDelegate: class {
-    func viewControllerDidCancel(_ controller: LocationCategoryViewControllerDelegate)
+
+protocol CategoryListViewControllerDelegate: class {
+    func viewControllerDidCancel(_ controller: CategoryListViewController)
+    func viewController(_ controller: CategoryListViewController, didSelect category: Location.Category)
 }
 
 
@@ -31,6 +34,9 @@ final class TagLocationCoordinator: NavigationCoordinator {
     private weak var delegate: TagLocationCoordinatorDelegate?
     private let coordinate: CLLocationCoordinate2D
     private let placemark: CLPlacemark?
+    
+    private var tagLocationViewController: TagLocationViewController!
+    
     
     init(
         navController: UINavigationController,
@@ -46,14 +52,14 @@ final class TagLocationCoordinator: NavigationCoordinator {
     
     
     func start() {
-        let tagLocationVC = TagLocationViewController.instantiateFromStoryboard(
+        tagLocationViewController = TagLocationViewController.instantiateFromStoryboard(
             named: R.storyboard.tagLocation.name
         )
         
-        tagLocationVC.delegate = self
-        tagLocationVC.title = "Tag Location"
+        tagLocationViewController.delegate = self
+        tagLocationViewController.title = "Tag Location"
         
-        tagLocationVC.viewModel = .init(
+        tagLocationViewController.viewModel = .init(
             coordinate: coordinate,
             placemark: placemark,
             locationDescription: "",
@@ -61,7 +67,7 @@ final class TagLocationCoordinator: NavigationCoordinator {
         )
         
         navController.navigationBar.isHidden = false
-        navController.pushViewController(tagLocationVC, animated: true)
+        navController.pushViewController(tagLocationViewController, animated: true)
     }
 }
 
@@ -70,18 +76,46 @@ final class TagLocationCoordinator: NavigationCoordinator {
 
 extension TagLocationCoordinator: TagLocationViewControllerDelegate {
     
+    func viewController(_ controller: TagLocationViewController, didSave location: Location) {
+        // TODO: Implement
+    }
+    
+    
+    func viewControllerDidSelectChooseCategory(_ controller: TagLocationViewController) {
+        let categoryListVC = CategoryListViewController.instantiateFromStoryboard(
+            named: R.storyboard.tagLocation.name
+        )
+        
+        categoryListVC.delegate = self
+        categoryListVC.currentCategory = tagLocationViewController.viewModel.category
+        categoryListVC.categories = Location.Category.allCases
+        categoryListVC.title = "Select A Category"
+        
+        navController.pushViewController(categoryListVC, animated: true)
+    }
+    
+    
     func viewControllerDidCancel(_ controller: TagLocationViewController) {
         delegate?.coordinatorDidCancel(self)
     }
+    
 }
 
 
-extension TagLocationCoordinator: LocationCategoryViewControllerDelegate {
+// MARK: - CategoryListViewControllerDelegate
+
+extension TagLocationCoordinator: CategoryListViewControllerDelegate {
     
-    func viewControllerDidCancel(_ controller: LocationCategoryViewControllerDelegate) {
+    func viewControllerDidCancel(_ controller: CategoryListViewController) {
         navController.popViewController(animated: true)
     }
     
     
+    func viewController(
+        _ controller: CategoryListViewController,
+        didSelect category: Location.Category
+    ) {
+        navController.popViewController(animated: true)
+        tagLocationViewController.viewModel.category = category
+    }
 }
-
