@@ -60,6 +60,15 @@ private extension TagLocationViewController {
 
     func setupUI() {
         descriptionCell.addSubview(descriptionTextView)
+
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            descriptionTextView.leftAnchor.constraint(equalTo: descriptionCell.leftAnchor, constant: 0),
+            descriptionTextView.topAnchor.constraint(equalTo: descriptionCell.topAnchor, constant: 0),
+            descriptionTextView.rightAnchor.constraint(equalTo: descriptionCell.rightAnchor, constant: 0),
+            descriptionTextView.bottomAnchor.constraint(equalTo: descriptionCell.bottomAnchor, constant: 0),
+        ])
     }
     
     
@@ -72,6 +81,11 @@ private extension TagLocationViewController {
     
     
     func makeDescriptionTextView() -> UITextView {
-        UITextView()
+        let textView = UITextView()
+        
+        textView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
+        textView.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        
+        return textView
     }
 }

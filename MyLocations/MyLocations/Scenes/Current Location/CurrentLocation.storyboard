@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="gpS-gx-m0G">
-                                <rect key="frame" x="22" y="60" width="370" height="205.5"/>
+                                <rect key="frame" x="22" y="76" width="370" height="226"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Reading Header Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwB-6a-YHn">
                                         <rect key="frame" x="49" y="0.0" width="272" height="24"/>
@@ -63,14 +63,14 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Address Description Goes Here)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jb5-Ex-GnK">
-                                        <rect key="frame" x="0.0" y="185" width="370" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Address Description Goes Here.                                                       This will likely span a few lines)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jb5-Ex-GnK">
+                                        <rect key="frame" x="0.0" y="185" width="370" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wX3-v8-iZ8">
-                                        <rect key="frame" x="65" y="205.5" width="240" height="48"/>
+                                        <rect key="frame" x="65" y="226" width="240" height="48"/>
                                         <state key="normal" title="Tag Location"/>
                                         <connections>
                                             <action selector="tagLocationTapped:" destination="ChJ-t3-s1M" eventType="touchUpInside" id="V15-yE-MrM"/>
@@ -102,7 +102,7 @@
                             <constraint firstItem="FwJ-hu-FLT" firstAttribute="centerX" secondItem="ChJ-t3-s1M" secondAttribute="centerX" id="8no-fD-hTB"/>
                             <constraint firstItem="wX3-v8-iZ8" firstAttribute="width" secondItem="FwJ-hu-FLT" secondAttribute="width" id="8yH-CN-4Vt"/>
                             <constraint firstItem="wX3-v8-iZ8" firstAttribute="height" secondItem="FwJ-hu-FLT" secondAttribute="height" id="B5p-uH-7bb"/>
-                            <constraint firstItem="gpS-gx-m0G" firstAttribute="top" secondItem="8bE-tC-x0G" secondAttribute="top" constant="16" id="Cpz-LX-lQ5"/>
+                            <constraint firstItem="gpS-gx-m0G" firstAttribute="top" secondItem="8bE-tC-x0G" secondAttribute="top" constant="32" id="Cpz-LX-lQ5"/>
                             <constraint firstItem="8bE-tC-x0G" firstAttribute="bottom" secondItem="FwJ-hu-FLT" secondAttribute="bottom" constant="22" id="SRN-5x-a2b"/>
                             <constraint firstItem="gpS-gx-m0G" firstAttribute="leading" secondItem="8bE-tC-x0G" secondAttribute="leading" constant="22" id="nqg-6h-Lpj"/>
                         </constraints>
