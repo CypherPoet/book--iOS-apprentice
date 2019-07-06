@@ -13,6 +13,7 @@ import CoreLocation
 
 protocol TagLocationCoordinatorDelegate: class {
     func coordinatorDidCancel(_ coordinator: TagLocationCoordinator)
+    func coordinator(_ coordinator: TagLocationCoordinator, didFinishTagging location: Location)
 }
 
 protocol TagLocationViewControllerDelegate: class {
@@ -72,12 +73,13 @@ final class TagLocationCoordinator: NavigationCoordinator {
 }
 
 
-// MARK: - LocationDetailsViewControllerDelegate
+// MARK: - TagLocationViewControllerDelegate
 
 extension TagLocationCoordinator: TagLocationViewControllerDelegate {
     
     func viewController(_ controller: TagLocationViewController, didSave location: Location) {
         // TODO: Implement
+        delegate?.coordinator(self, didFinishTagging: location)
     }
     
     

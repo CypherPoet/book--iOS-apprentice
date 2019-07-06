@@ -73,9 +73,14 @@ extension TagLocationViewController {
         delegate?.viewControllerDidCancel(self)
     }
     
+    
     @IBAction func doneButtonTapped() {
         print("Done button tapped")
+        
+        // TODO: Create a `Location` instance with the form data
+        delegate?.viewController(self, didSave: Location())
     }
+    
     
     @IBAction func tableViewTapped(_ gestureRecognizer: UITapGestureRecognizer) {
         potentiallyHideKeyboardOnTap(from: gestureRecognizer)

@@ -77,9 +77,25 @@ extension CurrentLocationCoordinator: CurrentLocationControllerDelegate {
 
 
 
-// MARK: - tagLocationCoordinatorDelegate
+// MARK: - TagLocationCoordinatorDelegate
 
 extension CurrentLocationCoordinator: TagLocationCoordinatorDelegate {
+    
+    func coordinator(_ coordinator: TagLocationCoordinator, didFinishTagging location: Location) {
+
+        _ = HudIndicatorView.temporaryOverlay(
+            covering: navController.view,
+            labeled: "Tagged",
+            withImage: UIImage(systemName: "checkmark"),
+            animated: true,
+            removeAfter: 0.76,
+            onRemove: { [weak self] in
+                guard let self = self else { return }
+                self.navController.popViewController(animated: true)
+            }
+        )
+    }
+    
     
     func coordinatorDidCancel(_ coordinator: TagLocationCoordinator) {
         navController.popViewController(animated: true)

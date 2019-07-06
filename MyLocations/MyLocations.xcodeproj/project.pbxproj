@@ -45,6 +45,7 @@
 		F3849E4522CE865A00D90B70 /* TagLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3849E4422CE865A00D90B70 /* TagLocation.storyboard */; };
 		F3849E4822CE880C00D90B70 /* CurrentLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3849E4622CE880C00D90B70 /* CurrentLocationCoordinator.swift */; };
 		F3849E4922CE880C00D90B70 /* TagLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3849E4722CE880C00D90B70 /* TagLocationCoordinator.swift */; };
+		F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		F3849E4422CE865A00D90B70 /* TagLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TagLocation.storyboard; sourceTree = "<group>"; };
 		F3849E4622CE880C00D90B70 /* CurrentLocationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocationCoordinator.swift; sourceTree = "<group>"; };
 		F3849E4722CE880C00D90B70 /* TagLocationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLocationCoordinator.swift; sourceTree = "<group>"; };
+		F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 		F348779E22C4A9C000C2167F /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
+				F38DC8BB22CFF98A00C08312 /* Views */,
 				F32053C522C8D12600E41B41 /* Services */,
 				F370828022C661EC0083C235 /* Helpers */,
 				F34877B222C4A9C100C2167F /* Info.plist */,
@@ -310,6 +313,14 @@
 				F3849E4422CE865A00D90B70 /* TagLocation.storyboard */,
 			);
 			path = "Tag Current Location";
+			sourceTree = "<group>";
+		};
+		F38DC8BB22CFF98A00C08312 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,6 +502,7 @@
 				F337D2EC22CEEF170085D412 /* CategoryListViewController.swift in Sources */,
 				F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */,
 				F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */,
+				F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */,
 				F34877D422C4DA2D00C2167F /* UIViewController+DisplayPromptMessage.swift in Sources */,
 				F34877A222C4A9C000C2167F /* SceneDelegate.swift in Sources */,
 				F34877E522C4ECC300C2167F /* R.generated.swift in Sources */,
