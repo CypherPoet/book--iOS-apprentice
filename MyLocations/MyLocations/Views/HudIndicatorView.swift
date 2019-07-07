@@ -9,7 +9,6 @@
 import UIKit
 
 final class HudIndicatorView: UIView {
-    private let underlyingView: UIView
     private let labelText: String?
     private let indicatorImage: UIImage?
     private var indicatorImageView: UIImageView?
@@ -30,15 +29,14 @@ final class HudIndicatorView: UIView {
 
     
     init(
-        covering underlyingView: UIView,
+        covering bounds: CGRect,
         labeled labelText: String? = nil,
         withImage indicatorImage: UIImage? = nil
     ) {
-        self.underlyingView = underlyingView
         self.labelText = labelText
         self.indicatorImage = indicatorImage
         
-        super.init(frame: underlyingView.bounds)
+        super.init(frame: bounds)
         
         setupView()
         setupLayout()
@@ -50,37 +48,6 @@ final class HudIndicatorView: UIView {
     }
 }
 
-
-// MARK: - Static Methods
-
-extension HudIndicatorView {
-
-    static func temporaryOverlay(
-        covering underlyingView: UIView,
-        labeled label: String,
-        withImage indicatorImage: UIImage? = nil,
-        animated: Bool = true,
-        removeAfter duration: TimeInterval,
-        allowInteraction: Bool = false,
-        onRemove removalCompletionHandler: @escaping (() -> Void)
-    ) -> HudIndicatorView {
-        let hudIndicator = HudIndicatorView(covering: underlyingView, labeled: label, withImage: indicatorImage)
-        
-        underlyingView.isUserInteractionEnabled = allowInteraction
-        underlyingView.addSubview(hudIndicator)
-        hudIndicator.show(animated: animated)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-            underlyingView.isUserInteractionEnabled = true
-            hudIndicator.removeFromSuperview()
-            
-            removalCompletionHandler()
-        }
-        
-        return hudIndicator
-    }
-    
-}
 
 
 // MARK: - Core Methods
@@ -109,13 +76,28 @@ extension HudIndicatorView {
             )
         }
     }
-    
-    
-    func hide() {
-        removeFromSuperview()
-    }
 }
 
+
+// MARK: - Private Computeds
+
+private extension HudIndicatorView {
+    
+    var invertedUserInterfaceStyle: UIUserInterfaceStyle {
+        let currentUserInterfaceStyle = traitCollection.userInterfaceStyle
+        
+        switch currentUserInterfaceStyle {
+        case .dark:
+            return .light
+        case .light:
+            return .dark
+        case .unspecified:
+            return .unspecified
+        @unknown default:
+            return .unspecified
+        }
+    }
+}
 
 
 // MARK: - Private Helpers
@@ -125,6 +107,8 @@ private extension HudIndicatorView {
     func setupView() {
         isOpaque = false
         backgroundColor = .clear
+        
+        overrideUserInterfaceStyle = invertedUserInterfaceStyle
         
         blurView.contentView.addSubview(vibrancyView)
         insertSubview(blurView, at: 0)

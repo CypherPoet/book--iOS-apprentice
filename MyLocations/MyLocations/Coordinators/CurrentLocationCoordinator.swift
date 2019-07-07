@@ -82,18 +82,7 @@ extension CurrentLocationCoordinator: CurrentLocationControllerDelegate {
 extension CurrentLocationCoordinator: TagLocationCoordinatorDelegate {
     
     func coordinator(_ coordinator: TagLocationCoordinator, didFinishTagging location: Location) {
-
-        _ = HudIndicatorView.temporaryOverlay(
-            covering: navController.view,
-            labeled: "Tagged",
-            withImage: UIImage(systemName: "checkmark"),
-            animated: true,
-            removeAfter: 0.76,
-            onRemove: { [weak self] in
-                guard let self = self else { return }
-                self.navController.popViewController(animated: true)
-            }
-        )
+        addHudIndicatorAfterTaggingLocation()
     }
     
     
@@ -102,4 +91,25 @@ extension CurrentLocationCoordinator: TagLocationCoordinatorDelegate {
         navController.navigationBar.isHidden = true
     }
     
+}
+
+
+// MARK: - Private Helpers
+
+private extension CurrentLocationCoordinator {
+    
+    func addHudIndicatorAfterTaggingLocation() {
+        let hudIndicatorView = HudIndicatorView(covering: navController.view.bounds, labeled: "Tagged", withImage: UIImage(systemName: "checkmark"))
+        
+        navController.view.addSubview(hudIndicatorView)
+        navController.view.isUserInteractionEnabled = false
+        hudIndicatorView.show(animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.76) {
+            hudIndicatorView.removeFromSuperview()
+            
+            self.navController.view.isUserInteractionEnabled = true
+            self.navController.popViewController(animated: true)
+        }
+    }
 }
