@@ -163,18 +163,18 @@
 		F348779E22C4A9C000C2167F /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
-				F38DC8BB22CFF98A00C08312 /* Views */,
-				F32053C522C8D12600E41B41 /* Services */,
-				F370828022C661EC0083C235 /* Helpers */,
 				F34877B222C4A9C100C2167F /* Info.plist */,
 				F348779F22C4A9C000C2167F /* AppDelegate.swift */,
 				F34877A122C4A9C000C2167F /* SceneDelegate.swift */,
 				F34877C422C4D83C00C2167F /* Content */,
 				F34877B922C4AAFE00C2167F /* Coordinators */,
+				F370828022C661EC0083C235 /* Helpers */,
 				F34877BA22C4AB7300C2167F /* Models */,
 				F34877AA22C4A9C000C2167F /* MyLocations.xcdatamodeld */,
 				F34877BC22C4AB9F00C2167F /* Reusables */,
 				F34877B822C4AAF600C2167F /* Scenes */,
+				F32053C522C8D12600E41B41 /* Services */,
+				F38DC8BB22CFF98A00C08312 /* Views */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
