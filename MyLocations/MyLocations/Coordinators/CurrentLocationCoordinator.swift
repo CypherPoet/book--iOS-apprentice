@@ -83,6 +83,9 @@ extension CurrentLocationCoordinator: TagLocationCoordinatorDelegate {
     
     func coordinator(_ coordinator: TagLocationCoordinator, didFinishTagging location: Location) {
         addHudIndicatorAfterTaggingLocation()
+        
+        // TODO: Save location into the Core Data store
+        let managedObjectContext = stateController.managedObjectContext
     }
     
     

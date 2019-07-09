@@ -8,7 +8,15 @@
 
 import UIKit
 import CoreLocation
+import CoreData
+
 
 final class StateController {
+    let managedObjectContext: NSManagedObjectContext
     lazy var locationManager = CLLocationManager()
+    
+    
+    init(managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
+    }
 }

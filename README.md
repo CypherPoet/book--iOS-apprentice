@@ -31,11 +31,13 @@ _A game testing the user's ability to drag a slider the a specific number_.
   <img src="./BullsEye/Screenshots/screen-recording-gif-2.gif" width="700px"/>
 </div>
 
-<br>
+<br/>
 
 ----
 
-<br>
+<br/>
+
+
 
 ## [Checklists](./Checklists/)
 
@@ -78,6 +80,8 @@ _List of lists with scheduling support and reminder notifications... Table Views
 <br>
 
 
+
+
 ## [My Locations](./MyLocations/)
 
 __.
@@ -89,7 +93,7 @@ __.
 
 ### Topics Covered / Challenges Encountered
 
--
+- Storing photos associated with Core Data entities as separate files in the app's Documents directory in order to account for their larger storage size.
 
 
 <br>

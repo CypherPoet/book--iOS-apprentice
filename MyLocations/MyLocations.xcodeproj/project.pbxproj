@@ -13,7 +13,6 @@
 		F312A92B22CD0BE8004CB5FF /* DateFormatter+CustomFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312A92A22CD0BE8004CB5FF /* DateFormatter+CustomFormatters.swift */; };
 		F32053C722C8D3A500E41B41 /* GeocodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32053C622C8D3A500E41B41 /* GeocodingService.swift */; };
 		F337D2EC22CEEF170085D412 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337D2EB22CEEF170085D412 /* CategoryListViewController.swift */; };
-		F337D2EE22CEF1410085D412 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337D2ED22CEF1410085D412 /* Location.swift */; };
 		F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337D2F022CEF1650085D412 /* Location+Category.swift */; };
 		F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348779F22C4A9C000C2167F /* AppDelegate.swift */; };
 		F34877A222C4A9C000C2167F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877A122C4A9C000C2167F /* SceneDelegate.swift */; };
@@ -45,6 +44,9 @@
 		F3849E4522CE865A00D90B70 /* TagLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3849E4422CE865A00D90B70 /* TagLocation.storyboard */; };
 		F3849E4822CE880C00D90B70 /* CurrentLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3849E4622CE880C00D90B70 /* CurrentLocationCoordinator.swift */; };
 		F3849E4922CE880C00D90B70 /* TagLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3849E4722CE880C00D90B70 /* TagLocationCoordinator.swift */; };
+		F38A01F322D325D100D8C5F3 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F122D325D100D8C5F3 /* Location+CoreDataClass.swift */; };
+		F38A01F422D325D100D8C5F3 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F222D325D100D8C5F3 /* Location+CoreDataProperties.swift */; };
+		F38A01F622D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F522D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift */; };
 		F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +59,6 @@
 		F312A92A22CD0BE8004CB5FF /* DateFormatter+CustomFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+CustomFormatters.swift"; sourceTree = "<group>"; };
 		F32053C622C8D3A500E41B41 /* GeocodingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingService.swift; sourceTree = "<group>"; };
 		F337D2EB22CEEF170085D412 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
-		F337D2ED22CEF1410085D412 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F337D2F022CEF1650085D412 /* Location+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+Category.swift"; sourceTree = "<group>"; };
 		F348779C22C4A9C000C2167F /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F348779F22C4A9C000C2167F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +92,9 @@
 		F3849E4422CE865A00D90B70 /* TagLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TagLocation.storyboard; sourceTree = "<group>"; };
 		F3849E4622CE880C00D90B70 /* CurrentLocationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocationCoordinator.swift; sourceTree = "<group>"; };
 		F3849E4722CE880C00D90B70 /* TagLocationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLocationCoordinator.swift; sourceTree = "<group>"; };
+		F38A01F122D325D100D8C5F3 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F38A01F222D325D100D8C5F3 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F38A01F522D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodingUserInfoKey+ManagedObjectContext.swift"; sourceTree = "<group>"; };
 		F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,8 +138,9 @@
 		F337D2EF22CEF1550085D412 /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				F337D2ED22CEF1410085D412 /* Location.swift */,
 				F337D2F022CEF1650085D412 /* Location+Category.swift */,
+				F38A01F122D325D100D8C5F3 /* Location+CoreDataClass.swift */,
+				F38A01F222D325D100D8C5F3 /* Location+CoreDataProperties.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -170,7 +175,6 @@
 				F34877B922C4AAFE00C2167F /* Coordinators */,
 				F370828022C661EC0083C235 /* Helpers */,
 				F34877BA22C4AB7300C2167F /* Models */,
-				F34877AA22C4A9C000C2167F /* MyLocations.xcdatamodeld */,
 				F34877BC22C4AB9F00C2167F /* Reusables */,
 				F34877B822C4AAF600C2167F /* Scenes */,
 				F32053C522C8D12600E41B41 /* Services */,
@@ -205,6 +209,7 @@
 		F34877BA22C4AB7300C2167F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F34877AA22C4A9C000C2167F /* MyLocations.xcdatamodeld */,
 				F337D2EF22CEF1550085D412 /* Location */,
 			);
 			path = Models;
@@ -300,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				F37EA26122CAD70200D3F42F /* LocationErrorMessage.swift */,
+				F38A01F522D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -482,6 +488,7 @@
 				F312A92B22CD0BE8004CB5FF /* DateFormatter+CustomFormatters.swift in Sources */,
 				F312A92922CC170D004CB5FF /* Date+Formatting.swift in Sources */,
 				F34877AC22C4A9C000C2167F /* MyLocations.xcdatamodeld in Sources */,
+				F38A01F322D325D100D8C5F3 /* Location+CoreDataClass.swift in Sources */,
 				F3789B2A22C94847000E6455 /* CLPlacemark+Formatting.swift in Sources */,
 				F312A92722CC10BE004CB5FF /* TagLocationViewModel.swift in Sources */,
 				F370828222C661FB0083C235 /* StateController.swift in Sources */,
@@ -500,15 +507,16 @@
 				F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */,
 				F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */,
 				F337D2EC22CEEF170085D412 /* CategoryListViewController.swift in Sources */,
+				F38A01F622D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift in Sources */,
 				F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */,
 				F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */,
 				F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */,
 				F34877D422C4DA2D00C2167F /* UIViewController+DisplayPromptMessage.swift in Sources */,
 				F34877A222C4A9C000C2167F /* SceneDelegate.swift in Sources */,
 				F34877E522C4ECC300C2167F /* R.generated.swift in Sources */,
+				F38A01F422D325D100D8C5F3 /* Location+CoreDataProperties.swift in Sources */,
 				F34877CF22C4D9A600C2167F /* Storyboarded.swift in Sources */,
 				F34877C822C4D98900C2167F /* TableViewDataSource.swift in Sources */,
-				F337D2EE22CEF1410085D412 /* Location.swift in Sources */,
 				F34877DB22C4E2D900C2167F /* MainCoordinator.swift in Sources */,
 				F34877C622C4D86700C2167F /* AppCoordinator.swift in Sources */,
 			);

@@ -9,8 +9,7 @@
 import Foundation
 
 extension Location {
-    
-    enum Category: CaseIterable {
+    enum Category: Int32, CaseIterable {
         case none
         case appleStore
         case cafe
@@ -60,5 +59,4 @@ extension Location.Category {
             return "Studio"
         }
     }
-    
 }

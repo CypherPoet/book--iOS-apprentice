@@ -8,21 +8,23 @@
 
 import UIKit
 
+
 final class AppCoordinator: NavigationCoordinator {
-    var navController: UINavigationController
     private let window: UIWindow
+    var navController: UINavigationController
     private let stateController: StateController
+    
     private var mainCoordinator: MainCoordinator?
     
     
     init(
+        window: UIWindow,
         navController: UINavigationController,
-        stateController: StateController,
-        window: UIWindow
+        stateController: StateController
     ) {
+        self.window = window
         self.navController = navController
         self.stateController = stateController
-        self.window = window
     }
 
     

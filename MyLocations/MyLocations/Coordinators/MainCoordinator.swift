@@ -10,6 +10,7 @@ import UIKit
 
 final class MainCoordinator: Coordinator {
     private let stateController: StateController
+    
     private let tabBarController: UITabBarController
     private let currentLocationCoordinator: CurrentLocationCoordinator
 

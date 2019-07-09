@@ -7,27 +7,40 @@
 //
 
 import UIKit
+import CoreData
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     private var appCoordinator: AppCoordinator?
-    private lazy var stateController: StateController = StateController()
+    
+    private lazy var stateController: StateController = StateController(
+        managedObjectContext: persistentContainer.viewContext
+    )
 
+    
+    var persistentContainer: NSPersistentContainer {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            preconditionFailure("Unable to find app delegate")
+        }
+        
+        return appDelegate.persistentContainer
+    }
+    
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = scene as? UIWindowScene else { return }
         
-//        let window = UIWindow(frame: UIScreen.main.bounds)
         let window = UIWindow(windowScene: scene)
         let navController = UINavigationController()
 
         appCoordinator = AppCoordinator(
+            window: window,
             navController: navController,
-            stateController: stateController,
-            window: window
+            stateController: stateController
         )
         
         appCoordinator?.start()
@@ -63,6 +76,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
-
 }
+
