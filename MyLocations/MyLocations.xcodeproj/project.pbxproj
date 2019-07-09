@@ -173,10 +173,10 @@
 			isa = PBXGroup;
 			children = (
 				F34877B222C4A9C100C2167F /* Info.plist */,
+				F34877C522C4D86700C2167F /* AppCoordinator.swift */,
 				F348779F22C4A9C000C2167F /* AppDelegate.swift */,
 				F34877A122C4A9C000C2167F /* SceneDelegate.swift */,
 				F34877C422C4D83C00C2167F /* Content */,
-				F34877B922C4AAFE00C2167F /* Coordinators */,
 				F370828022C661EC0083C235 /* Helpers */,
 				F34877BA22C4AB7300C2167F /* Models */,
 				F34877BC22C4AB9F00C2167F /* Reusables */,
@@ -191,30 +191,20 @@
 			isa = PBXGroup;
 			children = (
 				F34877C022C4D7D000C2167F /* LaunchScreen.storyboard */,
+				F34877DA22C4E2D900C2167F /* MainCoordinator.swift */,
 				F34877A522C4A9C000C2167F /* SecondViewController.swift */,
-				F34877D622C4DA9600C2167F /* Location History */,
-				F34877D722C4DA9D00C2167F /* Map */,
 				F34877D522C4DA8E00C2167F /* Current Location */,
+				F34877D622C4DA9600C2167F /* Tagged Locations */,
+				F34877D722C4DA9D00C2167F /* Map */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		F34877B922C4AAFE00C2167F /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				F34877C522C4D86700C2167F /* AppCoordinator.swift */,
-				F3849E4622CE880C00D90B70 /* CurrentLocationCoordinator.swift */,
-				F34877DA22C4E2D900C2167F /* MainCoordinator.swift */,
-				F3849E4722CE880C00D90B70 /* TagLocationCoordinator.swift */,
-			);
-			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		F34877BA22C4AB7300C2167F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F34877AA22C4A9C000C2167F /* MyLocations.xcdatamodeld */,
 				F337D2EF22CEF1550085D412 /* Location */,
+				F34877AA22C4A9C000C2167F /* MyLocations.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,10 +224,10 @@
 		F34877BC22C4AB9F00C2167F /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				F34877C722C4D98900C2167F /* TableViewDataSource.swift */,
 				F37EA25F22CA5CBD00D3F42F /* Constants */,
 				F34877BB22C4AB7800C2167F /* Extensions */,
 				F34877BD22C4ABA800C2167F /* Protocols */,
-				F34877C722C4D98900C2167F /* TableViewDataSource.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -265,20 +255,21 @@
 		F34877D522C4DA8E00C2167F /* Current Location */ = {
 			isa = PBXGroup;
 			children = (
-				F3849E4322CE85E900D90B70 /* Tag Current Location */,
-				F34877A322C4A9C000C2167F /* CurrentLocationViewController.swift */,
+				F3849E3F22CE693400D90B70 /* CurrentLocation.storyboard */,
+				F3849E4622CE880C00D90B70 /* CurrentLocationCoordinator.swift */,
 				F34877E622C5079700C2167F /* CurrentLocationView.swift */,
 				F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */,
-				F3849E3F22CE693400D90B70 /* CurrentLocation.storyboard */,
+				F34877A322C4A9C000C2167F /* CurrentLocationViewController.swift */,
+				F3849E4322CE85E900D90B70 /* Tag Current Location */,
 			);
 			path = "Current Location";
 			sourceTree = "<group>";
 		};
-		F34877D622C4DA9600C2167F /* Location History */ = {
+		F34877D622C4DA9600C2167F /* Tagged Locations */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = "Location History";
+			path = "Tagged Locations";
 			sourceTree = "<group>";
 		};
 		F34877D722C4DA9D00C2167F /* Map */ = {
@@ -319,10 +310,11 @@
 		F3849E4322CE85E900D90B70 /* Tag Current Location */ = {
 			isa = PBXGroup;
 			children = (
+				F3849E4422CE865A00D90B70 /* TagLocation.storyboard */,
+				F337D2EB22CEEF170085D412 /* CategoryListViewController.swift */,
+				F3849E4722CE880C00D90B70 /* TagLocationCoordinator.swift */,
 				F37EA26322CBB12900D3F42F /* TagLocationViewController.swift */,
 				F312A92622CC10BE004CB5FF /* TagLocationViewModel.swift */,
-				F337D2EB22CEEF170085D412 /* CategoryListViewController.swift */,
-				F3849E4422CE865A00D90B70 /* TagLocation.storyboard */,
 			);
 			path = "Tag Current Location";
 			sourceTree = "<group>";
