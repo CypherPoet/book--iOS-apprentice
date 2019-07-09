@@ -227,7 +227,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHK-qs-FZv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Umi-CV-k6a">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="Umi-CV-k6a">
                     <connections>
                         <action selector="tableViewTapped:" destination="sSQ-BL-Hgk" id="5T2-KA-d8Z"/>
                     </connections>

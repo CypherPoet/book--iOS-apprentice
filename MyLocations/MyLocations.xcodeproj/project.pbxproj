@@ -47,6 +47,8 @@
 		F38A01F322D325D100D8C5F3 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F122D325D100D8C5F3 /* Location+CoreDataClass.swift */; };
 		F38A01F422D325D100D8C5F3 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F222D325D100D8C5F3 /* Location+CoreDataProperties.swift */; };
 		F38A01F622D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F522D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift */; };
+		F38A01F822D47DD600D8C5F3 /* CoreDataContextHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F722D47DD600D8C5F3 /* CoreDataContextHandling.swift */; };
+		F38A01FA22D4801300D8C5F3 /* NotificationName+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F922D4801300D8C5F3 /* NotificationName+CoreData.swift */; };
 		F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +97,8 @@
 		F38A01F122D325D100D8C5F3 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F38A01F222D325D100D8C5F3 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F38A01F522D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodingUserInfoKey+ManagedObjectContext.swift"; sourceTree = "<group>"; };
+		F38A01F722D47DD600D8C5F3 /* CoreDataContextHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContextHandling.swift; sourceTree = "<group>"; };
+		F38A01F922D4801300D8C5F3 /* NotificationName+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+CoreData.swift"; sourceTree = "<group>"; };
 		F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +222,7 @@
 		F34877BB22C4AB7800C2167F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F38A01FB22D480B400D8C5F3 /* Notification Names */,
 				F3789B2222C94491000E6455 /* Formatting */,
 				F34877D122C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift */,
 				F34877D222C4DA2D00C2167F /* UIViewController+DisplayPromptMessage.swift */,
@@ -244,6 +249,7 @@
 				F34877CC22C4D9A600C2167F /* NavigationControlling.swift */,
 				F34877CA22C4D9A600C2167F /* NavigationCoordinator.swift */,
 				F34877CB22C4D9A600C2167F /* Storyboarded.swift */,
+				F38A01F722D47DD600D8C5F3 /* CoreDataContextHandling.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -319,6 +325,14 @@
 				F3849E4422CE865A00D90B70 /* TagLocation.storyboard */,
 			);
 			path = "Tag Current Location";
+			sourceTree = "<group>";
+		};
+		F38A01FB22D480B400D8C5F3 /* Notification Names */ = {
+			isa = PBXGroup;
+			children = (
+				F38A01F922D4801300D8C5F3 /* NotificationName+CoreData.swift */,
+			);
+			path = "Notification Names";
 			sourceTree = "<group>";
 		};
 		F38DC8BB22CFF98A00C08312 /* Views */ = {
@@ -488,6 +502,7 @@
 				F312A92B22CD0BE8004CB5FF /* DateFormatter+CustomFormatters.swift in Sources */,
 				F312A92922CC170D004CB5FF /* Date+Formatting.swift in Sources */,
 				F34877AC22C4A9C000C2167F /* MyLocations.xcdatamodeld in Sources */,
+				F38A01FA22D4801300D8C5F3 /* NotificationName+CoreData.swift in Sources */,
 				F38A01F322D325D100D8C5F3 /* Location+CoreDataClass.swift in Sources */,
 				F3789B2A22C94847000E6455 /* CLPlacemark+Formatting.swift in Sources */,
 				F312A92722CC10BE004CB5FF /* TagLocationViewModel.swift in Sources */,
@@ -501,6 +516,7 @@
 				F34877D022C4D9A600C2167F /* NavigationControlling.swift in Sources */,
 				F3849E4922CE880C00D90B70 /* TagLocationCoordinator.swift in Sources */,
 				F3849E4822CE880C00D90B70 /* CurrentLocationCoordinator.swift in Sources */,
+				F38A01F822D47DD600D8C5F3 /* CoreDataContextHandling.swift in Sources */,
 				F34877E922C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift in Sources */,
 				F34877CE22C4D9A600C2167F /* NavigationCoordinator.swift in Sources */,
 				F37EA26422CBB12900D3F42F /* TagLocationViewController.swift in Sources */,

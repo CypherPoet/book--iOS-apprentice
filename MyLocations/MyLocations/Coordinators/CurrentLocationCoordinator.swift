@@ -66,6 +66,7 @@ extension CurrentLocationCoordinator: CurrentLocationControllerDelegate {
     ) {
         tagLocationCoordinator = TagLocationCoordinator(
             navController: navController,
+            stateController: stateController,
             delegate: self,
             coordinate: location.coordinate,
             placemark: placemark
@@ -83,9 +84,13 @@ extension CurrentLocationCoordinator: TagLocationCoordinatorDelegate {
     
     func coordinator(_ coordinator: TagLocationCoordinator, didFinishTagging location: Location) {
         addHudIndicatorAfterTaggingLocation()
-        
-        // TODO: Save location into the Core Data store
-        let managedObjectContext = stateController.managedObjectContext
+
+        do {
+            let managedObjectContext = stateController.managedObjectContext
+            try managedObjectContext.save()
+        } catch {
+            fatalCoreDataError(error)
+        }
     }
     
     
@@ -116,3 +121,6 @@ private extension CurrentLocationCoordinator {
         }
     }
 }
+
+
+extension CurrentLocationCoordinator: CoreDataContextHandling {}

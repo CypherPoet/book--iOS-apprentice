@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 
 class TagLocationViewController: UITableViewController, Storyboarded {
@@ -21,13 +22,33 @@ class TagLocationViewController: UITableViewController, Storyboarded {
     private lazy var descriptionTextView: UITextView = makeDescriptionTextView()
     
     private enum CellIndexPath {
-        static let category: (section: Int, row: Int) = (1, 0)
+        static let category: (row: Int, section: Int) = (0, 1)
     }
     
     var viewModel: TagLocationViewModel!
+    var manageObjectContext: NSManagedObjectContext!
     weak var delegate: TagLocationViewControllerDelegate?
 }
 
+
+// MARK: - Computeds
+
+extension TagLocationViewController {
+    
+    var locationFromChanges: Location {
+        let location = Location(context: manageObjectContext)
+        
+        location.latitude = viewModel.coordinate.latitude
+        location.longitude = viewModel.coordinate.latitude
+        location.category = viewModel.category ?? .none
+        location.dateRecorded = viewModel.dateRecorded
+        location.placemark = viewModel.placemark
+        location.locationDescription = viewModel.locationDescription
+        
+        return location
+    }
+    
+}
 
 // MARK: - Lifecycle
 
@@ -36,7 +57,8 @@ extension TagLocationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        assert(viewModel != nil, "No viewModel was set")
+        assert(viewModel != nil, "No `viewModel` was set")
+        assert(manageObjectContext != nil, "No `manageObjectContext` was set")
         
         setupUI()
     }
@@ -55,8 +77,8 @@ extension TagLocationViewController {
 extension TagLocationViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch (indexPath.section, indexPath.row) {
-        case (CellIndexPath.category.section, CellIndexPath.category.row):
+        switch (indexPath.row, indexPath.section) {
+        case (CellIndexPath.category.row, CellIndexPath.category.section):
             delegate?.viewControllerDidSelectChooseCategory(self)
         default:
             break
@@ -76,14 +98,26 @@ extension TagLocationViewController {
     
     @IBAction func doneButtonTapped() {
         print("Done button tapped")
-        
-        // TODO: Create a `Location` instance with the form data
-        delegate?.viewController(self, didSave: Location())
+        delegate?.viewController(self, didSave: locationFromChanges)
     }
     
     
     @IBAction func tableViewTapped(_ gestureRecognizer: UITapGestureRecognizer) {
         potentiallyHideKeyboardOnTap(from: gestureRecognizer)
+    }
+}
+
+
+// MARK: - UITextViewDelegate
+
+extension TagLocationViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.locationDescription = textView.text
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        viewModel.locationDescription = textView.text
     }
 }
 
@@ -94,8 +128,6 @@ private extension TagLocationViewController {
 
     func setupUI() {
         descriptionCell.addSubview(descriptionTextView)
-
-        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             descriptionTextView.leftAnchor.constraint(equalTo: descriptionCell.leftAnchor, constant: 0),
@@ -120,6 +152,9 @@ private extension TagLocationViewController {
         
         textView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
         textView.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+
+        textView.delegate = self
+        textView.translatesAutoresizingMaskIntoConstraints = false
         
         return textView
     }

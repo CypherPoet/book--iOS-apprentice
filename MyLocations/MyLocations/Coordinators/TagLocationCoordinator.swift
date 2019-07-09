@@ -32,20 +32,24 @@ protocol CategoryListViewControllerDelegate: class {
 
 final class TagLocationCoordinator: NavigationCoordinator {
     var navController: UINavigationController
+    private let stateController: StateController
     private weak var delegate: TagLocationCoordinatorDelegate?
     private let coordinate: CLLocationCoordinate2D
     private let placemark: CLPlacemark?
+    
     
     private var tagLocationViewController: TagLocationViewController!
     
     
     init(
         navController: UINavigationController,
+        stateController: StateController,
         delegate: TagLocationCoordinatorDelegate?,
         coordinate: CLLocationCoordinate2D,
         placemark: CLPlacemark?
     ) {
         self.navController = navController
+        self.stateController = stateController
         self.delegate = delegate
         self.coordinate = coordinate
         self.placemark = placemark
@@ -59,12 +63,13 @@ final class TagLocationCoordinator: NavigationCoordinator {
         
         tagLocationViewController.delegate = self
         tagLocationViewController.title = "Tag Location"
+        tagLocationViewController.manageObjectContext = stateController.managedObjectContext
         
         tagLocationViewController.viewModel = .init(
             coordinate: coordinate,
             placemark: placemark,
             locationDescription: "",
-            date: Date()
+            dateRecorded: Date()
         )
         
         navController.navigationBar.isHidden = false
@@ -78,7 +83,6 @@ final class TagLocationCoordinator: NavigationCoordinator {
 extension TagLocationCoordinator: TagLocationViewControllerDelegate {
     
     func viewController(_ controller: TagLocationViewController, didSave location: Location) {
-        // TODO: Implement
         delegate?.coordinator(self, didFinishTagging: location)
     }
     

@@ -14,7 +14,7 @@ struct TagLocationViewModel {
     var placemark: CLPlacemark?
     var category: Location.Category?
     var locationDescription: String
-    var date: Date
+    var dateRecorded: Date
     
 //    var selectedPhoto: UIImage?
 }
@@ -26,7 +26,7 @@ extension TagLocationViewModel {
     
     var latitudeText: String { coordinate.latitude.coordinateFormat }
     var longitudeText: String { coordinate.longitude.coordinateFormat }
-    var dateText: String { date.locationCaptureFormat }
+    var dateText: String { dateRecorded.locationCaptureFormat }
     
 
     var categoryLabelText: String {
