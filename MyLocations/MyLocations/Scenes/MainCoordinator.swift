@@ -13,6 +13,7 @@ final class MainCoordinator: Coordinator {
     
     private let tabBarController: UITabBarController
     private let currentLocationCoordinator: CurrentLocationCoordinator
+    private let taggedLocationsCoordinator: TaggedLocationsCoordinator
 
     var rootViewController: UIViewController { tabBarController }
     
@@ -20,13 +21,16 @@ final class MainCoordinator: Coordinator {
     init(stateController: StateController) {
         self.stateController = stateController
         self.tabBarController = UITabBarController()
+        
         self.currentLocationCoordinator = CurrentLocationCoordinator(stateController: stateController)
+        self.taggedLocationsCoordinator = TaggedLocationsCoordinator()
     }
     
     
     func start() {
         let childCoordinators: [Coordinator] = [
-            currentLocationCoordinator
+            currentLocationCoordinator,
+            taggedLocationsCoordinator,
         ]
     
         tabBarController.setViewControllers(

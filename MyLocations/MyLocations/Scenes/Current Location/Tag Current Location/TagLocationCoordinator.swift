@@ -13,12 +13,12 @@ import CoreLocation
 
 protocol TagLocationCoordinatorDelegate: class {
     func coordinatorDidCancel(_ coordinator: TagLocationCoordinator)
-    func coordinator(_ coordinator: TagLocationCoordinator, didFinishTagging location: Location)
+    func coordinatorDidFinishTaggingLocation(_ coordinator: TagLocationCoordinator)
 }
 
 protocol TagLocationViewControllerDelegate: class {
     func viewControllerDidCancel(_ controller: TagLocationViewController)
-    func viewController(_ controller: TagLocationViewController, didSave location: Location)
+    func viewControllerDidSaveLocation(_ controller: TagLocationViewController)
     func viewControllerDidSelectChooseCategory(_ controller: TagLocationViewController)
 }
 
@@ -63,7 +63,7 @@ final class TagLocationCoordinator: NavigationCoordinator {
         
         tagLocationViewController.delegate = self
         tagLocationViewController.title = "Tag Location"
-        tagLocationViewController.manageObjectContext = stateController.managedObjectContext
+        tagLocationViewController.modelController = TagLocationModelController(stateController: stateController)
         
         tagLocationViewController.viewModel = .init(
             coordinate: coordinate,
@@ -82,8 +82,8 @@ final class TagLocationCoordinator: NavigationCoordinator {
 
 extension TagLocationCoordinator: TagLocationViewControllerDelegate {
     
-    func viewController(_ controller: TagLocationViewController, didSave location: Location) {
-        delegate?.coordinator(self, didFinishTagging: location)
+    func viewControllerDidSaveLocation(_ controller: TagLocationViewController) {
+        delegate?.coordinatorDidFinishTaggingLocation(self)
     }
     
     

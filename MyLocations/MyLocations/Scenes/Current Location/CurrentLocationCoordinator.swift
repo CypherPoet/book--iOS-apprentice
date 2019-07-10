@@ -82,15 +82,8 @@ extension CurrentLocationCoordinator: CurrentLocationControllerDelegate {
 
 extension CurrentLocationCoordinator: TagLocationCoordinatorDelegate {
     
-    func coordinator(_ coordinator: TagLocationCoordinator, didFinishTagging location: Location) {
+    func coordinatorDidFinishTaggingLocation(_ coordinator: TagLocationCoordinator) {
         addHudIndicatorAfterTaggingLocation()
-
-        do {
-            let managedObjectContext = stateController.managedObjectContext
-            try managedObjectContext.save()
-        } catch {
-            fatalCoreDataError(error)
-        }
     }
     
     
@@ -121,6 +114,3 @@ private extension CurrentLocationCoordinator {
         }
     }
 }
-
-
-extension CurrentLocationCoordinator: CoreDataContextHandling {}

@@ -9,6 +9,6 @@
         <attribute name="placemark" optional="YES" attributeType="Transformable"/>
     </entity>
     <elements>
-        <element name="Location" positionX="-63" positionY="-18" width="128" height="28"/>
+        <element name="Location" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

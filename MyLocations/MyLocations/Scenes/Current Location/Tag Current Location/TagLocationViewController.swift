@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import CoreData
 
 
 class TagLocationViewController: UITableViewController, Storyboarded {
@@ -26,7 +25,7 @@ class TagLocationViewController: UITableViewController, Storyboarded {
     }
     
     var viewModel: TagLocationViewModel!
-    var manageObjectContext: NSManagedObjectContext!
+    var modelController: TagLocationModelController!
     weak var delegate: TagLocationViewControllerDelegate?
 }
 
@@ -35,19 +34,16 @@ class TagLocationViewController: UITableViewController, Storyboarded {
 
 extension TagLocationViewController {
     
-    var locationFromChanges: Location {
-        let location = Location(context: manageObjectContext)
-        
-        location.latitude = viewModel.coordinate.latitude
-        location.longitude = viewModel.coordinate.latitude
-        location.category = viewModel.category ?? .none
-        location.dateRecorded = viewModel.dateRecorded
-        location.placemark = viewModel.placemark
-        location.locationDescription = viewModel.locationDescription
-        
-        return location
+    var locationModelChanges: TagLocationModelController.Changes {
+        return (
+            latitude: viewModel.coordinate.latitude,
+            longitude: viewModel.coordinate.longitude,
+            category: viewModel.category ?? .none,
+            dateRecorded: viewModel.dateRecorded,
+            placemark: viewModel.placemark,
+            locationDescription: viewModel.locationDescription
+        )
     }
-    
 }
 
 // MARK: - Lifecycle
@@ -58,7 +54,7 @@ extension TagLocationViewController {
         super.viewDidLoad()
 
         assert(viewModel != nil, "No `viewModel` was set")
-        assert(manageObjectContext != nil, "No `manageObjectContext` was set")
+        assert(modelController != nil, "No `modelController` was set")
         
         setupUI()
     }
@@ -97,8 +93,18 @@ extension TagLocationViewController {
     
     
     @IBAction func doneButtonTapped() {
-        print("Done button tapped")
-        delegate?.viewController(self, didSave: locationFromChanges)
+        modelController.saveLocation(with: locationModelChanges) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                switch result {
+                case .success:
+                    self.delegate?.viewControllerDidSaveLocation(self)
+                case .failure(let error):
+                    self.fatalCoreDataError(error)
+                }
+            }
+        }
     }
     
     
@@ -168,3 +174,6 @@ private extension TagLocationViewController {
         }
     }
 }
+
+
+extension TagLocationViewController: CoreDataContextHandling {}

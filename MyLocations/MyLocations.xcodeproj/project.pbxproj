@@ -49,6 +49,10 @@
 		F38A01F622D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F522D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift */; };
 		F38A01F822D47DD600D8C5F3 /* CoreDataContextHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F722D47DD600D8C5F3 /* CoreDataContextHandling.swift */; };
 		F38A01FA22D4801300D8C5F3 /* NotificationName+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F922D4801300D8C5F3 /* NotificationName+CoreData.swift */; };
+		F38A01FD22D49FB300D8C5F3 /* TaggedLocationsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01FC22D49FB300D8C5F3 /* TaggedLocationsCoordinator.swift */; };
+		F38A01FF22D4A16500D8C5F3 /* TaggedLocations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38A01FE22D4A16500D8C5F3 /* TaggedLocations.storyboard */; };
+		F38A020122D4A19600D8C5F3 /* TaggedLocationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020022D4A19600D8C5F3 /* TaggedLocationsListViewController.swift */; };
+		F38A020322D5797F00D8C5F3 /* TagLocationModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020222D5797F00D8C5F3 /* TagLocationModelController.swift */; };
 		F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +103,10 @@
 		F38A01F522D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodingUserInfoKey+ManagedObjectContext.swift"; sourceTree = "<group>"; };
 		F38A01F722D47DD600D8C5F3 /* CoreDataContextHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContextHandling.swift; sourceTree = "<group>"; };
 		F38A01F922D4801300D8C5F3 /* NotificationName+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+CoreData.swift"; sourceTree = "<group>"; };
+		F38A01FC22D49FB300D8C5F3 /* TaggedLocationsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedLocationsCoordinator.swift; sourceTree = "<group>"; };
+		F38A01FE22D4A16500D8C5F3 /* TaggedLocations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaggedLocations.storyboard; sourceTree = "<group>"; };
+		F38A020022D4A19600D8C5F3 /* TaggedLocationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedLocationsListViewController.swift; sourceTree = "<group>"; };
+		F38A020222D5797F00D8C5F3 /* TagLocationModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLocationModelController.swift; sourceTree = "<group>"; };
 		F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -268,6 +276,9 @@
 		F34877D622C4DA9600C2167F /* Tagged Locations */ = {
 			isa = PBXGroup;
 			children = (
+				F38A01FC22D49FB300D8C5F3 /* TaggedLocationsCoordinator.swift */,
+				F38A01FE22D4A16500D8C5F3 /* TaggedLocations.storyboard */,
+				F38A020022D4A19600D8C5F3 /* TaggedLocationsListViewController.swift */,
 			);
 			path = "Tagged Locations";
 			sourceTree = "<group>";
@@ -315,6 +326,7 @@
 				F3849E4722CE880C00D90B70 /* TagLocationCoordinator.swift */,
 				F37EA26322CBB12900D3F42F /* TagLocationViewController.swift */,
 				F312A92622CC10BE004CB5FF /* TagLocationViewModel.swift */,
+				F38A020222D5797F00D8C5F3 /* TagLocationModelController.swift */,
 			);
 			path = "Tag Current Location";
 			sourceTree = "<group>";
@@ -402,6 +414,7 @@
 				F3849E4522CE865A00D90B70 /* TagLocation.storyboard in Resources */,
 				F3849E4022CE693400D90B70 /* CurrentLocation.storyboard in Resources */,
 				F34877C222C4D7D100C2167F /* LaunchScreen.storyboard in Resources */,
+				F38A01FF22D4A16500D8C5F3 /* TaggedLocations.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +505,7 @@
 			files = (
 				F34877CD22C4D9A600C2167F /* Coordinator.swift in Sources */,
 				F312A92B22CD0BE8004CB5FF /* DateFormatter+CustomFormatters.swift in Sources */,
+				F38A020322D5797F00D8C5F3 /* TagLocationModelController.swift in Sources */,
 				F312A92922CC170D004CB5FF /* Date+Formatting.swift in Sources */,
 				F34877AC22C4A9C000C2167F /* MyLocations.xcdatamodeld in Sources */,
 				F38A01FA22D4801300D8C5F3 /* NotificationName+CoreData.swift in Sources */,
@@ -516,8 +530,10 @@
 				F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */,
 				F337D2EC22CEEF170085D412 /* CategoryListViewController.swift in Sources */,
 				F38A01F622D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift in Sources */,
+				F38A020122D4A19600D8C5F3 /* TaggedLocationsListViewController.swift in Sources */,
 				F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */,
 				F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */,
+				F38A01FD22D49FB300D8C5F3 /* TaggedLocationsCoordinator.swift in Sources */,
 				F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */,
 				F34877D422C4DA2D00C2167F /* UIViewController+DisplayPromptMessage.swift in Sources */,
 				F34877A222C4A9C000C2167F /* SceneDelegate.swift in Sources */,
