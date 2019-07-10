@@ -11,10 +11,14 @@ import UIKit
 
 final class TaggedLocationsCoordinator: NavigationCoordinator {
     var navController: UINavigationController
-
+    private let stateController: StateController
     
-    init(navController: UINavigationController = UINavigationController()) {
+    init(
+        navController: UINavigationController = UINavigationController(),
+        stateController: StateController
+    ) {
         self.navController = navController
+        self.stateController = stateController
         
         start()
     }
@@ -24,8 +28,16 @@ final class TaggedLocationsCoordinator: NavigationCoordinator {
         let taggedLocationsListVC = TaggedLocationsListViewController.instantiateFromStoryboard(
             named: R.storyboard.taggedLocations.name
         )
-        
-        taggedLocationsListVC.tabBarItem = UITabBarItem(title: "Locations", image: UIImage(systemName: "star.circle"), tag: 1)
+
+        taggedLocationsListVC.tabBarItem = UITabBarItem(
+            title: "Locations",
+            image: UIImage(systemName: "star.circle"), tag: 1
+        )
+        taggedLocationsListVC.modelController = .init(
+            managedObjectContext: stateController.managedObjectContext
+        )
+        taggedLocationsListVC.title = "Tagged Locations"
+    
         
         navController.navigationBar.prefersLargeTitles = true
         navController.setViewControllers([taggedLocationsListVC], animated: true)

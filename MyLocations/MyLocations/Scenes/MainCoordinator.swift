@@ -23,7 +23,7 @@ final class MainCoordinator: Coordinator {
         self.tabBarController = UITabBarController()
         
         self.currentLocationCoordinator = CurrentLocationCoordinator(stateController: stateController)
-        self.taggedLocationsCoordinator = TaggedLocationsCoordinator()
+        self.taggedLocationsCoordinator = TaggedLocationsCoordinator(stateController: stateController)
     }
     
     

@@ -17,7 +17,6 @@
 		F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348779F22C4A9C000C2167F /* AppDelegate.swift */; };
 		F34877A222C4A9C000C2167F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877A122C4A9C000C2167F /* SceneDelegate.swift */; };
 		F34877A422C4A9C000C2167F /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877A322C4A9C000C2167F /* CurrentLocationViewController.swift */; };
-		F34877A622C4A9C000C2167F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877A522C4A9C000C2167F /* SecondViewController.swift */; };
 		F34877AC22C4A9C000C2167F /* MyLocations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F34877AA22C4A9C000C2167F /* MyLocations.xcdatamodeld */; };
 		F34877AE22C4A9C100C2167F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F34877AD22C4A9C100C2167F /* Assets.xcassets */; };
 		F34877C222C4D7D100C2167F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F34877C022C4D7D000C2167F /* LaunchScreen.storyboard */; };
@@ -53,6 +52,11 @@
 		F38A01FF22D4A16500D8C5F3 /* TaggedLocations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38A01FE22D4A16500D8C5F3 /* TaggedLocations.storyboard */; };
 		F38A020122D4A19600D8C5F3 /* TaggedLocationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020022D4A19600D8C5F3 /* TaggedLocationsListViewController.swift */; };
 		F38A020322D5797F00D8C5F3 /* TagLocationModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020222D5797F00D8C5F3 /* TagLocationModelController.swift */; };
+		F38A020722D5962A00D8C5F3 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020522D5962A00D8C5F3 /* LocationTableViewCell.swift */; };
+		F38A020822D5962A00D8C5F3 /* LocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F38A020622D5962A00D8C5F3 /* LocationTableViewCell.xib */; };
+		F38A020A22D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020922D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift */; };
+		F38A020C22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020B22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift */; };
+		F38A020E22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020D22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift */; };
 		F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +74,6 @@
 		F348779F22C4A9C000C2167F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F34877A122C4A9C000C2167F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F34877A322C4A9C000C2167F /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
-		F34877A522C4A9C000C2167F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		F34877AB22C4A9C000C2167F /* MyLocations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyLocations.xcdatamodel; sourceTree = "<group>"; };
 		F34877AD22C4A9C100C2167F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F34877B222C4A9C100C2167F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -107,6 +110,11 @@
 		F38A01FE22D4A16500D8C5F3 /* TaggedLocations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaggedLocations.storyboard; sourceTree = "<group>"; };
 		F38A020022D4A19600D8C5F3 /* TaggedLocationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedLocationsListViewController.swift; sourceTree = "<group>"; };
 		F38A020222D5797F00D8C5F3 /* TagLocationModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLocationModelController.swift; sourceTree = "<group>"; };
+		F38A020522D5962A00D8C5F3 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		F38A020622D5962A00D8C5F3 /* LocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationTableViewCell.xib; sourceTree = "<group>"; };
+		F38A020922D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationTableViewCell+ViewModel.swift"; sourceTree = "<group>"; };
+		F38A020B22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedLocationsModelController.swift; sourceTree = "<group>"; };
+		F38A020D22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+FetchHelpers.swift"; sourceTree = "<group>"; };
 		F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +161,7 @@
 				F337D2F022CEF1650085D412 /* Location+Category.swift */,
 				F38A01F122D325D100D8C5F3 /* Location+CoreDataClass.swift */,
 				F38A01F222D325D100D8C5F3 /* Location+CoreDataProperties.swift */,
+				F38A020D22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -200,7 +209,6 @@
 			children = (
 				F34877C022C4D7D000C2167F /* LaunchScreen.storyboard */,
 				F34877DA22C4E2D900C2167F /* MainCoordinator.swift */,
-				F34877A522C4A9C000C2167F /* SecondViewController.swift */,
 				F34877D522C4DA8E00C2167F /* Current Location */,
 				F34877D622C4DA9600C2167F /* Tagged Locations */,
 				F34877D722C4DA9D00C2167F /* Map */,
@@ -276,9 +284,11 @@
 		F34877D622C4DA9600C2167F /* Tagged Locations */ = {
 			isa = PBXGroup;
 			children = (
+				F38A020422D5960600D8C5F3 /* Table Cell */,
 				F38A01FC22D49FB300D8C5F3 /* TaggedLocationsCoordinator.swift */,
 				F38A01FE22D4A16500D8C5F3 /* TaggedLocations.storyboard */,
 				F38A020022D4A19600D8C5F3 /* TaggedLocationsListViewController.swift */,
+				F38A020B22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift */,
 			);
 			path = "Tagged Locations";
 			sourceTree = "<group>";
@@ -337,6 +347,16 @@
 				F38A01F922D4801300D8C5F3 /* NotificationName+CoreData.swift */,
 			);
 			path = "Notification Names";
+			sourceTree = "<group>";
+		};
+		F38A020422D5960600D8C5F3 /* Table Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F38A020522D5962A00D8C5F3 /* LocationTableViewCell.swift */,
+				F38A020922D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift */,
+				F38A020622D5962A00D8C5F3 /* LocationTableViewCell.xib */,
+			);
+			path = "Table Cell";
 			sourceTree = "<group>";
 		};
 		F38DC8BB22CFF98A00C08312 /* Views */ = {
@@ -411,6 +431,7 @@
 			files = (
 				F34877DF22C4EB0700C2167F /* .swiftlint.yml in Resources */,
 				F34877AE22C4A9C100C2167F /* Assets.xcassets in Resources */,
+				F38A020822D5962A00D8C5F3 /* LocationTableViewCell.xib in Resources */,
 				F3849E4522CE865A00D90B70 /* TagLocation.storyboard in Resources */,
 				F3849E4022CE693400D90B70 /* CurrentLocation.storyboard in Resources */,
 				F34877C222C4D7D100C2167F /* LaunchScreen.storyboard in Resources */,
@@ -514,7 +535,6 @@
 				F312A92722CC10BE004CB5FF /* TagLocationViewModel.swift in Sources */,
 				F370828222C661FB0083C235 /* StateController.swift in Sources */,
 				F37EA26222CAD70200D3F42F /* LocationErrorMessage.swift in Sources */,
-				F34877A622C4A9C000C2167F /* SecondViewController.swift in Sources */,
 				F32053C722C8D3A500E41B41 /* GeocodingService.swift in Sources */,
 				F34877A422C4A9C000C2167F /* CurrentLocationViewController.swift in Sources */,
 				F34877D322C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift in Sources */,
@@ -526,10 +546,14 @@
 				F34877E922C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift in Sources */,
 				F34877CE22C4D9A600C2167F /* NavigationCoordinator.swift in Sources */,
 				F37EA26422CBB12900D3F42F /* TagLocationViewController.swift in Sources */,
+				F38A020E22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift in Sources */,
 				F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */,
 				F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */,
+				F38A020C22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift in Sources */,
+				F38A020A22D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift in Sources */,
 				F337D2EC22CEEF170085D412 /* CategoryListViewController.swift in Sources */,
 				F38A01F622D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift in Sources */,
+				F38A020722D5962A00D8C5F3 /* LocationTableViewCell.swift in Sources */,
 				F38A020122D4A19600D8C5F3 /* TaggedLocationsListViewController.swift in Sources */,
 				F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */,
 				F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */,
