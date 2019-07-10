@@ -10,17 +10,6 @@ import UIKit
 import CoreLocation
 
 
-// TODO: Place protocols in separate files
-
-protocol CurrentLocationControllerDelegate: class {
-    func viewController(
-        _ controller: CurrentLocationViewController,
-        didSelectTag location: CLLocation,
-        at placemark: CLPlacemark?
-    )
-}
-
-
 final class CurrentLocationCoordinator: NavigationCoordinator {
     var navController: UINavigationController
     private let stateController: StateController
@@ -57,7 +46,7 @@ final class CurrentLocationCoordinator: NavigationCoordinator {
 
 // MARK: - CurrentLocationControllerDelegate
 
-extension CurrentLocationCoordinator: CurrentLocationControllerDelegate {
+extension CurrentLocationCoordinator: CurrentLocationViewControllerDelegate {
     
     func viewController(
         _ controller: CurrentLocationViewController,

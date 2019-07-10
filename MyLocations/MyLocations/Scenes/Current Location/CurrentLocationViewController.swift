@@ -10,11 +10,19 @@ import UIKit
 import CoreLocation
 
 
+protocol CurrentLocationViewControllerDelegate: class {
+    func viewController(
+        _ controller: CurrentLocationViewController,
+        didSelectTag location: CLLocation,
+        at placemark: CLPlacemark?
+    )
+}
+
 
 class CurrentLocationViewController: UIViewController, Storyboarded {
     @IBOutlet var mainView: CurrentLocationView!
     
-    weak var delegate: CurrentLocationControllerDelegate?
+    weak var delegate: CurrentLocationViewControllerDelegate?
     var locationManager: CLLocationManager!
     var geocodingService: GeocodingService = GeocodingService()
     

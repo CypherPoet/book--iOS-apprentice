@@ -10,6 +10,13 @@ import UIKit
 import CoreLocation
 
 
+protocol TagLocationViewControllerDelegate: class {
+    func viewControllerDidCancel(_ controller: TagLocationViewController)
+    func viewControllerDidSaveLocation(_ controller: TagLocationViewController)
+    func viewControllerDidSelectChooseCategory(_ controller: TagLocationViewController)
+}
+
+
 class TagLocationViewController: UITableViewController, Storyboarded {
     @IBOutlet private var categoryLabel: UILabel!
     @IBOutlet private var latitudeLabel: UILabel!

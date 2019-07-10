@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+protocol CategoryListViewControllerDelegate: class {
+    func viewControllerDidCancel(_ controller: CategoryListViewController)
+    func viewController(_ controller: CategoryListViewController, didSelect category: Location.Category)
+}
+
+
 class CategoryListViewController: UIViewController, Storyboarded {
     @IBOutlet private var tableView: UITableView!
     
@@ -35,8 +42,6 @@ extension CategoryListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         setupTableView()
     }
 }

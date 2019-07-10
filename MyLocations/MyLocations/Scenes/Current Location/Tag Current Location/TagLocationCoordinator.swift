@@ -9,25 +9,11 @@
 import UIKit
 import CoreLocation
 
-// TODO: Place protocols in separate files
 
 protocol TagLocationCoordinatorDelegate: class {
     func coordinatorDidCancel(_ coordinator: TagLocationCoordinator)
     func coordinatorDidFinishTaggingLocation(_ coordinator: TagLocationCoordinator)
 }
-
-protocol TagLocationViewControllerDelegate: class {
-    func viewControllerDidCancel(_ controller: TagLocationViewController)
-    func viewControllerDidSaveLocation(_ controller: TagLocationViewController)
-    func viewControllerDidSelectChooseCategory(_ controller: TagLocationViewController)
-}
-
-
-protocol CategoryListViewControllerDelegate: class {
-    func viewControllerDidCancel(_ controller: CategoryListViewController)
-    func viewController(_ controller: CategoryListViewController, didSelect category: Location.Category)
-}
-
 
 
 final class TagLocationCoordinator: NavigationCoordinator {

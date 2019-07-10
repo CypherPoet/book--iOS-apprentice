@@ -1,5 +1,5 @@
 //
-//  TaggedLocationsViewController.swift
+//  TaggedLocationsListViewController.swift
 //  MyLocations
 //
 //  Created by Brian Sipple on 7/9/19.
@@ -9,7 +9,8 @@
 import UIKit
 
 class TaggedLocationsListViewController: UIViewController, Storyboarded {
-
+    @IBOutlet private var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
