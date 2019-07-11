@@ -1,32 +1,33 @@
 //
-//  TableViewDataSource.swift
+//  FetchedResultsTableViewDataSource.swift
 //  MyLocations
 //
-//  Created by Brian Sipple on 6/27/19.
+//  Created by Brian Sipple on 7/11/19.
 //  Copyright © 2019 CypherPoet. All rights reserved.
 //
 
 import UIKit
+import CoreData
 
 
-final class TableViewDataSource<Model>: NSObject, UITableViewDataSource {
+final class FetchedResultsTableViewDataSource<Model: NSFetchRequestResult>: NSObject, UITableViewDataSource {
     typealias CellConfigurator = (Model, UITableViewCell) -> Void
     typealias CellDeletionHandler = (Model, UITableViewCell, IndexPath) -> Void
     
-    var models: [Model]
     
+    private let fetchedResultsController: NSFetchedResultsController<Model>
     private let cellReuseIdentifier: String
     private let cellConfigurator: CellConfigurator?
     private let cellDeletionHandler: CellDeletionHandler?
     
     
     init(
-        models: [Model],
+        controller fetchedResultsController: NSFetchedResultsController<Model>,
         cellReuseIdentifier: String,
         cellConfigurator: CellConfigurator? = nil,
         cellDeletionHandler: CellDeletionHandler? = nil
     ) {
-        self.models = models
+        self.fetchedResultsController = fetchedResultsController
         self.cellReuseIdentifier = cellReuseIdentifier
         self.cellConfigurator = cellConfigurator
         self.cellDeletionHandler = cellDeletionHandler
@@ -35,45 +36,41 @@ final class TableViewDataSource<Model>: NSObject, UITableViewDataSource {
     
     // MARK: - UITableViewDataSource
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models.count
+        sectionInfo(for: section).numberOfObjects
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
-        let model = models[indexPath.row]
+        let model = self.model(at: indexPath)
         
         cellConfigurator?(model, cell)
         
         return cell
     }
+}
+
+
+// MARK: - Public Helpers
+
+extension FetchedResultsTableViewDataSource {
     
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let movedModel = models.remove(at: sourceIndexPath.row)
-        
-        models.insert(movedModel, at: destinationIndexPath.row)
+    func model(at indexPath: IndexPath) -> Model {
+        fetchedResultsController.object(at: indexPath)
     }
+}
+
+
+// MARK: - Private Helpers
+
+private extension FetchedResultsTableViewDataSource {
     
-    
-    func tableView(
-        _ tableView: UITableView,
-        commit editingStyle: UITableViewCell.EditingStyle,
-        forRowAt indexPath: IndexPath
-    ) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
-        let model = models[indexPath.row]
-        
-        if editingStyle == .delete {
-            models.remove(at: indexPath.row)
-            cellDeletionHandler?(model, cell, indexPath)
+    func sectionInfo(for section: Int) -> NSFetchedResultsSectionInfo {
+        guard let sections = fetchedResultsController.sections else {
+            fatalError("No sections found fetchedResultsController")
         }
         
+        return sections[section]
     }
 }

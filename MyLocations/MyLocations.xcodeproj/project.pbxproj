@@ -58,6 +58,8 @@
 		F38A020C22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020B22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift */; };
 		F38A020E22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020D22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift */; };
 		F38A021122D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021022D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift */; };
+		F38A021322D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021222D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift */; };
+		F38A021522D7479800D8C5F3 /* UIViewController+Computeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021422D7479800D8C5F3 /* UIViewController+Computeds.swift */; };
 		F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +119,8 @@
 		F38A020B22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedLocationsModelController.swift; sourceTree = "<group>"; };
 		F38A020D22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+FetchHelpers.swift"; sourceTree = "<group>"; };
 		F38A021022D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaggedLocationCoordinator.swift; sourceTree = "<group>"; };
+		F38A021222D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewDataSource.swift; sourceTree = "<group>"; };
+		F38A021422D7479800D8C5F3 /* UIViewController+Computeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Computeds.swift"; sourceTree = "<group>"; };
 		F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,6 +239,7 @@
 				F34877D122C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift */,
 				F34877D222C4DA2D00C2167F /* UIViewController+DisplayPromptMessage.swift */,
 				F34877E822C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift */,
+				F38A021422D7479800D8C5F3 /* UIViewController+Computeds.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				F37EA25F22CA5CBD00D3F42F /* Constants */,
 				F34877BB22C4AB7800C2167F /* Extensions */,
 				F34877BD22C4ABA800C2167F /* Protocols */,
+				F38A021222D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -557,9 +563,11 @@
 				F34877E922C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift in Sources */,
 				F34877CE22C4D9A600C2167F /* NavigationCoordinator.swift in Sources */,
 				F37EA26422CBB12900D3F42F /* TagLocationViewController.swift in Sources */,
+				F38A021522D7479800D8C5F3 /* UIViewController+Computeds.swift in Sources */,
 				F38A020E22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift in Sources */,
 				F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */,
 				F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */,
+				F38A021322D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift in Sources */,
 				F38A020C22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift in Sources */,
 				F38A020A22D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift in Sources */,
 				F38A021122D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift in Sources */,

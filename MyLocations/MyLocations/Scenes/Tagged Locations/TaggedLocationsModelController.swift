@@ -13,6 +13,22 @@ import CoreData
 final class TaggedLocationsModelController {
     private let managedObjectContext: NSManagedObjectContext
     
+    lazy var locationsFetchRequest: NSFetchRequest<Location> = {
+        let request = Location.defaultFetchRequest
+        
+        request.fetchBatchSize = 20
+        
+        return request
+    }()
+
+    
+    lazy var fetchedResultsController = NSFetchedResultsController(
+        fetchRequest: locationsFetchRequest,
+        managedObjectContext: managedObjectContext,
+        sectionNameKeyPath: nil,
+        cacheName: Location.cacheName
+    )
+
 
     init(managedObjectContext: NSManagedObjectContext) {
         self.managedObjectContext = managedObjectContext
@@ -23,19 +39,14 @@ final class TaggedLocationsModelController {
 // MARK: - Core Methods
 
 extension TaggedLocationsModelController {
-    typealias FetchCompletionHandler = ((Result<[Location], Error>) -> Void)
-    
-    func fetchLocations(then completionHandler: FetchCompletionHandler) {
-        let request = Location.fetchRequestByDateAsc
-        
+
+    func fetchLocations() {
         do {
-            let locations = try managedObjectContext.fetch(request)
-            completionHandler(.success(locations))
+            try fetchedResultsController.performFetch()
         } catch {
             fatalCoreDataError(error)
         }
     }
-    
 }
 
 

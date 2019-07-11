@@ -155,6 +155,7 @@ private extension TagLocationViewController {
         latitudeLabel.text = viewModel.latitudeText
         longitudeLabel.text = viewModel.longitudeText
         categoryLabel.text = viewModel.categoryLabelText
+        descriptionTextView.text = viewModel.locationDescription
         addressLabel.text = viewModel.addressText
         dateLabel.text = viewModel.dateText
     }

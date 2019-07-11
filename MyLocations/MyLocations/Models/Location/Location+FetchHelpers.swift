@@ -11,13 +11,16 @@ import CoreData
 
 extension Location {
     
-    static var fetchRequestByDateAsc: NSFetchRequest<Location> {
+    static let defaultSortDescriptors = [
+        NSSortDescriptor(keyPath: \Location.dateRecorded, ascending: true),
+    ]
+    
+    
+    static var defaultFetchRequest: NSFetchRequest<Location> {
         let request = Location.makeFetchRequest()
         
-        request.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Location.dateRecorded, ascending: true)
-        ]
-        
+        request.sortDescriptors = defaultSortDescriptors
+
         return request
     }
 }
