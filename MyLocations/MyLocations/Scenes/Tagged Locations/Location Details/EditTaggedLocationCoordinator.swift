@@ -1,28 +1,27 @@
 //
-//  LocationDetailsCoordinator.swift
+//  EditTaggedLocationCoordinator.swift
 //  MyLocations
 //
-//  Created by Brian Sipple on 7/4/19.
+//  Created by Brian Sipple on 7/10/19.
 //  Copyright © 2019 CypherPoet. All rights reserved.
 //
+
 
 import UIKit
 import CoreLocation
 
 
-protocol TagLocationCoordinatorDelegate: class {
-    func coordinatorDidCancel(_ coordinator: TagLocationCoordinator)
-    func coordinatorDidFinishTaggingLocation(_ coordinator: TagLocationCoordinator)
+protocol EditTaggedLocationCoordinatorDelegate: class {
+    func coordinatorDidCancel(_ coordinator: EditTaggedLocationCoordinator)
+    func coordinatorDidFinishEditingLocation(_ coordinator: EditTaggedLocationCoordinator)
 }
 
 
-final class TagLocationCoordinator: NavigationCoordinator {
+final class EditTaggedLocationCoordinator: NavigationCoordinator {
     var navController: UINavigationController
     private let stateController: StateController
-    private weak var delegate: TagLocationCoordinatorDelegate?
-    private let coordinate: CLLocationCoordinate2D
-    private let placemark: CLPlacemark?
-    
+    private weak var delegate: EditTaggedLocationCoordinatorDelegate?
+    private let locationToEdit: Location
     
     private var tagLocationViewController: TagLocationViewController!
     
@@ -30,15 +29,13 @@ final class TagLocationCoordinator: NavigationCoordinator {
     init(
         navController: UINavigationController,
         stateController: StateController,
-        delegate: TagLocationCoordinatorDelegate?,
-        coordinate: CLLocationCoordinate2D,
-        placemark: CLPlacemark?
+        delegate: EditTaggedLocationCoordinatorDelegate?,
+        locationToEdit: Location
     ) {
         self.navController = navController
         self.stateController = stateController
         self.delegate = delegate
-        self.coordinate = coordinate
-        self.placemark = placemark
+        self.locationToEdit = locationToEdit
     }
     
     
@@ -48,18 +45,22 @@ final class TagLocationCoordinator: NavigationCoordinator {
         )
         
         tagLocationViewController.delegate = self
-        tagLocationViewController.title = "Tag Location"
-        tagLocationViewController.modelController = TagLocationModelController(stateController: stateController)
+        tagLocationViewController.title = "Edit Location"
         
-        tagLocationViewController.viewModel = .init(
-            latitude: coordinate.latitude,
-            longitude: coordinate.longitude,
-            placemark: placemark,
-            locationDescription: "",
-            dateRecorded: Date()
+        tagLocationViewController.modelController = TagLocationModelController(
+            stateController: stateController,
+            locationToEdit: locationToEdit
         )
         
-        navController.navigationBar.isHidden = false
+        tagLocationViewController.viewModel = .init(
+            latitude: locationToEdit.latitude,
+            longitude: locationToEdit.longitude,
+            placemark: locationToEdit.placemark,
+            category: locationToEdit.category,
+            locationDescription: locationToEdit.locationDescription,
+            dateRecorded: locationToEdit.dateRecorded
+        )
+        
         navController.pushViewController(tagLocationViewController, animated: true)
     }
 }
@@ -67,10 +68,15 @@ final class TagLocationCoordinator: NavigationCoordinator {
 
 // MARK: - TagLocationViewControllerDelegate
 
-extension TagLocationCoordinator: TagLocationViewControllerDelegate {
+extension EditTaggedLocationCoordinator: TagLocationViewControllerDelegate {
     
     func viewControllerDidSaveLocation(_ controller: TagLocationViewController) {
-        delegate?.coordinatorDidFinishTaggingLocation(self)
+        delegate?.coordinatorDidFinishEditingLocation(self)
+    }
+    
+    
+    func viewControllerDidCancel(_ controller: TagLocationViewController) {
+        delegate?.coordinatorDidCancel(self)
     }
     
     
@@ -86,17 +92,12 @@ extension TagLocationCoordinator: TagLocationViewControllerDelegate {
         
         navController.pushViewController(categoryListVC, animated: true)
     }
-    
-    
-    func viewControllerDidCancel(_ controller: TagLocationViewController) {
-        delegate?.coordinatorDidCancel(self)
-    }
 }
 
 
 // MARK: - CategoryListViewControllerDelegate
 
-extension TagLocationCoordinator: CategoryListViewControllerDelegate {
+extension EditTaggedLocationCoordinator: CategoryListViewControllerDelegate {
     
     func viewControllerDidCancel(_ controller: CategoryListViewController) {
         navController.popViewController(animated: true)

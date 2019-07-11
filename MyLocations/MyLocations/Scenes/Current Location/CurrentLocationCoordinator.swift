@@ -89,7 +89,11 @@ extension CurrentLocationCoordinator: TagLocationCoordinatorDelegate {
 private extension CurrentLocationCoordinator {
     
     func addHudIndicatorAfterTaggingLocation() {
-        let hudIndicatorView = HudIndicatorView(covering: navController.view.bounds, labeled: "Tagged", withImage: UIImage(systemName: "checkmark"))
+        let hudIndicatorView = HudIndicatorView(
+            covering: navController.view.bounds,
+            labeled: "Tagged",
+            withImage: UIImage(systemName: "checkmark")
+        )
         
         navController.view.addSubview(hudIndicatorView)
         navController.view.isUserInteractionEnabled = false

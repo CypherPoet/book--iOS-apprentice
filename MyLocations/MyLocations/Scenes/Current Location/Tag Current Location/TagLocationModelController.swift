@@ -13,6 +13,7 @@ import CoreData
 
 final class TagLocationModelController {
     private let stateController: StateController
+    private let locationToEdit: Location?
     
     typealias Changes = (
         latitude: Double,
@@ -24,8 +25,9 @@ final class TagLocationModelController {
     )
     
     
-    init(stateController: StateController) {
+    init(stateController: StateController, locationToEdit: Location? = nil) {
         self.stateController = stateController
+        self.locationToEdit = locationToEdit
     }
 }
 
@@ -44,7 +46,7 @@ extension TagLocationModelController {
         with changes: Changes,
         then completionHandler: ((Result<Void, Error>) -> Void)
     ) {
-        let location = Location(context: managedObjectContext)
+        let location = locationToEdit ?? Location(context: managedObjectContext)
 
         location.latitude = changes.latitude
         location.longitude = changes.latitude

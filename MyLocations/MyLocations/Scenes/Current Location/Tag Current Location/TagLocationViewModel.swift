@@ -10,7 +10,8 @@ import Foundation
 import CoreLocation
 
 struct TagLocationViewModel {
-    var coordinate: CLLocationCoordinate2D
+    var latitude: Double
+    var longitude: Double
     var placemark: CLPlacemark?
     var category: Location.Category?
     var locationDescription: String
@@ -24,8 +25,8 @@ struct TagLocationViewModel {
 
 extension TagLocationViewModel {
     
-    var latitudeText: String { coordinate.latitude.coordinateFormat }
-    var longitudeText: String { coordinate.longitude.coordinateFormat }
+    var latitudeText: String { latitude.coordinateFormat }
+    var longitudeText: String { longitude.coordinateFormat }
     var dateText: String { dateRecorded.locationCaptureFormat }
     
 

@@ -8,11 +8,23 @@
 
 import UIKit
 
+
+protocol TaggedLocationsListViewControllerDelegate: class {
+    func viewController(
+        _ viewController: TaggedLocationsListViewController,
+        didSelectEditingFor location: Location
+    )
+}
+
+
 class TaggedLocationsListViewController: UIViewController, Storyboarded {
     @IBOutlet private var tableView: UITableView!
     
+    weak var delegate: TaggedLocationsListViewControllerDelegate?
     var modelController: TaggedLocationsModelController!
-    private var dataSource: TableViewDataSource<Location>?
+    
+    
+    private var dataSource: TableViewDataSource<Location>!
 
     private var locations: [Location]? {
         didSet {
@@ -30,7 +42,6 @@ class TaggedLocationsListViewController: UIViewController, Storyboarded {
 }
 
 
-
 // MARK: - Lifecycle
 
 extension TaggedLocationsListViewController {
@@ -44,6 +55,20 @@ extension TaggedLocationsListViewController {
         loadLocations()
     }
 }
+
+
+// MARK: - UITableViewDelegate
+
+extension TaggedLocationsListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let location = dataSource.models[indexPath.row]
+        
+        delegate?.viewController(self, didSelectEditingFor: location)
+    }
+}
+
+
 
 
 // MARK: - Private Helpers
@@ -88,6 +113,7 @@ private extension TaggedLocationsListViewController {
         )
         
         tableView.dataSource = dataSource
+        tableView.delegate = self
     }
     
     

@@ -43,8 +43,8 @@ extension TagLocationViewController {
     
     var locationModelChanges: TagLocationModelController.Changes {
         return (
-            latitude: viewModel.coordinate.latitude,
-            longitude: viewModel.coordinate.longitude,
+            latitude: viewModel.latitude,
+            longitude: viewModel.longitude,
             category: viewModel.category ?? .none,
             dateRecorded: viewModel.dateRecorded,
             placemark: viewModel.placemark,

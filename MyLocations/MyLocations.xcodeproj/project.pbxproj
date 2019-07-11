@@ -57,6 +57,7 @@
 		F38A020A22D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020922D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift */; };
 		F38A020C22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020B22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift */; };
 		F38A020E22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A020D22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift */; };
+		F38A021122D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021022D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift */; };
 		F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		F38A020922D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationTableViewCell+ViewModel.swift"; sourceTree = "<group>"; };
 		F38A020B22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedLocationsModelController.swift; sourceTree = "<group>"; };
 		F38A020D22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+FetchHelpers.swift"; sourceTree = "<group>"; };
+		F38A021022D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaggedLocationCoordinator.swift; sourceTree = "<group>"; };
 		F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -284,6 +286,7 @@
 		F34877D622C4DA9600C2167F /* Tagged Locations */ = {
 			isa = PBXGroup;
 			children = (
+				F38A020F22D6006C00D8C5F3 /* Location Details */,
 				F38A020422D5960600D8C5F3 /* Table Cell */,
 				F38A01FC22D49FB300D8C5F3 /* TaggedLocationsCoordinator.swift */,
 				F38A01FE22D4A16500D8C5F3 /* TaggedLocations.storyboard */,
@@ -357,6 +360,14 @@
 				F38A020622D5962A00D8C5F3 /* LocationTableViewCell.xib */,
 			);
 			path = "Table Cell";
+			sourceTree = "<group>";
+		};
+		F38A020F22D6006C00D8C5F3 /* Location Details */ = {
+			isa = PBXGroup;
+			children = (
+				F38A021022D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift */,
+			);
+			path = "Location Details";
 			sourceTree = "<group>";
 		};
 		F38DC8BB22CFF98A00C08312 /* Views */ = {
@@ -551,6 +562,7 @@
 				F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */,
 				F38A020C22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift in Sources */,
 				F38A020A22D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift in Sources */,
+				F38A021122D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift in Sources */,
 				F337D2EC22CEEF170085D412 /* CategoryListViewController.swift in Sources */,
 				F38A01F622D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift in Sources */,
 				F38A020722D5962A00D8C5F3 /* LocationTableViewCell.swift in Sources */,
