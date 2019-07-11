@@ -38,9 +38,17 @@ extension TaggedLocationsListViewController {
         
         assert(modelController != nil, "No modelController was set")
         
+        navigationItem.rightBarButtonItem = editButtonItem
+        
         setupTableView(with: dataSource)
         modelController.fetchedResultsController.delegate = self
         modelController.fetchLocations()
+    }
+    
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: true)
     }
 }
 
@@ -177,6 +185,9 @@ private extension TaggedLocationsListViewController {
             cellReuseIdentifier: R.reuseIdentifier.locationTableCell.identifier,
             cellConfigurator: { [weak self] (location, cell) in
                 self?.configure(cell, with: location)
+            },
+            cellDeletionHandler: { [weak self] (location, cell, indexPath) in
+                self?.modelController.delete(location)
             }
         )
     }

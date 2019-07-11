@@ -26,7 +26,8 @@ final class TaggedLocationsModelController {
         fetchRequest: locationsFetchRequest,
         managedObjectContext: managedObjectContext,
         sectionNameKeyPath: nil,
-        cacheName: Location.cacheName
+//        cacheName: Location.cacheName
+        cacheName: nil
     )
 
 
@@ -43,6 +44,17 @@ extension TaggedLocationsModelController {
     func fetchLocations() {
         do {
             try fetchedResultsController.performFetch()
+        } catch {
+            fatalCoreDataError(error)
+        }
+    }
+    
+    
+    func delete(_ location: Location) {
+        managedObjectContext.delete(location)
+        
+        do {
+            try managedObjectContext.save()
         } catch {
             fatalCoreDataError(error)
         }

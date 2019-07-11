@@ -49,6 +49,23 @@ final class FetchedResultsTableViewDataSource<Model: NSFetchRequestResult>: NSOb
         
         return cell
     }
+    
+    
+    func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath
+    ) {
+        if
+            editingStyle == .delete,
+            let cellDeletionHandler = cellDeletionHandler
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+            let model = self.model(at: indexPath)
+            
+            cellDeletionHandler(model, cell, indexPath)
+        }
+    }
 }
 
 

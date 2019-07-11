@@ -20,7 +20,9 @@ final class MainCoordinator: Coordinator {
     
     init(stateController: StateController) {
         self.stateController = stateController
+        
         self.tabBarController = UITabBarController()
+        self.tabBarController.tabBar.barStyle = .default
         
         self.currentLocationCoordinator = CurrentLocationCoordinator(stateController: stateController)
         self.taggedLocationsCoordinator = TaggedLocationsCoordinator(stateController: stateController)
