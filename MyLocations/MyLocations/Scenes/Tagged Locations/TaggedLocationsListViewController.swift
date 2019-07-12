@@ -62,6 +62,7 @@ extension TaggedLocationsListViewController: UITableViewDelegate {
         
         delegate?.viewController(self, didSelectEditingFor: location)
     }
+
 }
 
 
@@ -69,9 +70,7 @@ extension TaggedLocationsListViewController: NSFetchedResultsControllerDelegate 
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         print("🥞🥞🥞 NSFetchedResultsController: controllerWillChangeContent")
-        if isViewInWindow {
-            tableView.beginUpdates()
-        }
+        tableView.beginUpdates()
     }
     
     
@@ -141,12 +140,10 @@ extension TaggedLocationsListViewController: NSFetchedResultsControllerDelegate 
         }
     }
     
-    
+
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         print("🥞🥞🥞 NSFetchedResultsController: didChangeContent")
-        if isViewInWindow {
-            tableView.endUpdates()
-        }
+        tableView.endUpdates()
     }
 }
 
@@ -186,8 +183,19 @@ private extension TaggedLocationsListViewController {
             cellConfigurator: { [weak self] (location, cell) in
                 self?.configure(cell, with: location)
             },
-            cellDeletionHandler: { [weak self] (location, cell, indexPath) in
+            cellDeletionHandler: { [weak self] (location, _, _) in
                 self?.modelController.delete(location)
+            },
+            sectionTitleConfigurator: { (sectionInfo: NSFetchedResultsSectionInfo) -> String in
+                guard let categoryValueNumber = Int32(sectionInfo.name) else {
+                    preconditionFailure("Unknown category value type in section name")
+                }
+                
+                guard let locationCategory = Location.Category(rawValue: categoryValueNumber) else {
+                    preconditionFailure("Unknown category value in section name")
+                }
+        
+                return locationCategory.displayValue
             }
         )
     }

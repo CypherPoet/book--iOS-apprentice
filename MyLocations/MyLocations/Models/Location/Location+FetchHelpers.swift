@@ -9,9 +9,11 @@
 import Foundation
 import CoreData
 
+
 extension Location {
-    
+
     static let defaultSortDescriptors = [
+        NSSortDescriptor(keyPath: \Location.categoryValue, ascending: true),
         NSSortDescriptor(keyPath: \Location.dateRecorded, ascending: true),
     ]
     
@@ -23,4 +25,29 @@ extension Location {
 
         return request
     }
+    
+    
+    enum FetchRequest {
+        case byCategoryByDateAsc
+    }
+}
+
+
+extension Location.FetchRequest {
+    
+    var request: NSFetchRequest<Location> {
+        let request = Location.makeFetchRequest()
+        
+        switch self {
+        case .byCategoryByDateAsc:
+            request.sortDescriptors = Location.defaultSortDescriptors
+        }
+        
+        return request
+    }
+}
+
+
+extension Location {
+    static let cacheName = "Locations"
 }

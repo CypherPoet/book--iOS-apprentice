@@ -14,7 +14,7 @@ final class TaggedLocationsModelController {
     private let managedObjectContext: NSManagedObjectContext
     
     lazy var locationsFetchRequest: NSFetchRequest<Location> = {
-        let request = Location.defaultFetchRequest
+        let request = Location.FetchRequest.byCategoryByDateAsc.request
         
         request.fetchBatchSize = 20
         
@@ -25,7 +25,7 @@ final class TaggedLocationsModelController {
     lazy var fetchedResultsController = NSFetchedResultsController(
         fetchRequest: locationsFetchRequest,
         managedObjectContext: managedObjectContext,
-        sectionNameKeyPath: nil,
+        sectionNameKeyPath: "categoryValue",
 //        cacheName: Location.cacheName
         cacheName: nil
     )

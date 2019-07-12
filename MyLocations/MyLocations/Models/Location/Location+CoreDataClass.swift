@@ -11,5 +11,4 @@ import CoreData
 
 @objc(Location)
 public class Location: NSManagedObject {
-    static let cacheName = "Locations"
 }

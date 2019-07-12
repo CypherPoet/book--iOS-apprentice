@@ -13,31 +13,45 @@ import CoreData
 final class FetchedResultsTableViewDataSource<Model: NSFetchRequestResult>: NSObject, UITableViewDataSource {
     typealias CellConfigurator = (Model, UITableViewCell) -> Void
     typealias CellDeletionHandler = (Model, UITableViewCell, IndexPath) -> Void
+    typealias SectionTitleConfigurator = (NSFetchedResultsSectionInfo) -> String
     
     
     private let fetchedResultsController: NSFetchedResultsController<Model>
     private let cellReuseIdentifier: String
     private let cellConfigurator: CellConfigurator?
     private let cellDeletionHandler: CellDeletionHandler?
+    private let sectionTitleConfigurator: SectionTitleConfigurator?
     
     
     init(
         controller fetchedResultsController: NSFetchedResultsController<Model>,
         cellReuseIdentifier: String,
         cellConfigurator: CellConfigurator? = nil,
-        cellDeletionHandler: CellDeletionHandler? = nil
+        cellDeletionHandler: CellDeletionHandler? = nil,
+        sectionTitleConfigurator: SectionTitleConfigurator? = nil
     ) {
         self.fetchedResultsController = fetchedResultsController
         self.cellReuseIdentifier = cellReuseIdentifier
         self.cellConfigurator = cellConfigurator
         self.cellDeletionHandler = cellDeletionHandler
+        self.sectionTitleConfigurator = sectionTitleConfigurator
     }
     
     
     // MARK: - UITableViewDataSource
     
+    func numberOfSections(in tableView: UITableView) -> Int { sections.count }
+
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sectionInfo(for: section).numberOfObjects
+        sections[section].numberOfObjects
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionInfo = sections[section]
+        
+        return sectionTitleConfigurator?(sectionInfo) ?? sectionInfo.name
     }
     
     
@@ -73,21 +87,16 @@ final class FetchedResultsTableViewDataSource<Model: NSFetchRequestResult>: NSOb
 
 extension FetchedResultsTableViewDataSource {
     
-    func model(at indexPath: IndexPath) -> Model {
-        fetchedResultsController.object(at: indexPath)
-    }
-}
-
-
-// MARK: - Private Helpers
-
-private extension FetchedResultsTableViewDataSource {
-    
-    func sectionInfo(for section: Int) -> NSFetchedResultsSectionInfo {
+    var sections: [NSFetchedResultsSectionInfo] {
         guard let sections = fetchedResultsController.sections else {
-            fatalError("No sections found fetchedResultsController")
+            preconditionFailure("No sections found fetchedResultsController")
         }
         
-        return sections[section]
+        return sections
+    }
+    
+    
+    func model(at indexPath: IndexPath) -> Model {
+        fetchedResultsController.object(at: indexPath)
     }
 }

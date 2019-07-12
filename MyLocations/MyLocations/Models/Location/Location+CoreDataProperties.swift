@@ -25,7 +25,7 @@ extension Location {
     @NSManaged public var placemark: CLPlacemark?
     
     
-    @NSManaged private var categoryValue: Int32
+    @NSManaged internal var categoryValue: Int32
     
     var category: Location.Category {
         get { return Location.Category(rawValue: self.categoryValue)! }
