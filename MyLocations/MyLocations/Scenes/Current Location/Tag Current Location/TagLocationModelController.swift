@@ -49,7 +49,7 @@ extension TagLocationModelController {
         let location = locationToEdit ?? Location(context: managedObjectContext)
 
         location.latitude = changes.latitude
-        location.longitude = changes.latitude
+        location.longitude = changes.longitude
         location.category = changes.category
         location.dateRecorded = changes.dateRecorded
         location.placemark = changes.placemark

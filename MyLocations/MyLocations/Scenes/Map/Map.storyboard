@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Title-->
+        <scene sceneID="lvP-93-Pgm">
+            <objects>
+                <viewController storyboardIdentifier="MapViewerViewController" id="CYo-vF-H9R" customClass="MapViewerViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S4B-gH-9pq" customClass="MapViewerView" customModule="MyLocations" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xex-EL-mTN">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xex-EL-mTN" firstAttribute="top" secondItem="kVd-q0-XqU" secondAttribute="top" id="0xw-wQ-yUR"/>
+                            <constraint firstItem="kVd-q0-XqU" firstAttribute="trailing" secondItem="xex-EL-mTN" secondAttribute="trailing" id="9HG-1l-rhV"/>
+                            <constraint firstItem="xex-EL-mTN" firstAttribute="leading" secondItem="kVd-q0-XqU" secondAttribute="leading" id="DUl-wH-NMr"/>
+                            <constraint firstItem="kVd-q0-XqU" firstAttribute="bottom" secondItem="xex-EL-mTN" secondAttribute="bottom" id="bgb-pC-fhx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kVd-q0-XqU"/>
+                        <connections>
+                            <outlet property="mapView" destination="xex-EL-mTN" id="1cB-QE-nvs"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="dDm-6p-cYW">
+                        <barButtonItem key="leftBarButtonItem" title="Locations" id="4F5-CQ-9zl">
+                            <connections>
+                                <action selector="showLocationsTapped:" destination="CYo-vF-H9R" id="Rdv-6x-oR7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="User" id="n32-EF-Vgz">
+                            <connections>
+                                <action selector="showUserTapped:" destination="CYo-vF-H9R" id="zbt-JC-k9x"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mainView" destination="S4B-gH-9pq" id="u4s-Sf-N43"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sib-wa-5O7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="15" y="137"/>
+        </scene>
+    </scenes>
+</document>

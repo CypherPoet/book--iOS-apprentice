@@ -60,6 +60,15 @@
 		F38A021122D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021022D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift */; };
 		F38A021322D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021222D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift */; };
 		F38A021522D7479800D8C5F3 /* UIViewController+Computeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021422D7479800D8C5F3 /* UIViewController+Computeds.swift */; };
+		F38A021722D84A7C00D8C5F3 /* MapViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021622D84A7C00D8C5F3 /* MapViewerViewController.swift */; };
+		F38A021922D84A9F00D8C5F3 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38A021822D84A9F00D8C5F3 /* Map.storyboard */; };
+		F38A021B22D84C1400D8C5F3 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021A22D84C1400D8C5F3 /* MapCoordinator.swift */; };
+		F38A021D22D85B7B00D8C5F3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38A021C22D85B7B00D8C5F3 /* MapKit.framework */; };
+		F38A021F22D899C300D8C5F3 /* MapViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021E22D899C300D8C5F3 /* MapViewerView.swift */; };
+		F38A022122D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022022D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift */; };
+		F38A022322D8A60900D8C5F3 /* MapViewerModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022222D8A60900D8C5F3 /* MapViewerModelController.swift */; };
+		F38A022522D8AABE00D8C5F3 /* Location+MKAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022422D8AABE00D8C5F3 /* Location+MKAnnotation.swift */; };
+		F38A022822D8CA5E00D8C5F3 /* MKCoordinateSpan+BoundingMetricsForAnnotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022722D8CA5E00D8C5F3 /* MKCoordinateSpan+BoundingMetricsForAnnotations.swift */; };
 		F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +130,15 @@
 		F38A021022D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaggedLocationCoordinator.swift; sourceTree = "<group>"; };
 		F38A021222D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewDataSource.swift; sourceTree = "<group>"; };
 		F38A021422D7479800D8C5F3 /* UIViewController+Computeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Computeds.swift"; sourceTree = "<group>"; };
+		F38A021622D84A7C00D8C5F3 /* MapViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewerViewController.swift; sourceTree = "<group>"; };
+		F38A021822D84A9F00D8C5F3 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		F38A021A22D84C1400D8C5F3 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		F38A021C22D85B7B00D8C5F3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F38A021E22D899C300D8C5F3 /* MapViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewerView.swift; sourceTree = "<group>"; };
+		F38A022022D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewerView+ViewModel.swift"; sourceTree = "<group>"; };
+		F38A022222D8A60900D8C5F3 /* MapViewerModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewerModelController.swift; sourceTree = "<group>"; };
+		F38A022422D8AABE00D8C5F3 /* Location+MKAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+MKAnnotation.swift"; sourceTree = "<group>"; };
+		F38A022722D8CA5E00D8C5F3 /* MKCoordinateSpan+BoundingMetricsForAnnotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateSpan+BoundingMetricsForAnnotations.swift"; sourceTree = "<group>"; };
 		F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F38A021D22D85B7B00D8C5F3 /* MapKit.framework in Frameworks */,
 				6DB6E36BB30F55886E38F50B /* Pods_MyLocations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +167,7 @@
 		E1F9BBAF50D22DBA582FD68E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F38A021C22D85B7B00D8C5F3 /* MapKit.framework */,
 				D4A6D33B83505234A0085B56 /* Pods_MyLocations.framework */,
 			);
 			name = Frameworks;
@@ -165,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				F337D2F022CEF1650085D412 /* Location+Category.swift */,
+				F38A022422D8AABE00D8C5F3 /* Location+MKAnnotation.swift */,
 				F38A01F122D325D100D8C5F3 /* Location+CoreDataClass.swift */,
 				F38A01F222D325D100D8C5F3 /* Location+CoreDataProperties.swift */,
 				F38A020D22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift */,
@@ -234,6 +255,7 @@
 		F34877BB22C4AB7800C2167F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F38A022622D8CA4B00D8C5F3 /* MapKit */,
 				F38A01FB22D480B400D8C5F3 /* Notification Names */,
 				F3789B2222C94491000E6455 /* Formatting */,
 				F34877D122C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift */,
@@ -247,11 +269,11 @@
 		F34877BC22C4AB9F00C2167F /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				F38A021222D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift */,
 				F34877C722C4D98900C2167F /* TableViewDataSource.swift */,
 				F37EA25F22CA5CBD00D3F42F /* Constants */,
 				F34877BB22C4AB7800C2167F /* Extensions */,
 				F34877BD22C4ABA800C2167F /* Protocols */,
-				F38A021222D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -305,6 +327,12 @@
 		F34877D722C4DA9D00C2167F /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				F38A021622D84A7C00D8C5F3 /* MapViewerViewController.swift */,
+				F38A021E22D899C300D8C5F3 /* MapViewerView.swift */,
+				F38A022022D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift */,
+				F38A021822D84A9F00D8C5F3 /* Map.storyboard */,
+				F38A021A22D84C1400D8C5F3 /* MapCoordinator.swift */,
+				F38A022222D8A60900D8C5F3 /* MapViewerModelController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -374,6 +402,14 @@
 				F38A021022D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift */,
 			);
 			path = "Location Details";
+			sourceTree = "<group>";
+		};
+		F38A022622D8CA4B00D8C5F3 /* MapKit */ = {
+			isa = PBXGroup;
+			children = (
+				F38A022722D8CA5E00D8C5F3 /* MKCoordinateSpan+BoundingMetricsForAnnotations.swift */,
+			);
+			path = MapKit;
 			sourceTree = "<group>";
 		};
 		F38DC8BB22CFF98A00C08312 /* Views */ = {
@@ -449,6 +485,7 @@
 				F34877DF22C4EB0700C2167F /* .swiftlint.yml in Resources */,
 				F34877AE22C4A9C100C2167F /* Assets.xcassets in Resources */,
 				F38A020822D5962A00D8C5F3 /* LocationTableViewCell.xib in Resources */,
+				F38A021922D84A9F00D8C5F3 /* Map.storyboard in Resources */,
 				F3849E4522CE865A00D90B70 /* TagLocation.storyboard in Resources */,
 				F3849E4022CE693400D90B70 /* CurrentLocation.storyboard in Resources */,
 				F34877C222C4D7D100C2167F /* LaunchScreen.storyboard in Resources */,
@@ -551,8 +588,10 @@
 				F3789B2A22C94847000E6455 /* CLPlacemark+Formatting.swift in Sources */,
 				F312A92722CC10BE004CB5FF /* TagLocationViewModel.swift in Sources */,
 				F370828222C661FB0083C235 /* StateController.swift in Sources */,
+				F38A022322D8A60900D8C5F3 /* MapViewerModelController.swift in Sources */,
 				F37EA26222CAD70200D3F42F /* LocationErrorMessage.swift in Sources */,
 				F32053C722C8D3A500E41B41 /* GeocodingService.swift in Sources */,
+				F38A022522D8AABE00D8C5F3 /* Location+MKAnnotation.swift in Sources */,
 				F34877A422C4A9C000C2167F /* CurrentLocationViewController.swift in Sources */,
 				F34877D322C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F34877E722C5079700C2167F /* CurrentLocationView.swift in Sources */,
@@ -569,11 +608,14 @@
 				F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */,
 				F38A021322D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift in Sources */,
 				F38A020C22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift in Sources */,
+				F38A022122D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift in Sources */,
 				F38A020A22D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift in Sources */,
+				F38A022822D8CA5E00D8C5F3 /* MKCoordinateSpan+BoundingMetricsForAnnotations.swift in Sources */,
 				F38A021122D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift in Sources */,
 				F337D2EC22CEEF170085D412 /* CategoryListViewController.swift in Sources */,
 				F38A01F622D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift in Sources */,
 				F38A020722D5962A00D8C5F3 /* LocationTableViewCell.swift in Sources */,
+				F38A021B22D84C1400D8C5F3 /* MapCoordinator.swift in Sources */,
 				F38A020122D4A19600D8C5F3 /* TaggedLocationsListViewController.swift in Sources */,
 				F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */,
 				F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */,
@@ -585,7 +627,9 @@
 				F38A01F422D325D100D8C5F3 /* Location+CoreDataProperties.swift in Sources */,
 				F34877CF22C4D9A600C2167F /* Storyboarded.swift in Sources */,
 				F34877C822C4D98900C2167F /* TableViewDataSource.swift in Sources */,
+				F38A021722D84A7C00D8C5F3 /* MapViewerViewController.swift in Sources */,
 				F34877DB22C4E2D900C2167F /* MainCoordinator.swift in Sources */,
+				F38A021F22D899C300D8C5F3 /* MapViewerView.swift in Sources */,
 				F34877C622C4D86700C2167F /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

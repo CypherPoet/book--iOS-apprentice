@@ -20,6 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MKDirectionsApplicationSupportedModes</key>
+	<array/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>In order for you to tag and record locations, this app needs to access the GPS coordinates of your location.</string>
 	<key>UIApplicationSceneManifest</key>

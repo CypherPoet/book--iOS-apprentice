@@ -12,20 +12,29 @@ import UIKit
 final class TaggedLocationsCoordinator: NavigationCoordinator {
     var navController: UINavigationController
     private let stateController: StateController
+    private let tabBarIndex: Int
+    
     
     private var editTaggedLocationCoordinator: EditTaggedLocationCoordinator?
     
     
     init(
         navController: UINavigationController = UINavigationController(),
-        stateController: StateController
+        stateController: StateController,
+        tabBarIndex: Int
     ) {
         self.navController = navController
         self.stateController = stateController
-        
+        self.tabBarIndex = tabBarIndex
+
         start()
     }
-    
+}
+
+
+// MARK: Navigation
+
+extension TaggedLocationsCoordinator {
     
     func start() {
         let taggedLocationsListVC = TaggedLocationsListViewController.instantiateFromStoryboard(
@@ -34,7 +43,8 @@ final class TaggedLocationsCoordinator: NavigationCoordinator {
 
         taggedLocationsListVC.tabBarItem = UITabBarItem(
             title: "Locations",
-            image: UIImage(systemName: "star.circle"), tag: 1
+            image: UIImage(systemName: "star.circle"),
+            tag: tabBarIndex
         )
         taggedLocationsListVC.modelController = .init(
             managedObjectContext: stateController.managedObjectContext

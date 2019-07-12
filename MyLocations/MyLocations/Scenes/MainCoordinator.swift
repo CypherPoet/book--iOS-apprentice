@@ -14,7 +14,9 @@ final class MainCoordinator: Coordinator {
     private let tabBarController: UITabBarController
     private let currentLocationCoordinator: CurrentLocationCoordinator
     private let taggedLocationsCoordinator: TaggedLocationsCoordinator
+    private let mapCoordinator: MapCoordinator
 
+    
     var rootViewController: UIViewController { tabBarController }
     
     
@@ -24,8 +26,9 @@ final class MainCoordinator: Coordinator {
         self.tabBarController = UITabBarController()
         self.tabBarController.tabBar.barStyle = .default
         
-        self.currentLocationCoordinator = CurrentLocationCoordinator(stateController: stateController)
-        self.taggedLocationsCoordinator = TaggedLocationsCoordinator(stateController: stateController)
+        self.currentLocationCoordinator = CurrentLocationCoordinator(stateController: stateController, tabBarIndex: 0)
+        self.taggedLocationsCoordinator = TaggedLocationsCoordinator(stateController: stateController, tabBarIndex: 1)
+        self.mapCoordinator = MapCoordinator(stateController: stateController, tabBarIndex: 2)
     }
     
     
@@ -33,6 +36,7 @@ final class MainCoordinator: Coordinator {
         let childCoordinators: [Coordinator] = [
             currentLocationCoordinator,
             taggedLocationsCoordinator,
+            mapCoordinator,
         ]
     
         tabBarController.setViewControllers(

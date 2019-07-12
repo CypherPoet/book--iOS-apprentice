@@ -13,20 +13,29 @@ import CoreLocation
 final class CurrentLocationCoordinator: NavigationCoordinator {
     var navController: UINavigationController
     private let stateController: StateController
+    private let tabBarIndex: Int
+    
     
     private var tagLocationCoordinator: TagLocationCoordinator?
     
     
     init(
         navController: UINavigationController = UINavigationController(),
-        stateController: StateController
+        stateController: StateController,
+        tabBarIndex: Int
     ) {
         self.navController = navController
         self.stateController = stateController
+        self.tabBarIndex = tabBarIndex
         
         start()
     }
+}
 
+
+// MARK: Navigation
+
+extension CurrentLocationCoordinator {
     
     func start() {
         let currentLocationVC = CurrentLocationViewController.instantiateFromStoryboard(
@@ -35,7 +44,11 @@ final class CurrentLocationCoordinator: NavigationCoordinator {
         
         currentLocationVC.delegate = self
         currentLocationVC.locationManager = stateController.locationManager
-        currentLocationVC.tabBarItem = UITabBarItem(title: "Tag", image: UIImage(systemName: "tag.fill"), tag: 0)
+        currentLocationVC.tabBarItem = UITabBarItem(
+            title: "Tag",
+            image: UIImage(systemName: "tag.fill"),
+            tag: tabBarIndex
+        )
         
         navController.navigationBar.prefersLargeTitles = false
         navController.navigationBar.isHidden = true
