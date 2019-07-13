@@ -82,36 +82,11 @@ extension TaggedLocationsCoordinator: TaggedLocationsListViewControllerDelegate 
 extension TaggedLocationsCoordinator: EditTaggedLocationCoordinatorDelegate {
     
     func coordinatorDidCancel(_ coordinator: EditTaggedLocationCoordinator) {
-        navController.popViewController(animated: true)
+        editTaggedLocationCoordinator = nil
     }
     
     
     func coordinatorDidFinishEditingLocation(_ coordinator: EditTaggedLocationCoordinator) {
-        addHudIndicatorAfterEditing()
-    }
-}
-
-
-// MARK: - Private Helpers
-
-private extension TaggedLocationsCoordinator {
-    
-    func addHudIndicatorAfterEditing() {
-        let hudIndicatorView = HudIndicatorView(
-            covering: navController.view.bounds,
-            labeled: "Updated",
-            withImage: UIImage(systemName: "checkmark")
-        )
-        
-        navController.view.addSubview(hudIndicatorView)
-        navController.view.isUserInteractionEnabled = false
-        hudIndicatorView.show(animated: true)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.76) {
-            hudIndicatorView.removeFromSuperview()
-            
-            self.navController.view.isUserInteractionEnabled = true
-            self.navController.popViewController(animated: true)
-        }
+        editTaggedLocationCoordinator = nil
     }
 }

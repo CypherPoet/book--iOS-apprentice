@@ -15,6 +15,7 @@ final class MapViewerCoordinator: NavigationCoordinator {
     private let stateController: StateController
     private let tabBarIndex: Int
 
+    private var editTaggedLocationCoordinator: EditTaggedLocationCoordinator?
     
     init(
         navController: UINavigationController = UINavigationController(),
@@ -37,18 +38,19 @@ final class MapViewerCoordinator: NavigationCoordinator {
 extension MapViewerCoordinator {
         
     func start() {
-        let mapVC = MapViewerViewController.instantiateFromStoryboard(
+        let mapViewerVC = MapViewerViewController.instantiateFromStoryboard(
             named: R.storyboard.map.name
         )
         
         
-        mapVC.title = "Map"
-        mapVC.tabBarItem = .init(title: "Map", image: UIImage(systemName: "map.fill"), tag: tabBarIndex)
-        mapVC.modelController = MapViewerModelController(
+        mapViewerVC.title = "Map"
+        mapViewerVC.tabBarItem = .init(title: "Map", image: UIImage(systemName: "map.fill"), tag: tabBarIndex)
+        mapViewerVC.delegate = self
+        mapViewerVC.modelController = MapViewerModelController(
             managedObjectContext: stateController.managedObjectContext
         )
         
-        navController.setViewControllers([mapVC], animated: true)
+        navController.setViewControllers([mapViewerVC], animated: true)
     }
 }
 
@@ -60,11 +62,29 @@ extension MapViewerCoordinator: MapViewerViewControllerDelegate {
     
     func controller(
         _ controller: MapViewerViewController,
-        didSelectDetailsFor annotation: MKAnnotation
+        didSelectEditingFor location: Location
     ) {
         
-        let tagLocationVC = TagLocationViewController.instantiateFromStoryboard(
-            named: R.storyboard.tagLocation.name
+        editTaggedLocationCoordinator = EditTaggedLocationCoordinator(
+            navController: navController,
+            stateController: stateController,
+            delegate: self,
+            locationToEdit: location
         )
+        editTaggedLocationCoordinator?.start()
+    }
+}
+
+
+// MARK: - EditTaggedLocationCoordinatorDelegate
+
+extension MapViewerCoordinator: EditTaggedLocationCoordinatorDelegate {
+    
+    func coordinatorDidCancel(_ coordinator: EditTaggedLocationCoordinator) {
+        editTaggedLocationCoordinator = nil
+    }
+    
+    func coordinatorDidFinishEditingLocation(_ coordinator: EditTaggedLocationCoordinator) {
+        editTaggedLocationCoordinator = nil
     }
 }

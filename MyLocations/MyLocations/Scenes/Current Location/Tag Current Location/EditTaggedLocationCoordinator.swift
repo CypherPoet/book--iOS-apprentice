@@ -24,6 +24,7 @@ final class EditTaggedLocationCoordinator: NavigationCoordinator {
     private let locationToEdit: Location
     
     private var tagLocationViewController: TagLocationViewController!
+    private var childModalNavController: UINavigationController!
     
     
     init(
@@ -61,7 +62,9 @@ final class EditTaggedLocationCoordinator: NavigationCoordinator {
             dateRecorded: locationToEdit.dateRecorded
         )
         
-        navController.pushViewController(tagLocationViewController, animated: true)
+        rootViewController.isModalInPresentation = true
+        childModalNavController = UINavigationController(rootViewController: tagLocationViewController)
+        navController.present(childModalNavController, animated: true)
     }
 }
 
@@ -71,11 +74,12 @@ final class EditTaggedLocationCoordinator: NavigationCoordinator {
 extension EditTaggedLocationCoordinator: TagLocationViewControllerDelegate {
     
     func viewControllerDidSaveLocation(_ controller: TagLocationViewController) {
-        delegate?.coordinatorDidFinishEditingLocation(self)
+        addHudIndicatorAfterSavingAndFinish()
     }
     
     
     func viewControllerDidCancel(_ controller: TagLocationViewController) {
+        navController.dismiss(animated: true)
         delegate?.coordinatorDidCancel(self)
     }
     
@@ -110,5 +114,30 @@ extension EditTaggedLocationCoordinator: CategoryListViewControllerDelegate {
     ) {
         navController.popViewController(animated: true)
         tagLocationViewController.viewModel.category = category
+    }
+}
+
+
+// MARK: - Private Helpers
+
+private extension EditTaggedLocationCoordinator {
+    
+    func addHudIndicatorAfterSavingAndFinish() {
+        let hudIndicatorView = HudIndicatorView(
+            covering: navController.view.bounds,
+            labeled: "Updated",
+            withImage: UIImage(systemName: "checkmark")
+        )
+ 
+        childModalNavController.view.addSubview(hudIndicatorView)
+        hudIndicatorView.show(animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.76) {
+            hudIndicatorView.removeFromSuperview()
+            
+            self.navController.view.isUserInteractionEnabled = true
+            self.navController.dismiss(animated: true)
+            self.delegate?.coordinatorDidFinishEditingLocation(self)
+        }
     }
 }

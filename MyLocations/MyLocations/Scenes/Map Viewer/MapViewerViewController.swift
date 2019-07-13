@@ -10,8 +10,8 @@ import UIKit
 import MapKit
 
 
-protocol MapViewerViewControllerDelegate {
-    func controller(_ controller: MapViewerViewController, didSelectDetailsFor annotation: MKAnnotation)
+protocol MapViewerViewControllerDelegate: class {
+    func controller(_ controller: MapViewerViewController, didSelectEditingFor location: Location)
 }
 
 
@@ -19,6 +19,7 @@ class MapViewerViewController: UIViewController, Storyboarded {
     @IBOutlet var mapViewerView: MapViewerView!
     
     var modelController: MapViewerModelController!
+    weak var delegate: MapViewerViewControllerDelegate?
 }
 
 
@@ -63,7 +64,11 @@ extension MapViewerViewController {
 extension MapViewerViewController: MapViewerViewDelegate {
     
     func view(_ view: MapViewerView, didSelectDetailsFor annotation: MKAnnotation) {
-        delegate?.controller(self, didSelectDetailsFor: annotation)
+        guard let location = annotation as? Location else {
+            preconditionFailure("Unexpected annotation type")
+        }
+        
+        delegate?.controller(self, didSelectEditingFor: location)
     }
     
 }

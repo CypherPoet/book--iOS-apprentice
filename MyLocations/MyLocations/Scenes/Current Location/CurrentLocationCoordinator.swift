@@ -16,8 +16,8 @@ final class CurrentLocationCoordinator: NavigationCoordinator {
     private let tabBarIndex: Int
     
     
-    private var tagLocationCoordinator: TagLocationCoordinator?
-    
+    private var editTaggedLocationCoordinator: EditTaggedLocationCoordinator?
+
     
     init(
         navController: UINavigationController = UINavigationController(),
@@ -66,57 +66,35 @@ extension CurrentLocationCoordinator: CurrentLocationViewControllerDelegate {
         didSelectTag location: CLLocation,
         at placemark: CLPlacemark?
     ) {
-        tagLocationCoordinator = TagLocationCoordinator(
+        let newLocationObject = Location(context: stateController.managedObjectContext)
+        
+        newLocationObject.latitude = location.coordinate.latitude
+        newLocationObject.longitude = location.coordinate.longitude
+        newLocationObject.placemark = placemark
+        newLocationObject.locationDescription = ""
+        newLocationObject.dateRecorded = Date()
+        
+        
+        editTaggedLocationCoordinator = EditTaggedLocationCoordinator(
             navController: navController,
             stateController: stateController,
             delegate: self,
-            coordinate: location.coordinate,
-            placemark: placemark
+            locationToEdit: newLocationObject
         )
-        
-        tagLocationCoordinator?.start()
+        editTaggedLocationCoordinator?.start()
     }
 }
 
 
+// MARK: - EditTaggedLocationCoordinatorDelegate
 
-// MARK: - TagLocationCoordinatorDelegate
-
-extension CurrentLocationCoordinator: TagLocationCoordinatorDelegate {
+extension CurrentLocationCoordinator: EditTaggedLocationCoordinatorDelegate {
     
-    func coordinatorDidFinishTaggingLocation(_ coordinator: TagLocationCoordinator) {
-        addHudIndicatorAfterTaggingLocation()
+    func coordinatorDidCancel(_ coordinator: EditTaggedLocationCoordinator) {
+        editTaggedLocationCoordinator = nil
     }
     
-    
-    func coordinatorDidCancel(_ coordinator: TagLocationCoordinator) {
-        navController.popViewController(animated: true)
-        navController.navigationBar.isHidden = true
-    }
-    
-}
-
-
-// MARK: - Private Helpers
-
-private extension CurrentLocationCoordinator {
-    
-    func addHudIndicatorAfterTaggingLocation() {
-        let hudIndicatorView = HudIndicatorView(
-            covering: navController.view.bounds,
-            labeled: "Tagged",
-            withImage: UIImage(systemName: "checkmark")
-        )
-        
-        navController.view.addSubview(hudIndicatorView)
-        navController.view.isUserInteractionEnabled = false
-        hudIndicatorView.show(animated: true)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.76) {
-            hudIndicatorView.removeFromSuperview()
-            
-            self.navController.view.isUserInteractionEnabled = true
-            self.navController.popViewController(animated: true)
-        }
+    func coordinatorDidFinishEditingLocation(_ coordinator: EditTaggedLocationCoordinator) {
+        editTaggedLocationCoordinator = nil
     }
 }

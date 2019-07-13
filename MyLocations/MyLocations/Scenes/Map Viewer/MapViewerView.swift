@@ -125,14 +125,18 @@ extension MapViewerView: MKMapViewDelegate {
     }
     
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    func mapView(
+        _ mapView: MKMapView,
+        annotationView view: MKAnnotationView,
+        calloutAccessoryControlTapped control: UIControl
+    ) {
         guard
             view is MKPinAnnotationView,
             let annotation = view.annotation as? CustomAnnotation,
             (annotations as NSArray).contains(annotation)
         else { return }
         
-        delegate.view(self, didSelectDetailsFor: annotation)
+        delegate?.view(self, didSelectDetailsFor: annotation)
     }
 }
 

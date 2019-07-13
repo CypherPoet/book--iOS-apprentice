@@ -13,7 +13,8 @@ import CoreData
 
 final class TagLocationModelController {
     private let stateController: StateController
-    private let locationToEdit: Location?
+    private let locationToEdit: Location
+    
     
     typealias Changes = (
         latitude: Double,
@@ -25,7 +26,7 @@ final class TagLocationModelController {
     )
     
     
-    init(stateController: StateController, locationToEdit: Location? = nil) {
+    init(stateController: StateController, locationToEdit: Location) {
         self.stateController = stateController
         self.locationToEdit = locationToEdit
     }
@@ -46,14 +47,12 @@ extension TagLocationModelController {
         with changes: Changes,
         then completionHandler: ((Result<Void, Error>) -> Void)
     ) {
-        let location = locationToEdit ?? Location(context: managedObjectContext)
-
-        location.latitude = changes.latitude
-        location.longitude = changes.longitude
-        location.category = changes.category
-        location.dateRecorded = changes.dateRecorded
-        location.placemark = changes.placemark
-        location.locationDescription = changes.locationDescription
+        locationToEdit.latitude = changes.latitude
+        locationToEdit.longitude = changes.longitude
+        locationToEdit.category = changes.category
+        locationToEdit.dateRecorded = changes.dateRecorded
+        locationToEdit.placemark = changes.placemark
+        locationToEdit.locationDescription = changes.locationDescription
 
         do {
             try managedObjectContext.save()
