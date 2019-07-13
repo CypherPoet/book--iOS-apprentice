@@ -1,5 +1,5 @@
 //
-//  MapCoordinator.swift
+//  MapViewerCoordinator.swift
 //  MyLocations
 //
 //  Created by Brian Sipple on 7/12/19.
@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import MapKit
 
 
-final class MapCoordinator: NavigationCoordinator {
+final class MapViewerCoordinator: NavigationCoordinator {
     var navController: UINavigationController
     private let stateController: StateController
     private let tabBarIndex: Int
@@ -33,7 +34,7 @@ final class MapCoordinator: NavigationCoordinator {
 
 // MARK: Navigation
     
-extension MapCoordinator {
+extension MapViewerCoordinator {
         
     func start() {
         let mapVC = MapViewerViewController.instantiateFromStoryboard(
@@ -48,5 +49,22 @@ extension MapCoordinator {
         )
         
         navController.setViewControllers([mapVC], animated: true)
+    }
+}
+
+
+
+// MARK: MapViewerViewControllerDelegate
+
+extension MapViewerCoordinator: MapViewerViewControllerDelegate {
+    
+    func controller(
+        _ controller: MapViewerViewController,
+        didSelectDetailsFor annotation: MKAnnotation
+    ) {
+        
+        let tagLocationVC = TagLocationViewController.instantiateFromStoryboard(
+            named: R.storyboard.tagLocation.name
+        )
     }
 }

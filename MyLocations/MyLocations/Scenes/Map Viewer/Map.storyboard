@@ -46,7 +46,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="mainView" destination="S4B-gH-9pq" id="u4s-Sf-N43"/>
+                        <outlet property="mapViewerView" destination="S4B-gH-9pq" id="u4s-Sf-N43"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sib-wa-5O7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

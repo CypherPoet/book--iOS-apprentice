@@ -26,20 +26,20 @@ extension MKCoordinateSpan {
         )
         
         
-        let (boundedTopLeft, boundedBottomRight) = annotations.reduce(initialBounds) {
-            (currentBounds: Bounds, currentAnnotation) -> Bounds in
-            
-            let newMinLatitude = min(currentBounds.topLeft.latitude, currentAnnotation.coordinate.latitude)
-            let newMaxLatitude = max(currentBounds.bottomRight.latitude, currentAnnotation.coordinate.latitude)
-            
-            let newMinLongitude = min(currentBounds.topLeft.longitude, currentAnnotation.coordinate.longitude)
-            let newMaxLongitude = max(currentBounds.bottomRight.longitude, currentAnnotation.coordinate.longitude)
-            
-            let newTopLeft = CLLocationCoordinate2D(latitude: newMaxLatitude, longitude: newMinLongitude)
-            let newBottomRight = CLLocationCoordinate2D(latitude: newMinLatitude, longitude: newMaxLongitude)
-            
-            return (topLeft: newTopLeft, bottomRight: newBottomRight)
-        }
+        let (boundedTopLeft, boundedBottomRight) = annotations
+            .reduce(initialBounds, { (currentBounds: Bounds, currentAnnotation) -> Bounds in
+                let newMinLatitude = min(currentBounds.bottomRight.latitude, currentAnnotation.coordinate.latitude)
+                let newMaxLatitude = max(currentBounds.topLeft.latitude, currentAnnotation.coordinate.latitude)
+                
+                let newMinLongitude = min(currentBounds.topLeft.longitude, currentAnnotation.coordinate.longitude)
+                let newMaxLongitude = max(currentBounds.bottomRight.longitude, currentAnnotation.coordinate.longitude)
+                
+                let newTopLeft = CLLocationCoordinate2D(latitude: newMaxLatitude, longitude: newMinLongitude)
+                let newBottomRight = CLLocationCoordinate2D(latitude: newMinLatitude, longitude: newMaxLongitude)
+                
+                return (topLeft: newTopLeft, bottomRight: newBottomRight)
+            }
+        )
         
         
         let centerLatitude = boundedBottomRight.latitude - ((boundedBottomRight.latitude - boundedTopLeft.latitude) / 2.0)

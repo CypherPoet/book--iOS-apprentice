@@ -10,30 +10,27 @@ import UIKit
 import MapKit
 
 
+protocol MapViewerViewDelegate: class {
+    func view(_ view: MapViewerView, didSelectDetailsFor annotation: MKAnnotation)
+}
+
+
 class MapViewerView: UIView {
     @IBOutlet private var mapView: MKMapView!
     
-
     var regionZoomLatitudinalMeters: CLLocationDistance = 1000
     var regionZoomLongitudinalMeters: CLLocationDistance = 1000
-  
-    var annotations: [MKAnnotation]? {
+
+    weak var delegate: MapViewerViewDelegate?
+    
+    var annotations: [CustomAnnotation] = [] {
         didSet {
-            guard let newAnnotations = annotations else { return }
-            
             DispatchQueue.main.async {
-                self.annotationsDidChange(from: oldValue, to: newAnnotations)
+                self.annotationsDidChange(from: oldValue, to: self.annotations)
             }
         }
     }
-    
-//    var viewModel: ViewModel? {
-//        didSet {
-//            guard let viewModel = viewModel else { return }
-//            DispatchQueue.main.async { self.render(with: viewModel) }
-//        }
-//    }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -59,7 +56,7 @@ extension MapViewerView {
     
 
     var regionBoundingAnnotations: MKCoordinateRegion {
-        guard let annotations = annotations, !annotations.isEmpty else {
+        guard !annotations.isEmpty else {
             return currentUserRegion
         }
 
@@ -75,12 +72,16 @@ extension MapViewerView {
         
         return MKCoordinateRegion(
             center: center,
-            latitudinalMeters: boundingSpan.latitudeDelta * 1.1,
-            longitudinalMeters: boundingSpan.longitudeDelta * 1.1
+            span: MKCoordinateSpan(
+                latitudeDelta: min(boundingSpan.latitudeDelta * 1.5, 180.0),
+                longitudeDelta: min(boundingSpan.longitudeDelta * 1.5, 360.0)
+            )
         )
     }
 }
 
+
+// MARK: - Core Methods
 
 extension MapViewerView {
     
@@ -98,7 +99,7 @@ extension MapViewerView {
             animated: true
         )
     }
-    
+
 }
 
 
@@ -106,6 +107,33 @@ extension MapViewerView {
 
 extension MapViewerView: MKMapViewDelegate {
     
+    func mapView(
+        _ mapView: MKMapView,
+        viewFor annotation: MKAnnotation
+    ) -> MKAnnotationView? {
+        guard annotation is CustomAnnotation else { return nil }
+        
+        let annotationView = mapView
+            .dequeueReusableAnnotationView(
+                withIdentifier: CustomAnnotationViewFactory.reuseIdentifier
+            ) as? MKPinAnnotationView ??
+            CustomAnnotationViewFactory.makePinView(for: annotation)
+        
+        configure(annotationView, with: annotation)
+        
+        return annotationView
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard
+            view is MKPinAnnotationView,
+            let annotation = view.annotation as? CustomAnnotation,
+            (annotations as NSArray).contains(annotation)
+        else { return }
+        
+        delegate.view(self, didSelectDetailsFor: annotation)
+    }
 }
 
 
@@ -119,18 +147,19 @@ private extension MapViewerView {
     
     
     func annotationsDidChange(
-        from oldAnnotations: [MKAnnotation]?,
-        to newAnnotations: [MKAnnotation]
+        from oldAnnotations: [CustomAnnotation],
+        to newAnnotations: [CustomAnnotation]
     ) {
-        if let oldAnnotations = oldAnnotations {
-            mapView.removeAnnotations(oldAnnotations)
-        }
-        
+        mapView.removeAnnotations(oldAnnotations)
         mapView.addAnnotations(newAnnotations)
-//        
-//        mapView.setRegion(
-//            mapView.regionThatFits(regionBoundingAnnotations),
-//            animated: true
-//        )
+    }
+    
+    
+    func configure(_ pinAnnotationView: MKPinAnnotationView, with annotation: MKAnnotation) {
+//        guard let rightButton = pinAnnotationView.rightCalloutAccessoryView as? UIButton else {
+//            preconditionFailure("No button found for rightCalloutAccessoryView")
+//        }
+        
+        pinAnnotationView.annotation = annotation
     }
 }
