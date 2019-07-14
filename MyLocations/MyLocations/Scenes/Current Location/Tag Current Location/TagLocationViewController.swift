@@ -184,4 +184,4 @@ private extension TagLocationViewController {
 }
 
 
-extension TagLocationViewController: CoreDataContextHandling {}
+extension TagLocationViewController: CoreDataErrorHandling {}

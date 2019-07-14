@@ -45,7 +45,7 @@
 		F38A01F322D325D100D8C5F3 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F122D325D100D8C5F3 /* Location+CoreDataClass.swift */; };
 		F38A01F422D325D100D8C5F3 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F222D325D100D8C5F3 /* Location+CoreDataProperties.swift */; };
 		F38A01F622D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F522D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift */; };
-		F38A01F822D47DD600D8C5F3 /* CoreDataContextHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F722D47DD600D8C5F3 /* CoreDataContextHandling.swift */; };
+		F38A01F822D47DD600D8C5F3 /* CoreDataErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F722D47DD600D8C5F3 /* CoreDataErrorHandling.swift */; };
 		F38A01FA22D4801300D8C5F3 /* NotificationName+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01F922D4801300D8C5F3 /* NotificationName+CoreData.swift */; };
 		F38A01FD22D49FB300D8C5F3 /* TaggedLocationsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A01FC22D49FB300D8C5F3 /* TaggedLocationsCoordinator.swift */; };
 		F38A01FF22D4A16500D8C5F3 /* TaggedLocations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38A01FE22D4A16500D8C5F3 /* TaggedLocations.storyboard */; };
@@ -116,7 +116,7 @@
 		F38A01F122D325D100D8C5F3 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F38A01F222D325D100D8C5F3 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F38A01F522D3322B00D8C5F3 /* CodingUserInfoKey+ManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodingUserInfoKey+ManagedObjectContext.swift"; sourceTree = "<group>"; };
-		F38A01F722D47DD600D8C5F3 /* CoreDataContextHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContextHandling.swift; sourceTree = "<group>"; };
+		F38A01F722D47DD600D8C5F3 /* CoreDataErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataErrorHandling.swift; sourceTree = "<group>"; };
 		F38A01F922D4801300D8C5F3 /* NotificationName+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+CoreData.swift"; sourceTree = "<group>"; };
 		F38A01FC22D49FB300D8C5F3 /* TaggedLocationsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedLocationsCoordinator.swift; sourceTree = "<group>"; };
 		F38A01FE22D4A16500D8C5F3 /* TaggedLocations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaggedLocations.storyboard; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 				F34877CC22C4D9A600C2167F /* NavigationControlling.swift */,
 				F34877CA22C4D9A600C2167F /* NavigationCoordinator.swift */,
 				F34877CB22C4D9A600C2167F /* Storyboarded.swift */,
-				F38A01F722D47DD600D8C5F3 /* CoreDataContextHandling.swift */,
+				F38A01F722D47DD600D8C5F3 /* CoreDataErrorHandling.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -594,7 +594,7 @@
 				F34877D022C4D9A600C2167F /* NavigationControlling.swift in Sources */,
 				F3849E4822CE880C00D90B70 /* CurrentLocationCoordinator.swift in Sources */,
 				F38A022D22D9E1E400D8C5F3 /* CustomAnnotationViewFactory.swift in Sources */,
-				F38A01F822D47DD600D8C5F3 /* CoreDataContextHandling.swift in Sources */,
+				F38A01F822D47DD600D8C5F3 /* CoreDataErrorHandling.swift in Sources */,
 				F34877E922C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift in Sources */,
 				F34877CE22C4D9A600C2167F /* NavigationCoordinator.swift in Sources */,
 				F37EA26422CBB12900D3F42F /* TagLocationViewController.swift in Sources */,

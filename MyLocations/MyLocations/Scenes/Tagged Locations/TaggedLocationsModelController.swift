@@ -62,4 +62,4 @@ extension TaggedLocationsModelController {
 }
 
 
-extension TaggedLocationsModelController: CoreDataContextHandling {}
+extension TaggedLocationsModelController: CoreDataErrorHandling {}

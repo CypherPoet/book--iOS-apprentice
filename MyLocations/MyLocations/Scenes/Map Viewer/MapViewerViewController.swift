@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 
 protocol MapViewerViewControllerDelegate: class {
@@ -18,6 +19,7 @@ protocol MapViewerViewControllerDelegate: class {
 class MapViewerViewController: UIViewController, Storyboarded {
     @IBOutlet var mapViewerView: MapViewerView!
     
+    var managedObjectContext: NSManagedObjectContext!
     var modelController: MapViewerModelController!
     weak var delegate: MapViewerViewControllerDelegate?
 }
@@ -31,15 +33,12 @@ extension MapViewerViewController {
         super.viewDidLoad()
         
         assert(modelController != nil, "No model controller was set")
+        assert(managedObjectContext != nil, "No managedObjectContext was set")
         
         mapViewerView.delegate = self
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         loadLocations()
+        setupObservers()
     }
 }
 
@@ -78,7 +77,7 @@ extension MapViewerViewController: MapViewerViewDelegate {
 
 private extension MapViewerViewController {
 
-    func loadLocations() {
+    @objc func loadLocations() {
         modelController.fetchLocations { [weak self] dataResult in
             guard let self = self else { return }
 
@@ -95,5 +94,15 @@ private extension MapViewerViewController {
                 }
             }
         }
+    }
+    
+    
+    func setupObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(loadLocations),
+            name: .NSManagedObjectContextObjectsDidChange,
+            object: managedObjectContext
+        )
     }
 }

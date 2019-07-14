@@ -62,8 +62,9 @@ final class EditTaggedLocationCoordinator: NavigationCoordinator {
             dateRecorded: locationToEdit.dateRecorded
         )
         
-        rootViewController.isModalInPresentation = true
         childModalNavController = UINavigationController(rootViewController: tagLocationViewController)
+
+        childModalNavController.isModalInPresentation = true
         navController.present(childModalNavController, animated: true)
     }
 }
@@ -94,7 +95,7 @@ extension EditTaggedLocationCoordinator: TagLocationViewControllerDelegate {
         categoryListVC.categories = Location.Category.allCases
         categoryListVC.title = "Select A Category"
         
-        navController.pushViewController(categoryListVC, animated: true)
+        childModalNavController.pushViewController(categoryListVC, animated: true)
     }
 }
 
@@ -104,7 +105,7 @@ extension EditTaggedLocationCoordinator: TagLocationViewControllerDelegate {
 extension EditTaggedLocationCoordinator: CategoryListViewControllerDelegate {
     
     func viewControllerDidCancel(_ controller: CategoryListViewController) {
-        navController.popViewController(animated: true)
+        childModalNavController.popViewController(animated: true)
     }
     
     
@@ -112,7 +113,7 @@ extension EditTaggedLocationCoordinator: CategoryListViewControllerDelegate {
         _ controller: CategoryListViewController,
         didSelect category: Location.Category
     ) {
-        navController.popViewController(animated: true)
+        childModalNavController.popViewController(animated: true)
         tagLocationViewController.viewModel.category = category
     }
 }

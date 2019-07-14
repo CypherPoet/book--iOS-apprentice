@@ -1,5 +1,5 @@
 //
-//  CoreDataContextHandling.swift
+//  CoreDataErrorHandling.swift
 //  MyLocations
 //
 //  Created by Brian Sipple on 7/9/19.
@@ -9,12 +9,12 @@
 import Foundation
 
 
-protocol CoreDataContextHandling {
+protocol CoreDataErrorHandling {
     func fatalCoreDataError(_ error: Error)
 }
 
 
-extension CoreDataContextHandling {
+extension CoreDataErrorHandling {
     func fatalCoreDataError(_ error: Error) {
         print("💥 Fatal Core Data Error: \(error)")
         

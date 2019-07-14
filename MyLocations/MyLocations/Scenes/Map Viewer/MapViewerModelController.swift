@@ -55,4 +55,4 @@ private extension MapViewerModelController {
 }
 
 
-extension MapViewerModelController: CoreDataContextHandling {}
+extension MapViewerModelController: CoreDataErrorHandling {}

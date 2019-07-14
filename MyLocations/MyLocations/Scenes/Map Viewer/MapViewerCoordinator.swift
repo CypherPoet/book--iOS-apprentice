@@ -42,10 +42,11 @@ extension MapViewerCoordinator {
             named: R.storyboard.map.name
         )
         
-        
         mapViewerVC.title = "Map"
         mapViewerVC.tabBarItem = .init(title: "Map", image: UIImage(systemName: "map.fill"), tag: tabBarIndex)
         mapViewerVC.delegate = self
+        
+        mapViewerVC.managedObjectContext = stateController.managedObjectContext
         mapViewerVC.modelController = MapViewerModelController(
             managedObjectContext: stateController.managedObjectContext
         )
