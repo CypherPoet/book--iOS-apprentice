@@ -17,7 +17,8 @@ struct TagLocationViewModel {
     var category: Location.Category?
     var locationDescription: String
     var dateRecorded: Date
-    var selectedPhoto: UIImage?
+    var currentPhoto: UIImage?
+    var newlySelectedPhoto: UIImage?
 }
 
 
@@ -27,15 +28,10 @@ extension TagLocationViewModel {
     
     var latitudeText: String { latitude.coordinateFormat }
     var longitudeText: String { longitude.coordinateFormat }
+    var categoryLabelText: String { category?.displayValue ?? "Select A Category" }
+    var addPhotoLabelText: String { "Add A Photo" }
+    var imageForPhoto: UIImage? { newlySelectedPhoto ?? currentPhoto }
     var dateText: String { dateRecorded.locationCaptureFormat }
-
-    var addPhotoLabelText: String {
-        selectedPhoto == nil ? "Add A Photo" : ""
-    }
-
-    var categoryLabelText: String {
-        category?.displayValue ?? "Select A Category"
-    }
 
     
     var addressText: String {

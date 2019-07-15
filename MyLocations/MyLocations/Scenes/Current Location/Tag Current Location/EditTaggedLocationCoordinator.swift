@@ -60,7 +60,7 @@ final class EditTaggedLocationCoordinator: NavigationCoordinator {
             category: locationToEdit.category,
             locationDescription: locationToEdit.locationDescription,
             dateRecorded: locationToEdit.dateRecorded,
-            selectedPhoto: locationToEdit.photoImage
+            currentPhoto: locationToEdit.photoImage
         )
         
         childModalNavController = UINavigationController(rootViewController: tagLocationViewController)

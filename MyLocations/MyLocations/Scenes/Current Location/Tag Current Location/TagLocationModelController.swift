@@ -54,7 +54,11 @@ extension TagLocationModelController {
         locationToEdit.dateRecorded = changes.dateRecorded
         locationToEdit.placemark = changes.placemark
         locationToEdit.locationDescription = changes.locationDescription
-        locationToEdit.photoData = changes.photoData
+        
+        // Don't overwrite the existing photo if there's no new photo data
+        if let photoData = changes.photoData {
+            locationToEdit.photoData = photoData
+        }
         
         do {
             try managedObjectContext.save()

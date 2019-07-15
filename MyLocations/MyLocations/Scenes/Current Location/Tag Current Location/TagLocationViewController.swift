@@ -58,7 +58,7 @@ extension TagLocationViewController {
     var canUseCamera: Bool { UIImagePickerController.isSourceTypeAvailable(.camera) }
 
     var dataForSelectedPhoto: Data? {
-        guard let selectedPhoto = viewModel.selectedPhoto else { return nil }
+        guard let selectedPhoto = viewModel.newlySelectedPhoto else { return nil }
         
         return selectedPhoto.jpegData(compressionQuality: 0.8)
     }
@@ -91,7 +91,7 @@ extension TagLocationViewController {
     
     
     var heightForSelectedPhotoImage: CGFloat {
-        if let selectedPhoto = viewModel.selectedPhoto {
+        if let selectedPhoto = viewModel.imageForPhoto {
             let photoAspectRatio = selectedPhoto.size.width / selectedPhoto.size.height
 
             return photoImageViewWidthConstraint.constant / photoAspectRatio
@@ -142,7 +142,7 @@ extension TagLocationViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.row, indexPath.section) {
         case (CellIndexPath.addPhoto.row, CellIndexPath.addPhoto.section):
-            return viewModel.selectedPhoto == nil ?
+            return viewModel.imageForPhoto == nil ?
                 UITableView.automaticDimension : photoImageViewHeightConstraint.constant
         default:
             return UITableView.automaticDimension
@@ -205,7 +205,7 @@ extension TagLocationViewController: UIImagePickerControllerDelegate {
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
     ) {
         if let selectedImage = info[.editedImage] as? UIImage {
-            viewModel.selectedPhoto = selectedImage
+            viewModel.newlySelectedPhoto = selectedImage
             photoImageViewHeightConstraint.constant = heightForSelectedPhotoImage
 //            updatePhotoImageViewConstraints(using: selectedImage)
             
@@ -277,10 +277,10 @@ private extension TagLocationViewController {
         latitudeLabel.text = viewModel.latitudeText
         longitudeLabel.text = viewModel.longitudeText
         dateLabel.text = viewModel.dateText
-        photoImageView.image = viewModel.selectedPhoto
+        photoImageView.image = viewModel.imageForPhoto
 
-        photoImageView.isHidden = viewModel.selectedPhoto == nil
-        addPhotoLabel.isHidden = viewModel.selectedPhoto != nil
+        photoImageView.isHidden = viewModel.imageForPhoto == nil
+        addPhotoLabel.isHidden = viewModel.imageForPhoto != nil
     }
     
     
