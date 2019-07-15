@@ -66,6 +66,18 @@ extension TagLocationModelController {
         } catch {
             completionHandler(.failure(error))
         }
+    }
+    
+    
+    func deletePhoto(then completionHandler: ((Result<Void, Error>) -> Void)) {
+        locationToEdit.photoData = nil
+
+        do {
+            try managedObjectContext.save()
+            completionHandler(.success(()))
+        } catch {
+            completionHandler(.failure(error))
+        }
         
     }
 }

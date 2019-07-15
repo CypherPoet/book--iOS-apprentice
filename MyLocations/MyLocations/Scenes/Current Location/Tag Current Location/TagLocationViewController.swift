@@ -78,15 +78,29 @@ extension TagLocationViewController {
     
     
     var photoPickingAlertActions: [UIAlertAction] {
-        [
+        var actions = [
             UIAlertAction(title: "Cancel", style: .cancel),
             UIAlertAction(title: "Take New Photo", style: .default, handler: { [weak self] _ in
                 self?.presentImagePicker(using: .camera)
             }),
             UIAlertAction(title: "Choose Photo From Library", style: .default, handler: { [weak self] _ in
                 self?.presentImagePicker(using: .photoLibrary)
-            }),
+            })
         ]
+        
+        if viewModel.imageForPhoto != nil {
+            actions.append(
+                UIAlertAction(
+                    title: "Delete Existing Photo",
+                    style: .destructive,
+                    handler: { [weak self] _ in
+                        self?.deletePhoto()
+                    }
+                )
+            )
+        }
+        
+        return actions
     }
     
     
@@ -119,6 +133,37 @@ extension TagLocationViewController {
 }
 
 
+// MARK: - Event Handling
+
+extension TagLocationViewController {
+    
+    @IBAction func cancelTapped() {
+        delegate?.viewControllerDidCancel(self)
+    }
+    
+    
+    @IBAction func doneButtonTapped() {
+        modelController.saveLocation(with: locationModelChanges) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                switch result {
+                case .success:
+                    self.delegate?.viewControllerDidSaveLocation(self)
+                case .failure(let error):
+                    self.fatalCoreDataError(error)
+                }
+            }
+        }
+    }
+    
+    
+    @IBAction func tableViewTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+        potentiallyHideKeyboardOnTap(from: gestureRecognizer)
+    }
+}
+
+
 // MARK: - UITableViewDelegate
 
 extension TagLocationViewController {
@@ -147,37 +192,6 @@ extension TagLocationViewController {
         default:
             return UITableView.automaticDimension
         }
-    }
-}
-
-
-// MARK: - Event Handling
-
-extension TagLocationViewController {
-    
-    @IBAction func cancelTapped() {
-        delegate?.viewControllerDidCancel(self)
-    }
-    
-    
-    @IBAction func doneButtonTapped() {
-        modelController.saveLocation(with: locationModelChanges) { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                
-                switch result {
-                case .success:
-                    self.delegate?.viewControllerDidSaveLocation(self)
-                case .failure(let error):
-                    self.fatalCoreDataError(error)
-                }
-            }
-        }
-    }
-    
-    
-    @IBAction func tableViewTapped(_ gestureRecognizer: UITapGestureRecognizer) {
-        potentiallyHideKeyboardOnTap(from: gestureRecognizer)
     }
 }
 
@@ -320,6 +334,19 @@ private extension TagLocationViewController {
         imagePicker.delegate = self
     
         present(imagePicker, animated: true)
+    }
+    
+    
+    func deletePhoto() {
+        modelController.deletePhoto { [weak self] _ in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.viewModel.currentPhoto = nil
+                self.viewModel.newlySelectedPhoto = nil
+                self.tableView.reloadRows(at: [CellIndexPath.addPhoto], with: .none)
+            }
+        }
     }
 }
 
