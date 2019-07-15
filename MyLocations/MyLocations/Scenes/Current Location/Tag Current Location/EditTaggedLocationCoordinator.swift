@@ -97,6 +97,11 @@ extension EditTaggedLocationCoordinator: TagLocationViewControllerDelegate {
         
         childModalNavController.pushViewController(categoryListVC, animated: true)
     }
+    
+    
+    func viewController(_ controller: TagLocationViewController, didUpdatePhoto: Data) {
+
+    }
 }
 
 

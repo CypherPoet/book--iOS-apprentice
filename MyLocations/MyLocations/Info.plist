@@ -65,6 +65,10 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This lets you associate photos from your library with tagged locations.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This lets you take photos with your camera to associate them with tagged locations.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

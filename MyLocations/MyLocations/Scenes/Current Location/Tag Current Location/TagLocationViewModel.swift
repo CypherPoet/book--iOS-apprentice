@@ -6,8 +6,9 @@
 //  Copyright © 2019 CypherPoet. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreLocation
+
 
 struct TagLocationViewModel {
     var latitude: Double
@@ -16,8 +17,7 @@ struct TagLocationViewModel {
     var category: Location.Category?
     var locationDescription: String
     var dateRecorded: Date
-    
-//    var selectedPhoto: UIImage?
+    var selectedPhoto: UIImage?
 }
 
 
@@ -28,7 +28,10 @@ extension TagLocationViewModel {
     var latitudeText: String { latitude.coordinateFormat }
     var longitudeText: String { longitude.coordinateFormat }
     var dateText: String { dateRecorded.locationCaptureFormat }
-    
+
+    var addPhotoLabelText: String {
+        selectedPhoto == nil ? "Add A Photo" : ""
+    }
 
     var categoryLabelText: String {
         category?.displayValue ?? "Select A Category"

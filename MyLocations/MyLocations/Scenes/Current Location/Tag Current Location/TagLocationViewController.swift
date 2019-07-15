@@ -14,26 +14,40 @@ protocol TagLocationViewControllerDelegate: class {
     func viewControllerDidCancel(_ controller: TagLocationViewController)
     func viewControllerDidSaveLocation(_ controller: TagLocationViewController)
     func viewControllerDidSelectChooseCategory(_ controller: TagLocationViewController)
+    func viewController(_ controller: TagLocationViewController, didUpdatePhoto: Data)
 }
 
 
 class TagLocationViewController: UITableViewController, Storyboarded {
+    @IBOutlet private var addPhotoLabel: UILabel!
     @IBOutlet private var categoryLabel: UILabel!
     @IBOutlet private var latitudeLabel: UILabel!
     @IBOutlet private var longitudeLabel: UILabel!
     @IBOutlet private var addressLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
+    @IBOutlet private var photoImageView: UIImageView!
+    @IBOutlet var photoImageViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var photoImageViewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet private var descriptionCell: UITableViewCell!
     
     private lazy var descriptionTextView: UITextView = makeDescriptionTextView()
     
     private enum CellIndexPath {
-        static let category: (row: Int, section: Int) = (0, 1)
+        static let addPhoto = IndexPath(row: 0, section: 0)
+        static let category = IndexPath(row: 0, section: 1)
     }
     
-    var viewModel: TagLocationViewModel!
-    var modelController: TagLocationModelController!
     weak var delegate: TagLocationViewControllerDelegate?
+    var modelController: TagLocationModelController!
+
+    var viewModel: TagLocationViewModel! {
+        didSet {
+            if isViewLoaded {
+                DispatchQueue.main.async { self.render(with: self.viewModel) }
+            }
+        }
+    }
 }
 
 
@@ -41,6 +55,8 @@ class TagLocationViewController: UITableViewController, Storyboarded {
 
 extension TagLocationViewController {
     
+    var canUseCamera: Bool { UIImagePickerController.isSourceTypeAvailable(.camera) }
+
     var locationModelChanges: TagLocationModelController.Changes {
         return (
             latitude: viewModel.latitude,
@@ -50,6 +66,19 @@ extension TagLocationViewController {
             placemark: viewModel.placemark,
             locationDescription: viewModel.locationDescription
         )
+    }
+    
+    
+    var photoPickingAlertActions: [UIAlertAction] {
+        [
+            UIAlertAction(title: "Cancel", style: .cancel),
+            UIAlertAction(title: "Take New Photo", style: .default, handler: { [weak self] _ in
+                self?.presentImagePicker(using: .camera)
+            }),
+            UIAlertAction(title: "Choose Photo From Library", style: .default, handler: { [weak self] _ in
+                self?.presentImagePicker(using: .photoLibrary)
+            }),
+        ]
     }
 }
 
@@ -64,13 +93,14 @@ extension TagLocationViewController {
         assert(modelController != nil, "No `modelController` was set")
         
         setupUI()
+        render(with: viewModel)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        render(with: viewModel)
+//        render(with: viewModel)
     }
 }
 
@@ -80,11 +110,28 @@ extension TagLocationViewController {
 extension TagLocationViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         switch (indexPath.row, indexPath.section) {
         case (CellIndexPath.category.row, CellIndexPath.category.section):
             delegate?.viewControllerDidSelectChooseCategory(self)
+        case (CellIndexPath.addPhoto.row, CellIndexPath.addPhoto.section):
+            // don't leave the row appearing selected while the picker is booting up
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            beginImagePicking()
         default:
             break
+        }
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch (indexPath.row, indexPath.section) {
+        case (CellIndexPath.addPhoto.row, CellIndexPath.addPhoto.section):
+            return photoImageView.isHidden ?
+                UITableView.automaticDimension : photoImageViewHeightConstraint.constant
+        default:
+            return UITableView.automaticDimension
         }
     }
 }
@@ -135,6 +182,36 @@ extension TagLocationViewController: UITextViewDelegate {
 }
 
 
+// MARK: - UIImagePickerControllerDelegate
+
+extension TagLocationViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
+        if let selectedImage = info[.editedImage] as? UIImage {
+            viewModel.selectedPhoto = selectedImage
+            photoImageView.isHidden = false
+            updatePhotoImageViewConstraints(using: selectedImage)
+            
+            // 🤔 For some reason, `.automatic` causes the image to disappear.
+//            tableView.reloadRows(at: [CellIndexPath.addPhoto], with: .automatic)
+            tableView.reloadRows(at: [CellIndexPath.addPhoto], with: .none)
+        } else {
+            photoImageView.isHidden = true
+        }
+        
+        dismiss(animated: true)
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+}
+
+
 // MARK: - Private Helpers
 
 private extension TagLocationViewController {
@@ -143,34 +220,45 @@ private extension TagLocationViewController {
         descriptionCell.addSubview(descriptionTextView)
         
         NSLayoutConstraint.activate([
-            descriptionTextView.leftAnchor.constraint(equalTo: descriptionCell.leftAnchor, constant: 0),
-            descriptionTextView.topAnchor.constraint(equalTo: descriptionCell.topAnchor, constant: 0),
-            descriptionTextView.rightAnchor.constraint(equalTo: descriptionCell.rightAnchor, constant: 0),
-            descriptionTextView.bottomAnchor.constraint(equalTo: descriptionCell.bottomAnchor, constant: 0),
+            descriptionTextView.leftAnchor.constraint(equalTo: descriptionCell.leftAnchor, constant: 10),
+            descriptionTextView.topAnchor.constraint(equalTo: descriptionCell.topAnchor, constant: 10),
+            descriptionTextView.rightAnchor.constraint(equalTo: descriptionCell.rightAnchor, constant: 10),
+            descriptionTextView.bottomAnchor.constraint(equalTo: descriptionCell.bottomAnchor, constant: 10),
         ])
     }
     
-    
-    func render(with viewModel: TagLocationViewModel) {
-        latitudeLabel.text = viewModel.latitudeText
-        longitudeLabel.text = viewModel.longitudeText
-        categoryLabel.text = viewModel.categoryLabelText
-        descriptionTextView.text = viewModel.locationDescription
-        addressLabel.text = viewModel.addressText
-        dateLabel.text = viewModel.dateText
-    }
-    
-    
+
     func makeDescriptionTextView() -> UITextView {
         let textView = UITextView()
         
-        textView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
+        textView.contentInset = .zero
         textView.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-
+        
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
         
         return textView
+    }
+    
+    
+    func render(with viewModel: TagLocationViewModel) {
+        addPhotoLabel.text = viewModel.addPhotoLabelText
+        categoryLabel.text = viewModel.categoryLabelText
+        descriptionTextView.text = viewModel.locationDescription
+        addressLabel.text = viewModel.addressText
+        latitudeLabel.text = viewModel.latitudeText
+        longitudeLabel.text = viewModel.longitudeText
+        dateLabel.text = viewModel.dateText
+        photoImageView.image = viewModel.selectedPhoto
+
+        addPhotoLabel.isHidden = viewModel.selectedPhoto != nil
+    }
+    
+    
+    func updatePhotoImageViewConstraints(using photo: UIImage) {
+        let photoAspectRatio = photo.size.width / photo.size.height
+
+        photoImageViewHeightConstraint.constant = photoImageViewWidthConstraint.constant / photoAspectRatio
     }
     
     
@@ -181,7 +269,38 @@ private extension TagLocationViewController {
             descriptionTextView.resignFirstResponder()
         }
     }
+    
+    
+    func beginImagePicking() {
+        if canUseCamera || true {
+            showPhotoPickingMenu()
+        } else {
+            presentImagePicker(using: .photoLibrary)
+        }
+    }
+    
+    
+    func showPhotoPickingMenu() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        photoPickingAlertActions.forEach { alertController.addAction($0) }
+
+        present(alertController, animated: true)
+    }
+    
+    
+    
+    func presentImagePicker(using sourceType: UIImagePickerController.SourceType) {
+        let imagePicker = UIImagePickerController()
+    
+        imagePicker.sourceType = sourceType
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+    
+        present(imagePicker, animated: true)
+    }
 }
 
 
 extension TagLocationViewController: CoreDataErrorHandling {}
+extension TagLocationViewController: UINavigationControllerDelegate {}
