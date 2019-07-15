@@ -22,7 +22,8 @@ final class TagLocationModelController {
         category: Location.Category,
         dateRecorded: Date,
         placemark: CLPlacemark?,
-        locationDescription: String
+        locationDescription: String,
+        photoData: Data?
     )
     
     
@@ -53,7 +54,8 @@ extension TagLocationModelController {
         locationToEdit.dateRecorded = changes.dateRecorded
         locationToEdit.placemark = changes.placemark
         locationToEdit.locationDescription = changes.locationDescription
-
+        locationToEdit.photoData = changes.photoData
+        
         do {
             try managedObjectContext.save()
             completionHandler(.success(()))

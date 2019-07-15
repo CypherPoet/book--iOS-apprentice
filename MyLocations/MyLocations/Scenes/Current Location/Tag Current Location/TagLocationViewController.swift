@@ -57,6 +57,13 @@ extension TagLocationViewController {
     
     var canUseCamera: Bool { UIImagePickerController.isSourceTypeAvailable(.camera) }
 
+    var dataForSelectedPhoto: Data? {
+        guard let selectedPhoto = viewModel.selectedPhoto else { return nil }
+        
+        return selectedPhoto.jpegData(compressionQuality: 0.8)
+    }
+    
+    
     var locationModelChanges: TagLocationModelController.Changes {
         return (
             latitude: viewModel.latitude,
@@ -64,7 +71,8 @@ extension TagLocationViewController {
             category: viewModel.category ?? .none,
             dateRecorded: viewModel.dateRecorded,
             placemark: viewModel.placemark,
-            locationDescription: viewModel.locationDescription
+            locationDescription: viewModel.locationDescription,
+            photoData: dataForSelectedPhoto
         )
     }
     
@@ -80,6 +88,17 @@ extension TagLocationViewController {
             }),
         ]
     }
+    
+    
+    var heightForSelectedPhotoImage: CGFloat {
+        if let selectedPhoto = viewModel.selectedPhoto {
+            let photoAspectRatio = selectedPhoto.size.width / selectedPhoto.size.height
+
+            return photoImageViewWidthConstraint.constant / photoAspectRatio
+        } else {
+            return 0
+        }
+    }
 }
 
 // MARK: - Lifecycle
@@ -92,15 +111,10 @@ extension TagLocationViewController {
         assert(viewModel != nil, "No `viewModel` was set")
         assert(modelController != nil, "No `modelController` was set")
         
+        listenForBackgroundNotification()
+        
         setupUI()
         render(with: viewModel)
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-//        render(with: viewModel)
     }
 }
 
@@ -128,7 +142,7 @@ extension TagLocationViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.row, indexPath.section) {
         case (CellIndexPath.addPhoto.row, CellIndexPath.addPhoto.section):
-            return photoImageView.isHidden ?
+            return viewModel.selectedPhoto == nil ?
                 UITableView.automaticDimension : photoImageViewHeightConstraint.constant
         default:
             return UITableView.automaticDimension
@@ -192,14 +206,12 @@ extension TagLocationViewController: UIImagePickerControllerDelegate {
     ) {
         if let selectedImage = info[.editedImage] as? UIImage {
             viewModel.selectedPhoto = selectedImage
-            photoImageView.isHidden = false
-            updatePhotoImageViewConstraints(using: selectedImage)
+            photoImageViewHeightConstraint.constant = heightForSelectedPhotoImage
+//            updatePhotoImageViewConstraints(using: selectedImage)
             
             // 🤔 For some reason, `.automatic` causes the image to disappear.
 //            tableView.reloadRows(at: [CellIndexPath.addPhoto], with: .automatic)
             tableView.reloadRows(at: [CellIndexPath.addPhoto], with: .none)
-        } else {
-            photoImageView.isHidden = true
         }
         
         dismiss(animated: true)
@@ -208,6 +220,20 @@ extension TagLocationViewController: UIImagePickerControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
+    }
+}
+
+
+// MARK: - BackgroundingHandler
+
+extension TagLocationViewController: BackgroundingHandler {
+    
+    @objc func appDidEnterBackground() {
+        if presentedViewController != nil {
+            dismiss(animated: false)
+        }
+        
+        descriptionCell.resignFirstResponder()
     }
 }
 
@@ -225,6 +251,8 @@ private extension TagLocationViewController {
             descriptionTextView.rightAnchor.constraint(equalTo: descriptionCell.rightAnchor, constant: 10),
             descriptionTextView.bottomAnchor.constraint(equalTo: descriptionCell.bottomAnchor, constant: 10),
         ])
+        
+        photoImageViewHeightConstraint.constant = heightForSelectedPhotoImage
     }
     
 
@@ -251,14 +279,8 @@ private extension TagLocationViewController {
         dateLabel.text = viewModel.dateText
         photoImageView.image = viewModel.selectedPhoto
 
+        photoImageView.isHidden = viewModel.selectedPhoto == nil
         addPhotoLabel.isHidden = viewModel.selectedPhoto != nil
-    }
-    
-    
-    func updatePhotoImageViewConstraints(using photo: UIImage) {
-        let photoAspectRatio = photo.size.width / photo.size.height
-
-        photoImageViewHeightConstraint.constant = photoImageViewWidthConstraint.constant / photoAspectRatio
     }
     
     

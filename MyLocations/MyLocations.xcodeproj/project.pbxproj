@@ -71,6 +71,7 @@
 		F38A022B22D9E16700D8C5F3 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022A22D9E16700D8C5F3 /* CustomAnnotation.swift */; };
 		F38A022D22D9E1E400D8C5F3 /* CustomAnnotationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022C22D9E1E400D8C5F3 /* CustomAnnotationViewFactory.swift */; };
 		F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */; };
+		F3FB567222DCDCDA00BB31E7 /* BackgroundingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FB567122DCDCDA00BB31E7 /* BackgroundingHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +143,7 @@
 		F38A022A22D9E16700D8C5F3 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		F38A022C22D9E1E400D8C5F3 /* CustomAnnotationViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationViewFactory.swift; sourceTree = "<group>"; };
 		F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudIndicatorView.swift; sourceTree = "<group>"; };
+		F3FB567122DCDCDA00BB31E7 /* BackgroundingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundingHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 				F34877CA22C4D9A600C2167F /* NavigationCoordinator.swift */,
 				F34877CB22C4D9A600C2167F /* Storyboarded.swift */,
 				F38A01F722D47DD600D8C5F3 /* CoreDataErrorHandling.swift */,
+				F3FB567122DCDCDA00BB31E7 /* BackgroundingHandler.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				F37EA26222CAD70200D3F42F /* LocationErrorMessage.swift in Sources */,
 				F32053C722C8D3A500E41B41 /* GeocodingService.swift in Sources */,
 				F38A022522D8AABE00D8C5F3 /* Location+CustomAnnotation.swift in Sources */,
+				F3FB567222DCDCDA00BB31E7 /* BackgroundingHandler.swift in Sources */,
 				F34877A422C4A9C000C2167F /* CurrentLocationViewController.swift in Sources */,
 				F34877D322C4DA2D00C2167F /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F34877E722C5079700C2167F /* CurrentLocationView.swift in Sources */,

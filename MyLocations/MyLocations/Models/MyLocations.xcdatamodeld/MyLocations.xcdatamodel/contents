@@ -6,9 +6,10 @@
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="locationDescription" attributeType="String"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="placemark" optional="YES" attributeType="Transformable"/>
     </entity>
     <elements>
-        <element name="Location" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Location" positionX="-63" positionY="-18" width="128" height="148"/>
     </elements>
 </model>

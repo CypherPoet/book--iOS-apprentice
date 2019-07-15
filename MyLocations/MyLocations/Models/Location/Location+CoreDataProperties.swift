@@ -23,7 +23,8 @@ extension Location {
     @NSManaged public var dateRecorded: Date
     @NSManaged public var locationDescription: String
     @NSManaged public var placemark: CLPlacemark?
-    
+    @NSManaged public var photoData: Data?
+
     
     @NSManaged internal var categoryValue: Int32
     
