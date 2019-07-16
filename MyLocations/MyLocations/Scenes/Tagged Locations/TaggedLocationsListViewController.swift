@@ -166,16 +166,6 @@ private extension TaggedLocationsListViewController {
     }
     
     
-    func configure(_ cell: UITableViewCell, with location: Location) {
-        guard let cell = cell as? LocationTableViewCell else {
-            preconditionFailure("Unknwown cell type found in table view")
-        }
-        
-        cell.viewModel = .init(location: location)
-    }
-    
-    
-    
     func makeTableViewDataSource() -> DataSource {
         FetchedResultsTableViewDataSource(
             controller: modelController.fetchedResultsController,
@@ -199,5 +189,18 @@ private extension TaggedLocationsListViewController {
             }
         )
     }
+
     
+    func configure(_ cell: UITableViewCell, with location: Location) {
+        guard let cell = cell as? LocationTableViewCell else {
+            preconditionFailure("Unknwown cell type found in table view")
+        }
+        
+        cell.viewModel = .init(
+            latitude: location.latitude,
+            longitude: location.longitude,
+            placemark: location.placemark,
+            locationPhoto: location.photoImage
+        )
+    }
 }

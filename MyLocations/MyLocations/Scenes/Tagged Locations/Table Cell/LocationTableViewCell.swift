@@ -11,7 +11,7 @@ import UIKit
 class LocationTableViewCell: UITableViewCell {
     @IBOutlet private var locationNameLabel: UILabel!
     @IBOutlet private var addressLabel: UILabel!
-    
+    @IBOutlet private var locationPhotoImageView: UIImageView!
     
     
     var viewModel: ViewModel? {
@@ -53,5 +53,6 @@ private extension LocationTableViewCell {
     func render(with viewModel: ViewModel) {
         locationNameLabel.text = viewModel.nameText
         addressLabel.text = viewModel.addressText
+        locationPhotoImageView.image = viewModel.photoImage
     }
 }
