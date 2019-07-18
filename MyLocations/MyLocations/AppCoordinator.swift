@@ -32,6 +32,7 @@ final class AppCoordinator: NavigationCoordinator {
     
     func start() {
         window.rootViewController = rootViewController
+        Appearance.apply(to: window)
         window.makeKeyAndVisible()
         
        showMain()

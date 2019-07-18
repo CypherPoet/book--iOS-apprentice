@@ -26,6 +26,7 @@ final class MapViewerCoordinator: NavigationCoordinator {
         self.stateController = stateController
         self.tabBarIndex = tabBarIndex
         
+        Appearance.apply(to: navController.navigationBar)
         navController.navigationBar.prefersLargeTitles = false
         
         start()

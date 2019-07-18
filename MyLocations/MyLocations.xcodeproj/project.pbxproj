@@ -72,6 +72,9 @@
 		F38A022D22D9E1E400D8C5F3 /* CustomAnnotationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022C22D9E1E400D8C5F3 /* CustomAnnotationViewFactory.swift */; };
 		F38DC8C122CFFA3F00C08312 /* HudIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */; };
 		F39C045522DE79B30053C76E /* UIImage+ResizedWithBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39C045422DE79B30053C76E /* UIImage+ResizedWithBounds.swift */; };
+		F39C045D22DEA4F60053C76E /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39C045C22DEA4F60053C76E /* Appearance.swift */; };
+		F39C045F22DEA6CB0053C76E /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39C045E22DEA6CB0053C76E /* UIColor+Theme.swift */; };
+		F39C046122DEA7120053C76E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F39C046022DEA7120053C76E /* Colors.xcassets */; };
 		F3FB567222DCDCDA00BB31E7 /* BackgroundingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FB567122DCDCDA00BB31E7 /* BackgroundingHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +148,9 @@
 		F38A022C22D9E1E400D8C5F3 /* CustomAnnotationViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationViewFactory.swift; sourceTree = "<group>"; };
 		F38DC8C022CFFA3F00C08312 /* HudIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudIndicatorView.swift; sourceTree = "<group>"; };
 		F39C045422DE79B30053C76E /* UIImage+ResizedWithBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ResizedWithBounds.swift"; sourceTree = "<group>"; };
+		F39C045C22DEA4F60053C76E /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		F39C045E22DEA6CB0053C76E /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
+		F39C046022DEA7120053C76E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		F3FB567122DCDCDA00BB31E7 /* BackgroundingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundingHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -266,6 +272,7 @@
 				F38A01FB22D480B400D8C5F3 /* Notification Names */,
 				F3789B2222C94491000E6455 /* Formatting */,
 				F39C045422DE79B30053C76E /* UIImage+ResizedWithBounds.swift */,
+				F39C045E22DEA6CB0053C76E /* UIColor+Theme.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -300,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				F34877AD22C4A9C100C2167F /* Assets.xcassets */,
+				F39C046022DEA7120053C76E /* Colors.xcassets */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -347,6 +355,7 @@
 			children = (
 				F370828122C661FB0083C235 /* StateController.swift */,
 				F38A022C22D9E1E400D8C5F3 /* CustomAnnotationViewFactory.swift */,
+				F39C045C22DEA4F60053C76E /* Appearance.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -491,6 +500,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F39C046122DEA7120053C76E /* Colors.xcassets in Resources */,
 				F34877DF22C4EB0700C2167F /* .swiftlint.yml in Resources */,
 				F34877AE22C4A9C100C2167F /* Assets.xcassets in Resources */,
 				F38A020822D5962A00D8C5F3 /* LocationTableViewCell.xib in Resources */,
@@ -616,11 +626,13 @@
 				F38A021522D7479800D8C5F3 /* UIViewController+Computeds.swift in Sources */,
 				F38A020E22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift in Sources */,
 				F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */,
+				F39C045F22DEA6CB0053C76E /* UIColor+Theme.swift in Sources */,
 				F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */,
 				F38A021322D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift in Sources */,
 				F38A020C22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift in Sources */,
 				F38A022122D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift in Sources */,
 				F38A020A22D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift in Sources */,
+				F39C045D22DEA4F60053C76E /* Appearance.swift in Sources */,
 				F38A022822D8CA5E00D8C5F3 /* MKCoordinateSpan+BoundingMetricsForAnnotations.swift in Sources */,
 				F39C045522DE79B30053C76E /* UIImage+ResizedWithBounds.swift in Sources */,
 				F38A021122D6009E00D8C5F3 /* EditTaggedLocationCoordinator.swift in Sources */,

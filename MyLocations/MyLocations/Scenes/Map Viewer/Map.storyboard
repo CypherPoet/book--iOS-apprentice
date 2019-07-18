@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -32,12 +32,12 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="dDm-6p-cYW">
-                        <barButtonItem key="leftBarButtonItem" title="Locations" id="4F5-CQ-9zl">
+                        <barButtonItem key="leftBarButtonItem" title="Locations" image="mappin.and.ellipse" catalog="system" id="4F5-CQ-9zl">
                             <connections>
                                 <action selector="showLocationsTapped:" destination="CYo-vF-H9R" id="Rdv-6x-oR7"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="User" id="n32-EF-Vgz">
+                        <barButtonItem key="rightBarButtonItem" title="Curret User Location" image="Target" id="n32-EF-Vgz">
                             <connections>
                                 <action selector="showUserTapped:" destination="CYo-vF-H9R" id="zbt-JC-k9x"/>
                             </connections>
@@ -54,4 +54,8 @@
             <point key="canvasLocation" x="15" y="137"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Target" width="25" height="25"/>
+        <image name="mappin.and.ellipse" catalog="system" width="62" height="64"/>
+    </resources>
 </document>

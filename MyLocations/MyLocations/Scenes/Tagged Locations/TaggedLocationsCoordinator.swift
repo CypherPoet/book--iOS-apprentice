@@ -27,6 +27,7 @@ final class TaggedLocationsCoordinator: NavigationCoordinator {
         self.stateController = stateController
         self.tabBarIndex = tabBarIndex
 
+        Appearance.apply(to: navController.navigationBar)
         start()
     }
 }

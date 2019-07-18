@@ -28,6 +28,7 @@ final class CurrentLocationCoordinator: NavigationCoordinator {
         self.stateController = stateController
         self.tabBarIndex = tabBarIndex
         
+        Appearance.apply(to: navController.navigationBar)
         start()
     }
 }
@@ -46,7 +47,7 @@ extension CurrentLocationCoordinator {
         currentLocationVC.locationManager = stateController.locationManager
         currentLocationVC.tabBarItem = UITabBarItem(
             title: "Tag",
-            image: UIImage(systemName: "tag.fill"),
+            image: R.image.target(),
             tag: tabBarIndex
         )
         

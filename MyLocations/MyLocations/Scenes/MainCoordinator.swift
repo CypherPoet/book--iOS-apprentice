@@ -22,9 +22,9 @@ final class MainCoordinator: Coordinator {
     
     init(stateController: StateController) {
         self.stateController = stateController
-        
         self.tabBarController = UITabBarController()
-        self.tabBarController.tabBar.barStyle = .default
+
+        Appearance.apply(to: self.tabBarController.tabBar)
         
         self.currentLocationCoordinator = CurrentLocationCoordinator(stateController: stateController, tabBarIndex: 0)
         self.taggedLocationsCoordinator = TaggedLocationsCoordinator(stateController: stateController, tabBarIndex: 1)
@@ -43,5 +43,6 @@ final class MainCoordinator: Coordinator {
             childCoordinators.map { $0.rootViewController },
             animated: true
         )
+        
     }
 }

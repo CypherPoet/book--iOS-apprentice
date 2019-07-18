@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="54" translatesAutoresizingMaskIntoConstraints="NO" id="gpS-gx-m0G">
-                                <rect key="frame" x="22" y="76" width="370" height="226"/>
+                                <rect key="frame" x="22" y="76" width="370" height="328"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Reading Header Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwB-6a-YHn">
                                         <rect key="frame" x="49" y="0.0" width="272" height="24"/>
@@ -69,8 +70,9 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wX3-v8-iZ8">
-                                        <rect key="frame" x="65" y="226" width="240" height="48"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wX3-v8-iZ8">
+                                        <rect key="frame" x="65" y="280" width="240" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <state key="normal" title="Tag Location"/>
                                         <connections>
                                             <action selector="tagLocationTapped:" destination="ChJ-t3-s1M" eventType="touchUpInside" id="V15-yE-MrM"/>
@@ -90,7 +92,10 @@
                                     <constraint firstAttribute="height" constant="48" id="Kv4-8g-9ad"/>
                                     <constraint firstAttribute="width" constant="240" id="vpM-FL-nwY"/>
                                 </constraints>
-                                <state key="normal" title="Get Current Location"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Get Current Location">
+                                    <color key="titleColor" name="Accent 2"/>
+                                </state>
                                 <connections>
                                     <action selector="getLocationTapped:" destination="ChJ-t3-s1M" eventType="touchUpInside" id="lkt-qh-hxc"/>
                                 </connections>
@@ -125,4 +130,10 @@
             <point key="canvasLocation" x="132" y="108"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="Accent 2">
+            <color red="0.27843137254901962" green="0.72549019607843135" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+    <color key="tintColor" name="Tint"/>
 </document>
