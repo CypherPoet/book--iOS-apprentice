@@ -64,7 +64,6 @@
 		F38A021B22D84C1400D8C5F3 /* MapViewerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021A22D84C1400D8C5F3 /* MapViewerCoordinator.swift */; };
 		F38A021D22D85B7B00D8C5F3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38A021C22D85B7B00D8C5F3 /* MapKit.framework */; };
 		F38A021F22D899C300D8C5F3 /* MapViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A021E22D899C300D8C5F3 /* MapViewerView.swift */; };
-		F38A022122D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022022D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift */; };
 		F38A022322D8A60900D8C5F3 /* MapViewerModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022222D8A60900D8C5F3 /* MapViewerModelController.swift */; };
 		F38A022522D8AABE00D8C5F3 /* Location+CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022422D8AABE00D8C5F3 /* Location+CustomAnnotation.swift */; };
 		F38A022822D8CA5E00D8C5F3 /* MKCoordinateSpan+BoundingMetricsForAnnotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A022722D8CA5E00D8C5F3 /* MKCoordinateSpan+BoundingMetricsForAnnotations.swift */; };
@@ -140,7 +139,6 @@
 		F38A021A22D84C1400D8C5F3 /* MapViewerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewerCoordinator.swift; sourceTree = "<group>"; };
 		F38A021C22D85B7B00D8C5F3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F38A021E22D899C300D8C5F3 /* MapViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewerView.swift; sourceTree = "<group>"; };
-		F38A022022D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewerView+ViewModel.swift"; sourceTree = "<group>"; };
 		F38A022222D8A60900D8C5F3 /* MapViewerModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewerModelController.swift; sourceTree = "<group>"; };
 		F38A022422D8AABE00D8C5F3 /* Location+CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CustomAnnotation.swift"; sourceTree = "<group>"; };
 		F38A022722D8CA5E00D8C5F3 /* MKCoordinateSpan+BoundingMetricsForAnnotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateSpan+BoundingMetricsForAnnotations.swift"; sourceTree = "<group>"; };
@@ -344,7 +342,6 @@
 				F38A021A22D84C1400D8C5F3 /* MapViewerCoordinator.swift */,
 				F38A022222D8A60900D8C5F3 /* MapViewerModelController.swift */,
 				F38A021E22D899C300D8C5F3 /* MapViewerView.swift */,
-				F38A022022D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift */,
 				F38A021622D84A7C00D8C5F3 /* MapViewerViewController.swift */,
 			);
 			path = "Map Viewer";
@@ -630,7 +627,6 @@
 				F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */,
 				F38A021322D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift in Sources */,
 				F38A020C22D5DBAD00D8C5F3 /* TaggedLocationsModelController.swift in Sources */,
-				F38A022122D8A0E000D8C5F3 /* MapViewerView+ViewModel.swift in Sources */,
 				F38A020A22D5CBBD00D8C5F3 /* LocationTableViewCell+ViewModel.swift in Sources */,
 				F39C045D22DEA4F60053C76E /* Appearance.swift in Sources */,
 				F38A022822D8CA5E00D8C5F3 /* MKCoordinateSpan+BoundingMetricsForAnnotations.swift in Sources */,

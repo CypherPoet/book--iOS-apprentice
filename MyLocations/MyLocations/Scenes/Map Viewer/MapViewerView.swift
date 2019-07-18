@@ -145,11 +145,6 @@ extension MapViewerView: MKMapViewDelegate {
 
 private extension MapViewerView {
     
-    func render(with viewModel: ViewModel) {
-        
-    }
-    
-    
     func annotationsDidChange(
         from oldAnnotations: [CustomAnnotation],
         to newAnnotations: [CustomAnnotation]
@@ -160,10 +155,6 @@ private extension MapViewerView {
     
     
     func configure(_ pinAnnotationView: MKPinAnnotationView, with annotation: MKAnnotation) {
-//        guard let rightButton = pinAnnotationView.rightCalloutAccessoryView as? UIButton else {
-//            preconditionFailure("No button found for rightCalloutAccessoryView")
-//        }
-        
         pinAnnotationView.annotation = annotation
     }
 }

@@ -19,7 +19,7 @@ enum CustomAnnotationViewFactory {
         pinView.isEnabled = true
         pinView.canShowCallout = true
         pinView.animatesDrop = false
-        pinView.pinTintColor = .systemPurple
+        pinView.pinTintColor = UIColor.Theme.accent1
         pinView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         
         return pinView
