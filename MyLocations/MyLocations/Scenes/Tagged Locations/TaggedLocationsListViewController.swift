@@ -62,7 +62,20 @@ extension TaggedLocationsListViewController: UITableViewDelegate {
         
         delegate?.viewController(self, didSelectEditingFor: location)
     }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = LocationTableHeaderView.instanceFromNib
 
+        view.title = dataSource.tableView(tableView, titleForHeaderInSection: section)
+
+        return view
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        30
+    }
 }
 
 
@@ -185,7 +198,7 @@ private extension TaggedLocationsListViewController {
                     preconditionFailure("Unknown category value in section name")
                 }
         
-                return locationCategory.displayValue
+                return locationCategory.displayValue.uppercased()
             }
         )
     }

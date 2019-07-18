@@ -20,19 +20,28 @@ class LocationTableViewCell: UITableViewCell {
             DispatchQueue.main.async { self.render(with: viewModel) }
         }
     }
-    
+}
+
+
+// MARK: - Lifecycle
+
+extension LocationTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        let selectedView = UIView(frame: .zero)
+        selectedView.backgroundColor = UIColor.systemGray3.withAlphaComponent(0.34)
+        
+        selectedBackgroundView = selectedView
     }
 
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
-    
 }
 
 

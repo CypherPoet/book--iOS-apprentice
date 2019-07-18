@@ -275,6 +275,7 @@ private extension TagLocationViewController {
         
         textView.contentInset = .zero
         textView.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        textView.backgroundColor = .clear
         
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
