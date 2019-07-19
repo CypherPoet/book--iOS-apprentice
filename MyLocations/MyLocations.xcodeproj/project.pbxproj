@@ -14,6 +14,7 @@
 		F32053C722C8D3A500E41B41 /* GeocodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32053C622C8D3A500E41B41 /* GeocodingService.swift */; };
 		F323989822E00F1D00685584 /* LocationTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F323989722E00F1D00685584 /* LocationTableHeaderView.xib */; };
 		F323989A22E00F4900685584 /* LocationTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323989922E00F4800685584 /* LocationTableHeaderView.swift */; };
+		F323989C22E0F6AE00685584 /* UIView+SelectedTableCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323989B22E0F6AE00685584 /* UIView+SelectedTableCellBackgroundView.swift */; };
 		F337D2EC22CEEF170085D412 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337D2EB22CEEF170085D412 /* CategoryListViewController.swift */; };
 		F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337D2F022CEF1650085D412 /* Location+Category.swift */; };
 		F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348779F22C4A9C000C2167F /* AppDelegate.swift */; };
@@ -89,6 +90,7 @@
 		F32053C622C8D3A500E41B41 /* GeocodingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingService.swift; sourceTree = "<group>"; };
 		F323989722E00F1D00685584 /* LocationTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationTableHeaderView.xib; sourceTree = "<group>"; };
 		F323989922E00F4800685584 /* LocationTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableHeaderView.swift; sourceTree = "<group>"; };
+		F323989B22E0F6AE00685584 /* UIView+SelectedTableCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SelectedTableCellBackgroundView.swift"; sourceTree = "<group>"; };
 		F337D2EB22CEEF170085D412 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		F337D2F022CEF1650085D412 /* Location+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+Category.swift"; sourceTree = "<group>"; };
 		F348779C22C4A9C000C2167F /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -284,6 +286,7 @@
 				F3789B2222C94491000E6455 /* Formatting */,
 				F39C045422DE79B30053C76E /* UIImage+ResizedWithBounds.swift */,
 				F39C045E22DEA6CB0053C76E /* UIColor+Theme.swift */,
+				F323989B22E0F6AE00685584 /* UIView+SelectedTableCellBackgroundView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				F38A020E22D5E4CB00D8C5F3 /* Location+FetchHelpers.swift in Sources */,
 				F34877A022C4A9C000C2167F /* AppDelegate.swift in Sources */,
 				F323989A22E00F4900685584 /* LocationTableHeaderView.swift in Sources */,
+				F323989C22E0F6AE00685584 /* UIView+SelectedTableCellBackgroundView.swift in Sources */,
 				F39C045F22DEA6CB0053C76E /* UIColor+Theme.swift in Sources */,
 				F337D2F122CEF1650085D412 /* Location+Category.swift in Sources */,
 				F38A021322D6F0B900D8C5F3 /* FetchedResultsTableViewDataSource.swift in Sources */,

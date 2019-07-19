@@ -30,10 +30,7 @@ extension LocationTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let selectedView = UIView(frame: .zero)
-        selectedView.backgroundColor = UIColor.systemGray3.withAlphaComponent(0.34)
-        
-        selectedBackgroundView = selectedView
+        setupViews()
     }
 
     
@@ -64,4 +61,13 @@ private extension LocationTableViewCell {
         addressLabel.text = viewModel.addressText
         locationPhotoImageView.image = viewModel.photoImage
     }
+    
+    
+    func setupViews() {
+        selectedBackgroundView = UIView.selectedTableCellBackgroundView
+        
+        locationPhotoImageView.layer.cornerRadius = locationPhotoImageView.bounds.size.width / 2
+        locationPhotoImageView.clipsToBounds = true
+    }
+    
 }

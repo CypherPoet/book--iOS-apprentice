@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="iOS 13.0 system colors" minToolsVersion="11.0"/>
     </dependencies>
     <scenes>
         <!--Tag Location-->
@@ -104,8 +105,8 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a reverse geocoded address that will likely span a few lines" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cb-hw-dhv">
                                                             <rect key="frame" x="175" y="0.0" width="167" height="23.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="secondaryLabelColor"/>
+                                                            <color key="highlightedColor" cocoaTouchSystemColor="secondaryLabelColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
@@ -136,8 +137,8 @@
                                                     <rect key="frame" x="212.5" y="12" width="141.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="secondaryLabelColor"/>
+                                                    <color key="highlightedColor" cocoaTouchSystemColor="secondaryLabelColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -160,8 +161,8 @@
                                                     <rect key="frame" x="198.5" y="12" width="155.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="secondaryLabelColor"/>
+                                                    <color key="highlightedColor" cocoaTouchSystemColor="secondaryLabelColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -184,8 +185,8 @@
                                                     <rect key="frame" x="183.5" y="12" width="170.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="secondaryLabelColor"/>
+                                                    <color key="highlightedColor" cocoaTouchSystemColor="secondaryLabelColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>

@@ -11,7 +11,7 @@ import CoreData
 
 @objc(Location)
 public class Location: NSManagedObject {
-    static let photoPlaceholder = UIImage(systemName: "globe")
+    static let photoPlaceholder = UIImage(systemName: "questionmark.circle")
     
     var photoImage: UIImage? {
         if let photoData = photoData {

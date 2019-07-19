@@ -66,8 +66,9 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                 }
 
                 self.mainView.canTagLocation = self.canTagLocation
+                self.mainView.canShowCoordinates = self.canShowCoordinates
+                self.mainView.canShowAddress = self.canShowAddress
             }
-            
         }
     }
     
@@ -87,6 +88,9 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                     self.mainView.viewModel.currentLocation = nil
                     self.currentAddressDecodingState = .unstarted
                 case .found(let newBest):
+                    self.mainView.viewModel.isFetchingLocation = false
+                    self.mainView.viewModel.locationErrorMessage = nil
+                    self.mainView.viewModel.currentLocation = newBest
                     self.bestLocationReading = newBest
                 case .inProgress:
                     self.mainView.viewModel.isFetchingLocation = true
@@ -94,6 +98,8 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                 }
                 
                 self.mainView.canTagLocation = self.canTagLocation
+                self.mainView.canShowCoordinates = self.canShowCoordinates
+                self.mainView.canShowAddress = self.canShowAddress
             }
         }
     }
@@ -102,6 +108,7 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
     private var bestLocationReading: CLLocation? {
         didSet {
             guard let newReading = bestLocationReading else { return }
+            
             DispatchQueue.main.async { self.bestLocationReadingSet(from: oldValue, to: newReading) }
         }
     }
@@ -112,25 +119,39 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
 
 extension CurrentLocationViewController {
     
-    var locationAuthStatus: CLAuthorizationStatus {
-        CLLocationManager.authorizationStatus()
-    }
+    var locationAuthStatus: CLAuthorizationStatus { CLLocationManager.authorizationStatus() }
     
-
-    var canTagLocation: Bool {
-        if mainView.viewModel.currentLocation != nil {
-            switch currentAddressDecodingState {
-            case .inProgress:
-                return false
-            default:
-                return true
-            }
+    var canShowCoordinates: Bool {
+        switch currentLocationFetchState {
+        case .found:
+            return true
+        case .stopped:
+            return mainView.viewModel.currentLocation != nil
+        default:
+            return false
         }
-        
-        return false
+    }
+
+    
+    var canTagLocation: Bool {
+        switch currentAddressDecodingState {
+        case .inProgress:
+            return false
+        default:
+            return canShowCoordinates
+        }
     }
     
     
+    var canShowAddress: Bool {
+        switch currentAddressDecodingState {
+        case .finished:
+            return true
+        default:
+            return false
+        }
+    }
+
     /// Regardless of accuracy, if the coordinate from a new reading is not significantly different
     /// from the previous reading and it has been more than 10 seconds since
     /// we've received that original reading, we'll take it as a sign that
@@ -284,10 +305,6 @@ private extension CurrentLocationViewController {
     
     
     func bestLocationReadingSet(from oldBest: CLLocation?, to newBest: CLLocation) {
-        mainView.viewModel.isFetchingLocation = false
-        mainView.viewModel.locationErrorMessage = nil
-        mainView.viewModel.currentLocation = newBest
-
         if
             oldBest == nil ||
             newBest.horizontalAccuracy <= locationManager.desiredAccuracy // "equal to or better than desired"
@@ -313,7 +330,7 @@ private extension CurrentLocationViewController {
     func startUpdatingLocation() {
         // assume that the current best is no longer relevant
         bestLocationReading = nil
-        
+        currentAddressDecodingState = .unstarted
         currentLocationFetchState = .inProgress
         
         locationFetchTimer = makeLocationFetchTimer()

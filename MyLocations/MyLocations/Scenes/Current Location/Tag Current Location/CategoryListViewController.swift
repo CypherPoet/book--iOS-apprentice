@@ -71,6 +71,7 @@ private extension CategoryListViewController {
             cellConfigurator: { [weak self] (category, cell) in
                 guard let self = self else { return }
                 
+                cell.selectedBackgroundView = UIView.selectedTableCellBackgroundView
                 cell.textLabel?.text = category.displayValue
                 cell.accessoryType = category == self.currentCategory ? .checkmark : .none
             }

@@ -15,6 +15,10 @@ extension CurrentLocationView {
         var currentLocation: CLLocation?
         var locationErrorMessage: String?
         var isFetchingLocation: Bool = false
+        
+        var emptyLocationCoordinatesMessage = """
+        No coordinates have been found yet for the current location. 
+        """
 
         var currentPlacemark: CLPlacemark?
         var isDecodingAddress: Bool = false

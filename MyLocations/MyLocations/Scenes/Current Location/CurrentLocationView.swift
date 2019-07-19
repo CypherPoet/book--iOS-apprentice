@@ -17,24 +17,34 @@ protocol CurrentLocationViewDelegate: class {
 
 
 class CurrentLocationView: UIView {
-    @IBOutlet var locationReadingHeaderLabel: UILabel!
-    @IBOutlet var latitudeLabel: UILabel!
-    @IBOutlet var longitudeLabel: UILabel!
-    @IBOutlet var addressLabel: UILabel!
-    @IBOutlet var tagLocationButton: UIButton!
-    @IBOutlet var getLocationButton: UIButton!
+    @IBOutlet private var locationReadingHeaderLabel: UILabel!
+    @IBOutlet private var latitudeLabel: UILabel!
+    @IBOutlet private var longitudeLabel: UILabel!
+    @IBOutlet private var addressLabel: UILabel!
+    @IBOutlet private var tagLocationButton: UIButton!
+    @IBOutlet private var getLocationButton: UIButton!
+    @IBOutlet private var coordinatesContainerView: UIStackView!
+    
     
     weak var delegate: CurrentLocationViewDelegate?
     
     var viewModel: ViewModel! {
         didSet {
             guard let viewModel = viewModel else { return }
-            render(with: viewModel)
+            DispatchQueue.main.async { self.render(with: viewModel) }
         }
     }
     
     var canTagLocation: Bool = false {
-        didSet { tagLocationButton.isHidden = !canTagLocation }
+        didSet { animateVisibility(for: tagLocationButton, isShowing: canTagLocation) }
+    }
+    
+    var canShowCoordinates: Bool = false {
+        didSet { animateVisibility(for: coordinatesContainerView, isShowing: canShowCoordinates) }
+    }
+    
+    var canShowAddress: Bool = false {
+        didSet { animateVisibility(for: addressLabel, isShowing: canShowAddress) }
     }
 }
 
@@ -72,5 +82,21 @@ private extension CurrentLocationView {
         locationReadingHeaderLabel.text = viewModel.locationReadingHeaderText
         
         getLocationButton.setTitle(viewModel.locationFetchButtonText, for: .normal)
+    }
+    
+    
+    func animateVisibility(for view: UIView, isShowing: Bool) {
+        DispatchQueue.main.async {
+            view.isHidden = !isShowing
+
+            UIView.animate(
+                withDuration: 0.2,
+                delay: 0,
+                options: [.curveEaseInOut],
+                animations: {
+                    view.alpha = isShowing ? 1 : 0.0
+                }
+            )
+        }
     }
 }
