@@ -24,7 +24,8 @@ class CurrentLocationView: UIView {
     @IBOutlet private var tagLocationButton: UIButton!
     @IBOutlet private var getLocationButton: UIButton!
     @IBOutlet private var coordinatesContainerView: UIStackView!
-    
+    @IBOutlet private var locationDataContainerView: UIStackView!
+
     
     weak var delegate: CurrentLocationViewDelegate?
     
@@ -34,6 +35,15 @@ class CurrentLocationView: UIView {
             DispatchQueue.main.async { self.render(with: viewModel) }
         }
     }
+    
+
+    fileprivate enum AnimKey {
+        static let slideInDataContainer = "Slide In Data Container"
+        static let slideOutButtonOverlay = "Slide Out Button Overlay"
+    }
+    
+    private lazy var startButtonOverlay: UIButton = makeStartButtonOverlay()
+    
     
     var canTagLocation: Bool = false {
         didSet { animateVisibility(for: tagLocationButton, isShowing: canTagLocation) }
@@ -45,6 +55,18 @@ class CurrentLocationView: UIView {
     
     var canShowAddress: Bool = false {
         didSet { animateVisibility(for: addressLabel, isShowing: canShowAddress) }
+    }
+}
+
+
+// MARK: Lifecycle
+
+extension CurrentLocationView {
+    
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        
+        showStartButtonOverlay()
     }
 }
 
@@ -65,6 +87,11 @@ extension CurrentLocationView {
     
     @IBAction func tagLocationTapped(_ sender: UIButton) {
         delegate?.viewDidSelectTagLocation(self)
+    }
+    
+    
+    @objc func startButtonOverlayTapped(_ sender: UIButton) {
+        hideStartButtonOverlay()
     }
 }
 
@@ -97,6 +124,119 @@ private extension CurrentLocationView {
                     view.alpha = isShowing ? 1 : 0.0
                 }
             )
+        }
+    }
+    
+    
+    func makeStartButtonOverlay() -> UIButton {
+        let button = UIButton(type: .custom)
+        
+        button.setImage(R.image.tagLocation(), for: .normal)
+        button.addTarget(self, action: #selector(startButtonOverlayTapped(_:)), for: .touchUpInside)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        return button
+    }
+    
+    
+    func setupConstraints(for buttonOverlay: UIButton) {
+        NSLayoutConstraint.activate([
+            buttonOverlay.widthAnchor.constraint(equalTo: widthAnchor),
+            buttonOverlay.topAnchor.constraint(equalTo: topAnchor),
+            buttonOverlay.bottomAnchor.constraint(equalTo: getLocationButton.topAnchor),
+        ])
+    }
+}
+
+
+// MARK: Start Button Animation
+
+private extension CurrentLocationView {
+    
+    func showStartButtonOverlay() {
+        addSubview(startButtonOverlay)
+        setupConstraints(for: startButtonOverlay)
+        locationDataContainerView.isHidden = true
+    }
+    
+    
+    func hideStartButtonOverlay() {
+        let dataContainerMover = makeDataContainerMoveInAnimation()
+        let buttonOverlayMover = makeButtonOverlayMoveOutAnimation()
+        
+        startButtonOverlay.layer.add(buttonOverlayMover, forKey: AnimKey.slideOutButtonOverlay)
+        
+        dataContainerMover.delegate = self
+        dataContainerMover.setValue(locationDataContainerView.layer, forKey: AnimKey.slideInDataContainer)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + buttonOverlayMover.duration * 0.8) {
+            self.locationDataContainerView.isHidden = false
+            self.locationDataContainerView.layer.add(dataContainerMover, forKey: nil)
+        }
+    }
+
+    
+    func makeDataContainerMoveInAnimation() -> CAAnimationGroup {
+        let animationGroup = CAAnimationGroup()
+
+        animationGroup.duration = 0.6
+        animationGroup.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        animationGroup.fillMode = .forwards
+        
+        let startTransform = CATransform3DMakeTranslation(bounds.size.width * 2, 0, 0)
+        let endTransform = CATransform3DMakeTranslation(0, 0, 0)
+        let moveAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.transform))
+        
+        moveAnimation.fromValue = startTransform
+        moveAnimation.toValue = endTransform
+        
+        let fadeInAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+        
+        fadeInAnimation.fromValue = 0
+        fadeInAnimation.toValue = 1
+
+        // TODO: Maybe just do the fade in? The extra translation seems a bit jarring
+        animationGroup.animations = [moveAnimation, fadeInAnimation]
+
+        return animationGroup
+    }
+    
+    
+    // 🤔 This isn't actually rotating. I think I need a bit more intuition on how to use
+    // `CATransform3DMakeRotation` and matrix-based calculations
+    func makeButtonOverlayMoveOutAnimation() -> CABasicAnimation {
+        let startingMove = CATransform3DMakeTranslation(0, 0, 0)
+        let startingRotation = CATransform3DMakeRotation(0, 0, 0, 1)
+        let startingTransform = CATransform3DConcat(startingRotation, startingMove)
+        
+        let endingMove = CATransform3DMakeTranslation(bounds.size.width * 2, 0, 0)
+        let endingRotation = CATransform3DMakeRotation(-2 * .pi, 0, 0, 1)
+        let endingTransform = CATransform3DConcat(endingRotation, endingMove)
+        
+        let moveAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.transform))
+        
+        moveAnimation.fromValue = startingTransform
+        moveAnimation.toValue = endingTransform
+        moveAnimation.duration = 0.6
+        moveAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0.57, 0.03, 0.89, 0.40)
+        moveAnimation.fillMode = .forwards
+        moveAnimation.isRemovedOnCompletion = false
+        
+        return moveAnimation
+    }
+}
+
+
+extension CurrentLocationView: CAAnimationDelegate {
+    
+    // Signal that location fetching was selected AFTER the initial animation finishes
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if anim.value(forKey: AnimKey.slideInDataContainer) != nil {
+            startButtonOverlay.layer.removeAllAnimations()
+            startButtonOverlay.removeFromSuperview()
+            
+            delegate?.viewDidSelectFetchLocation(self)
         }
     }
 }

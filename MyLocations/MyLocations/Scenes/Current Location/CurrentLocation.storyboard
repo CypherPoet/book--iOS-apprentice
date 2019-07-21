@@ -119,6 +119,7 @@
                             <outlet property="coordinatesContainerView" destination="cZp-FK-iqC" id="Xlr-YB-jNl"/>
                             <outlet property="getLocationButton" destination="FwJ-hu-FLT" id="m3d-23-uvp"/>
                             <outlet property="latitudeLabel" destination="yd7-UI-Swo" id="fKL-vM-QfD"/>
+                            <outlet property="locationDataContainerView" destination="gpS-gx-m0G" id="9qX-Uy-H1k"/>
                             <outlet property="locationReadingHeaderLabel" destination="NwB-6a-YHn" id="d3b-db-WAf"/>
                             <outlet property="longitudeLabel" destination="1qu-Ea-8h0" id="2at-3p-FYe"/>
                             <outlet property="tagLocationButton" destination="wX3-v8-iZ8" id="gjv-YX-bQm"/>
@@ -130,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7w-kk-tUI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="108"/>
+            <point key="canvasLocation" x="131.8840579710145" y="107.8125"/>
         </scene>
     </scenes>
     <resources>

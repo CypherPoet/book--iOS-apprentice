@@ -11,10 +11,15 @@ import UIKit
 
 extension UIColor {
     enum Theme {
-        static let background = UIColor(named: "Background")
-        static let tint = UIColor(named: "Tint")
-        static let accent1 = UIColor(named: "Accent 1")
-        static let accent2 = UIColor(named: "Accent 2")
-        static let accent3 = UIColor(named: "Accent 3")
+        
+        private static func color(named name: String) -> UIColor {
+            UIColor(named: name, in: Bundle.main, compatibleWith: nil) ?? .systemPurple
+        }
+        
+        static let background = color(named: "Background")
+        static let tint = color(named: "Tint")
+        static let accent1 = color(named: "Accent 1")
+        static let accent2 = color(named: "Accent 2")
+        static let accent3 = color(named: "Accent 3")
     }
 }

@@ -28,6 +28,7 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
     
     enum AddressDecodingState {
         case unstarted
+        case stopped
         case inProgress
         case finished(CLPlacemark)
         case error(message: String)
@@ -43,7 +44,6 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
 
     private var locationFetchTimer: Timer?
     
-    
     private var currentAddressDecodingState: AddressDecodingState = .unstarted {
         didSet {
             DispatchQueue.main.async {
@@ -52,6 +52,8 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                     self.mainView.viewModel.isDecodingAddress = false
                     self.mainView.viewModel.currentPlacemark = nil
                     self.mainView.viewModel.decodedAddressErrorMessage = nil
+                case .stopped:
+                    self.mainView.viewModel.isDecodingAddress = false
                 case .error(let message):
                     self.mainView.viewModel.isDecodingAddress = false
                     self.mainView.viewModel.decodedAddressErrorMessage = message
@@ -78,6 +80,7 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
             DispatchQueue.main.async {
                 switch self.currentLocationFetchState {
                 case .unstarted:
+//                    self.mainView.isShowingStartButtonOverlay = true
                     self.mainView.viewModel.isFetchingLocation = false
                     self.mainView.viewModel.currentLocation = nil
                 case .stopped:
@@ -86,13 +89,14 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                     self.mainView.viewModel.isFetchingLocation = false
                     self.mainView.viewModel.locationErrorMessage = error.message
                     self.mainView.viewModel.currentLocation = nil
-                    self.currentAddressDecodingState = .unstarted
+                    self.currentAddressDecodingState = .stopped
                 case .found(let newBest):
                     self.mainView.viewModel.isFetchingLocation = false
                     self.mainView.viewModel.locationErrorMessage = nil
                     self.mainView.viewModel.currentLocation = newBest
                     self.bestLocationReading = newBest
                 case .inProgress:
+//                    self.mainView.isShowingStartButtonOverlay = false
                     self.mainView.viewModel.isFetchingLocation = true
                     self.mainView.viewModel.locationErrorMessage = nil
                 }
@@ -237,8 +241,9 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
             currentLocationFetchState = .error(.servicesDisabled)
             stopUpdatingLocation()
         } else {
-            // TODO: When would this happen?
+            // ❓ When would this happen?
             currentLocationFetchState = .unstarted
+            currentAddressDecodingState = .unstarted
         }
     }
 }
@@ -254,7 +259,6 @@ extension CurrentLocationViewController: CurrentLocationViewDelegate {
         }
         
         let placemark = view.viewModel.currentPlacemark
-        
         delegate?.viewController(self, didSelectTag: location, at: placemark)
     }
     
@@ -305,10 +309,8 @@ private extension CurrentLocationViewController {
     
     
     func bestLocationReadingSet(from oldBest: CLLocation?, to newBest: CLLocation) {
-        if
-            oldBest == nil ||
-            newBest.horizontalAccuracy <= locationManager.desiredAccuracy // "equal to or better than desired"
-        {
+        if oldBest == nil || newBest.horizontalAccuracy <= locationManager.desiredAccuracy {
+            // lower accuracy means more precise here
             print("Sufficient Location accuracy found: \(newBest.horizontalAccuracy)\n\t\t--Beginning to reverse geocode")
             reverseGeocode(location: newBest)
         }
@@ -343,14 +345,13 @@ private extension CurrentLocationViewController {
     func stopUpdatingLocation() {
         switch currentLocationFetchState {
         case .found(let bestLocationReading):
-            if case AddressDecodingState.finished = currentAddressDecodingState {
-                break
-            } else {
+            switch currentAddressDecodingState {
+            case .finished: break
+            default:
                 // Make sure we always try to reverse-geocode at least once if we got any location readings
                 reverseGeocode(location: bestLocationReading)
             }
-        default:
-            break
+        default: break
         }
         
         currentLocationFetchState = .stopped
@@ -377,9 +378,9 @@ private extension CurrentLocationViewController {
                 case .failure(.coreLocationError):
                     self.currentAddressDecodingState = .error(
                         message: """
-                            An error occurred while attempting to find an address for these
-                            coordinates.
-                            """
+                        An error occurred while attempting to find an address for these
+                        coordinates.
+                        """
                     )
                 }
             }

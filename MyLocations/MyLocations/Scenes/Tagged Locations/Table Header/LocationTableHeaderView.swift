@@ -16,7 +16,7 @@ final class LocationTableHeaderView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        backgroundColor = UIColor.Theme.background?.withAlphaComponent(0.2)
+        backgroundColor = UIColor.Theme.background.withAlphaComponent(0.2)
     }
 }
 
