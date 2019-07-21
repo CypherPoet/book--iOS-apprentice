@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreLocation
-
+import AudioToolbox
 
 protocol CurrentLocationViewControllerDelegate: class {
     func viewController(
@@ -43,6 +43,8 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
     }
 
     private var locationFetchTimer: Timer?
+    private lazy var soundEffectStatusCode: OSStatus = loadDecodingSoundEffect()
+    private var decodingCompletionSoundID: SystemSoundID = 0
     
     private var currentAddressDecodingState: AddressDecodingState = .unstarted {
         didSet {
@@ -61,6 +63,7 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                     self.mainView.viewModel.isDecodingAddress = false
                     self.mainView.viewModel.currentPlacemark = placemark
                     self.mainView.viewModel.decodedAddressErrorMessage = nil
+                    self.playDecodingFinishedSound()
                 case .inProgress:
                     self.mainView.viewModel.isDecodingAddress = true
                     self.mainView.viewModel.currentPlacemark = nil
@@ -395,5 +398,29 @@ private extension CurrentLocationViewController {
             userInfo: nil,
             repeats: false
         )
+    }
+    
+    
+    func playDecodingFinishedSound() {
+        guard soundEffectStatusCode == kAudioServicesNoError else {
+            print("""
+                Recieved error code \"\(soundEffectStatusCode)\" while attempting
+                to load sound effect file
+                """
+            )
+            return
+        }
+        
+        AudioServicesPlayAlertSound(decodingCompletionSoundID)
+        
+    }
+    
+    
+    func loadDecodingSoundEffect() -> OSStatus {
+        guard let url = R.file.addressFoundCaf() else {
+            preconditionFailure("Unable to make URL from sound effect file")
+        }
+        
+        return AudioServicesCreateSystemSoundID(url as CFURL, &decodingCompletionSoundID)
     }
 }

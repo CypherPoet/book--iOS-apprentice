@@ -36,6 +36,7 @@
 		F34877E522C4ECC300C2167F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877E422C4ECC300C2167F /* R.generated.swift */; };
 		F34877E722C5079700C2167F /* CurrentLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877E622C5079700C2167F /* CurrentLocationView.swift */; };
 		F34877E922C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34877E822C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift */; };
+		F3557CED22E43748001E88C0 /* address-found.caf in Resources */ = {isa = PBXBuildFile; fileRef = F3557CEC22E43747001E88C0 /* address-found.caf */; };
 		F370828222C661FB0083C235 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F370828122C661FB0083C235 /* StateController.swift */; };
 		F370828422C66C9F0083C235 /* CurrentLocationView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */; };
 		F3789B2922C94847000E6455 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3789B2722C94847000E6455 /* Double+Formatting.swift */; };
@@ -114,6 +115,7 @@
 		F34877E422C4ECC300C2167F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		F34877E622C5079700C2167F /* CurrentLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationView.swift; sourceTree = "<group>"; };
 		F34877E822C5F35600C2167F /* UIViewController+ShowLocationServicesDeniedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShowLocationServicesDeniedAlert.swift"; sourceTree = "<group>"; };
+		F3557CEC22E43747001E88C0 /* address-found.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "address-found.caf"; sourceTree = "<group>"; };
 		F370828122C661FB0083C235 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		F370828322C66C9F0083C235 /* CurrentLocationView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentLocationView+ViewModel.swift"; sourceTree = "<group>"; };
 		F3789B2722C94847000E6455 /* Double+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 		F34877C422C4D83C00C2167F /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				F3557CEC22E43747001E88C0 /* address-found.caf */,
 				F34877AD22C4A9C100C2167F /* Assets.xcassets */,
 				F39C046022DEA7120053C76E /* Colors.xcassets */,
 			);
@@ -518,6 +521,7 @@
 				F323989822E00F1D00685584 /* LocationTableHeaderView.xib in Resources */,
 				F34877DF22C4EB0700C2167F /* .swiftlint.yml in Resources */,
 				F34877AE22C4A9C100C2167F /* Assets.xcassets in Resources */,
+				F3557CED22E43748001E88C0 /* address-found.caf in Resources */,
 				F38A020822D5962A00D8C5F3 /* LocationTableViewCell.xib in Resources */,
 				F38A021922D84A9F00D8C5F3 /* Map.storyboard in Resources */,
 				F3849E4522CE865A00D90B70 /* TagLocation.storyboard in Resources */,
