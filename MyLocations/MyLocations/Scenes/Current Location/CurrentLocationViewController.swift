@@ -80,7 +80,6 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
             DispatchQueue.main.async {
                 switch self.currentLocationFetchState {
                 case .unstarted:
-//                    self.mainView.isShowingStartButtonOverlay = true
                     self.mainView.viewModel.isFetchingLocation = false
                     self.mainView.viewModel.currentLocation = nil
                 case .stopped:
@@ -96,7 +95,6 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                     self.mainView.viewModel.currentLocation = newBest
                     self.bestLocationReading = newBest
                 case .inProgress:
-//                    self.mainView.isShowingStartButtonOverlay = false
                     self.mainView.viewModel.isFetchingLocation = true
                     self.mainView.viewModel.locationErrorMessage = nil
                 }
@@ -104,6 +102,7 @@ class CurrentLocationViewController: UIViewController, Storyboarded {
                 self.mainView.canTagLocation = self.canTagLocation
                 self.mainView.canShowCoordinates = self.canShowCoordinates
                 self.mainView.canShowAddress = self.canShowAddress
+                self.mainView.shouldShowFetchingSpinner = self.mainView.viewModel.isFetchingLocation
             }
         }
     }

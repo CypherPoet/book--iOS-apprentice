@@ -25,6 +25,8 @@ class CurrentLocationView: UIView {
     @IBOutlet private var getLocationButton: UIButton!
     @IBOutlet private var coordinatesContainerView: UIStackView!
     @IBOutlet private var locationDataContainerView: UIStackView!
+    @IBOutlet private var locationResultsContainerView: UIStackView!
+    @IBOutlet private var locationSpinnerView: UIActivityIndicatorView!
 
     
     weak var delegate: CurrentLocationViewDelegate?
@@ -34,6 +36,12 @@ class CurrentLocationView: UIView {
             guard let viewModel = viewModel else { return }
             DispatchQueue.main.async { self.render(with: viewModel) }
         }
+    }
+    
+    
+    override func awakeFromNib() {
+        // TODO: Remove when Xcode support iOS 13 storyboard styles (Xcode 11 Beta 4)
+        locationSpinnerView.style = .large
     }
     
 
@@ -55,6 +63,10 @@ class CurrentLocationView: UIView {
     
     var canShowAddress: Bool = false {
         didSet { animateVisibility(for: addressLabel, isShowing: canShowAddress) }
+    }
+    
+    var shouldShowFetchingSpinner: Bool = false {
+        didSet { DispatchQueue.main.async { self.locationSpinnerStateChanged() } }
     }
 }
 
@@ -124,6 +136,17 @@ private extension CurrentLocationView {
                     view.alpha = isShowing ? 1 : 0.0
                 }
             )
+        }
+    }
+    
+    
+    func locationSpinnerStateChanged() {
+        if shouldShowFetchingSpinner {
+            animateVisibility(for: locationResultsContainerView, isShowing: false)
+            locationSpinnerView.startAnimating()
+        } else {
+            animateVisibility(for: locationResultsContainerView, isShowing: true)
+            locationSpinnerView.stopAnimating()
         }
     }
     
