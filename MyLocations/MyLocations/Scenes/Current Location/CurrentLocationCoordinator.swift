@@ -99,3 +99,4 @@ extension CurrentLocationCoordinator: EditTaggedLocationCoordinatorDelegate {
         editTaggedLocationCoordinator = nil
     }
 }
+

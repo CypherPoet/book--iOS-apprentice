@@ -109,6 +109,7 @@ _An app that uses Core Location to fetch the user's current GPS coordinates, all
 - Using Core Animation to present a richer launch experience.
 - Integrating sound effect to confirm completion of long-running background operations.
 - Creating custom art and imagery for animations.
+- Creating custom theme colors for light and dark mode.
 - Creating/configuring custom theming and appearance settings.
 - Using a tabbed view controller with the coordinator pattern.
 - Creating custom, interactive map view pins and annotations.
@@ -132,6 +133,22 @@ _An app that uses Core Location to fetch the user's current GPS coordinates, all
 
 
 
+
 ## [Store Search](./StoreSearch/)
 
+__.
 
+<div style="text-align: center;">
+  <img src="" width="500px"/>
+</div>
+
+
+### Topics Covered / Challenges Encountered
+
+<br>
+
+### 📸 Moar Screenshots
+
+
+
+<br>

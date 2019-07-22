@@ -20,7 +20,7 @@ enum Appearance {
         static var standard: UINavigationBarAppearance {
             let appearance = UINavigationBarAppearance()
             
-            appearance.configureWithOpaqueBackground()
+            appearance.configureWithDefaultBackground()
             
             appearance.largeTitleTextAttributes = [
                 .foregroundColor: UIColor.Theme.accent1
@@ -35,7 +35,7 @@ enum Appearance {
         static var standard: UITabBarAppearance {
             let appearance = UITabBarAppearance()
             
-            appearance.configureWithOpaqueBackground()
+            appearance.configureWithDefaultBackground()
             
             return appearance
         }

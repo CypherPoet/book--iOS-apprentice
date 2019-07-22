@@ -12,7 +12,7 @@ import CoreLocation
 extension CLPlacemark {
     
     var formattedMainLine: String? {
-        [thoroughfare, subThoroughfare]
+        [subThoroughfare, thoroughfare]
             .compactMap({ $0 })
             .joined(separator: ", ")
     }
