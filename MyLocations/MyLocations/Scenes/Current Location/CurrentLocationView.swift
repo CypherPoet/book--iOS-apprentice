@@ -37,13 +37,6 @@ class CurrentLocationView: UIView {
             DispatchQueue.main.async { self.render(with: viewModel) }
         }
     }
-    
-    
-    override func awakeFromNib() {
-        // TODO: Remove when Xcode support iOS 13 storyboard styles (Xcode 11 Beta 4)
-        locationSpinnerView.style = .large
-    }
-    
 
     fileprivate enum AnimKey {
         static let slideInDataContainer = "Slide In Data Container"
