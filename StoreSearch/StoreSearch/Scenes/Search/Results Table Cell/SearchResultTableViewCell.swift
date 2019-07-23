@@ -39,9 +39,11 @@ extension SearchResultTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    
+        selectedBackgroundView = UIView.selectedTableCellBackground
     }
 
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

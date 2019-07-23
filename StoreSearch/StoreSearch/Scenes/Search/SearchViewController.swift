@@ -51,9 +51,11 @@ extension SearchViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        Appearance.apply(to: searchBar)
         dataSource = makeTableViewDataSource()
         setupTableView()
+        searchBar.becomeFirstResponder()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             let dummyResults = [

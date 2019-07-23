@@ -43,7 +43,6 @@ extension AppCoordinator: Coordinator {
 extension AppCoordinator {
     
     func showSearch() {
-            
         searchCoordinator = SearchCoordinator(navController: navController)
         searchCoordinator?.start()
     }

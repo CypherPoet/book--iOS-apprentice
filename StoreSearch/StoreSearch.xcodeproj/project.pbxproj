@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		55A1FF49BE78D5286320C702 /* Pods_StoreSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0D738562075934E51444F5 /* Pods_StoreSearch.framework */; };
+		F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36C381D22E6FD4A00CC001C /* Colors.xcassets */; };
+		F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */; };
+		F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */; };
 		F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE022E58305001B4D56 /* AppDelegate.swift */; };
 		F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE222E58305001B4D56 /* SceneDelegate.swift */; };
 		F3A96CEA22E58307001B4D56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A96CE922E58307001B4D56 /* Assets.xcassets */; };
@@ -37,11 +40,15 @@
 		F3A96D5A22E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D5722E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift */; };
 		F3A96D5B22E6E990001B4D56 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D5822E6E990001B4D56 /* SearchResultTableViewCell.swift */; };
 		F3A96D5C22E6E990001B4D56 /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3A96D5922E6E990001B4D56 /* SearchResultTableViewCell.xib */; };
+		F3A96D5F22E6FA31001B4D56 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D5E22E6FA31001B4D56 /* Appearance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B45097723E4D6747CC6DD615 /* Pods-StoreSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch.debug.xcconfig"; path = "Target Support Files/Pods-StoreSearch/Pods-StoreSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		EE0D738562075934E51444F5 /* Pods_StoreSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoreSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F36C381D22E6FD4A00CC001C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Content/Colors.xcassets"; sourceTree = "<group>"; };
+		F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Theme.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIColor+Theme.swift"; sourceTree = "<group>"; };
+		F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+SelectedTableCellBackgroundView.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIView/UIView+SelectedTableCellBackgroundView.swift"; sourceTree = "<group>"; };
 		F3A96CDD22E58305001B4D56 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A96CE022E58305001B4D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3A96CE222E58305001B4D56 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +80,7 @@
 		F3A96D5722E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SearchResultTableViewCell+ViewModel.swift"; sourceTree = "<group>"; };
 		F3A96D5822E6E990001B4D56 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		F3A96D5922E6E990001B4D56 /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
+		F3A96D5E22E6FA31001B4D56 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Appearance.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Helpers/Appearance.swift"; sourceTree = "<group>"; };
 		FB10CE426DD0FAD3BE4379AE /* Pods-StoreSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch.release.xcconfig"; path = "Target Support Files/Pods-StoreSearch/Pods-StoreSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +160,7 @@
 		F3A96CF722E58829001B4D56 /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				F3A96D5D22E6FA23001B4D56 /* Helpers */,
 				F3A96D4422E68AD5001B4D56 /* Networking */,
 				F3A96CF822E58900001B4D56 /* Extensions */,
 				F3A96D0822E58900001B4D56 /* Protocols */,
@@ -168,6 +177,7 @@
 				F3A96CF922E58900001B4D56 /* UIImage */,
 				F3A96CFF22E58900001B4D56 /* UIViewController */,
 				F3A96D4722E6AC59001B4D56 /* UIView */,
+				F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */,
 			);
 			name = Extensions;
 			path = "../../../../../../../../../../../Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions";
@@ -217,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A96CE922E58307001B4D56 /* Assets.xcassets */,
+				F36C381D22E6FD4A00CC001C /* Colors.xcassets */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -262,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A96D4A22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift */,
+				F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -274,6 +286,14 @@
 				F3A96D5722E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift */,
 			);
 			path = "Results Table Cell";
+			sourceTree = "<group>";
+		};
+		F3A96D5D22E6FA23001B4D56 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F3A96D5E22E6FA31001B4D56 /* Appearance.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +361,7 @@
 				F3A96D3822E59D8A001B4D56 /* LaunchScreen.storyboard in Resources */,
 				F3A96D5C22E6E990001B4D56 /* SearchResultTableViewCell.xib in Resources */,
 				F3A96D3122E59C31001B4D56 /* .swiftlint.yml in Resources */,
+				F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */,
 				F3A96D3C22E59F24001B4D56 /* Search.storyboard in Resources */,
 				F3A96CEA22E58307001B4D56 /* Assets.xcassets in Resources */,
 			);
@@ -436,6 +457,7 @@
 				F3A96D5B22E6E990001B4D56 /* SearchResultTableViewCell.swift in Sources */,
 				F3A96D4B22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift in Sources */,
 				F3A96D1B22E58900001B4D56 /* FileManager+UserDocumentsDirectory.swift in Sources */,
+				F3A96D5F22E6FA31001B4D56 /* Appearance.swift in Sources */,
 				F3A96D3922E59D8A001B4D56 /* SearchViewController.swift in Sources */,
 				F3A96D5A22E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift in Sources */,
 				F3A96D3A22E59D8A001B4D56 /* SearchCoordinator.swift in Sources */,
@@ -443,12 +465,14 @@
 				F3A96D2722E58B9A001B4D56 /* AppCoordinator.swift in Sources */,
 				F3A96D4622E68AEE001B4D56 /* Endpoint.swift in Sources */,
 				F3A96D1A22E58900001B4D56 /* UIViewController+DisplayAlertMessage.swift in Sources */,
+				F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */,
 				F3A96D1F22E58900001B4D56 /* Storyboarded.swift in Sources */,
 				F3A96D4022E67CB9001B4D56 /* SearchResult.swift in Sources */,
 				F3A96D4322E67CF9001B4D56 /* SearchResultsList.swift in Sources */,
 				F3A96D1622E58900001B4D56 /* UIViewController+DisplayPromptMessage.swift in Sources */,
 				F3A96D2322E58900001B4D56 /* TableViewDataSource.swift in Sources */,
 				F3A96D2222E58900001B4D56 /* Coordinator.swift in Sources */,
+				F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */,
 				F3A96D3322E59D38001B4D56 /* R.generated.swift in Sources */,
 				F3A96D1822E58900001B4D56 /* UIViewController+AddAndRemoveChild.swift in Sources */,
 				F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */,

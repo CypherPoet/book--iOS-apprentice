@@ -29,6 +29,7 @@ extension SceneDelegate: UIWindowSceneDelegate {
         
         appCoordinator = AppCoordinator(window: window, navController: navController)
             
+        Appearance.apply(to: window)
         appCoordinator?.start()
     }
     
