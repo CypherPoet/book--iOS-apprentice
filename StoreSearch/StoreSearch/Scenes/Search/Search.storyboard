@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14845" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14799.2"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="PIH-PS-jm8">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="isv-Tx-8ly" customClass="SearchViewController" customModule="StoreSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fUP-Pe-Fbp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qOh-ou-VbT">
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Search Table Cell" id="Qkf-A1-soH">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qkf-A1-soH" id="Zg8-rV-AJL">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xi-KZ-ib9">
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GZR-Nq-aJ3">
+                                        <rect key="frame" x="108.5" y="319.5" width="197.5" height="123.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Gob-lM-bWd">
+                                                <rect key="frame" x="56.5" y="0.5" width="84" height="83.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="84" id="BVa-TW-N0L"/>
+                                                    <constraint firstAttribute="width" secondItem="Gob-lM-bWd" secondAttribute="height" multiplier="1:1" id="l0f-QG-rUN"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUo-iV-f6S">
+                                                <rect key="frame" x="0.0" y="92" width="197.5" height="31.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="GZR-Nq-aJ3" firstAttribute="centerY" secondItem="7Xi-KZ-ib9" secondAttribute="centerY" id="buj-gP-MHC"/>
+                                    <constraint firstItem="GZR-Nq-aJ3" firstAttribute="centerX" secondItem="7Xi-KZ-ib9" secondAttribute="centerX" id="vYk-mi-Yz7"/>
+                                </constraints>
+                            </view>
+                            <searchBar contentMode="redraw" placeholder="Search the iTunes Store" translatesAutoresizingMaskIntoConstraints="NO" id="UHj-Ep-rsU">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="isv-Tx-8ly" id="xvi-Of-BYN"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7Xi-KZ-ib9" firstAttribute="centerY" secondItem="qOh-ou-VbT" secondAttribute="centerY" id="GA9-ii-lUG"/>
+                            <constraint firstItem="qOh-ou-VbT" firstAttribute="leading" secondItem="Ikl-5x-OVi" secondAttribute="leading" id="JCN-UB-bpL"/>
+                            <constraint firstItem="7Xi-KZ-ib9" firstAttribute="height" secondItem="qOh-ou-VbT" secondAttribute="height" id="TB5-Dy-vk1"/>
+                            <constraint firstItem="Ikl-5x-OVi" firstAttribute="trailing" secondItem="qOh-ou-VbT" secondAttribute="trailing" id="VpG-UI-uPP"/>
+                            <constraint firstItem="7Xi-KZ-ib9" firstAttribute="centerX" secondItem="qOh-ou-VbT" secondAttribute="centerX" id="VxI-qZ-FTA"/>
+                            <constraint firstItem="UHj-Ep-rsU" firstAttribute="trailing" secondItem="Ikl-5x-OVi" secondAttribute="trailing" id="WDL-3c-dk0"/>
+                            <constraint firstItem="UHj-Ep-rsU" firstAttribute="leading" secondItem="Ikl-5x-OVi" secondAttribute="leading" id="ayI-xh-x4w"/>
+                            <constraint firstItem="Ikl-5x-OVi" firstAttribute="bottom" secondItem="qOh-ou-VbT" secondAttribute="bottom" id="lS7-wZ-hd2"/>
+                            <constraint firstItem="7Xi-KZ-ib9" firstAttribute="width" secondItem="qOh-ou-VbT" secondAttribute="width" id="oZg-YI-aaU"/>
+                            <constraint firstItem="qOh-ou-VbT" firstAttribute="top" secondItem="UHj-Ep-rsU" secondAttribute="bottom" id="rB4-9Q-Stp"/>
+                            <constraint firstItem="Ikl-5x-OVi" firstAttribute="top" secondItem="UHj-Ep-rsU" secondAttribute="top" id="uix-8W-uZK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ikl-5x-OVi"/>
+                    </view>
+                    <connections>
+                        <outlet property="emptyStateView" destination="7Xi-KZ-ib9" id="G5l-ds-U59"/>
+                        <outlet property="searchBar" destination="UHj-Ep-rsU" id="IdN-cF-hUs"/>
+                        <outlet property="tableView" destination="qOh-ou-VbT" id="a2g-3f-yzo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nBg-iL-G7J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-495" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="0.circle.fill" catalog="system" width="64" height="62"/>
+    </resources>
+</document>

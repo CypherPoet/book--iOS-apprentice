@@ -1,6 +1,6 @@
 # iOS Apprentice
 
-_Projects, playgrounds, and other material made while following along with the Ray Wenderlich book [_iOS Apprentice_](https://store.raywenderlich.com/products/ios-apprentice).
+_Projects, playgrounds, and other material made while following along with the Ray Wenderlich book [_iOS Apprentice_](https://store.raywenderlich.com/products/ios-apprentice)._
 
 
 ![Shield.io MIT License Shield](https://img.shields.io/github/license/mashape/apistatus.svg)
