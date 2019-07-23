@@ -34,6 +34,9 @@
 		F3A96D4322E67CF9001B4D56 /* SearchResultsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D4222E67CF9001B4D56 /* SearchResultsList.swift */; };
 		F3A96D4622E68AEE001B4D56 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D4522E68AEE001B4D56 /* Endpoint.swift */; };
 		F3A96D4B22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D4A22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift */; };
+		F3A96D5A22E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D5722E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift */; };
+		F3A96D5B22E6E990001B4D56 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D5822E6E990001B4D56 /* SearchResultTableViewCell.swift */; };
+		F3A96D5C22E6E990001B4D56 /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3A96D5922E6E990001B4D56 /* SearchResultTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +70,9 @@
 		F3A96D4222E67CF9001B4D56 /* SearchResultsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsList.swift; sourceTree = "<group>"; };
 		F3A96D4522E68AEE001B4D56 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		F3A96D4A22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AnimateVisibility.swift"; sourceTree = "<group>"; };
+		F3A96D5722E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SearchResultTableViewCell+ViewModel.swift"; sourceTree = "<group>"; };
+		F3A96D5822E6E990001B4D56 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		F3A96D5922E6E990001B4D56 /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
 		FB10CE426DD0FAD3BE4379AE /* Pods-StoreSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch.release.xcconfig"; path = "Target Support Files/Pods-StoreSearch/Pods-StoreSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +224,7 @@
 		F3A96D3522E59D8A001B4D56 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				F3A96D4C22E6DC72001B4D56 /* Results Table Cell */,
 				F3A96D3622E59D8A001B4D56 /* SearchViewController.swift */,
 				F3A96D3722E59D8A001B4D56 /* SearchCoordinator.swift */,
 				F3A96D3B22E59F24001B4D56 /* Search.storyboard */,
@@ -257,6 +264,16 @@
 				F3A96D4A22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		F3A96D4C22E6DC72001B4D56 /* Results Table Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F3A96D5822E6E990001B4D56 /* SearchResultTableViewCell.swift */,
+				F3A96D5922E6E990001B4D56 /* SearchResultTableViewCell.xib */,
+				F3A96D5722E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift */,
+			);
+			path = "Results Table Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3A96D3822E59D8A001B4D56 /* LaunchScreen.storyboard in Resources */,
+				F3A96D5C22E6E990001B4D56 /* SearchResultTableViewCell.xib in Resources */,
 				F3A96D3122E59C31001B4D56 /* .swiftlint.yml in Resources */,
 				F3A96D3C22E59F24001B4D56 /* Search.storyboard in Resources */,
 				F3A96CEA22E58307001B4D56 /* Assets.xcassets in Resources */,
@@ -415,9 +433,11 @@
 			files = (
 				F3A96D1E22E58900001B4D56 /* NavigationControlling.swift in Sources */,
 				F3A96D2122E58900001B4D56 /* NavigationCoordinator.swift in Sources */,
+				F3A96D5B22E6E990001B4D56 /* SearchResultTableViewCell.swift in Sources */,
 				F3A96D4B22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift in Sources */,
 				F3A96D1B22E58900001B4D56 /* FileManager+UserDocumentsDirectory.swift in Sources */,
 				F3A96D3922E59D8A001B4D56 /* SearchViewController.swift in Sources */,
+				F3A96D5A22E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift in Sources */,
 				F3A96D3A22E59D8A001B4D56 /* SearchCoordinator.swift in Sources */,
 				F3A96D1322E58900001B4D56 /* URL+WithQueryParams.swift in Sources */,
 				F3A96D2722E58B9A001B4D56 /* AppCoordinator.swift in Sources */,

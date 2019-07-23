@@ -53,6 +53,7 @@ extension SearchViewController {
         super.viewDidLoad()
 
         dataSource = makeTableViewDataSource()
+        setupTableView()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             let dummyResults = [
@@ -83,25 +84,46 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 
+// MARK: - UITableViewDelegate
+
+extension SearchViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        searchBar.resignFirstResponder()
+    }
+}
+
+
 // MARK: - Private Helpers
 
-extension SearchViewController {
+private extension SearchViewController {
 
     func makeTableViewDataSource() -> DataSource {
         DataSource(
             tableView: tableView,
-            cellProvider: { (tableView, indexPath, searchResult) -> UITableViewCell? in
+            cellProvider: { [weak self] (tableView, indexPath, searchResult) -> UITableViewCell? in
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: R.reuseIdentifier.searchTableCell.identifier,
                     for: indexPath
                 )
                 
-                cell.textLabel?.text = searchResult.title
-                cell.detailTextLabel?.text = searchResult.artistName
+                self?.configure(cell, with: searchResult)
                 
                 return cell
             }
         )
+    }
+    
+    
+    func setupTableView() {
+        let resultCellNib = SearchResultTableViewCell.nib
+        
+        tableView.register(
+            resultCellNib,
+            forCellReuseIdentifier: R.reuseIdentifier.searchTableCell.identifier
+        )
+        tableView.delegate = self
     }
     
     
@@ -132,5 +154,18 @@ extension SearchViewController {
                 }
             }
         }
+    }
+    
+    
+    func configure(_ cell: UITableViewCell, with searchResult: SearchResult) {
+        guard let cell = cell as? SearchResultTableViewCell else {
+            preconditionFailure("Unexpected cell type")
+        }
+        
+        cell.viewModel = SearchResultTableViewCell.ViewModel(
+            resultImage: nil,
+            resultTitle: searchResult.title,
+            artistName: searchResult.artistName
+        )
     }
 }
