@@ -10,16 +10,34 @@ import Foundation
 
 
 struct SearchResult {
-    let title: String
-    let artistName: String
+    private let identifier = UUID()
+    
+    let artistName: String?
+    let trackName: String?
 }
 
-extension SearchResult: Hashable {}
 extension SearchResult: Codable {}
 
+extension SearchResult: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+}
 
+
+// MARK: - Computeds
+
+extension SearchResult {
+    
+    var title: String { trackName ?? "" }
+}
+
+
+// MARK: - SearchResults
 
 struct SearchResults {
+    let resultCount: Int
     let results: [SearchResult]
 }
 

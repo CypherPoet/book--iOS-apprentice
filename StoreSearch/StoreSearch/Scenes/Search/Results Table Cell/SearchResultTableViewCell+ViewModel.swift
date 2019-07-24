@@ -14,7 +14,7 @@ extension SearchResultTableViewCell {
     struct ViewModel {
         var resultImage: UIImage?
         var resultTitle: String
-        var artistName: String
+        var artistName: String?
     }
 }
 
