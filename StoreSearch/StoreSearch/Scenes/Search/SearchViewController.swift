@@ -13,6 +13,9 @@ class SearchViewController: UIViewController, Storyboarded {
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var emptyStateView: UIView!
     
+    var modelController: SearchModelController!
+    
+    
     private var dataSource: DataSource!
     
     private var searchResults: [SearchResult] = [] {
@@ -23,7 +26,8 @@ class SearchViewController: UIViewController, Storyboarded {
     
     private enum SearchState {
         case notStarted
-        case completed(results: [SearchResult])
+        case inProgress
+        case completed(finding: [SearchResult])
         case errored(message: String)
     }
     
@@ -52,20 +56,22 @@ extension SearchViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        assert(modelController != nil, "No SearchModelController was set")
+        
         Appearance.apply(to: searchBar)
         dataSource = makeTableViewDataSource()
         setupTableView()
         searchBar.becomeFirstResponder()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let dummyResults = [
-                SearchResult(title: "🦊", artistName: "The Foxes"),
-                SearchResult(title: "🐺", artistName: "The Wolves"),
-                SearchResult(title: "🧝‍♂️", artistName: "The Elves"),
-            ]
-            
-            self.currentSearchState = .completed(results: dummyResults)
-        }
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            let dummyResults = [
+//                SearchResult(title: "🦊", artistName: "The Foxes"),
+//                SearchResult(title: "🐺", artistName: "The Wolves"),
+//                SearchResult(title: "🧝‍♂️", artistName: "The Elves"),
+//            ]
+//
+//            self.currentSearchState = .completed(results: dummyResults)
+//        }
     }
 }
 
@@ -78,10 +84,16 @@ extension SearchViewController: UISearchBarDelegate {
         .topAttached
     }
     
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print(#"The Search text is "\#(searchBar.text ?? "")""#)
+        guard
+            let searchText = searchBar.text,
+            !searchText.isEmpty
+        else { return }
+
         searchBar.resignFirstResponder()
-        self.currentSearchState = .completed(results: [])
+        fetchResults(for: searchText)
     }
 }
 
@@ -143,6 +155,9 @@ private extension SearchViewController {
         switch currentSearchState {
         case .notStarted:
             emptyStateView.fadeOut()
+        case .inProgress:
+            // TODO: Show a loading spinner view here?
+            emptyStateView.fadeOut()
         case .errored:
             break
         case .completed(let results):
@@ -169,5 +184,21 @@ private extension SearchViewController {
             resultTitle: searchResult.title,
             artistName: searchResult.artistName
         )
+    }
+    
+    
+    func fetchResults(for searchText: String) {
+        currentSearchState = .inProgress
+        
+        modelController.fetchResults(for: searchText) { [weak self] fetchResult in
+            guard let self = self else { return }
+            
+            switch fetchResult {
+            case .success(let results):
+                self.currentSearchState = .completed(finding: results)
+            case .failure:
+                self.currentSearchState = .completed(finding: [])
+            }
+        }
     }
 }

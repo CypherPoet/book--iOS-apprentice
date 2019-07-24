@@ -11,6 +11,10 @@
 		F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36C381D22E6FD4A00CC001C /* Colors.xcassets */; };
 		F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */; };
 		F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */; };
+		F36C382422E8180300CC001C /* ModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382322E8180300CC001C /* ModelLoader.swift */; };
+		F36C382622E8187E00CC001C /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382522E8187E00CC001C /* Transport.swift */; };
+		F36C382822E8190700CC001C /* URLSession+Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382722E8190700CC001C /* URLSession+Transport.swift */; };
+		F36C382A22E84F1900CC001C /* SearchModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382922E84F1900CC001C /* SearchModelController.swift */; };
 		F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE022E58305001B4D56 /* AppDelegate.swift */; };
 		F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE222E58305001B4D56 /* SceneDelegate.swift */; };
 		F3A96CEA22E58307001B4D56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A96CE922E58307001B4D56 /* Assets.xcassets */; };
@@ -49,6 +53,10 @@
 		F36C381D22E6FD4A00CC001C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Content/Colors.xcassets"; sourceTree = "<group>"; };
 		F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Theme.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIColor+Theme.swift"; sourceTree = "<group>"; };
 		F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+SelectedTableCellBackgroundView.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIView/UIView+SelectedTableCellBackgroundView.swift"; sourceTree = "<group>"; };
+		F36C382322E8180300CC001C /* ModelLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelLoader.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Helpers/ModelLoader.swift"; sourceTree = "<group>"; };
+		F36C382522E8187E00CC001C /* Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Transport.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols/Transport.swift"; sourceTree = "<group>"; };
+		F36C382722E8190700CC001C /* URLSession+Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLSession+Transport.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/URLSession+Transport.swift"; sourceTree = "<group>"; };
+		F36C382922E84F1900CC001C /* SearchModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchModelController.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/SearchModelController.swift"; sourceTree = "<group>"; };
 		F3A96CDD22E58305001B4D56 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A96CE022E58305001B4D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3A96CE222E58305001B4D56 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +186,7 @@
 				F3A96CFF22E58900001B4D56 /* UIViewController */,
 				F3A96D4722E6AC59001B4D56 /* UIView */,
 				F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */,
+				F36C382722E8190700CC001C /* URLSession+Transport.swift */,
 			);
 			name = Extensions;
 			path = "../../../../../../../../../../../Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions";
@@ -209,6 +218,7 @@
 				F3A96D0A22E58900001B4D56 /* Storyboarded.swift */,
 				F3A96D0C22E58900001B4D56 /* NavigationCoordinator.swift */,
 				F3A96D0D22E58900001B4D56 /* Coordinator.swift */,
+				F36C382522E8187E00CC001C /* Transport.swift */,
 			);
 			name = Protocols;
 			path = "../../../../../../../../../../../Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols";
@@ -237,6 +247,7 @@
 			children = (
 				F3A96D4C22E6DC72001B4D56 /* Results Table Cell */,
 				F3A96D3622E59D8A001B4D56 /* SearchViewController.swift */,
+				F36C382922E84F1900CC001C /* SearchModelController.swift */,
 				F3A96D3722E59D8A001B4D56 /* SearchCoordinator.swift */,
 				F3A96D3B22E59F24001B4D56 /* Search.storyboard */,
 			);
@@ -292,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A96D5E22E6FA31001B4D56 /* Appearance.swift */,
+				F36C382322E8180300CC001C /* ModelLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -456,6 +468,7 @@
 				F3A96D2122E58900001B4D56 /* NavigationCoordinator.swift in Sources */,
 				F3A96D5B22E6E990001B4D56 /* SearchResultTableViewCell.swift in Sources */,
 				F3A96D4B22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift in Sources */,
+				F36C382A22E84F1900CC001C /* SearchModelController.swift in Sources */,
 				F3A96D1B22E58900001B4D56 /* FileManager+UserDocumentsDirectory.swift in Sources */,
 				F3A96D5F22E6FA31001B4D56 /* Appearance.swift in Sources */,
 				F3A96D3922E59D8A001B4D56 /* SearchViewController.swift in Sources */,
@@ -468,8 +481,11 @@
 				F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */,
 				F3A96D1F22E58900001B4D56 /* Storyboarded.swift in Sources */,
 				F3A96D4022E67CB9001B4D56 /* SearchResult.swift in Sources */,
+				F36C382622E8187E00CC001C /* Transport.swift in Sources */,
+				F36C382422E8180300CC001C /* ModelLoader.swift in Sources */,
 				F3A96D4322E67CF9001B4D56 /* SearchResultsList.swift in Sources */,
 				F3A96D1622E58900001B4D56 /* UIViewController+DisplayPromptMessage.swift in Sources */,
+				F36C382822E8190700CC001C /* URLSession+Transport.swift in Sources */,
 				F3A96D2322E58900001B4D56 /* TableViewDataSource.swift in Sources */,
 				F3A96D2222E58900001B4D56 /* Coordinator.swift in Sources */,
 				F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */,

@@ -28,6 +28,8 @@ extension SearchCoordinator: Coordinator {
             named: R.storyboard.search.name
         )
         
+        searchVC.modelController = SearchModelController()
+        
         navController.navigationBar.isHidden = true
         navController.setViewControllers([searchVC], animated: true)
     }

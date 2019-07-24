@@ -145,6 +145,9 @@ __.
 
 ### Topics Covered / Challenges Encountered
 
+- Debugging with exception breakpoints
+
+
 <br>
 
 ### 📸 Moar Screenshots

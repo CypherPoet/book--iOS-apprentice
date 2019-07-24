@@ -33,11 +33,11 @@ extension Endpoint {
 
 extension Endpoint {
     
-    static func search(matching query: String) -> Endpoint {
+    static func search(matching queryItems: [URLQueryItem]) -> Endpoint {
         Endpoint(
             host: "itunes.apple.com",
             path: "/search",
-            queryItems: []
+            queryItems: queryItems
         )
     }
 }
