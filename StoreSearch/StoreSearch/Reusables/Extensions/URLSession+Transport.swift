@@ -9,18 +9,39 @@
 import Foundation
 
 
+extension URLSession {
+    enum TransportError: Error {
+        case missingResponse
+        case unexpectedResponse(HTTPURLResponse)
+        case missingData
+    }
+}
+
+
 extension URLSession: Transport {
     
     func send(
         request: URLRequest,
         then completionHandler: @escaping (Result<Data, Error>) -> Void
     ) {
-        let task = dataTask(with: request) { (data, _, error) in
-            if let error = error {
-                completionHandler(.failure(error))
-            } else if let data = data {
-                completionHandler(.success(data))
+        let task = dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                return completionHandler(.failure(error!))
             }
+            
+            guard let response = response as? HTTPURLResponse else {
+                return completionHandler(.failure(TransportError.missingResponse))
+            }
+                
+            guard response.statusCode == 200 else {
+                return completionHandler(.failure(TransportError.unexpectedResponse(response)))
+            }
+            
+            guard let data = data else {
+                return completionHandler(.failure(TransportError.missingData))
+            }
+            
+            completionHandler(.success(data))
         }
         
         // 🚀

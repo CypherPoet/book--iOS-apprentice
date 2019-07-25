@@ -36,13 +36,15 @@ extension SearchModelController {
         let endpoint = Endpoint.search(matching: queries)
         
         modelLoader.request(endpoint) { result in
-            switch result {
-            case .success(let searchResults):
-                completionHandler(.success(searchResults.results))
-            case .failure(let error):
-                // TODO: Some more-robust error handling could be designed here
-                print("Error while requesting data from endpoint: \(error.localizedDescription)")
-                completionHandler(.failure(error))
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let searchResults):
+                    completionHandler(.success(searchResults.results))
+                case .failure(let error):
+                    // TODO: Some more-robust error handling could be designed here
+                    print("Error while requesting data from endpoint: \(error.localizedDescription)")
+                    completionHandler(.failure(error))
+                }
             }
         }
     }

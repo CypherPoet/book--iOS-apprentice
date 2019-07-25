@@ -31,7 +31,7 @@ class SearchViewController: UIViewController, Storyboarded {
         case notStarted
         case inProgress
         case completed(finding: [SearchResult])
-        case errored(message: String)
+        case errored(message: String? = nil)
     }
     
     private var currentSearchState: SearchState = .notStarted {
@@ -204,6 +204,7 @@ private extension SearchViewController {
                 self.currentSearchState = .completed(finding: results)
             case .failure:
                 self.showNetworkingError()
+                self.currentSearchState = .errored()
             }
         }
     }
