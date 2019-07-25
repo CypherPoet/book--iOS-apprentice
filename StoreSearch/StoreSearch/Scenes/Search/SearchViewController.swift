@@ -62,16 +62,6 @@ extension SearchViewController {
         dataSource = makeTableViewDataSource()
         setupTableView()
         searchBar.becomeFirstResponder()
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            let dummyResults = [
-//                SearchResult(title: "🦊", artistName: "The Foxes"),
-//                SearchResult(title: "🐺", artistName: "The Wolves"),
-//                SearchResult(title: "🧝‍♂️", artistName: "The Elves"),
-//            ]
-//
-//            self.currentSearchState = .completed(results: dummyResults)
-//        }
     }
 }
 
@@ -86,7 +76,6 @@ extension SearchViewController: UISearchBarDelegate {
     
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print(#"The Search text is "\#(searchBar.text ?? "")""#)
         guard
             let searchText = searchBar.text,
             !searchText.isEmpty
@@ -160,12 +149,14 @@ private extension SearchViewController {
             emptyStateView.fadeOut()
         case .errored:
             break
-        case .completed(let results):
+        case .completed(var results):
             if results.isEmpty {
                 emptyStateView.fadeIn { [weak self] in
                     self?.updateDataSnapshot(with: results)
                 }
             } else {
+                SearchResults.sortAscending(&results)
+
                 emptyStateView.fadeOut { [weak self] in
                     self?.updateDataSnapshot(with: results)
                 }
@@ -182,7 +173,8 @@ private extension SearchViewController {
         cell.viewModel = SearchResultTableViewCell.ViewModel(
             resultImage: nil,
             resultTitle: searchResult.title,
-            artistName: searchResult.artistName
+            artistName: searchResult.artistName,
+            contentType: searchResult.contentType
         )
     }
     
@@ -197,7 +189,7 @@ private extension SearchViewController {
             case .success(let results):
                 self.currentSearchState = .completed(finding: results)
             case .failure:
-                self.currentSearchState = .completed(finding: [])
+                self.showNetworkingError()
             }
         }
     }

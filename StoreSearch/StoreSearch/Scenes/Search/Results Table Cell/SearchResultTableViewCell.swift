@@ -58,7 +58,7 @@ private extension SearchResultTableViewCell {
     
     func render(with viewModel: ViewModel) {
         thumbnailImageView.image = viewModel.thumbnailImage
-        resultTitleLabel.text = viewModel.resultTitle
-        artistNameLabel.text = viewModel.artistName
+        resultTitleLabel.text = viewModel.titleText
+        artistNameLabel.text = viewModel.subtitleText
     }
 }

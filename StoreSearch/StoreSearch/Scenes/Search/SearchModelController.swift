@@ -28,7 +28,7 @@ extension SearchModelController {
         for searchText: String,
         then completionHandler: @escaping CompletionHandler
     ) {
-        let queries = [URLQueryItem(name: "term", value: searchText)]
+        let queries = [URLQueryItem(name: .term, value: searchText)]
         let endpoint = Endpoint.search(matching: queries)
         
         modelLoader.request(endpoint) { result in
@@ -36,7 +36,9 @@ extension SearchModelController {
             case .success(let searchResults):
                 completionHandler(.success(searchResults.results))
             case .failure(let error):
-                fatalError(error.localizedDescription)
+                // TODO: Some more-robust error handling could be designed here
+                print("Error while requesting data from endpoint: \(error.localizedDescription)")
+                completionHandler(.failure(error))
             }
         }
     }

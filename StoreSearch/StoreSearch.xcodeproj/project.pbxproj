@@ -15,6 +15,10 @@
 		F36C382622E8187E00CC001C /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382522E8187E00CC001C /* Transport.swift */; };
 		F36C382822E8190700CC001C /* URLSession+Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382722E8190700CC001C /* URLSession+Transport.swift */; };
 		F36C382A22E84F1900CC001C /* SearchModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382922E84F1900CC001C /* SearchModelController.swift */; };
+		F36C382C22E879C500CC001C /* UIViewController+ShowNetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382B22E879C500CC001C /* UIViewController+ShowNetworkingError.swift */; };
+		F36C382E22E8810700CC001C /* URLQueryItem+InitWithName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382D22E8810700CC001C /* URLQueryItem+InitWithName.swift */; };
+		F36C383122E9BECA00CC001C /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C383022E9BECA00CC001C /* ContentType.swift */; };
+		F36C383322E9CEE100CC001C /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C383222E9CEE100CC001C /* SearchResults.swift */; };
 		F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE022E58305001B4D56 /* AppDelegate.swift */; };
 		F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE222E58305001B4D56 /* SceneDelegate.swift */; };
 		F3A96CEA22E58307001B4D56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A96CE922E58307001B4D56 /* Assets.xcassets */; };
@@ -57,6 +61,10 @@
 		F36C382522E8187E00CC001C /* Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Transport.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols/Transport.swift"; sourceTree = "<group>"; };
 		F36C382722E8190700CC001C /* URLSession+Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLSession+Transport.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/URLSession+Transport.swift"; sourceTree = "<group>"; };
 		F36C382922E84F1900CC001C /* SearchModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchModelController.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/SearchModelController.swift"; sourceTree = "<group>"; };
+		F36C382B22E879C500CC001C /* UIViewController+ShowNetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+ShowNetworkingError.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIViewController/UIViewController+ShowNetworkingError.swift"; sourceTree = "<group>"; };
+		F36C382D22E8810700CC001C /* URLQueryItem+InitWithName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLQueryItem+InitWithName.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/URLQueryItem+InitWithName.swift"; sourceTree = "<group>"; };
+		F36C383022E9BECA00CC001C /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentType.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/ContentType.swift"; sourceTree = "<group>"; };
+		F36C383222E9CEE100CC001C /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResults.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Models/Search/SearchResults.swift"; sourceTree = "<group>"; };
 		F3A96CDD22E58305001B4D56 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A96CE022E58305001B4D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3A96CE222E58305001B4D56 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +129,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F36C382F22E9BEB500CC001C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				F36C383022E9BECA00CC001C /* ContentType.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		F3A96CD422E58305001B4D56 = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +184,7 @@
 		F3A96CF722E58829001B4D56 /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				F36C382F22E9BEB500CC001C /* Constants */,
 				F3A96D5D22E6FA23001B4D56 /* Helpers */,
 				F3A96D4422E68AD5001B4D56 /* Networking */,
 				F3A96CF822E58900001B4D56 /* Extensions */,
@@ -187,6 +204,7 @@
 				F3A96D4722E6AC59001B4D56 /* UIView */,
 				F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */,
 				F36C382722E8190700CC001C /* URLSession+Transport.swift */,
+				F36C382D22E8810700CC001C /* URLQueryItem+InitWithName.swift */,
 			);
 			name = Extensions;
 			path = "../../../../../../../../../../../Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions";
@@ -207,6 +225,7 @@
 				F3A96D0122E58900001B4D56 /* UIViewController+Computeds.swift */,
 				F3A96D0422E58900001B4D56 /* UIViewController+DisplayAlertMessage.swift */,
 				F3A96D0022E58900001B4D56 /* UIViewController+DisplayPromptMessage.swift */,
+				F36C382B22E879C500CC001C /* UIViewController+ShowNetworkingError.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -268,6 +287,7 @@
 			children = (
 				F3A96D3F22E67CB9001B4D56 /* SearchResult.swift */,
 				F3A96D4222E67CF9001B4D56 /* SearchResultsList.swift */,
+				F36C383222E9CEE100CC001C /* SearchResults.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -464,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36C382C22E879C500CC001C /* UIViewController+ShowNetworkingError.swift in Sources */,
 				F3A96D1E22E58900001B4D56 /* NavigationControlling.swift in Sources */,
 				F3A96D2122E58900001B4D56 /* NavigationCoordinator.swift in Sources */,
 				F3A96D5B22E6E990001B4D56 /* SearchResultTableViewCell.swift in Sources */,
@@ -477,6 +498,7 @@
 				F3A96D1322E58900001B4D56 /* URL+WithQueryParams.swift in Sources */,
 				F3A96D2722E58B9A001B4D56 /* AppCoordinator.swift in Sources */,
 				F3A96D4622E68AEE001B4D56 /* Endpoint.swift in Sources */,
+				F36C382E22E8810700CC001C /* URLQueryItem+InitWithName.swift in Sources */,
 				F3A96D1A22E58900001B4D56 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */,
 				F3A96D1F22E58900001B4D56 /* Storyboarded.swift in Sources */,
@@ -494,7 +516,9 @@
 				F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */,
 				F3A96D1722E58900001B4D56 /* UIViewController+Computeds.swift in Sources */,
 				F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */,
+				F36C383322E9CEE100CC001C /* SearchResults.swift in Sources */,
 				F3A96D1222E58900001B4D56 /* UIImage+ResizedWithBounds.swift in Sources */,
+				F36C383122E9BECA00CC001C /* ContentType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
