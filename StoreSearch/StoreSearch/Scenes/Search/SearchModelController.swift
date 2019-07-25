@@ -28,7 +28,11 @@ extension SearchModelController {
         for searchText: String,
         then completionHandler: @escaping CompletionHandler
     ) {
-        let queries = [URLQueryItem(name: .term, value: searchText)]
+        let queries = [
+            URLQueryItem(name: .term, value: searchText),
+            URLQueryItem(name: .limit, value: "50"),
+        ]
+        
         let endpoint = Endpoint.search(matching: queries)
         
         modelLoader.request(endpoint) { result in

@@ -14,11 +14,17 @@ extension URLQueryItem {
     // Enables using strongly typed constants with `URLQueryItem.init(name:value:)`
     enum ParamName {
         case term
+        case limit
+        case media
         
         var string: String {
             switch self {
             case .term:
                 return "term"
+            case .limit:
+                return "limit"
+            case .media:
+                return "media"
             }
         }
     }

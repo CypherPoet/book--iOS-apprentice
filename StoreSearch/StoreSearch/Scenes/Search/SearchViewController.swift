@@ -12,6 +12,9 @@ class SearchViewController: UIViewController, Storyboarded {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var emptyStateView: UIView!
+    @IBOutlet private var loadingSpinnerViewContainer: UIView!
+    @IBOutlet private var loadingSpinner: UIActivityIndicatorView!
+    
     
     var modelController: SearchModelController!
     
@@ -143,13 +146,18 @@ private extension SearchViewController {
     func searchStateChanged() {
         switch currentSearchState {
         case .notStarted:
+            stopLoadingSpinner()
             emptyStateView.fadeOut()
         case .inProgress:
-            // TODO: Show a loading spinner view here?
-            emptyStateView.fadeOut()
+            emptyStateView.fadeOut { [weak self] in
+                self?.loadingSpinnerViewContainer.fadeIn()
+                self?.loadingSpinner.startAnimating()
+            }
         case .errored:
-            break
+            stopLoadingSpinner()
         case .completed(var results):
+            stopLoadingSpinner()
+            
             if results.isEmpty {
                 emptyStateView.fadeIn { [weak self] in
                     self?.updateDataSnapshot(with: results)
@@ -162,6 +170,12 @@ private extension SearchViewController {
                 }
             }
         }
+    }
+    
+    
+    func stopLoadingSpinner() {
+        loadingSpinnerViewContainer.fadeOut()
+        loadingSpinner.stopAnimating()
     }
     
     

@@ -54,25 +54,44 @@
                                     <constraint firstItem="GZR-Nq-aJ3" firstAttribute="centerX" secondItem="7Xi-KZ-ib9" secondAttribute="centerX" id="vYk-mi-Yz7"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xXz-9C-bhw">
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="yTG-le-Fe5">
+                                        <rect key="frame" x="188.5" y="362.5" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="systemFillColor"/>
+                                <constraints>
+                                    <constraint firstItem="yTG-le-Fe5" firstAttribute="centerX" secondItem="xXz-9C-bhw" secondAttribute="centerX" id="5ep-r6-SP9"/>
+                                    <constraint firstItem="yTG-le-Fe5" firstAttribute="centerY" secondItem="xXz-9C-bhw" secondAttribute="centerY" id="smn-qX-fMG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="7Xi-KZ-ib9" firstAttribute="centerY" secondItem="qOh-ou-VbT" secondAttribute="centerY" id="GA9-ii-lUG"/>
                             <constraint firstItem="qOh-ou-VbT" firstAttribute="leading" secondItem="Ikl-5x-OVi" secondAttribute="leading" id="JCN-UB-bpL"/>
+                            <constraint firstItem="xXz-9C-bhw" firstAttribute="centerY" secondItem="qOh-ou-VbT" secondAttribute="centerY" id="KES-KH-2qW"/>
                             <constraint firstItem="7Xi-KZ-ib9" firstAttribute="height" secondItem="qOh-ou-VbT" secondAttribute="height" id="TB5-Dy-vk1"/>
                             <constraint firstItem="Ikl-5x-OVi" firstAttribute="trailing" secondItem="qOh-ou-VbT" secondAttribute="trailing" id="VpG-UI-uPP"/>
                             <constraint firstItem="7Xi-KZ-ib9" firstAttribute="centerX" secondItem="qOh-ou-VbT" secondAttribute="centerX" id="VxI-qZ-FTA"/>
                             <constraint firstItem="UHj-Ep-rsU" firstAttribute="trailing" secondItem="Ikl-5x-OVi" secondAttribute="trailing" id="WDL-3c-dk0"/>
                             <constraint firstItem="UHj-Ep-rsU" firstAttribute="leading" secondItem="Ikl-5x-OVi" secondAttribute="leading" id="ayI-xh-x4w"/>
+                            <constraint firstItem="xXz-9C-bhw" firstAttribute="width" secondItem="qOh-ou-VbT" secondAttribute="width" id="f43-cW-nfd"/>
+                            <constraint firstItem="xXz-9C-bhw" firstAttribute="height" secondItem="qOh-ou-VbT" secondAttribute="height" id="f4X-Bd-B6E"/>
                             <constraint firstItem="Ikl-5x-OVi" firstAttribute="bottom" secondItem="qOh-ou-VbT" secondAttribute="bottom" id="lS7-wZ-hd2"/>
                             <constraint firstItem="7Xi-KZ-ib9" firstAttribute="width" secondItem="qOh-ou-VbT" secondAttribute="width" id="oZg-YI-aaU"/>
                             <constraint firstItem="qOh-ou-VbT" firstAttribute="top" secondItem="UHj-Ep-rsU" secondAttribute="bottom" id="rB4-9Q-Stp"/>
+                            <constraint firstItem="xXz-9C-bhw" firstAttribute="centerX" secondItem="qOh-ou-VbT" secondAttribute="centerX" id="t7m-3U-Gvj"/>
                             <constraint firstItem="Ikl-5x-OVi" firstAttribute="top" secondItem="UHj-Ep-rsU" secondAttribute="top" id="uix-8W-uZK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ikl-5x-OVi"/>
                     </view>
                     <connections>
                         <outlet property="emptyStateView" destination="7Xi-KZ-ib9" id="G5l-ds-U59"/>
+                        <outlet property="loadingSpinner" destination="yTG-le-Fe5" id="Ce0-8V-lrq"/>
+                        <outlet property="loadingSpinnerViewContainer" destination="xXz-9C-bhw" id="gzb-rQ-s76"/>
                         <outlet property="searchBar" destination="UHj-Ep-rsU" id="IdN-cF-hUs"/>
                         <outlet property="tableView" destination="qOh-ou-VbT" id="a2g-3f-yzo"/>
                     </connections>
