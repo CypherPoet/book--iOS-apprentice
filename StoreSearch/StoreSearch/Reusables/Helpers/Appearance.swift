@@ -16,11 +16,22 @@ enum Appearance {
             let appearance = UIBarAppearance()
             
             appearance.backgroundColor = UIColor.Theme.background
-            
+
             return appearance
         }
     }
     
+    
+    enum NavBar {
+        static var standard: UINavigationBarAppearance {
+            let appearance = UINavigationBarAppearance()
+            
+            appearance.backgroundColor = UIColor.Theme.background.withAlphaComponent(0.33)
+
+            return appearance
+        }
+    }
+
     
     static func apply(to window: UIWindow) {
         window.tintColor = UIColor.Theme.tint
@@ -28,8 +39,11 @@ enum Appearance {
     
     
     static func apply(to searchBar: UISearchBar) {
-        searchBar.isTranslucent = true
-//        searchBar.searchBarStyle = .minimal
-        searchBar.barTintColor = UIColor.Theme.background
+        searchBar.searchTextField.backgroundColor = UIColor.systemBackground
+    }
+    
+    
+    static func apply(to navBar: UINavigationBar) {
+        navBar.standardAppearance = NavBar.standard
     }
 }

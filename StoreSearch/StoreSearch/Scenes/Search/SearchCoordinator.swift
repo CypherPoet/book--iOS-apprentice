@@ -30,7 +30,21 @@ extension SearchCoordinator: Coordinator {
         
         searchVC.modelController = SearchModelController()
         
-        navController.navigationBar.isHidden = true
+        let searchController = UISearchController(searchResultsController: nil)
+        
+        searchController.searchResultsUpdater = searchVC
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search the iTunes Store"
+        searchController.definesPresentationContext = true
+        searchController.searchBar.scopeButtonTitles = ["Foo", "Bar"]
+
+        searchVC.navigationItem.searchController = searchController
+        searchVC.title = "iTunes Store Search"
+        
+        Appearance.apply(to: searchController.searchBar)
+        Appearance.apply(to: navController.navigationBar)
+        navController.navigationBar.prefersLargeTitles = true
+        
         navController.setViewControllers([searchVC], animated: true)
     }
 }

@@ -10,14 +10,12 @@ import UIKit
 
 class SearchViewController: UIViewController, Storyboarded {
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var emptyStateView: UIView!
     @IBOutlet private var loadingSpinnerViewContainer: UIView!
     @IBOutlet private var loadingSpinner: UIActivityIndicatorView!
     
     
     var modelController: SearchModelController!
-    
     
     private var dataSource: DataSource!
     private var currentFetchToken: DataTaskToken?
@@ -56,31 +54,21 @@ extension SearchViewController {
         
         assert(modelController != nil, "No SearchModelController was set")
         
-        Appearance.apply(to: searchBar)
         dataSource = makeTableViewDataSource()
         setupTableView()
-        searchBar.becomeFirstResponder()
     }
 }
 
+// MARK: - UISearchResultsUpdating
 
-// MARK: - UISearchBarDelegate
-
-extension SearchViewController: UISearchBarDelegate {
+extension SearchViewController: UISearchResultsUpdating {
     
-    func position(for bar: UIBarPositioning) -> UIBarPosition {
-        .topAttached
-    }
-    
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard
-            let searchText = searchBar.text,
-            !searchText.isEmpty
-        else { return }
-
-        searchBar.resignFirstResponder()
-        fetchResults(for: searchText)
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        
+        if !searchText.isEmpty {
+            fetchResults(for: searchText)
+        }
     }
 }
 
@@ -91,7 +79,6 @@ extension SearchViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        searchBar.resignFirstResponder()
     }
 }
 
