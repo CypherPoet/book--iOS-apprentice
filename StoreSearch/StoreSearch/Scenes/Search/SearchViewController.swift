@@ -20,12 +20,7 @@ class SearchViewController: UIViewController, Storyboarded {
     
     
     private var dataSource: DataSource!
-    
-    private var searchResults: [SearchResult] = [] {
-        didSet {
-            DispatchQueue.main.async { self.updateDataSnapshot(with: self.searchResults) }
-        }
-    }
+    private var currentFetchToken: DataTaskToken?
     
     private enum SearchState {
         case notStarted
@@ -194,17 +189,20 @@ private extension SearchViewController {
     
     
     func fetchResults(for searchText: String) {
+        currentFetchToken?.cancel()
         currentSearchState = .inProgress
         
-        modelController.fetchResults(for: searchText) { [weak self] fetchResult in
+        currentFetchToken = modelController.fetchResults(for: searchText) { [weak self] fetchResult in
             guard let self = self else { return }
             
-            switch fetchResult {
-            case .success(let results):
-                self.currentSearchState = .completed(finding: results)
-            case .failure:
-                self.showNetworkingError()
-                self.currentSearchState = .errored()
+            DispatchQueue.main.async {
+                switch fetchResult {
+                case .success(let results):
+                    self.currentSearchState = .completed(finding: results)
+                case .failure:
+                    self.showNetworkingError()
+                    self.currentSearchState = .errored()
+                }
             }
         }
     }

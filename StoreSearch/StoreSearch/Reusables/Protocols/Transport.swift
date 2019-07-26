@@ -9,10 +9,10 @@
 import Foundation
 
 
-protocol Transport {
-    
-    func send(
-        request: URLRequest,
-        then completionHandler: @escaping (Result<Data, Error>) -> Void
-    )
+protocol Transporting {
+
+    func makeTask(
+        for request: URLRequest,
+        then completionHandler: @escaping ((Result<Data, Error>) -> Void)
+    ) -> URLSessionTask
 }

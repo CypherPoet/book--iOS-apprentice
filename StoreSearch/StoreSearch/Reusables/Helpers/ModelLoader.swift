@@ -10,13 +10,13 @@ import Foundation
 
 
 final class ModelLoader<Model: Decodable> {
-    typealias DecodingCompletionHandler = (Result<Model, Error>) -> Void
+    typealias LoadingCompletionHandler = (Result<Model, Error>) -> Void
     
-    private let transport: Transport
+    private let transport: Transporting
     private let decoder: JSONDecoder
     
     
-    init(transport: Transport = URLSession.shared, decoder: JSONDecoder = JSONDecoder()) {
+    init(transport: Transporting = URLSession.shared, decoder: JSONDecoder = JSONDecoder()) {
         self.transport = transport
         self.decoder = decoder
     }
@@ -35,20 +35,23 @@ extension ModelLoader {
     func request(
         _ endpoint: Endpoint,
         on queue: DispatchQueue = .global(qos: .userInitiated),
-        then decodingCompletionHandler: @escaping DecodingCompletionHandler
-    ) {
+        then loadingCompletionHandler: @escaping LoadingCompletionHandler
+    ) -> DataTaskToken {
         guard let url = endpoint.url else {
-            return decodingCompletionHandler(.failure(LoaderError.invalidURL))
+            preconditionFailure("Failed to construct URL from endpoint")
         }
         
         let request = URLRequest(url: url)
         
-        queue.async { [weak self] in
-            self?.transport.send(request: request) { dataResult in
-                self?.handle(dataResult, using: decodingCompletionHandler)
-            }
+        let dataTask = self.transport.makeTask(for: request) { dataResult in
+            self.handle(dataResult, using: loadingCompletionHandler)
         }
         
+        queue.async {
+            dataTask.resume()
+        }
+        
+        return DataTaskToken(task: dataTask)
     }
 }
 
@@ -57,13 +60,33 @@ private extension ModelLoader {
     
     func handle(
         _ dataResult: Result<Data, Error>,
-        using decodingCompletionHandler: DecodingCompletionHandler
+        using loadingCompletionHandler: LoadingCompletionHandler
     ) {
-        do {
-            let model = try decoder.decode(Model.self, from: dataResult.get())
-            decodingCompletionHandler(.success(model))
-        } catch {
-            decodingCompletionHandler(.failure(error))
+        switch dataResult {
+        case .success(let data):
+            do {
+                let model = try decoder.decode(Model.self, from: data)
+                loadingCompletionHandler(.success(model))
+            } catch {
+                loadingCompletionHandler(.failure(error))
+            }
+        case .failure(let error):
+            handleDataError(error, using: loadingCompletionHandler)
+        }
+    }
+    
+    
+    func handleDataError(
+        _ error: Error,
+        using loadingCompletionHandler: LoadingCompletionHandler
+    ) {
+        switch error {
+        case (let nsError as NSError?) where nsError != nil:
+            if nsError!.code == NSURLErrorCancelled {
+                return
+            }
+        default:
+            loadingCompletionHandler(.failure(error))
         }
     }
 }

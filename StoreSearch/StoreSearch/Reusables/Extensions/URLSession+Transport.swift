@@ -18,12 +18,12 @@ extension URLSession {
 }
 
 
-extension URLSession: Transport {
+extension URLSession: Transporting {
     
-    func send(
-        request: URLRequest,
-        then completionHandler: @escaping (Result<Data, Error>) -> Void
-    ) {
+    func makeTask(
+        for request: URLRequest,
+        then completionHandler: @escaping ((Result<Data, Error>) -> Void)
+    ) -> URLSessionTask {
         let task = dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 return completionHandler(.failure(error!))
@@ -44,7 +44,6 @@ extension URLSession: Transport {
             completionHandler(.success(data))
         }
         
-        // 🚀
-        task.resume()
+        return task
     }
 }
