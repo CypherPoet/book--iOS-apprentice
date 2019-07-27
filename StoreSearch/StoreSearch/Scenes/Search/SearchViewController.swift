@@ -16,6 +16,7 @@ class SearchViewController: UIViewController, Storyboarded {
     
     
     var modelController: SearchModelController!
+    var viewModel: SearchViewModel!
     
     private var dataSource: DataSource!
     private var currentFetchToken: DataTaskToken?
@@ -53,6 +54,7 @@ extension SearchViewController {
         super.viewDidLoad()
         
         assert(modelController != nil, "No SearchModelController was set")
+        assert(viewModel != nil, "No viewModel was set")
         
         dataSource = makeTableViewDataSource()
         setupTableView()
@@ -64,11 +66,9 @@ extension SearchViewController {
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else { return }
+        guard let searchText = viewModel.currentSearchText else { return }
         
-        if !searchText.isEmpty {
-            fetchResults(for: searchText)
-        }
+        fetchResults(for: searchText)
     }
 }
 
@@ -179,7 +179,11 @@ private extension SearchViewController {
         currentFetchToken?.cancel()
         currentSearchState = .inProgress
         
-        currentFetchToken = modelController.fetchResults(for: searchText) { [weak self] fetchResult in
+        let mediaType = viewModel.selectedMediaType
+        
+        currentFetchToken = modelController.fetchResults(for: searchText, in: mediaType) {
+            [weak self] fetchResult in
+            
             guard let self = self else { return }
             
             DispatchQueue.main.async {

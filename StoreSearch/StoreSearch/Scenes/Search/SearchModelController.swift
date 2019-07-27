@@ -26,10 +26,12 @@ extension SearchModelController {
     
     func fetchResults(
         for searchText: String,
+        in mediaType: APIMediaType,
         then completionHandler: @escaping CompletionHandler
     ) -> DataTaskToken {
         let queries = [
             URLQueryItem(name: .term, value: searchText),
+            URLQueryItem(name: .media, value: mediaType.queryParamValue),
             URLQueryItem(name: .limit, value: "50"),
         ]
         

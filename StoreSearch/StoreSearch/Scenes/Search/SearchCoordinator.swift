@@ -28,16 +28,17 @@ extension SearchCoordinator: Coordinator {
             named: R.storyboard.search.name
         )
         
-        searchVC.modelController = SearchModelController()
-        
         let searchController = UISearchController(searchResultsController: nil)
         
         searchController.searchResultsUpdater = searchVC
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search the iTunes Store"
         searchController.definesPresentationContext = true
-        searchController.searchBar.scopeButtonTitles = ["Foo", "Bar"]
+        searchController.searchBar.scopeButtonTitles = APIMediaType.allTitles
 
+        searchVC.modelController = SearchModelController()
+        searchVC.viewModel = SearchViewModel(searchController: searchController)
+        
         searchVC.navigationItem.searchController = searchController
         searchVC.title = "iTunes Store Search"
         

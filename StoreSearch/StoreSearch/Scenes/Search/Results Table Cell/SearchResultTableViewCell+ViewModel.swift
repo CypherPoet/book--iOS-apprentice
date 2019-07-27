@@ -15,7 +15,7 @@ extension SearchResultTableViewCell {
         var resultImage: UIImage?
         var resultTitle: String?
         var artistName: String?
-        var contentType: ContentType
+        var contentType: APIResultKind
     }
 }
 

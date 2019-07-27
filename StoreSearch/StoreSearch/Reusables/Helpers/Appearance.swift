@@ -40,6 +40,13 @@ enum Appearance {
     
     static func apply(to searchBar: UISearchBar) {
         searchBar.searchTextField.backgroundColor = UIColor.systemBackground
+        
+        let scopeButtonTextAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.lightText,
+            .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize)
+        ]
+        
+        searchBar.setScopeBarButtonTitleTextAttributes(scopeButtonTextAttributes, for: .normal)
     }
     
     

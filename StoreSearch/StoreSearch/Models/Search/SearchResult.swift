@@ -89,5 +89,5 @@ extension SearchResult {
         primaryGenre != nil ? [primaryGenre!] : genreSet
     }
     
-    var contentType: ContentType { ContentType(rawString: kind ?? wrapperType) }
+    var contentType: APIResultKind { APIResultKind(rawString: kind ?? wrapperType) }
 }

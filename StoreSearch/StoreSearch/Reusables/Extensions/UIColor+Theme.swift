@@ -21,4 +21,3 @@ extension UIColor {
         static let accent1 = color(named: R.color.accent1.name)
     }
 }
-

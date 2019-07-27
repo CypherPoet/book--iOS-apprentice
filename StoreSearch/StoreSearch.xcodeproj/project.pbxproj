@@ -17,10 +17,12 @@
 		F36C382A22E84F1900CC001C /* SearchModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382922E84F1900CC001C /* SearchModelController.swift */; };
 		F36C382C22E879C500CC001C /* UIViewController+ShowNetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382B22E879C500CC001C /* UIViewController+ShowNetworkingError.swift */; };
 		F36C382E22E8810700CC001C /* URLQueryItem+InitWithName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382D22E8810700CC001C /* URLQueryItem+InitWithName.swift */; };
-		F36C383122E9BECA00CC001C /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C383022E9BECA00CC001C /* ContentType.swift */; };
+		F36C383122E9BECA00CC001C /* APIResultKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C383022E9BECA00CC001C /* APIResultKind.swift */; };
 		F36C383322E9CEE100CC001C /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C383222E9CEE100CC001C /* SearchResults.swift */; };
 		F36C383922EB36AB00CC001C /* TaskToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C383822EB36AB00CC001C /* TaskToken.swift */; };
 		F36C383D22EB3BC400CC001C /* DataTaskToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C383C22EB3BC400CC001C /* DataTaskToken.swift */; };
+		F36C383F22EB663D00CC001C /* APIMediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C383E22EB663D00CC001C /* APIMediaType.swift */; };
+		F36C384122EC5AEB00CC001C /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C384022EC5AEB00CC001C /* SearchViewModel.swift */; };
 		F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE022E58305001B4D56 /* AppDelegate.swift */; };
 		F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE222E58305001B4D56 /* SceneDelegate.swift */; };
 		F3A96CEA22E58307001B4D56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A96CE922E58307001B4D56 /* Assets.xcassets */; };
@@ -65,10 +67,12 @@
 		F36C382922E84F1900CC001C /* SearchModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchModelController.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/SearchModelController.swift"; sourceTree = "<group>"; };
 		F36C382B22E879C500CC001C /* UIViewController+ShowNetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+ShowNetworkingError.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIViewController/UIViewController+ShowNetworkingError.swift"; sourceTree = "<group>"; };
 		F36C382D22E8810700CC001C /* URLQueryItem+InitWithName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLQueryItem+InitWithName.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/URLQueryItem+InitWithName.swift"; sourceTree = "<group>"; };
-		F36C383022E9BECA00CC001C /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentType.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/ContentType.swift"; sourceTree = "<group>"; };
+		F36C383022E9BECA00CC001C /* APIResultKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIResultKind.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/APIResultKind.swift"; sourceTree = "<group>"; };
 		F36C383222E9CEE100CC001C /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResults.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Models/Search/SearchResults.swift"; sourceTree = "<group>"; };
 		F36C383822EB36AB00CC001C /* TaskToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TaskToken.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols/TaskToken.swift"; sourceTree = "<group>"; };
 		F36C383C22EB3BC400CC001C /* DataTaskToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTaskToken.swift; sourceTree = "<group>"; };
+		F36C383E22EB663D00CC001C /* APIMediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIMediaType.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/APIMediaType.swift"; sourceTree = "<group>"; };
+		F36C384022EC5AEB00CC001C /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/SearchViewModel.swift"; sourceTree = "<group>"; };
 		F3A96CDD22E58305001B4D56 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A96CE022E58305001B4D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3A96CE222E58305001B4D56 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,7 +140,8 @@
 		F36C382F22E9BEB500CC001C /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				F36C383022E9BECA00CC001C /* ContentType.swift */,
+				F36C383022E9BECA00CC001C /* APIResultKind.swift */,
+				F36C383E22EB663D00CC001C /* APIMediaType.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 				F36C382922E84F1900CC001C /* SearchModelController.swift */,
 				F3A96D3722E59D8A001B4D56 /* SearchCoordinator.swift */,
 				F3A96D3B22E59F24001B4D56 /* Search.storyboard */,
+				F36C384022EC5AEB00CC001C /* SearchViewModel.swift */,
 			);
 			name = Search;
 			path = "../../../../../../../../../../../Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search";
@@ -516,6 +522,7 @@
 				F3A96D1A22E58900001B4D56 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */,
 				F3A96D1F22E58900001B4D56 /* Storyboarded.swift in Sources */,
+				F36C384122EC5AEB00CC001C /* SearchViewModel.swift in Sources */,
 				F3A96D4022E67CB9001B4D56 /* SearchResult.swift in Sources */,
 				F36C382622E8187E00CC001C /* Transport.swift in Sources */,
 				F36C383D22EB3BC400CC001C /* DataTaskToken.swift in Sources */,
@@ -532,9 +539,10 @@
 				F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */,
 				F3A96D1722E58900001B4D56 /* UIViewController+Computeds.swift in Sources */,
 				F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */,
+				F36C383F22EB663D00CC001C /* APIMediaType.swift in Sources */,
 				F36C383322E9CEE100CC001C /* SearchResults.swift in Sources */,
 				F3A96D1222E58900001B4D56 /* UIImage+ResizedWithBounds.swift in Sources */,
-				F36C383122E9BECA00CC001C /* ContentType.swift in Sources */,
+				F36C383122E9BECA00CC001C /* APIResultKind.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
