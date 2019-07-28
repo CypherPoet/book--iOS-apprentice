@@ -12,8 +12,7 @@
 		F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */; };
 		F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */; };
 		F36C382422E8180300CC001C /* ModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382322E8180300CC001C /* ModelLoader.swift */; };
-		F36C382622E8187E00CC001C /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382522E8187E00CC001C /* Transport.swift */; };
-		F36C382822E8190700CC001C /* URLSession+Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382722E8190700CC001C /* URLSession+Transport.swift */; };
+		F36C382822E8190700CC001C /* URLSession+RequestTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382722E8190700CC001C /* URLSession+RequestTransport.swift */; };
 		F36C382A22E84F1900CC001C /* SearchModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382922E84F1900CC001C /* SearchModelController.swift */; };
 		F36C382C22E879C500CC001C /* UIViewController+ShowNetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382B22E879C500CC001C /* UIViewController+ShowNetworkingError.swift */; };
 		F36C382E22E8810700CC001C /* URLQueryItem+InitWithName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382D22E8810700CC001C /* URLQueryItem+InitWithName.swift */; };
@@ -23,6 +22,14 @@
 		F36C383D22EB3BC400CC001C /* DataTaskToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C383C22EB3BC400CC001C /* DataTaskToken.swift */; };
 		F36C383F22EB663D00CC001C /* APIMediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C383E22EB663D00CC001C /* APIMediaType.swift */; };
 		F36C384122EC5AEB00CC001C /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C384022EC5AEB00CC001C /* SearchViewModel.swift */; };
+		F36C384322EC840900CC001C /* DownloadTaskToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C384222EC840900CC001C /* DownloadTaskToken.swift */; };
+		F36C384722ECB9CF00CC001C /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C384622ECB9CE00CC001C /* ImageDownloader.swift */; };
+		F36C384922ECBA8900CC001C /* ImageDownloaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C384822ECBA8900CC001C /* ImageDownloaderFactory.swift */; };
+		F36C385522ECCB0E00CC001C /* RequestTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C385322ECCB0E00CC001C /* RequestTransport.swift */; };
+		F36C385622ECCB0E00CC001C /* DownloadingTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C385422ECCB0E00CC001C /* DownloadingTransport.swift */; };
+		F36C385822ECCBB200CC001C /* URLSession+DownloadTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C385722ECCBB200CC001C /* URLSession+DownloadTransport.swift */; };
+		F36C385A22ECCEC300CC001C /* SessionImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C385922ECCEC300CC001C /* SessionImageDownloader.swift */; };
+		F3934BEC22ECDD95009D7BA1 /* TransportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3934BEB22ECDD95009D7BA1 /* TransportError.swift */; };
 		F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE022E58305001B4D56 /* AppDelegate.swift */; };
 		F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE222E58305001B4D56 /* SceneDelegate.swift */; };
 		F3A96CEA22E58307001B4D56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A96CE922E58307001B4D56 /* Assets.xcassets */; };
@@ -62,8 +69,7 @@
 		F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Theme.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIColor+Theme.swift"; sourceTree = "<group>"; };
 		F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+SelectedTableCellBackgroundView.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIView/UIView+SelectedTableCellBackgroundView.swift"; sourceTree = "<group>"; };
 		F36C382322E8180300CC001C /* ModelLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelLoader.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Helpers/ModelLoader.swift"; sourceTree = "<group>"; };
-		F36C382522E8187E00CC001C /* Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Transport.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols/Transport.swift"; sourceTree = "<group>"; };
-		F36C382722E8190700CC001C /* URLSession+Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLSession+Transport.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/URLSession+Transport.swift"; sourceTree = "<group>"; };
+		F36C382722E8190700CC001C /* URLSession+RequestTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLSession+RequestTransport.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/URLSession+RequestTransport.swift"; sourceTree = "<group>"; };
 		F36C382922E84F1900CC001C /* SearchModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchModelController.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/SearchModelController.swift"; sourceTree = "<group>"; };
 		F36C382B22E879C500CC001C /* UIViewController+ShowNetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+ShowNetworkingError.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIViewController/UIViewController+ShowNetworkingError.swift"; sourceTree = "<group>"; };
 		F36C382D22E8810700CC001C /* URLQueryItem+InitWithName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLQueryItem+InitWithName.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/URLQueryItem+InitWithName.swift"; sourceTree = "<group>"; };
@@ -73,6 +79,15 @@
 		F36C383C22EB3BC400CC001C /* DataTaskToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTaskToken.swift; sourceTree = "<group>"; };
 		F36C383E22EB663D00CC001C /* APIMediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIMediaType.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/APIMediaType.swift"; sourceTree = "<group>"; };
 		F36C384022EC5AEB00CC001C /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/SearchViewModel.swift"; sourceTree = "<group>"; };
+		F36C384222EC840900CC001C /* DownloadTaskToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DownloadTaskToken.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Networking/Task Token/DownloadTaskToken.swift"; sourceTree = "<group>"; };
+		F36C384622ECB9CE00CC001C /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols/ImageDownloader.swift"; sourceTree = "<group>"; };
+		F36C384822ECBA8900CC001C /* ImageDownloaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageDownloaderFactory.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Helpers/ImageDownloaderFactory.swift"; sourceTree = "<group>"; };
+		F36C384B22ECBB4A00CC001C /* ImageLoaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderFactory.swift; sourceTree = "<group>"; };
+		F36C385322ECCB0E00CC001C /* RequestTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTransport.swift; sourceTree = "<group>"; };
+		F36C385422ECCB0E00CC001C /* DownloadingTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingTransport.swift; sourceTree = "<group>"; };
+		F36C385722ECCBB200CC001C /* URLSession+DownloadTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLSession+DownloadTransport.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/URLSession+DownloadTransport.swift"; sourceTree = "<group>"; };
+		F36C385922ECCEC300CC001C /* SessionImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionImageDownloader.swift; sourceTree = "<group>"; };
+		F3934BEB22ECDD95009D7BA1 /* TransportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransportError.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/TransportError.swift"; sourceTree = "<group>"; };
 		F3A96CDD22E58305001B4D56 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A96CE022E58305001B4D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3A96CE222E58305001B4D56 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +157,7 @@
 			children = (
 				F36C383022E9BECA00CC001C /* APIResultKind.swift */,
 				F36C383E22EB663D00CC001C /* APIMediaType.swift */,
+				F3934BEB22ECDD95009D7BA1 /* TransportError.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -150,8 +166,27 @@
 			isa = PBXGroup;
 			children = (
 				F36C383C22EB3BC400CC001C /* DataTaskToken.swift */,
+				F36C384222EC840900CC001C /* DownloadTaskToken.swift */,
 			);
 			path = "Task Token";
+			sourceTree = "<group>";
+		};
+		F36C384A22ECBB3C00CC001C /* Image Loading */ = {
+			isa = PBXGroup;
+			children = (
+				F36C384B22ECBB4A00CC001C /* ImageLoaderFactory.swift */,
+				F36C385922ECCEC300CC001C /* SessionImageDownloader.swift */,
+			);
+			path = "Image Loading";
+			sourceTree = "<group>";
+		};
+		F36C385022ECCA9100CC001C /* Transport */ = {
+			isa = PBXGroup;
+			children = (
+				F36C385422ECCB0E00CC001C /* DownloadingTransport.swift */,
+				F36C385322ECCB0E00CC001C /* RequestTransport.swift */,
+			);
+			path = Transport;
 			sourceTree = "<group>";
 		};
 		F3A96CD422E58305001B4D56 = {
@@ -177,12 +212,12 @@
 		F3A96CDF22E58305001B4D56 /* StoreSearch */ = {
 			isa = PBXGroup;
 			children = (
-				F3A96D3D22E67C97001B4D56 /* Models */,
 				F3A96CEE22E58307001B4D56 /* Info.plist */,
 				F3A96D2622E58B9A001B4D56 /* AppCoordinator.swift */,
 				F3A96CE022E58305001B4D56 /* AppDelegate.swift */,
 				F3A96CE222E58305001B4D56 /* SceneDelegate.swift */,
 				F3A96D2822E58C5B001B4D56 /* Content */,
+				F3A96D3D22E67C97001B4D56 /* Models */,
 				F3A96CF722E58829001B4D56 /* Reusables */,
 				F3A96CF522E5881C001B4D56 /* Scenes */,
 			);
@@ -220,7 +255,8 @@
 				F3A96CFF22E58900001B4D56 /* UIViewController */,
 				F3A96D4722E6AC59001B4D56 /* UIView */,
 				F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */,
-				F36C382722E8190700CC001C /* URLSession+Transport.swift */,
+				F36C385722ECCBB200CC001C /* URLSession+DownloadTransport.swift */,
+				F36C382722E8190700CC001C /* URLSession+RequestTransport.swift */,
 				F36C382D22E8810700CC001C /* URLQueryItem+InitWithName.swift */,
 			);
 			name = Extensions;
@@ -250,12 +286,13 @@
 		F3A96D0822E58900001B4D56 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				F3A96D0922E58900001B4D56 /* NavigationControlling.swift */,
-				F3A96D0A22E58900001B4D56 /* Storyboarded.swift */,
-				F3A96D0C22E58900001B4D56 /* NavigationCoordinator.swift */,
 				F3A96D0D22E58900001B4D56 /* Coordinator.swift */,
-				F36C382522E8187E00CC001C /* Transport.swift */,
+				F36C384622ECB9CE00CC001C /* ImageDownloader.swift */,
+				F3A96D0922E58900001B4D56 /* NavigationControlling.swift */,
+				F3A96D0C22E58900001B4D56 /* NavigationCoordinator.swift */,
+				F3A96D0A22E58900001B4D56 /* Storyboarded.swift */,
 				F36C383822EB36AB00CC001C /* TaskToken.swift */,
+				F36C385022ECCA9100CC001C /* Transport */,
 			);
 			name = Protocols;
 			path = "../../../../../../../../../../../Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols";
@@ -343,7 +380,9 @@
 			isa = PBXGroup;
 			children = (
 				F3A96D5E22E6FA31001B4D56 /* Appearance.swift */,
+				F36C384822ECBA8900CC001C /* ImageDownloaderFactory.swift */,
 				F36C382322E8180300CC001C /* ModelLoader.swift */,
+				F36C384A22ECBB3C00CC001C /* Image Loading */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -518,19 +557,24 @@
 				F3A96D1322E58900001B4D56 /* URL+WithQueryParams.swift in Sources */,
 				F3A96D2722E58B9A001B4D56 /* AppCoordinator.swift in Sources */,
 				F3A96D4622E68AEE001B4D56 /* Endpoint.swift in Sources */,
+				F36C384722ECB9CF00CC001C /* ImageDownloader.swift in Sources */,
+				F36C384322EC840900CC001C /* DownloadTaskToken.swift in Sources */,
 				F36C382E22E8810700CC001C /* URLQueryItem+InitWithName.swift in Sources */,
 				F3A96D1A22E58900001B4D56 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */,
+				F36C385522ECCB0E00CC001C /* RequestTransport.swift in Sources */,
 				F3A96D1F22E58900001B4D56 /* Storyboarded.swift in Sources */,
+				F36C385A22ECCEC300CC001C /* SessionImageDownloader.swift in Sources */,
 				F36C384122EC5AEB00CC001C /* SearchViewModel.swift in Sources */,
 				F3A96D4022E67CB9001B4D56 /* SearchResult.swift in Sources */,
-				F36C382622E8187E00CC001C /* Transport.swift in Sources */,
 				F36C383D22EB3BC400CC001C /* DataTaskToken.swift in Sources */,
 				F36C382422E8180300CC001C /* ModelLoader.swift in Sources */,
 				F3A96D4322E67CF9001B4D56 /* SearchResultsList.swift in Sources */,
 				F3A96D1622E58900001B4D56 /* UIViewController+DisplayPromptMessage.swift in Sources */,
-				F36C382822E8190700CC001C /* URLSession+Transport.swift in Sources */,
+				F36C382822E8190700CC001C /* URLSession+RequestTransport.swift in Sources */,
+				F3934BEC22ECDD95009D7BA1 /* TransportError.swift in Sources */,
 				F3A96D2322E58900001B4D56 /* TableViewDataSource.swift in Sources */,
+				F36C384922ECBA8900CC001C /* ImageDownloaderFactory.swift in Sources */,
 				F3A96D2222E58900001B4D56 /* Coordinator.swift in Sources */,
 				F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */,
 				F3A96D3322E59D38001B4D56 /* R.generated.swift in Sources */,
@@ -540,7 +584,9 @@
 				F3A96D1722E58900001B4D56 /* UIViewController+Computeds.swift in Sources */,
 				F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */,
 				F36C383F22EB663D00CC001C /* APIMediaType.swift in Sources */,
+				F36C385822ECCBB200CC001C /* URLSession+DownloadTransport.swift in Sources */,
 				F36C383322E9CEE100CC001C /* SearchResults.swift in Sources */,
+				F36C385622ECCB0E00CC001C /* DownloadingTransport.swift in Sources */,
 				F3A96D1222E58900001B4D56 /* UIImage+ResizedWithBounds.swift in Sources */,
 				F36C383122E9BECA00CC001C /* APIResultKind.swift in Sources */,
 			);

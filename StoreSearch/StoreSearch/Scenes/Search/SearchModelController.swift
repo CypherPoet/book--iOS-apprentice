@@ -10,13 +10,12 @@ import Foundation
 
 
 final class SearchModelController {
-    typealias Loader = ModelLoader<SearchResults>
     typealias CompletionHandler = (Result<[SearchResult], Error>) -> Void
     
-    let modelLoader: Loader
+    private let modelLoader: ModelLoader<SearchResults>
+
     
-    
-    init(modelLoader: Loader = Loader()) {
+    init(modelLoader: ModelLoader<SearchResults> = .init()) {
         self.modelLoader = modelLoader
     }
 }

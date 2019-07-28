@@ -5,6 +5,8 @@ disabled_rules: # rule identifiers to exclude from running
   - type_name
   - nesting
   - identifier_name
+  - function_parameter_count
+
 
 opt_in_rules: # some rules are only opt-in
   # Find all the available rules by running:
@@ -17,6 +19,7 @@ included: # paths to include during linting. `--path` is ignored if present.
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
+  - StoreSearch/R.generated.swift
 
   - UnitTests
   - UITests
@@ -27,4 +30,10 @@ analyzer_rules: # Rules run by `swiftlint analyze` (experimental)
 
 # configurable rules can be customized from this configuration file
 # binary rules can set their severity level
+
+force_cast: warning # implicitly. Give warning only for force casting
+
+cyclomatic_complexity: 25
+
 line_length: 160
+

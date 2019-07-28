@@ -1,25 +1,26 @@
 //
-//  RequestToken.swift
+//  DownloadTaskToken.swift
 //  StoreSearch
 //
-//  Created by Brian Sipple on 7/26/19.
+//  Created by Brian Sipple on 7/27/19.
 //  Copyright © 2019 CypherPoet. All rights reserved.
 //
 
 import Foundation
 
 
-final class DataTaskToken: TaskToken {
-    private weak var task: URLSessionDataTask?
+final class DownloadTaskToken: TaskToken {
+    private weak var task: URLSessionDownloadTask?
 
-    init(task: URLSessionDataTask) {
+    init(task: URLSessionDownloadTask) {
         self.task = task
     }
-
+    
     
     func resume() {
         task?.resume()
     }
+
     
     func cancel() {
         task?.cancel()

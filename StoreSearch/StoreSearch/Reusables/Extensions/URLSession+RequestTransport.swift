@@ -9,21 +9,12 @@
 import Foundation
 
 
-extension URLSession {
-    enum TransportError: Error {
-        case missingResponse
-        case unexpectedResponse(HTTPURLResponse)
-        case missingData
-    }
-}
-
-
-extension URLSession: Transporting {
+extension URLSession: RequestTransport {
     
     func makeTask(
         for request: URLRequest,
         then completionHandler: @escaping ((Result<Data, Error>) -> Void)
-    ) -> URLSessionTask {
+    ) -> URLSessionDataTask {
         let task = dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 return completionHandler(.failure(error!))

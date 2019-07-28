@@ -21,5 +21,6 @@ protocol TaskToken: class {
     
     init(task: Task)
     
+    func resume()
     func cancel()
 }

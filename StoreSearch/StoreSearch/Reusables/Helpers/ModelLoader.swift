@@ -12,11 +12,11 @@ import Foundation
 final class ModelLoader<Model: Decodable> {
     typealias LoadingCompletionHandler = (Result<Model, Error>) -> Void
     
-    private let transport: Transporting
+    private let transport: RequestTransport
     private let decoder: JSONDecoder
     
     
-    init(transport: Transporting = URLSession.shared, decoder: JSONDecoder = JSONDecoder()) {
+    init(transport: RequestTransport = URLSession.shared, decoder: JSONDecoder = JSONDecoder()) {
         self.transport = transport
         self.decoder = decoder
     }
@@ -24,7 +24,7 @@ final class ModelLoader<Model: Decodable> {
 
 
 extension ModelLoader {
-    enum LoaderError: Swift.Error {
+    enum LoaderError: Error {
         case invalidURL
     }
 }
@@ -43,8 +43,8 @@ extension ModelLoader {
         
         let request = URLRequest(url: url)
         
-        let dataTask = self.transport.makeTask(for: request) { dataResult in
-            self.handle(dataResult, using: loadingCompletionHandler)
+        let dataTask = transport.makeTask(for: request) { [weak self] dataResult in
+            self?.handle(dataResult, using: loadingCompletionHandler)
         }
         
         queue.async {

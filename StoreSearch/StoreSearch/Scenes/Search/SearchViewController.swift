@@ -17,7 +17,10 @@ class SearchViewController: UIViewController, Storyboarded {
     
     var modelController: SearchModelController!
     var viewModel: SearchViewModel!
+    var imageDownloaderFactory: ImageDownloaderFactory = .init()
     
+    
+    private lazy var imagedownLoader: ImageDownloader = imageDownloaderFactory.makeDownloader()
     private var dataSource: DataSource!
     private var currentFetchToken: DataTaskToken?
     
@@ -80,6 +83,32 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    
+    func tableView(
+        _ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath
+    ) {
+        guard let cell = cell as? SearchResultTableViewCell else {
+            preconditionFailure("Unknown cell type")
+        }
+        
+        guard let searchResult = dataSource.itemIdentifier(for: indexPath) else {
+            preconditionFailure("No result item found")
+        }
+
+        guard let thumbnailURL = searchResult.smallThumbnailURL else { return }
+            
+        cell.imageDownloadToken = imagedownLoader.downloadImage(from: thumbnailURL) { result in
+            switch result {
+            case .success(let image):
+                cell.viewModel?.downloadedThumbnailImage = image
+            case .failure(let error):
+                print("Error while attempting to download thumbnail image: \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 
@@ -115,16 +144,16 @@ private extension SearchViewController {
     }
     
     
-    func updateDataSnapshot(with items: [SearchResult]) {
+    func updateDataSnapshot(withNewItems newItems: [SearchResult], animate: Bool = true) {
         let snapshot = DataSourceSnapshot()
         
         snapshot.appendSections([.all])
-        snapshot.appendItems(items)
+        snapshot.appendItems(newItems)
 
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: animate)
     }
-    
-    
+
+
     func searchStateChanged() {
         switch currentSearchState {
         case .notStarted:
@@ -142,13 +171,13 @@ private extension SearchViewController {
             
             if results.isEmpty {
                 emptyStateView.fadeIn { [weak self] in
-                    self?.updateDataSnapshot(with: results)
+                    self?.updateDataSnapshot(withNewItems: results)
                 }
             } else {
                 SearchResults.sortAscending(&results)
 
                 emptyStateView.fadeOut { [weak self] in
-                    self?.updateDataSnapshot(with: results)
+                    self?.updateDataSnapshot(withNewItems: results)
                 }
             }
         }
@@ -156,8 +185,8 @@ private extension SearchViewController {
     
     
     func stopLoadingSpinner() {
-        loadingSpinnerViewContainer.fadeOut()
         loadingSpinner.stopAnimating()
+        loadingSpinnerViewContainer.fadeOut()
     }
     
     
@@ -165,13 +194,8 @@ private extension SearchViewController {
         guard let cell = cell as? SearchResultTableViewCell else {
             preconditionFailure("Unexpected cell type")
         }
-        
-        cell.viewModel = SearchResultTableViewCell.ViewModel(
-            resultImage: nil,
-            resultTitle: searchResult.title,
-            artistName: searchResult.artistName,
-            contentType: searchResult.contentType
-        )
+  
+        cell.configure(with: searchResult)
     }
     
     
@@ -181,8 +205,10 @@ private extension SearchViewController {
         
         let mediaType = viewModel.selectedMediaType
         
-        currentFetchToken = modelController.fetchResults(for: searchText, in: mediaType) {
-            [weak self] fetchResult in
+        currentFetchToken = modelController.fetchResults(
+            for: searchText,
+            in: mediaType
+        ) { [weak self] fetchResult in
             
             guard let self = self else { return }
             

@@ -20,6 +20,8 @@ class SearchResultTableViewCell: UITableViewCell {
             DispatchQueue.main.async { self.render(with: viewModel) }
         }
     }
+    
+    var imageDownloadToken: DownloadTaskToken?
 }
 
 
@@ -48,6 +50,33 @@ extension SearchResultTableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageDownloadToken?.cancel()
+        imageDownloadToken = nil
+    }
+}
+
+
+// MARK: - Core Methods
+
+extension SearchResultTableViewCell {
+    
+    func configure(with searchResult: SearchResult) {
+        if viewModel == nil {
+            viewModel = SearchResultTableViewCell.ViewModel(
+                resultTitle: searchResult.title,
+                artistName: searchResult.artistName,
+                contentType: searchResult.contentType
+            )
+        } else {
+            viewModel?.resultTitle = searchResult.title
+            viewModel?.artistName = searchResult.artistName
+            viewModel?.contentType = searchResult.contentType
+        }
     }
 }
 

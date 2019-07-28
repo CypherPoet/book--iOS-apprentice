@@ -6,7 +6,7 @@
 //  Copyright © 2019 CypherPoet. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 struct SearchResult {

@@ -12,7 +12,7 @@ import UIKit
 extension SearchResultTableViewCell {
     
     struct ViewModel {
-        var resultImage: UIImage?
+        var downloadedThumbnailImage: UIImage?
         var resultTitle: String?
         var artistName: String?
         var contentType: APIResultKind
@@ -21,7 +21,7 @@ extension SearchResultTableViewCell {
 
 
 extension SearchResultTableViewCell.ViewModel {
-    var thumbnailImage: UIImage? { resultImage ?? UIImage(systemName: "doc") }
+    var thumbnailImage: UIImage? { downloadedThumbnailImage ?? UIImage(systemName: "doc") }
 
     var titleText: String { resultTitle ?? "(Untitled)" }
 

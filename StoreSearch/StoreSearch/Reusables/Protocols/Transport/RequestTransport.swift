@@ -9,10 +9,10 @@
 import Foundation
 
 
-protocol Transporting {
+protocol RequestTransport {
 
     func makeTask(
         for request: URLRequest,
         then completionHandler: @escaping ((Result<Data, Error>) -> Void)
-    ) -> URLSessionTask
+    ) -> URLSessionDataTask
 }
