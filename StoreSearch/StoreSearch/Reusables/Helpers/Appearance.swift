@@ -11,6 +11,11 @@ import UIKit
 
 enum Appearance {
     
+    enum Constants {
+        static let modalCornerRadius: CGFloat = 14
+    }
+    
+    
     enum SearchBar {
         static var standard: UIBarAppearance {
             let appearance = UIBarAppearance()

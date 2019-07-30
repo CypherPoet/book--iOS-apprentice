@@ -8,13 +8,21 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, Storyboarded {
+
+
+protocol SearchViewControllerDelegate: class {
+    func viewController(_ controller: SearchViewController, didSelectDetailsFor searchResult: SearchResult)
+}
+
+
+class SearchViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var emptyStateView: UIView!
     @IBOutlet private var loadingSpinnerViewContainer: UIView!
     @IBOutlet private var loadingSpinner: UIActivityIndicatorView!
     
     
+    weak var delegate: SearchViewControllerDelegate?
     var modelController: SearchModelController!
     var viewModel: SearchViewModel!
     var imageDownloaderFactory: ImageDownloaderFactory = .init()
@@ -82,6 +90,12 @@ extension SearchViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let searchResult = dataSource.itemIdentifier(for: indexPath) else {
+            preconditionFailure("No search result found for selected cell.")
+        }
+        
+        delegate?.viewController(self, didSelectDetailsFor: searchResult)
     }
     
     
@@ -110,6 +124,8 @@ extension SearchViewController: UITableViewDelegate {
         }
     }
 }
+
+extension SearchViewController: Storyboarded {}
 
 
 // MARK: - Private Helpers

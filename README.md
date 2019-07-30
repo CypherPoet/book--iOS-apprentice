@@ -145,7 +145,7 @@ __.
 
 ### Topics Covered / Challenges Encountered
 
-- Debugging with exception breakpoints
+- Debugging with exception breakpoints.
 
 
 <br>

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		55A1FF49BE78D5286320C702 /* Pods_StoreSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0D738562075934E51444F5 /* Pods_StoreSearch.framework */; };
+		F30B40F622EFC5CC0088FFDE /* DimmedModalPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B40F522EFC5CC0088FFDE /* DimmedModalPresentationManager.swift */; };
+		F30B40F822EFCB2F0088FFDE /* DimmedModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B40F722EFCB2F0088FFDE /* DimmedModalViewController.swift */; };
+		F3169BC322EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */; };
+		F3169BC522EE565F00651401 /* SearchResultDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */; };
+		F3169BC922EE7C3700651401 /* DimmedModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC822EE7C3700651401 /* DimmedModalPresentationController.swift */; };
+		F3169BCB22EF62E400651401 /* ModalPresentationNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BCA22EF62E400651401 /* ModalPresentationNavController.swift */; };
+		F3169BD122EF93F900651401 /* ContentHeightProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BD022EF93F900651401 /* ContentHeightProviding.swift */; };
 		F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36C381D22E6FD4A00CC001C /* Colors.xcassets */; };
 		F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */; };
 		F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */; };
@@ -65,6 +72,13 @@
 /* Begin PBXFileReference section */
 		B45097723E4D6747CC6DD615 /* Pods-StoreSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch.debug.xcconfig"; path = "Target Support Files/Pods-StoreSearch/Pods-StoreSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		EE0D738562075934E51444F5 /* Pods_StoreSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoreSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30B40F522EFC5CC0088FFDE /* DimmedModalPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedModalPresentationManager.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/DimmedModalPresentationManager.swift"; sourceTree = "<group>"; };
+		F30B40F722EFCB2F0088FFDE /* DimmedModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedModalViewController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/DimmedModalViewController.swift"; sourceTree = "<group>"; };
+		F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SearchResultDetailsViewController+ViewModel.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details/SearchResultDetailsViewController+ViewModel.swift"; sourceTree = "<group>"; };
+		F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultDetailsViewController.swift; sourceTree = "<group>"; };
+		F3169BC822EE7C3700651401 /* DimmedModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedModalPresentationController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/DimmedModalPresentationController.swift"; sourceTree = "<group>"; };
+		F3169BCA22EF62E400651401 /* ModalPresentationNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModalPresentationNavController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/ModalPresentationNavController.swift"; sourceTree = "<group>"; };
+		F3169BD022EF93F900651401 /* ContentHeightProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentHeightProviding.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols/ContentHeightProviding.swift"; sourceTree = "<group>"; };
 		F36C381D22E6FD4A00CC001C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Content/Colors.xcassets"; sourceTree = "<group>"; };
 		F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Theme.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIColor+Theme.swift"; sourceTree = "<group>"; };
 		F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+SelectedTableCellBackgroundView.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIView/UIView+SelectedTableCellBackgroundView.swift"; sourceTree = "<group>"; };
@@ -152,6 +166,34 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F3169BC022EE553A00651401 /* Result Details */ = {
+			isa = PBXGroup;
+			children = (
+				F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */,
+				F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */,
+			);
+			path = "Result Details";
+			sourceTree = "<group>";
+		};
+		F3169BC622EE7BF600651401 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F3169BC722EE7C0100651401 /* Modals */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F3169BC722EE7C0100651401 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				F3169BC822EE7C3700651401 /* DimmedModalPresentationController.swift */,
+				F3169BCA22EF62E400651401 /* ModalPresentationNavController.swift */,
+				F30B40F522EFC5CC0088FFDE /* DimmedModalPresentationManager.swift */,
+				F30B40F722EFCB2F0088FFDE /* DimmedModalViewController.swift */,
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
 		F36C382F22E9BEB500CC001C /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +278,7 @@
 		F3A96CF722E58829001B4D56 /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				F3169BC622EE7BF600651401 /* Views */,
 				F36C382F22E9BEB500CC001C /* Constants */,
 				F3A96D5D22E6FA23001B4D56 /* Helpers */,
 				F3A96D4422E68AD5001B4D56 /* Networking */,
@@ -293,6 +336,7 @@
 				F3A96D0A22E58900001B4D56 /* Storyboarded.swift */,
 				F36C383822EB36AB00CC001C /* TaskToken.swift */,
 				F36C385022ECCA9100CC001C /* Transport */,
+				F3169BD022EF93F900651401 /* ContentHeightProviding.swift */,
 			);
 			name = Protocols;
 			path = "../../../../../../../../../../../Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols";
@@ -319,6 +363,7 @@
 		F3A96D3522E59D8A001B4D56 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				F3169BC022EE553A00651401 /* Result Details */,
 				F3A96D4C22E6DC72001B4D56 /* Results Table Cell */,
 				F3A96D3622E59D8A001B4D56 /* SearchViewController.swift */,
 				F36C382922E84F1900CC001C /* SearchModelController.swift */,
@@ -546,6 +591,7 @@
 				F36C382C22E879C500CC001C /* UIViewController+ShowNetworkingError.swift in Sources */,
 				F3A96D1E22E58900001B4D56 /* NavigationControlling.swift in Sources */,
 				F3A96D2122E58900001B4D56 /* NavigationCoordinator.swift in Sources */,
+				F3169BCB22EF62E400651401 /* ModalPresentationNavController.swift in Sources */,
 				F3A96D5B22E6E990001B4D56 /* SearchResultTableViewCell.swift in Sources */,
 				F3A96D4B22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift in Sources */,
 				F36C382A22E84F1900CC001C /* SearchModelController.swift in Sources */,
@@ -559,6 +605,7 @@
 				F3A96D4622E68AEE001B4D56 /* Endpoint.swift in Sources */,
 				F36C384722ECB9CF00CC001C /* ImageDownloader.swift in Sources */,
 				F36C384322EC840900CC001C /* DownloadTaskToken.swift in Sources */,
+				F30B40F822EFCB2F0088FFDE /* DimmedModalViewController.swift in Sources */,
 				F36C382E22E8810700CC001C /* URLQueryItem+InitWithName.swift in Sources */,
 				F3A96D1A22E58900001B4D56 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */,
@@ -571,16 +618,21 @@
 				F36C382422E8180300CC001C /* ModelLoader.swift in Sources */,
 				F3A96D4322E67CF9001B4D56 /* SearchResultsList.swift in Sources */,
 				F3A96D1622E58900001B4D56 /* UIViewController+DisplayPromptMessage.swift in Sources */,
+				F3169BC522EE565F00651401 /* SearchResultDetailsViewController.swift in Sources */,
 				F36C382822E8190700CC001C /* URLSession+RequestTransport.swift in Sources */,
 				F3934BEC22ECDD95009D7BA1 /* TransportError.swift in Sources */,
 				F3A96D2322E58900001B4D56 /* TableViewDataSource.swift in Sources */,
 				F36C384922ECBA8900CC001C /* ImageDownloaderFactory.swift in Sources */,
+				F3169BC322EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift in Sources */,
 				F3A96D2222E58900001B4D56 /* Coordinator.swift in Sources */,
 				F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */,
 				F3A96D3322E59D38001B4D56 /* R.generated.swift in Sources */,
+				F3169BC922EE7C3700651401 /* DimmedModalPresentationController.swift in Sources */,
 				F36C383922EB36AB00CC001C /* TaskToken.swift in Sources */,
 				F3A96D1822E58900001B4D56 /* UIViewController+AddAndRemoveChild.swift in Sources */,
 				F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */,
+				F3169BD122EF93F900651401 /* ContentHeightProviding.swift in Sources */,
+				F30B40F622EFC5CC0088FFDE /* DimmedModalPresentationManager.swift in Sources */,
 				F3A96D1722E58900001B4D56 /* UIViewController+Computeds.swift in Sources */,
 				F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */,
 				F36C383F22EB663D00CC001C /* APIMediaType.swift in Sources */,

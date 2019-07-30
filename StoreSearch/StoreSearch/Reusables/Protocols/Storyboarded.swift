@@ -28,7 +28,7 @@ extension Storyboarded where Self: UIViewController {
         guard
             let viewController = storyboard.instantiateViewController(withIdentifier: Self.storyboardID) as? Self
         else {
-            preconditionFailure("Unable to find view controller with storyboard instantiation")
+            preconditionFailure("Unable to find view controller for storyboard instantiation")
         }
 
         return viewController
