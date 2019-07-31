@@ -10,6 +10,7 @@
 		55A1FF49BE78D5286320C702 /* Pods_StoreSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0D738562075934E51444F5 /* Pods_StoreSearch.framework */; };
 		F30B40F622EFC5CC0088FFDE /* DimmedModalPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B40F522EFC5CC0088FFDE /* DimmedModalPresentationManager.swift */; };
 		F30B40F822EFCB2F0088FFDE /* DimmedModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B40F722EFCB2F0088FFDE /* DimmedModalViewController.swift */; };
+		F30B40FA22F0E1B90088FFDE /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B40F922F0E1B90088FFDE /* Price.swift */; };
 		F3169BC322EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */; };
 		F3169BC522EE565F00651401 /* SearchResultDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */; };
 		F3169BC922EE7C3700651401 /* DimmedModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC822EE7C3700651401 /* DimmedModalPresentationController.swift */; };
@@ -74,6 +75,7 @@
 		EE0D738562075934E51444F5 /* Pods_StoreSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoreSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30B40F522EFC5CC0088FFDE /* DimmedModalPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedModalPresentationManager.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/DimmedModalPresentationManager.swift"; sourceTree = "<group>"; };
 		F30B40F722EFCB2F0088FFDE /* DimmedModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedModalViewController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/DimmedModalViewController.swift"; sourceTree = "<group>"; };
+		F30B40F922F0E1B90088FFDE /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Price.swift; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Models/Price.swift"; sourceTree = "<group>"; };
 		F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SearchResultDetailsViewController+ViewModel.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details/SearchResultDetailsViewController+ViewModel.swift"; sourceTree = "<group>"; };
 		F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultDetailsViewController.swift; sourceTree = "<group>"; };
 		F3169BC822EE7C3700651401 /* DimmedModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedModalPresentationController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/DimmedModalPresentationController.swift"; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A96D3E22E67CA3001B4D56 /* Search */,
+				F30B40F922F0E1B90088FFDE /* Price.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				F3A96D3322E59D38001B4D56 /* R.generated.swift in Sources */,
 				F3169BC922EE7C3700651401 /* DimmedModalPresentationController.swift in Sources */,
 				F36C383922EB36AB00CC001C /* TaskToken.swift in Sources */,
+				F30B40FA22F0E1B90088FFDE /* Price.swift in Sources */,
 				F3A96D1822E58900001B4D56 /* UIViewController+AddAndRemoveChild.swift in Sources */,
 				F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */,
 				F3169BD122EF93F900651401 /* ContentHeightProviding.swift in Sources */,

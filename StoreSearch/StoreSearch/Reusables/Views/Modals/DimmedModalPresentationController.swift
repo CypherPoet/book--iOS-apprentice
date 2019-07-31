@@ -56,7 +56,7 @@ extension DimmedModalPresentationController {
 }
 
 
-// MARK:  - UIPresentationController
+// MARK: - UIPresentationController
 extension DimmedModalPresentationController {
     override var shouldRemovePresentersView: Bool { false }
     

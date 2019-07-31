@@ -64,7 +64,14 @@ extension SearchCoordinator: SearchViewControllerDelegate {
             named: R.storyboard.search.name
         )
         
-//        searchResultDetailsVC.viewModel = configure(with: searchResult)
+        searchResultDetailsVC.viewModel = SearchResultDetailsViewController.ViewModel(
+            artistName: searchResult.artistName,
+            contentType: searchResult.contentType,
+            contentGenre: searchResult.primaryGenre,
+            price: searchResult.price,
+            storeURL: searchResult.storeURL,
+            artworkImageURL: searchResult.largeThumbnailURL
+        )
 
         //        searchResultDetailsVC.modalPresentationStyle = .custom
         

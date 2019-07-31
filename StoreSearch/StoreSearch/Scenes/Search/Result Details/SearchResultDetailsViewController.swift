@@ -10,11 +10,50 @@ import UIKit
 
 
 class SearchResultDetailsViewController: UIViewController {
-    @IBOutlet private var resultTitleLabel: UILabel!
-    @IBOutlet private var modalContentContainer: UIView!
+    @IBOutlet private var headerImageView: UIImageView!
+    @IBOutlet private var artistNameLabel: UILabel!
+    @IBOutlet private var contentTypeLabel: UILabel!
+    @IBOutlet private var genreLabel: UILabel!
+    @IBOutlet private var priceButton: UIButton!
+
+
+    var viewModel: ViewModel! {
+        didSet {
+            DispatchQueue.main.async {
+                guard self.isViewLoaded else { return }
+                self.render(with: self.viewModel)
+            }
+        }
+    }
     
+    private lazy var imageDownloaderFactory = ImageDownloaderFactory()
+    private lazy var imageDownloader = imageDownloaderFactory.makeDownloader()
     
-    var viewModel: ViewModel?
+    private var imageDownloadingToken: DownloadTaskToken?
+
+
+    deinit {
+        imageDownloadingToken?.cancel()
+    }
+}
+
+
+// MARK: - Computeds
+extension SearchResultDetailsViewController {
+    
+    var shouldLoadHeaderImage: Bool {
+        guard imageDownloadingToken != nil else { return true }
+
+        if
+            let headerImageURL = viewModel.artworkImageURL,
+            let downloadTaskURL = imageDownloadingToken?.taskURL,
+            headerImageURL.absoluteString != downloadTaskURL.absoluteString
+        {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 
@@ -23,14 +62,24 @@ extension SearchResultDetailsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        render(with: viewModel)
     }
+    
 }
+
 
 // MARK: - Event Handling
 extension SearchResultDetailsViewController {
     
     @IBAction func closeButtonTapped() {
         dismiss(animated: true)
+    }
+    
+    @IBAction func priceButtonTapped() {
+        if let storeURL = viewModel.storeURL {
+            UIApplication.shared.open(storeURL)
+        }
     }
     
 }
@@ -49,5 +98,30 @@ extension SearchResultDetailsViewController: Storyboarded {}
 
 // MARK: - Private Helpers
 private extension SearchResultDetailsViewController {
-
+    
+    func render(with viewModel: ViewModel) {
+        headerImageView.image = viewModel.headerImage
+        artistNameLabel.text = viewModel.artistNameText
+        contentTypeLabel.text = viewModel.contentTypeText
+        genreLabel.text = viewModel.contentGenre
+        priceButton.setTitle(viewModel.priceText, for: .normal)
+        
+        if shouldLoadHeaderImage, let url = viewModel.artworkImageURL {
+            loadHeaderImage(from: url)
+        }
+    }
+    
+    
+    func loadHeaderImage(from url: URL) {
+        imageDownloadingToken = imageDownloader.downloadImage(from: url) {
+            [weak self] result in
+            
+            guard
+                let self = self,
+                case .success(let image) = result
+            else { return }
+            
+            self.viewModel.artworkImage = image
+        }
+    }
 }

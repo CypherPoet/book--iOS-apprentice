@@ -14,6 +14,7 @@ struct SearchResult {
     
     private let kind: String?
     private let wrapperType: String?
+    private let currencyCode: String
     
     let artistName: String?
     let trackName: String?
@@ -23,7 +24,6 @@ struct SearchResult {
     let trackPrice: Double?
     let collectionPrice: Double?
     let itemPrice: Double?
-    let currency: String
     let smallThumbnailURL: URL?
     let largeThumbnailURL: URL?
     let collectionViewURL: URL?
@@ -43,7 +43,7 @@ extension SearchResult: Codable {
         case trackPrice
         case collectionPrice
         case itemPrice
-        case currency
+        case currencyCode = "currency"
         case smallThumbnailURL = "artworkUrl60"
         case largeThumbnailURL = "artworkUrl100"
         case collectionViewURL = "collectionViewUrl"
@@ -83,11 +83,16 @@ extension SearchResult: CustomStringConvertible {
 extension SearchResult {
     var title: String? { trackName ?? collectionName }
     var storeURL: URL? { trackViewURL ?? collectionViewURL }
-    var price: Double { trackPrice ?? collectionPrice ?? itemPrice ?? 0.0 }
+    var contentType: APIResultKind { .init(rawString: kind ?? wrapperType) }
+
+    var price: Price {
+        let priceValue = trackPrice ?? collectionPrice ?? itemPrice ?? 0.0
+        
+        return Price(currencyCode: currencyCode, value: priceValue)
+    }
+    
     
     var genres: [String]? {
         primaryGenre != nil ? [primaryGenre!] : genreSet
     }
-    
-    var contentType: APIResultKind { APIResultKind(rawString: kind ?? wrapperType) }
 }

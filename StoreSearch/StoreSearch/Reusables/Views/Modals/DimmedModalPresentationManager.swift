@@ -27,4 +27,3 @@ final class DimmedModalPresentationManager: NSObject, UIViewControllerTransition
         return dimmedModalPresentationController
     }
 }
-

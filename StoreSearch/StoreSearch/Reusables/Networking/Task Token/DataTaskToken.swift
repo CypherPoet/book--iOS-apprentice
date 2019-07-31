@@ -24,4 +24,6 @@ final class DataTaskToken: TaskToken {
     func cancel() {
         task?.cancel()
     }
+    
+    var taskURL: URL? { task?.currentRequest?.url }
 }

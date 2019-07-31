@@ -6,6 +6,7 @@ disabled_rules: # rule identifiers to exclude from running
   - nesting
   - identifier_name
   - function_parameter_count
+  - closure_parameter_position
 
 
 opt_in_rules: # some rules are only opt-in

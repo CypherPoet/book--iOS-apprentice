@@ -21,7 +21,7 @@ extension SearchResultTableViewCell {
 
 
 extension SearchResultTableViewCell.ViewModel {
-    var thumbnailImage: UIImage? { downloadedThumbnailImage ?? UIImage(systemName: "doc") }
+    var thumbnailImage: UIImage? { downloadedThumbnailImage ?? R.image.storeLogo() }
 
     var titleText: String { resultTitle ?? "(Untitled)" }
 

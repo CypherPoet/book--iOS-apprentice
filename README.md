@@ -146,7 +146,8 @@ __.
 ### Topics Covered / Challenges Encountered
 
 - Debugging with exception breakpoints.
-
+- Custom Presentation Controllers with custom transition animations 💥.
+- Stretchable Images via image slicing.
 
 <br>
 

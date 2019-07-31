@@ -23,4 +23,6 @@ protocol TaskToken: class {
     
     func resume()
     func cancel()
+    
+    var taskURL: URL? { get }
 }
