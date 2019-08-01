@@ -39,16 +39,19 @@ extension DimmedModalPresentationNavController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .clear
         view.clipsToBounds = true
         view.layer.cornerRadius = Appearance.Constants.modalCornerRadius
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        // 📝 An enhancement from here could be to allow for configuring whether or not
+        // the modal was floating and centered or sliding up as a page sheet. For the latter style, we'd
+        // only round the top two corners, like so...
+//        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
 
     override func viewDidDisappear(_ animated: Bool) {
-        dimmedModalPresentationManager = nil
-        transitioningDelegate = nil
-
+        tearDown()
         super.viewDidDisappear(true)
     }
 }
@@ -67,5 +70,10 @@ private extension DimmedModalPresentationNavController {
         dimmedModalPresentationManager = DimmedModalPresentationManager()
         transitioningDelegate = dimmedModalPresentationManager
         modalPresentationStyle = .custom
+    }
+    
+    func tearDown() {
+        dimmedModalPresentationManager = nil
+        transitioningDelegate = nil
     }
 }

@@ -9,8 +9,12 @@
 import UIKit
 
 
-final class DimmedModalPresentationManager: NSObject, UIViewControllerTransitioningDelegate {
+final class DimmedModalPresentationManager: NSObject {
     var modalPresentationController: DimmedModalPresentationController?
+}
+
+
+extension DimmedModalPresentationManager: UIViewControllerTransitioningDelegate {
     
     func presentationController(
         forPresented presented: UIViewController,
@@ -25,5 +29,19 @@ final class DimmedModalPresentationManager: NSObject, UIViewControllerTransition
         self.modalPresentationController = dimmedModalPresentationController
         
         return dimmedModalPresentationController
+    }
+    
+    
+    func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        BouncePresentationAnimator()
+    }
+    
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        FadeOutPresentationAnimator()
     }
 }

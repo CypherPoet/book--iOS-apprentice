@@ -73,8 +73,6 @@ extension SearchCoordinator: SearchViewControllerDelegate {
             artworkImageURL: searchResult.largeThumbnailURL
         )
 
-        //        searchResultDetailsVC.modalPresentationStyle = .custom
-        
         searchResultDetailsVC.title = searchResult.title
         searchResultDetailsVC.navigationItem.backBarButtonItem?.title = "Search Results"
 
@@ -82,31 +80,10 @@ extension SearchCoordinator: SearchViewControllerDelegate {
         // sake of this project, it's also sweet to experiment with custom presentation view
         // controllers and animated transitions.
         let modalPresentationNavController = DimmedModalPresentationNavController(
-            rootViewController: searchResultDetailsVC
+            rootViewController: searchResultDetailsVC,
+            height: searchResultDetailsVC.view.frame.height / 2
         )
-//        navController.presentationController?.delegate = self
+
         navController.present(modalPresentationNavController, animated: true)
-//        navController.present(searchResultDetailsVC, animated: true)
     }
 }
-
-
-//extension SearchCoordinator: UIAdaptivePresentationControllerDelegate {
-//
-//    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-//        print("didDissmiss")
-//    }
-//
-//    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
-//        print("didAttempt")
-//    }
-//
-//    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
-//        print("willDissmiss")
-//    }
-//
-//    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
-//        print("Should dismiss")
-//        return true
-//    }
-//}

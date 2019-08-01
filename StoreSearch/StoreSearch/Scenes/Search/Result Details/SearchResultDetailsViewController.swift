@@ -73,7 +73,7 @@ extension SearchResultDetailsViewController {
 extension SearchResultDetailsViewController {
     
     @IBAction func closeButtonTapped() {
-        dismiss(animated: true)
+        navigationController?.dismiss(animated: true)
     }
     
     @IBAction func priceButtonTapped() {
@@ -84,11 +84,11 @@ extension SearchResultDetailsViewController {
     
 }
 
-//
-//// MARK: - ContentHeightProviding
+
+// MARK: - ContentHeightProviding
 //extension SearchResultDetailsViewController: ContentHeightProviding {
 //    var contentHeight: CGFloat? {
-//        return view.bounds.height
+//        return view.bounds.height / 2.0
 //    }
 //}
 

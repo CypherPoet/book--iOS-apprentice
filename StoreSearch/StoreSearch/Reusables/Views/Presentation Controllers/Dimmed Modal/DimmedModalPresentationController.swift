@@ -10,7 +10,7 @@ import UIKit
 
 
 final class DimmedModalPresentationController: UIPresentationController {
-    private var dimmingView: UIView!
+    private var dimmingView: DimmedGradientView!
     private var bottomOffset: CGFloat = 0
     
     var contentHeight: CGFloat? {
@@ -25,7 +25,10 @@ final class DimmedModalPresentationController: UIPresentationController {
     }
     
     
-    override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
+    override init(
+        presentedViewController: UIViewController,
+        presenting presentingViewController: UIViewController?
+    ) {
         super.init(presentedViewController: presentedViewController, presenting: presentedViewController)
 
         setupDimmingView()
@@ -43,14 +46,17 @@ extension DimmedModalPresentationController {
             let presentedViewController = presentedViewController as? ContentHeightProviding,
             let contentHeight = presentedViewController.contentHeight
         {
-            return CGSize(width: parentViewSize.width, height: contentHeight)
+            return CGSize(width: parentViewSize.width * 0.85, height: contentHeight)
         } else {
             return size(forChildContentContainer: presentedViewController, withParentContainerSize: parentViewSize)
         }
     }
     
     private var presentedViewOriginX: CGFloat { (parentViewSize.width - presentedViewSize.width) / 2.0 }
-    private var presentedViewOriginY: CGFloat { parentViewSize.height - presentedViewSize.height - bottomOffset }
+
+    private var presentedViewOriginY: CGFloat {
+        (parentViewSize.height - presentedViewSize.height - bottomOffset) / 2.0
+    }
     
     private var presentedViewOrigin: CGPoint { CGPoint(x: presentedViewOriginX, y: presentedViewOriginY) }
 }
@@ -68,6 +74,9 @@ extension DimmedModalPresentationController {
     
     
     override func dismissalTransitionWillBegin() {
+        // 📝 Zap uses a nice pattern for having the presented view controller run
+        // it's own animations here as well:
+        // https://github.com/LN-Zap/zap-iOS/blob/915795b7d9/Library/Views/Modal/ModalPresentationController.swift#L79
         hideDimmingView()
     }
     
@@ -84,14 +93,13 @@ extension DimmedModalPresentationController {
     ) -> CGSize {
         let height = contentHeight ?? parentSize.height * 0.75
         
-        return CGSize(width: parentSize.width * 0.8, height: height)
+        return CGSize(width: parentSize.width * 0.85, height: height)
     }
     
     
     override var frameOfPresentedViewInContainerView: CGRect {
         CGRect(origin: presentedViewOrigin, size: presentedViewSize)
     }
-    
 }
 
 
@@ -108,11 +116,8 @@ extension DimmedModalPresentationController {
 private extension DimmedModalPresentationController {
     
     func setupDimmingView() {
-        dimmingView = UIView()
-        
+        dimmingView = DimmedGradientView(frame: frameOfPresentedViewInContainerView)
         dimmingView.translatesAutoresizingMaskIntoConstraints = false
-        dimmingView.backgroundColor = .init(white: 1.0, alpha: 0.5)
-        dimmingView.alpha = 0.5
         
         dimmingView.addGestureRecognizer(
             UITapGestureRecognizer(
@@ -127,6 +132,7 @@ private extension DimmedModalPresentationController {
         containerView.insertSubview(dimmingView, at: 0)
         
         setDimmingViewConstraints(within: containerView)
+        dimmingView.alpha = 0.0
         
         guard let transitionCoordinator = presentingViewController.transitionCoordinator else {
             dimmingView.alpha = 1.0

@@ -8,13 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		55A1FF49BE78D5286320C702 /* Pods_StoreSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0D738562075934E51444F5 /* Pods_StoreSearch.framework */; };
-		F30B40F622EFC5CC0088FFDE /* DimmedModalPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B40F522EFC5CC0088FFDE /* DimmedModalPresentationManager.swift */; };
-		F30B40F822EFCB2F0088FFDE /* DimmedModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B40F722EFCB2F0088FFDE /* DimmedModalViewController.swift */; };
 		F30B40FA22F0E1B90088FFDE /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B40F922F0E1B90088FFDE /* Price.swift */; };
 		F3169BC322EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */; };
 		F3169BC522EE565F00651401 /* SearchResultDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */; };
-		F3169BC922EE7C3700651401 /* DimmedModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC822EE7C3700651401 /* DimmedModalPresentationController.swift */; };
-		F3169BCB22EF62E400651401 /* ModalPresentationNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BCA22EF62E400651401 /* ModalPresentationNavController.swift */; };
 		F3169BD122EF93F900651401 /* ContentHeightProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BD022EF93F900651401 /* ContentHeightProviding.swift */; };
 		F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36C381D22E6FD4A00CC001C /* Colors.xcassets */; };
 		F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */; };
@@ -37,6 +33,13 @@
 		F36C385622ECCB0E00CC001C /* DownloadingTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C385422ECCB0E00CC001C /* DownloadingTransport.swift */; };
 		F36C385822ECCBB200CC001C /* URLSession+DownloadTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C385722ECCBB200CC001C /* URLSession+DownloadTransport.swift */; };
 		F36C385A22ECCEC300CC001C /* SessionImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C385922ECCEC300CC001C /* SessionImageDownloader.swift */; };
+		F37B7B3622F14A07008CA975 /* DimmedGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B3522F14A07008CA975 /* DimmedGradientView.swift */; };
+		F37B7B3922F167EC008CA975 /* BouncePresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B3822F167EC008CA975 /* BouncePresentationAnimator.swift */; };
+		F37B7B3B22F17027008CA975 /* FadeOutPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B3A22F17027008CA975 /* FadeOutPresentationAnimator.swift */; };
+		F37B7B4122F2544F008CA975 /* ModalPresentationNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B3D22F2544F008CA975 /* ModalPresentationNavController.swift */; };
+		F37B7B4222F2544F008CA975 /* DimmedModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B3E22F2544F008CA975 /* DimmedModalPresentationController.swift */; };
+		F37B7B4322F2544F008CA975 /* DimmedModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B3F22F2544F008CA975 /* DimmedModalViewController.swift */; };
+		F37B7B4422F2544F008CA975 /* DimmedModalPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B4022F2544F008CA975 /* DimmedModalPresentationManager.swift */; };
 		F3934BEC22ECDD95009D7BA1 /* TransportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3934BEB22ECDD95009D7BA1 /* TransportError.swift */; };
 		F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE022E58305001B4D56 /* AppDelegate.swift */; };
 		F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE222E58305001B4D56 /* SceneDelegate.swift */; };
@@ -73,13 +76,9 @@
 /* Begin PBXFileReference section */
 		B45097723E4D6747CC6DD615 /* Pods-StoreSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch.debug.xcconfig"; path = "Target Support Files/Pods-StoreSearch/Pods-StoreSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		EE0D738562075934E51444F5 /* Pods_StoreSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoreSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F30B40F522EFC5CC0088FFDE /* DimmedModalPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedModalPresentationManager.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/DimmedModalPresentationManager.swift"; sourceTree = "<group>"; };
-		F30B40F722EFCB2F0088FFDE /* DimmedModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedModalViewController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/DimmedModalViewController.swift"; sourceTree = "<group>"; };
 		F30B40F922F0E1B90088FFDE /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Price.swift; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Models/Price.swift"; sourceTree = "<group>"; };
 		F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SearchResultDetailsViewController+ViewModel.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details/SearchResultDetailsViewController+ViewModel.swift"; sourceTree = "<group>"; };
 		F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultDetailsViewController.swift; sourceTree = "<group>"; };
-		F3169BC822EE7C3700651401 /* DimmedModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedModalPresentationController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/DimmedModalPresentationController.swift"; sourceTree = "<group>"; };
-		F3169BCA22EF62E400651401 /* ModalPresentationNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModalPresentationNavController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Modals/ModalPresentationNavController.swift"; sourceTree = "<group>"; };
 		F3169BD022EF93F900651401 /* ContentHeightProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentHeightProviding.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols/ContentHeightProviding.swift"; sourceTree = "<group>"; };
 		F36C381D22E6FD4A00CC001C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Content/Colors.xcassets"; sourceTree = "<group>"; };
 		F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Theme.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIColor+Theme.swift"; sourceTree = "<group>"; };
@@ -103,6 +102,13 @@
 		F36C385422ECCB0E00CC001C /* DownloadingTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingTransport.swift; sourceTree = "<group>"; };
 		F36C385722ECCBB200CC001C /* URLSession+DownloadTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLSession+DownloadTransport.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/URLSession+DownloadTransport.swift"; sourceTree = "<group>"; };
 		F36C385922ECCEC300CC001C /* SessionImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionImageDownloader.swift; sourceTree = "<group>"; };
+		F37B7B3522F14A07008CA975 /* DimmedGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedGradientView.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/DimmedGradientView.swift"; sourceTree = "<group>"; };
+		F37B7B3822F167EC008CA975 /* BouncePresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BouncePresentationAnimator.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Presentation Animators/BouncePresentationAnimator.swift"; sourceTree = "<group>"; };
+		F37B7B3A22F17027008CA975 /* FadeOutPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FadeOutPresentationAnimator.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Presentation Animators/FadeOutPresentationAnimator.swift"; sourceTree = "<group>"; };
+		F37B7B3D22F2544F008CA975 /* ModalPresentationNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalPresentationNavController.swift; sourceTree = "<group>"; };
+		F37B7B3E22F2544F008CA975 /* DimmedModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmedModalPresentationController.swift; sourceTree = "<group>"; };
+		F37B7B3F22F2544F008CA975 /* DimmedModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmedModalViewController.swift; sourceTree = "<group>"; };
+		F37B7B4022F2544F008CA975 /* DimmedModalPresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmedModalPresentationManager.swift; sourceTree = "<group>"; };
 		F3934BEB22ECDD95009D7BA1 /* TransportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransportError.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/TransportError.swift"; sourceTree = "<group>"; };
 		F3A96CDD22E58305001B4D56 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A96CE022E58305001B4D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,20 +186,22 @@
 		F3169BC622EE7BF600651401 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F3169BC722EE7C0100651401 /* Modals */,
+				F37B7B3C22F241E7008CA975 /* Presentation Controllers */,
+				F37B7B3722F167CA008CA975 /* Presentation Animators */,
+				F37B7B3522F14A07008CA975 /* DimmedGradientView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		F3169BC722EE7C0100651401 /* Modals */ = {
+		F3169BC722EE7C0100651401 /* Dimmed Modal */ = {
 			isa = PBXGroup;
 			children = (
-				F3169BC822EE7C3700651401 /* DimmedModalPresentationController.swift */,
-				F3169BCA22EF62E400651401 /* ModalPresentationNavController.swift */,
-				F30B40F522EFC5CC0088FFDE /* DimmedModalPresentationManager.swift */,
-				F30B40F722EFCB2F0088FFDE /* DimmedModalViewController.swift */,
+				F37B7B3E22F2544F008CA975 /* DimmedModalPresentationController.swift */,
+				F37B7B4022F2544F008CA975 /* DimmedModalPresentationManager.swift */,
+				F37B7B3F22F2544F008CA975 /* DimmedModalViewController.swift */,
+				F37B7B3D22F2544F008CA975 /* ModalPresentationNavController.swift */,
 			);
-			path = Modals;
+			path = "Dimmed Modal";
 			sourceTree = "<group>";
 		};
 		F36C382F22E9BEB500CC001C /* Constants */ = {
@@ -231,6 +239,23 @@
 				F36C385322ECCB0E00CC001C /* RequestTransport.swift */,
 			);
 			path = Transport;
+			sourceTree = "<group>";
+		};
+		F37B7B3722F167CA008CA975 /* Presentation Animators */ = {
+			isa = PBXGroup;
+			children = (
+				F37B7B3822F167EC008CA975 /* BouncePresentationAnimator.swift */,
+				F37B7B3A22F17027008CA975 /* FadeOutPresentationAnimator.swift */,
+			);
+			path = "Presentation Animators";
+			sourceTree = "<group>";
+		};
+		F37B7B3C22F241E7008CA975 /* Presentation Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F3169BC722EE7C0100651401 /* Dimmed Modal */,
+			);
+			path = "Presentation Controllers";
 			sourceTree = "<group>";
 		};
 		F3A96CD422E58305001B4D56 = {
@@ -594,10 +619,10 @@
 				F36C382C22E879C500CC001C /* UIViewController+ShowNetworkingError.swift in Sources */,
 				F3A96D1E22E58900001B4D56 /* NavigationControlling.swift in Sources */,
 				F3A96D2122E58900001B4D56 /* NavigationCoordinator.swift in Sources */,
-				F3169BCB22EF62E400651401 /* ModalPresentationNavController.swift in Sources */,
 				F3A96D5B22E6E990001B4D56 /* SearchResultTableViewCell.swift in Sources */,
 				F3A96D4B22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift in Sources */,
 				F36C382A22E84F1900CC001C /* SearchModelController.swift in Sources */,
+				F37B7B4322F2544F008CA975 /* DimmedModalViewController.swift in Sources */,
 				F3A96D1B22E58900001B4D56 /* FileManager+UserDocumentsDirectory.swift in Sources */,
 				F3A96D5F22E6FA31001B4D56 /* Appearance.swift in Sources */,
 				F3A96D3922E59D8A001B4D56 /* SearchViewController.swift in Sources */,
@@ -608,7 +633,7 @@
 				F3A96D4622E68AEE001B4D56 /* Endpoint.swift in Sources */,
 				F36C384722ECB9CF00CC001C /* ImageDownloader.swift in Sources */,
 				F36C384322EC840900CC001C /* DownloadTaskToken.swift in Sources */,
-				F30B40F822EFCB2F0088FFDE /* DimmedModalViewController.swift in Sources */,
+				F37B7B4422F2544F008CA975 /* DimmedModalPresentationManager.swift in Sources */,
 				F36C382E22E8810700CC001C /* URLQueryItem+InitWithName.swift in Sources */,
 				F3A96D1A22E58900001B4D56 /* UIViewController+DisplayAlertMessage.swift in Sources */,
 				F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */,
@@ -620,23 +645,26 @@
 				F36C383D22EB3BC400CC001C /* DataTaskToken.swift in Sources */,
 				F36C382422E8180300CC001C /* ModelLoader.swift in Sources */,
 				F3A96D4322E67CF9001B4D56 /* SearchResultsList.swift in Sources */,
+				F37B7B4122F2544F008CA975 /* ModalPresentationNavController.swift in Sources */,
 				F3A96D1622E58900001B4D56 /* UIViewController+DisplayPromptMessage.swift in Sources */,
 				F3169BC522EE565F00651401 /* SearchResultDetailsViewController.swift in Sources */,
 				F36C382822E8190700CC001C /* URLSession+RequestTransport.swift in Sources */,
+				F37B7B4222F2544F008CA975 /* DimmedModalPresentationController.swift in Sources */,
 				F3934BEC22ECDD95009D7BA1 /* TransportError.swift in Sources */,
 				F3A96D2322E58900001B4D56 /* TableViewDataSource.swift in Sources */,
+				F37B7B3622F14A07008CA975 /* DimmedGradientView.swift in Sources */,
 				F36C384922ECBA8900CC001C /* ImageDownloaderFactory.swift in Sources */,
 				F3169BC322EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift in Sources */,
 				F3A96D2222E58900001B4D56 /* Coordinator.swift in Sources */,
 				F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */,
 				F3A96D3322E59D38001B4D56 /* R.generated.swift in Sources */,
-				F3169BC922EE7C3700651401 /* DimmedModalPresentationController.swift in Sources */,
 				F36C383922EB36AB00CC001C /* TaskToken.swift in Sources */,
 				F30B40FA22F0E1B90088FFDE /* Price.swift in Sources */,
 				F3A96D1822E58900001B4D56 /* UIViewController+AddAndRemoveChild.swift in Sources */,
+				F37B7B3922F167EC008CA975 /* BouncePresentationAnimator.swift in Sources */,
+				F37B7B3B22F17027008CA975 /* FadeOutPresentationAnimator.swift in Sources */,
 				F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */,
 				F3169BD122EF93F900651401 /* ContentHeightProviding.swift in Sources */,
-				F30B40F622EFC5CC0088FFDE /* DimmedModalPresentationManager.swift in Sources */,
 				F3A96D1722E58900001B4D56 /* UIViewController+Computeds.swift in Sources */,
 				F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */,
 				F36C383F22EB663D00CC001C /* APIMediaType.swift in Sources */,
