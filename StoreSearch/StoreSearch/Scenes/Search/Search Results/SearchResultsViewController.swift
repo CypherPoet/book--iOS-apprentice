@@ -10,27 +10,29 @@ import UIKit
 
 
 
-protocol SearchViewControllerDelegate: class {
-    func viewController(_ controller: SearchViewController, didSelectDetailsFor searchResult: SearchResult)
+protocol SearchResultsViewControllerDelegate: class {
+    func viewController(_ controller: SearchResultsViewController, didSelectDetailsFor searchResult: SearchResult)
+    func viewControllerDidSwitchToCollectionView(_ controller: SearchResultsViewController)
+    func viewControllerDidSwitchToTableView(_ controller: SearchResultsViewController)
 }
 
 
-class SearchViewController: UIViewController {
+class SearchResultsViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var emptyStateView: UIView!
     @IBOutlet private var loadingSpinnerViewContainer: UIView!
     @IBOutlet private var loadingSpinner: UIActivityIndicatorView!
     
     
-    weak var delegate: SearchViewControllerDelegate?
+    weak var delegate: SearchResultsViewControllerDelegate?
     var modelController: SearchModelController!
     var viewModel: SearchViewModel!
-    var imageDownloaderFactory: ImageDownloaderFactory = .init()
+    var imageDownloader: ImageDownloader!
     
     
-    private lazy var imagedownLoader: ImageDownloader = imageDownloaderFactory.makeDownloader()
-    private var dataSource: DataSource!
+    private var dataSource: DataSource?
     private var currentFetchToken: DataTaskToken?
+    private var landscapeVC: SearchResultsLandscapeViewController?
     
     private enum SearchState {
         case notStarted
@@ -39,15 +41,23 @@ class SearchViewController: UIViewController {
         case errored(message: String? = nil)
     }
     
+    private enum ViewMode {
+        case table
+        case collection
+    }
+    
     private var currentSearchState: SearchState = .notStarted {
         didSet { DispatchQueue.main.async { self.searchStateChanged() } }
+    }
+    
+    private var currentViewMode: ViewMode = .table {
+        didSet { DispatchQueue.main.async { self.viewModeChanged() } }
     }
 }
 
 
 // MARK: - Table View Structure
-
-extension SearchViewController {
+extension SearchResultsViewController {
     enum TableSection: CaseIterable {
         case all
     }
@@ -57,24 +67,52 @@ extension SearchViewController {
 }
 
 
-// MARK: - Lifecycle
+// MARK: - Computeds
+extension SearchResultsViewController {
+    
+    var currentSearchResults: [SearchResult]? {
+        guard let dataSource = dataSource else { return nil }
+        
+        return dataSource.snapshot().itemIdentifiers
+    }
+}
 
-extension SearchViewController {
+
+// MARK: - Lifecycle
+extension SearchResultsViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         assert(modelController != nil, "No SearchModelController was set")
         assert(viewModel != nil, "No viewModel was set")
-        
+        assert(imageDownloader != nil, "No imageDownloader was set")
+
         dataSource = makeTableViewDataSource()
         setupTableView()
     }
+    
+    
+    override func willTransition(
+        to newCollection: UITraitCollection,
+        with coordinator: UIViewControllerTransitionCoordinator
+    ) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        switch newCollection.verticalSizeClass {
+        case .compact:
+            showLandscapeViewController(with: coordinator)
+        case .regular, .unspecified:
+            hideLandscapeViewController(with: coordinator)
+        @unknown default:
+            hideLandscapeViewController(with: coordinator)
+        }
+    }
 }
 
-// MARK: - UISearchResultsUpdating
 
-extension SearchViewController: UISearchResultsUpdating {
+// MARK: - UISearchResultsUpdating
+extension SearchResultsViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = viewModel.currentSearchText else { return }
@@ -85,13 +123,12 @@ extension SearchViewController: UISearchResultsUpdating {
 
 
 // MARK: - UITableViewDelegate
-
-extension SearchViewController: UITableViewDelegate {
+extension SearchResultsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let searchResult = dataSource.itemIdentifier(for: indexPath) else {
+        guard let searchResult = dataSource?.itemIdentifier(for: indexPath) else {
             preconditionFailure("No search result found for selected cell.")
         }
         
@@ -108,13 +145,13 @@ extension SearchViewController: UITableViewDelegate {
             preconditionFailure("Unknown cell type")
         }
         
-        guard let searchResult = dataSource.itemIdentifier(for: indexPath) else {
+        guard let searchResult = dataSource?.itemIdentifier(for: indexPath) else {
             preconditionFailure("No result item found")
         }
 
         guard let thumbnailURL = searchResult.smallThumbnailURL else { return }
             
-        cell.imageDownloadToken = imagedownLoader.downloadImage(from: thumbnailURL) { result in
+        cell.imageDownloadToken = imageDownloader.downloadImage(from: thumbnailURL) { result in
             switch result {
             case .success(let image):
                 cell.viewModel?.downloadedThumbnailImage = image
@@ -125,12 +162,11 @@ extension SearchViewController: UITableViewDelegate {
     }
 }
 
-extension SearchViewController: Storyboarded {}
+extension SearchResultsViewController: Storyboarded {}
 
 
 // MARK: - Private Helpers
-
-private extension SearchViewController {
+private extension SearchResultsViewController {
 
     func makeTableViewDataSource() -> DataSource {
         DataSource(
@@ -166,7 +202,7 @@ private extension SearchViewController {
         snapshot.appendSections([.all])
         snapshot.appendItems(newItems)
 
-        dataSource.apply(snapshot, animatingDifferences: animate)
+        dataSource?.apply(snapshot, animatingDifferences: animate)
     }
 
 
@@ -196,6 +232,16 @@ private extension SearchViewController {
                     self?.updateDataSnapshot(withNewItems: results)
                 }
             }
+        }
+    }
+    
+    
+    func viewModeChanged() {
+        switch currentViewMode {
+        case .collection:
+            delegate?.viewControllerDidSwitchToCollectionView(self)
+        case .table:
+            delegate?.viewControllerDidSwitchToTableView(self)
         }
     }
     
@@ -237,6 +283,58 @@ private extension SearchViewController {
                     self.currentSearchState = .errored()
                 }
             }
+        }
+    }
+    
+    
+    func showLandscapeViewController(with coordinator: UIViewControllerTransitionCoordinator) {
+        guard landscapeVC == nil else { return }
+        
+        landscapeVC = SearchResultsLandscapeViewController.instantiateFromStoryboard(
+            named: R.storyboard.searchLandscape.name
+        )
+        
+        guard let landscapeVC = landscapeVC else { return }
+        
+        landscapeVC.currentSearchText = viewModel.currentSearchText
+        landscapeVC.imageDownloader = imageDownloader    
+        if let currentSearchResults = currentSearchResults {
+            landscapeVC.searchResults = currentSearchResults
+        }
+        
+        landscapeVC.view.frame = view.bounds
+        landscapeVC.view.alpha = 0
+        
+        view.addSubview(landscapeVC.view)
+        addChild(landscapeVC)
+        
+        coordinator.animate(
+            alongsideTransition: { _ in
+                landscapeVC.view.alpha = 1
+                self.currentViewMode = .collection
+            },
+            completion: { _ in
+                landscapeVC.didMove(toParent: self)
+            }
+        )
+    }
+    
+    
+    func hideLandscapeViewController(with coordinator: UIViewControllerTransitionCoordinator) {
+        if let childLandscapeVC = landscapeVC {
+            childLandscapeVC.willMove(toParent: nil)
+            
+            coordinator.animate(
+                alongsideTransition: { _ in
+                    childLandscapeVC.view.alpha = 0
+                },
+                completion: { _ in
+                    childLandscapeVC.view.removeFromSuperview()
+                    childLandscapeVC.removeFromParent()
+                    self.landscapeVC = nil
+                    self.currentViewMode = .table
+                }
+            )
         }
     }
 }

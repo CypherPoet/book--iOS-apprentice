@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14845" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="landscape" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14799.2"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search Results Landscape View Controller-->
+        <scene sceneID="FoL-eA-QCs">
+            <objects>
+                <viewController storyboardIdentifier="SearchResultsLandscapeViewController" id="Sop-sq-IdJ" customClass="SearchResultsLandscapeViewController" customModule="StoreSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ohv-yQ-Isq">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QHf-WH-Dwi">
+                                <rect key="frame" x="44" y="0.0" width="808" height="393"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="JMu-I0-gQU">
+                                    <size key="itemSize" width="180" height="200"/>
+                                    <size key="estimatedItemSize" width="180" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Umv-1f-XIu" firstAttribute="bottom" secondItem="QHf-WH-Dwi" secondAttribute="bottom" id="2GW-ux-sD8"/>
+                            <constraint firstItem="QHf-WH-Dwi" firstAttribute="top" secondItem="Umv-1f-XIu" secondAttribute="top" id="3k5-vb-TUO"/>
+                            <constraint firstItem="QHf-WH-Dwi" firstAttribute="leading" secondItem="Umv-1f-XIu" secondAttribute="leading" id="QVi-Kr-O23"/>
+                            <constraint firstItem="Umv-1f-XIu" firstAttribute="trailing" secondItem="QHf-WH-Dwi" secondAttribute="trailing" id="tOS-st-8jm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Umv-1f-XIu"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="QHf-WH-Dwi" id="HRX-YQ-fl0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tms-98-zVI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="43.526785714285715" y="192.75362318840581"/>
+        </scene>
+    </scenes>
+</document>

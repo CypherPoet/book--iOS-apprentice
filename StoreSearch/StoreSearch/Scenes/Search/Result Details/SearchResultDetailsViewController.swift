@@ -26,11 +26,10 @@ class SearchResultDetailsViewController: UIViewController {
         }
     }
     
-    private lazy var imageDownloaderFactory = ImageDownloaderFactory()
-    private lazy var imageDownloader = imageDownloaderFactory.makeDownloader()
+    var imageDownloader: ImageDownloader!
+    
     
     private var imageDownloadingToken: DownloadTaskToken?
-
 
     deinit {
         imageDownloadingToken?.cancel()
@@ -62,6 +61,9 @@ extension SearchResultDetailsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        assert(viewModel != nil, "No viewModel was set")
+        assert(imageDownloader != nil, "No imageDownloader was set")
         
         render(with: viewModel)
     }
