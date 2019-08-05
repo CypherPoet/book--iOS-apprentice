@@ -29,6 +29,7 @@ extension UIView {
                 self.alpha = 1
             },
             completion: { _ in
+                self.isHidden = false
                 completionHandler?()
             }
         )

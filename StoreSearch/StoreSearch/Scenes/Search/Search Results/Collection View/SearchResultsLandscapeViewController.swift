@@ -11,21 +11,18 @@ import UIKit
 class SearchResultsLandscapeViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
     
-    
-    var searchResults: [SearchResult] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.updateDataSource(withNew: self.searchResults)
-            }
-        }
-    }
-    
+
     var currentSearchText: String?
     var imageDownloader: ImageDownloader!
     
+    var currentSearchState: SearchState! {
+        didSet { DispatchQueue.main.async { self.searchStateChanged() } }
+    }
+
 
     private var dataSource: DataSource?
     private var currentDataSnapshot: DataSourceSnapshot!
+    private lazy var loadingViewController = LoadingViewController()
 }
 
 
@@ -228,6 +225,18 @@ private extension SearchResultsLandscapeViewController {
         )
     }
 
+    
+    func searchStateChanged() {
+        switch currentSearchState {
+        case .inProgress:
+            add(child: loadingViewController)
+        case .foundResults(let results):
+            loadingViewController.performRemoval()
+            updateDataSource(withNew: results)
+        default:
+            loadingViewController.performRemoval()
+        }
+    }
 }
 
 

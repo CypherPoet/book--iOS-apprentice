@@ -9,14 +9,6 @@
 import UIKit
 
 
-
-protocol SearchResultsViewControllerDelegate: class {
-    func viewController(_ controller: SearchResultsViewController, didSelectDetailsFor searchResult: SearchResult)
-    func viewControllerDidSwitchToCollectionView(_ controller: SearchResultsViewController)
-    func viewControllerDidSwitchToTableView(_ controller: SearchResultsViewController)
-}
-
-
 class SearchResultsViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var emptyStateView: UIView!
@@ -31,23 +23,22 @@ class SearchResultsViewController: UIViewController {
     
     
     private var dataSource: DataSource?
+    private var currentDataSnapshot: DataSourceSnapshot!
     private var currentFetchToken: DataTaskToken?
     private var landscapeVC: SearchResultsLandscapeViewController?
-    
-    private enum SearchState {
-        case notStarted
-        case inProgress
-        case completed(finding: [SearchResult])
-        case errored(message: String? = nil)
-    }
-    
+        
     private enum ViewMode {
         case table
         case collection
     }
     
     private var currentSearchState: SearchState = .notStarted {
-        didSet { DispatchQueue.main.async { self.searchStateChanged() } }
+        didSet {
+            DispatchQueue.main.async {
+                self.searchStateChanged()
+                self.landscapeVC?.currentSearchState = self.currentSearchState
+            }
+        }
     }
     
     private var currentViewMode: ViewMode = .table {
@@ -69,11 +60,8 @@ extension SearchResultsViewController {
 
 // MARK: - Computeds
 extension SearchResultsViewController {
-    
-    var currentSearchResults: [SearchResult]? {
-        guard let dataSource = dataSource else { return nil }
-        
-        return dataSource.snapshot().itemIdentifiers
+    var currentSearchResults: [SearchResult] {
+        currentDataSnapshot != nil ? currentDataSnapshot.itemIdentifiers : []
     }
 }
 
@@ -113,7 +101,6 @@ extension SearchResultsViewController {
 
 // MARK: - UISearchResultsUpdating
 extension SearchResultsViewController: UISearchResultsUpdating {
-    
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = viewModel.currentSearchText else { return }
         
@@ -162,8 +149,6 @@ extension SearchResultsViewController: UITableViewDelegate {
     }
 }
 
-extension SearchResultsViewController: Storyboarded {}
-
 
 // MARK: - Private Helpers
 private extension SearchResultsViewController {
@@ -197,12 +182,12 @@ private extension SearchResultsViewController {
     
     
     func updateDataSnapshot(withNewItems newItems: [SearchResult], animate: Bool = true) {
-        let snapshot = DataSourceSnapshot()
+        currentDataSnapshot = DataSourceSnapshot()
         
-        snapshot.appendSections([.all])
-        snapshot.appendItems(newItems)
+        currentDataSnapshot.appendSections([.all])
+        currentDataSnapshot.appendItems(newItems)
 
-        dataSource?.apply(snapshot, animatingDifferences: animate)
+        dataSource?.apply(currentDataSnapshot, animatingDifferences: animate)
     }
 
 
@@ -212,25 +197,23 @@ private extension SearchResultsViewController {
             stopLoadingSpinner()
             emptyStateView.fadeOut()
         case .inProgress:
-            emptyStateView.fadeOut { [weak self] in
-                self?.loadingSpinnerViewContainer.fadeIn()
-                self?.loadingSpinner.startAnimating()
-            }
+            loadingSpinnerViewContainer.fadeIn()
+            loadingSpinner.startAnimating()
+            emptyStateView.fadeOut()
         case .errored:
             stopLoadingSpinner()
-        case .completed(var results):
+        case .foundResults(var results):
             stopLoadingSpinner()
+            SearchResults.sortAscending(&results)
             
-            if results.isEmpty {
-                emptyStateView.fadeIn { [weak self] in
-                    self?.updateDataSnapshot(withNewItems: results)
-                }
-            } else {
-                SearchResults.sortAscending(&results)
+            emptyStateView.fadeOut { [weak self] in
+                self?.updateDataSnapshot(withNewItems: results)
+            }
+        case .foundNoResults:
+            stopLoadingSpinner()
 
-                emptyStateView.fadeOut { [weak self] in
-                    self?.updateDataSnapshot(withNewItems: results)
-                }
+            emptyStateView.fadeIn { [weak self] in
+                self?.updateDataSnapshot(withNewItems: [])
             }
         }
     }
@@ -247,6 +230,7 @@ private extension SearchResultsViewController {
     
     
     func stopLoadingSpinner() {
+        // TODO: Use view controller containment instead?
         loadingSpinner.stopAnimating()
         loadingSpinnerViewContainer.fadeOut()
     }
@@ -277,7 +261,7 @@ private extension SearchResultsViewController {
             DispatchQueue.main.async {
                 switch fetchResult {
                 case .success(let results):
-                    self.currentSearchState = .completed(finding: results)
+                    self.currentSearchState = results.isEmpty ? .foundNoResults : .foundResults(results)
                 case .failure:
                     self.showNetworkingError()
                     self.currentSearchState = .errored()
@@ -297,10 +281,8 @@ private extension SearchResultsViewController {
         guard let landscapeVC = landscapeVC else { return }
         
         landscapeVC.currentSearchText = viewModel.currentSearchText
-        landscapeVC.imageDownloader = imageDownloader    
-        if let currentSearchResults = currentSearchResults {
-            landscapeVC.searchResults = currentSearchResults
-        }
+        landscapeVC.imageDownloader = imageDownloader
+        landscapeVC.currentSearchState = currentSearchState
         
         landscapeVC.view.frame = view.bounds
         landscapeVC.view.alpha = 0
@@ -338,3 +320,5 @@ private extension SearchResultsViewController {
         }
     }
 }
+
+extension SearchResultsViewController: Storyboarded {}

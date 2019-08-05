@@ -12,6 +12,9 @@
 		F3169BC322EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */; };
 		F3169BC522EE565F00651401 /* SearchResultDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */; };
 		F3169BD122EF93F900651401 /* ContentHeightProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3169BD022EF93F900651401 /* ContentHeightProviding.swift */; };
+		F33E46D522F889E5000BA2A4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33E46D422F889E5000BA2A4 /* LoadingViewController.swift */; };
+		F33E46D722F8A51E000BA2A4 /* SearchResultsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33E46D622F8A51E000BA2A4 /* SearchResultsViewControllerDelegate.swift */; };
+		F33E46D922F8A561000BA2A4 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33E46D822F8A561000BA2A4 /* SearchState.swift */; };
 		F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36C381D22E6FD4A00CC001C /* Colors.xcassets */; };
 		F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */; };
 		F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */; };
@@ -87,6 +90,9 @@
 		F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SearchResultDetailsViewController+ViewModel.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details/SearchResultDetailsViewController+ViewModel.swift"; sourceTree = "<group>"; };
 		F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultDetailsViewController.swift; sourceTree = "<group>"; };
 		F3169BD022EF93F900651401 /* ContentHeightProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentHeightProviding.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols/ContentHeightProviding.swift"; sourceTree = "<group>"; };
+		F33E46D422F889E5000BA2A4 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/LoadingViewController.swift"; sourceTree = "<group>"; };
+		F33E46D622F8A51E000BA2A4 /* SearchResultsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResultsViewControllerDelegate.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Search Results/SearchResultsViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		F33E46D822F8A561000BA2A4 /* SearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchState.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/SearchState.swift"; sourceTree = "<group>"; };
 		F36C381D22E6FD4A00CC001C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Content/Colors.xcassets"; sourceTree = "<group>"; };
 		F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Theme.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIColor+Theme.swift"; sourceTree = "<group>"; };
 		F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+SelectedTableCellBackgroundView.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIView/UIView+SelectedTableCellBackgroundView.swift"; sourceTree = "<group>"; };
@@ -237,6 +243,7 @@
 				F36C383022E9BECA00CC001C /* APIResultKind.swift */,
 				F36C383E22EB663D00CC001C /* APIMediaType.swift */,
 				F3934BEB22ECDD95009D7BA1 /* TransportError.swift */,
+				F33E46D822F8A561000BA2A4 /* SearchState.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -292,6 +299,7 @@
 				F3A96D3B22E59F24001B4D56 /* Search.storyboard */,
 				F37B7B4B22F2C640008CA975 /* SearchModelController.swift */,
 				F3A96D3622E59D8A001B4D56 /* SearchResultsViewController.swift */,
+				F33E46D622F8A51E000BA2A4 /* SearchResultsViewControllerDelegate.swift */,
 				F37B7B4922F2C622008CA975 /* SearchViewModel.swift */,
 				F3A96D4C22E6DC72001B4D56 /* Results Table Cell */,
 			);
@@ -345,13 +353,14 @@
 		F3A96CF722E58829001B4D56 /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
-				F3169BC622EE7BF600651401 /* Views */,
 				F36C382F22E9BEB500CC001C /* Constants */,
+				F3A96CF822E58900001B4D56 /* Extensions */,
 				F3A96D5D22E6FA23001B4D56 /* Helpers */,
 				F3A96D4422E68AD5001B4D56 /* Networking */,
-				F3A96CF822E58900001B4D56 /* Extensions */,
 				F3A96D0822E58900001B4D56 /* Protocols */,
 				F3A96D0E22E58900001B4D56 /* Table View Data Sources */,
+				F3169BC622EE7BF600651401 /* Views */,
+				F33E46D422F889E5000BA2A4 /* LoadingViewController.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -659,6 +668,7 @@
 				F36C382C22E879C500CC001C /* UIViewController+ShowNetworkingError.swift in Sources */,
 				F3A96D1E22E58900001B4D56 /* NavigationControlling.swift in Sources */,
 				F3A96D2122E58900001B4D56 /* NavigationCoordinator.swift in Sources */,
+				F33E46D922F8A561000BA2A4 /* SearchState.swift in Sources */,
 				F3A96D5B22E6E990001B4D56 /* SearchResultTableViewCell.swift in Sources */,
 				F3A96D4B22E6D6DA001B4D56 /* UIView+AnimateVisibility.swift in Sources */,
 				F37B7B4322F2544F008CA975 /* DimmedModalViewController.swift in Sources */,
@@ -666,6 +676,7 @@
 				F3A96D5F22E6FA31001B4D56 /* Appearance.swift in Sources */,
 				F3A96D3922E59D8A001B4D56 /* SearchResultsViewController.swift in Sources */,
 				F3A96D5A22E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift in Sources */,
+				F33E46D722F8A51E000BA2A4 /* SearchResultsViewControllerDelegate.swift in Sources */,
 				F3A96D3A22E59D8A001B4D56 /* SearchCoordinator.swift in Sources */,
 				F3A96D1322E58900001B4D56 /* URL+WithQueryParams.swift in Sources */,
 				F3A96D2722E58B9A001B4D56 /* AppCoordinator.swift in Sources */,
@@ -681,6 +692,7 @@
 				F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */,
 				F36C385522ECCB0E00CC001C /* RequestTransport.swift in Sources */,
 				F3A96D1F22E58900001B4D56 /* Storyboarded.swift in Sources */,
+				F33E46D522F889E5000BA2A4 /* LoadingViewController.swift in Sources */,
 				F36C385A22ECCEC300CC001C /* SessionImageDownloader.swift in Sources */,
 				F3A96D4022E67CB9001B4D56 /* SearchResult.swift in Sources */,
 				F36C383D22EB3BC400CC001C /* DataTaskToken.swift in Sources */,
