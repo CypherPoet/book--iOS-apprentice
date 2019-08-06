@@ -14,7 +14,8 @@ final class SearchCoordinator: NSObject, NavigationCoordinator {
 
     private lazy var imageDownloaderFactory: ImageDownloaderFactory = .init()
     private lazy var imageDownloader: ImageDownloader = imageDownloaderFactory.makeDownloader()
-
+    private let searchButtonTitles: [String] = APIMediaType.allTitles
+    
     private var searchController: UISearchController!
     private var searchResultsViewController: SearchResultsViewController!
     private var resultDetailsModalNavController: DimmedModalPresentationNavController?
@@ -40,12 +41,15 @@ extension SearchCoordinator: Coordinator {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search the iTunes Store"
         searchController.definesPresentationContext = true
-        searchController.searchBar.scopeButtonTitles = APIMediaType.allTitles
+        searchController.searchBar.scopeButtonTitles = searchButtonTitles
 
         searchResultsViewController.delegate = self
-        searchResultsViewController.modelController = SearchModelController()
-        searchResultsViewController.viewModel = SearchViewModel(searchController: searchController)
         searchResultsViewController.imageDownloader = imageDownloader
+        searchResultsViewController.modelController = SearchModelController()
+        searchResultsViewController.viewModel = SearchViewModel(
+            scopeButtonTitles: searchButtonTitles,
+            selectedScopeIndex: 0
+        )
         
         searchResultsViewController.navigationItem.searchController = searchController
         searchResultsViewController.title = "iTunes Store Search"
@@ -103,6 +107,7 @@ extension SearchCoordinator: SearchResultsViewControllerDelegate {
         searchController.searchBar.isHidden = true
         searchController.isActive = false
         
+        
         if resultDetailsModalNavController != nil {
             navController.dismiss(animated: true)
             resultDetailsModalNavController = nil
@@ -110,9 +115,13 @@ extension SearchCoordinator: SearchResultsViewControllerDelegate {
     }
     
     
-    func viewControllerDidSwitchToTableView(_ controller: SearchResultsViewController) {
+    func viewControllerDidSwitchToTableView(
+        _ controller: SearchResultsViewController,
+        with startingSearchText: String?
+    ) {
         searchController.isActive = true
         searchController.searchBar.isHidden = false
+        searchController.searchBar.text = startingSearchText
         searchController.searchBar.becomeFirstResponder()
         
         navController.navigationBar.isHidden = false

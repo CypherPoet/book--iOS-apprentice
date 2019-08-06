@@ -28,7 +28,7 @@ class SearchResultsViewController: UIViewController {
     private var landscapeVC: SearchResultsLandscapeViewController?
         
     private enum ViewMode {
-        case table
+        case table(startingSearchText: String? = nil)
         case collection
     }
     
@@ -41,7 +41,7 @@ class SearchResultsViewController: UIViewController {
         }
     }
     
-    private var currentViewMode: ViewMode = .table {
+    private var currentViewMode: ViewMode = .table() {
         didSet { DispatchQueue.main.async { self.viewModeChanged() } }
     }
 }
@@ -102,9 +102,16 @@ extension SearchResultsViewController {
 // MARK: - UISearchResultsUpdating
 extension SearchResultsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = viewModel.currentSearchText else { return }
+        viewModel.currentSearchText = searchController.searchBar.text
+        viewModel.selectedScopeIndex = searchController.searchBar.selectedScopeButtonIndex
         
-        fetchResults(for: searchText)
+        if let currentSearchText = viewModel.currentSearchText {
+            if !currentSearchText.isEmpty {
+                fetchResults(for: currentSearchText)
+            } else {
+                currentSearchState = .notStarted
+            }
+        }
     }
 }
 
@@ -196,6 +203,7 @@ private extension SearchResultsViewController {
         case .notStarted:
             stopLoadingSpinner()
             emptyStateView.fadeOut()
+            updateDataSnapshot(withNewItems: [])
         case .inProgress:
             loadingSpinnerViewContainer.fadeIn()
             loadingSpinner.startAnimating()
@@ -223,8 +231,8 @@ private extension SearchResultsViewController {
         switch currentViewMode {
         case .collection:
             delegate?.viewControllerDidSwitchToCollectionView(self)
-        case .table:
-            delegate?.viewControllerDidSwitchToTableView(self)
+        case .table(let startingSearchText):
+            delegate?.viewControllerDidSwitchToTableView(self, with: startingSearchText)
         }
     }
     
@@ -305,6 +313,7 @@ private extension SearchResultsViewController {
     func hideLandscapeViewController(with coordinator: UIViewControllerTransitionCoordinator) {
         if let childLandscapeVC = landscapeVC {
             childLandscapeVC.willMove(toParent: nil)
+//            updateDataSnapshot(withNewItems: [], animate: false)
             
             coordinator.animate(
                 alongsideTransition: { _ in
@@ -314,7 +323,7 @@ private extension SearchResultsViewController {
                     childLandscapeVC.view.removeFromSuperview()
                     childLandscapeVC.removeFromParent()
                     self.landscapeVC = nil
-                    self.currentViewMode = .table
+                    self.currentViewMode = .table(startingSearchText: childLandscapeVC.currentSearchText)
                 }
             )
         }

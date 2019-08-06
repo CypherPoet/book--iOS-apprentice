@@ -8,34 +8,20 @@
 
 import UIKit
 
-final class SearchViewModel {
-    let searchController: UISearchController
-    
-    init(searchController: UISearchController) {
-        self.searchController = searchController
-    }
+struct SearchViewModel {
+    var scopeButtonTitles: [String]
+    var selectedScopeIndex: Int
+    var currentSearchText: String?
 }
 
 
 
 extension SearchViewModel {
-    
-    var selectedScopeIndex: Int { searchController.searchBar.selectedScopeButtonIndex }
-    
-    var currentSearchText: String? {
-        guard
-            let searchText = searchController.searchBar.text,
-            !searchText.isEmpty
-        else { return nil }
-        
-        return searchText
-    }
-    
+    var selectedScopeTitle: String { scopeButtonTitles[selectedScopeIndex] }
     
     var selectedMediaType: APIMediaType {
         guard
-            let scopeTitle = searchController.searchBar.scopeButtonTitles?[selectedScopeIndex],
-            let mediaType = APIMediaType.allCases.first(where: { $0.titleText == scopeTitle })
+            let mediaType = APIMediaType.allCases.first(where: { $0.titleText == selectedScopeTitle })
         else {
             preconditionFailure("Unable to find selected media type")
         }

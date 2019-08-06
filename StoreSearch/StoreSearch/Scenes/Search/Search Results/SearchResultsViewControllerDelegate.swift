@@ -10,6 +10,11 @@ import UIKit
 
 protocol SearchResultsViewControllerDelegate: class {
     func viewController(_ controller: SearchResultsViewController, didSelectDetailsFor searchResult: SearchResult)
+    
     func viewControllerDidSwitchToCollectionView(_ controller: SearchResultsViewController)
-    func viewControllerDidSwitchToTableView(_ controller: SearchResultsViewController)
+    
+    func viewControllerDidSwitchToTableView(
+        _ controller: SearchResultsViewController,
+        with startingSearchText: String?
+    )
 }
