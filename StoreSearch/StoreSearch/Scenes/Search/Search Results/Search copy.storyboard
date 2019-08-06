@@ -203,6 +203,21 @@
             </objects>
             <point key="canvasLocation" x="407" y="3"/>
         </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="FGZ-xB-17J">
+            <objects>
+                <viewController storyboardIdentifier="LoadingViewController" id="s3C-bX-61Q" customClass="LoadingViewController" customModule="StoreSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VQv-7O-dch">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="iYh-hQ-lZs"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fop-t1-qs7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1320" y="3"/>
+        </scene>
     </scenes>
     <resources>
         <image name="0.circle.fill" catalog="system" width="64" height="62"/>

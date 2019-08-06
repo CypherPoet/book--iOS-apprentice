@@ -8,19 +8,13 @@
 
 import UIKit
 
-class LoadingViewController: UIViewController {
+class LoadingViewController: UIViewController, Storyboarded {
     private lazy var spinner: UIActivityIndicatorView = makeSpinner()
-    private let backgroundColor: UIColor
+    private let backgroundColor: UIColor = .red
+
     
-    
-    init(backgroundColor: UIColor = .clear) {
-        self.backgroundColor = backgroundColor
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    deinit {
+        print("💥")
     }
 }
     
@@ -30,7 +24,18 @@ extension LoadingViewController {
         super.viewDidLoad()
 
         setupSpinner()
+        view.backgroundColor = backgroundColor
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            self.spinner.startAnimating()
+        })
+    }
+
 }
 
 
@@ -38,21 +43,20 @@ private extension LoadingViewController {
     
     func setupSpinner() {
         view.addSubview(spinner)
-        spinner.startAnimating()
-        
-        view.backgroundColor = backgroundColor
-        
+
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
+        
+        spinner.startAnimating()
     }
     
     
     func makeSpinner() -> UIActivityIndicatorView {
         let spinner = UIActivityIndicatorView(style: .large)
 
-        spinner.sizeToFit()
+//        spinner.sizeToFit()
         spinner.translatesAutoresizingMaskIntoConstraints = false
         
         return spinner

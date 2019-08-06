@@ -15,17 +15,21 @@ import UIKit
         toView targetView: UIView? = nil,
         usingFrame customFrame: CGRect? = nil
     ) {
-        let targetView = targetView ?? view
+        guard let targetView = targetView ?? view else { return }
         
         childViewController.view.frame = customFrame ?? childViewController.view.frame
         
+        targetView.addSubview(childViewController.view)
         addChild(childViewController)
-        targetView?.addSubview(childViewController.view)
         childViewController.didMove(toParent: self)
     }
     
     
     func performRemoval() {
+        // check that this view controller is actually added to
+        // a parent before removing it.
+        guard parent != nil else { return }
+        
         willMove(toParent: nil)
         view.removeFromSuperview()
         removeFromParent()

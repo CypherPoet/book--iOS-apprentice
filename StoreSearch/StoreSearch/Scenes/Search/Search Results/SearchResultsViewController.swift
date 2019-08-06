@@ -12,9 +12,7 @@ import UIKit
 class SearchResultsViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var emptyStateView: UIView!
-    @IBOutlet private var loadingSpinnerViewContainer: UIView!
-    @IBOutlet private var loadingSpinner: UIActivityIndicatorView!
-    
+
     
     weak var delegate: SearchResultsViewControllerDelegate?
     var modelController: SearchModelController!
@@ -22,10 +20,15 @@ class SearchResultsViewController: UIViewController {
     var imageDownloader: ImageDownloader!
     var isSettingSearchBarOnViewSwitch = false
     
+    
     private var dataSource: DataSource?
     private var currentDataSnapshot: DataSourceSnapshot!
     private var currentFetchToken: DataTaskToken?
     private var landscapeVC: SearchResultsLandscapeViewController?
+    
+    lazy var loadingVC = LoadingViewController.instantiateFromStoryboard(
+        named: R.storyboard.loadingViewController.name
+    )
         
     private enum ViewMode {
         case table(startingSearchText: String? = nil)
@@ -35,7 +38,7 @@ class SearchResultsViewController: UIViewController {
     private var currentSearchState: SearchState = .notStarted {
         didSet {
             DispatchQueue.main.async {
-                self.searchStateChanged()
+                self.searchStateChanged(from: oldValue)
                 self.landscapeVC?.currentSearchState = self.currentSearchState
             }
         }
@@ -203,34 +206,32 @@ private extension SearchResultsViewController {
     }
 
 
-    func searchStateChanged() {
+    func searchStateChanged(from oldState: SearchState) {
         switch currentSearchState {
         case .notStarted:
-            stopLoadingSpinner()
             emptyStateView.fadeOut()
+            hideLoadingSpinner()
             updateDataSnapshot(withNewItems: [])
         case .inProgress:
-            loadingSpinnerViewContainer.fadeIn()
-            loadingSpinner.startAnimating()
+            showLoadingSpinner()
             emptyStateView.fadeOut()
         case .errored:
-            stopLoadingSpinner()
+            hideLoadingSpinner()
         case .foundResults(var results):
-            stopLoadingSpinner()
             SearchResults.sortAscending(&results)
             
+            hideLoadingSpinner()
             emptyStateView.fadeOut { [weak self] in
                 self?.updateDataSnapshot(withNewItems: results)
             }
         case .foundNoResults:
-            stopLoadingSpinner()
-
+            hideLoadingSpinner()
             emptyStateView.fadeIn { [weak self] in
                 self?.updateDataSnapshot(withNewItems: [])
             }
         }
     }
-    
+
     
     func viewModeChanged() {
         switch currentViewMode {
@@ -240,14 +241,7 @@ private extension SearchResultsViewController {
             delegate?.viewControllerDidSwitchToTableView(self, with: startingSearchText)
         }
     }
-    
-    
-    func stopLoadingSpinner() {
-        // TODO: Use view controller containment instead?
-        loadingSpinner.stopAnimating()
-        loadingSpinnerViewContainer.fadeOut()
-    }
-    
+
     
     func configure(_ cell: UITableViewCell, with searchResult: SearchResult) {
         guard let cell = cell as? SearchResultTableViewCell else {
@@ -300,8 +294,8 @@ private extension SearchResultsViewController {
         landscapeVC.view.frame = view.bounds
         landscapeVC.view.alpha = 0
         
-        view.addSubview(landscapeVC.view)
         addChild(landscapeVC)
+        view.addSubview(landscapeVC.view)
         
         coordinator.animate(
             alongsideTransition: { _ in
@@ -336,3 +330,4 @@ private extension SearchResultsViewController {
 }
 
 extension SearchResultsViewController: Storyboarded {}
+extension SearchResultsViewController: LoadingViewControllerToggling {}

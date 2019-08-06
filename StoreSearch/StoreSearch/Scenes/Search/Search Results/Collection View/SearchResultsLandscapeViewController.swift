@@ -8,7 +8,9 @@
 
 import UIKit
 
-class SearchResultsLandscapeViewController: UIViewController {
+
+
+class SearchResultsLandscapeViewController: UIViewController, LoadingViewControllerToggling {
     @IBOutlet private var collectionView: UICollectionView!
     
 
@@ -22,7 +24,10 @@ class SearchResultsLandscapeViewController: UIViewController {
 
     private var dataSource: DataSource?
     private var currentDataSnapshot: DataSourceSnapshot!
-    private lazy var loadingViewController = LoadingViewController()
+
+    internal lazy var loadingVC = LoadingViewController.instantiateFromStoryboard(
+        named: R.storyboard.loadingViewController.name
+    )
 }
 
 
@@ -229,12 +234,12 @@ private extension SearchResultsLandscapeViewController {
     func searchStateChanged() {
         switch currentSearchState {
         case .inProgress:
-            add(child: loadingViewController)
+            showLoadingSpinner()
         case .foundResults(let results):
-            loadingViewController.performRemoval()
+            hideLoadingSpinner()
             updateDataSource(withNew: results)
         default:
-            loadingViewController.performRemoval()
+            break
         }
     }
 }

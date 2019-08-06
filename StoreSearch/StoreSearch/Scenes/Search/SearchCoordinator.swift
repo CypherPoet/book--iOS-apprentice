@@ -15,7 +15,8 @@ final class SearchCoordinator: NSObject, NavigationCoordinator {
     private lazy var imageDownloaderFactory: ImageDownloaderFactory = .init()
     private lazy var imageDownloader: ImageDownloader = imageDownloaderFactory.makeDownloader()
     private let searchButtonTitles: [String] = APIMediaType.allTitles
-    
+
+    private lazy var loadingViewController = LoadingViewController()
     private var searchController: UISearchController!
     private var searchResultsViewController: SearchResultsViewController!
     private var resultDetailsModalNavController: DimmedModalPresentationNavController?
@@ -132,5 +133,18 @@ extension SearchCoordinator: SearchResultsViewControllerDelegate {
         
         navController.navigationBar.isHidden = false
         Appearance.apply(to: navController.navigationBar)
+    }
+    
+    
+    func viewControllerDidStartSearching(_ controller: SearchResultsViewController) {
+//        navController.pushViewController(loadingViewController, animated: true)
+//        navController.addChild(loadingViewController)
+//        searchResultsViewController.add(child: loadingViewController)
+//        navController.add(child: loadingViewController)
+    }
+    
+    
+    func viewControllerDidFinishSearching(_ controller: SearchResultsViewController) {
+//        loadingViewController.performRemoval()
     }
 }
