@@ -121,7 +121,13 @@ extension SearchCoordinator: SearchResultsViewControllerDelegate {
     ) {
         searchController.isActive = true
         searchController.searchBar.isHidden = false
+        
+        // 📝 Set this here so our update function can know this is what causes the change, and
+        // refrain from doing an additional fetch. (I feel like this
+        // approach can be cleaner, though 🙂)
+        searchResultsViewController.isSettingSearchBarOnViewSwitch = true
         searchController.searchBar.text = startingSearchText
+        
         searchController.searchBar.becomeFirstResponder()
         
         navController.navigationBar.isHidden = false

@@ -20,7 +20,7 @@ class SearchResultsViewController: UIViewController {
     var modelController: SearchModelController!
     var viewModel: SearchViewModel!
     var imageDownloader: ImageDownloader!
-    
+    var isSettingSearchBarOnViewSwitch = false
     
     private var dataSource: DataSource?
     private var currentDataSnapshot: DataSourceSnapshot!
@@ -104,6 +104,11 @@ extension SearchResultsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         viewModel.currentSearchText = searchController.searchBar.text
         viewModel.selectedScopeIndex = searchController.searchBar.selectedScopeButtonIndex
+  
+        guard !isSettingSearchBarOnViewSwitch else {
+            isSettingSearchBarOnViewSwitch = false
+            return
+        }
         
         if let currentSearchText = viewModel.currentSearchText {
             if !currentSearchText.isEmpty {
