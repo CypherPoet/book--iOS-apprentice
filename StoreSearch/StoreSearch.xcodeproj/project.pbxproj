@@ -18,6 +18,7 @@
 		F350F9A422F9F757002A1F23 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F350F9A322F9F757002A1F23 /* Search.storyboard */; };
 		F350F9A622F9FF48002A1F23 /* LoadingViewControllerToggling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350F9A522F9FF48002A1F23 /* LoadingViewControllerToggling.swift */; };
 		F350F9A822FA0446002A1F23 /* LoadingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F350F9A722FA0446002A1F23 /* LoadingViewController.storyboard */; };
+		F350F9BC22FB6D77002A1F23 /* ResultDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F350F9BB22FB6D77002A1F23 /* ResultDetails.storyboard */; };
 		F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36C381D22E6FD4A00CC001C /* Colors.xcassets */; };
 		F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */; };
 		F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */; };
@@ -98,6 +99,7 @@
 		F350F9A322F9F757002A1F23 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		F350F9A522F9FF48002A1F23 /* LoadingViewControllerToggling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingViewControllerToggling.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Protocols/LoadingViewControllerToggling.swift"; sourceTree = "<group>"; };
 		F350F9A722FA0446002A1F23 /* LoadingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LoadingViewController.storyboard; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/LoadingViewController.storyboard"; sourceTree = "<group>"; };
+		F350F9BB22FB6D77002A1F23 /* ResultDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ResultDetails.storyboard; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details/ResultDetails.storyboard"; sourceTree = "<group>"; };
 		F36C381D22E6FD4A00CC001C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Content/Colors.xcassets"; sourceTree = "<group>"; };
 		F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Theme.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIColor+Theme.swift"; sourceTree = "<group>"; };
 		F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+SelectedTableCellBackgroundView.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIView/UIView+SelectedTableCellBackgroundView.swift"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		F3169BC022EE553A00651401 /* Result Details */ = {
 			isa = PBXGroup;
 			children = (
+				F350F9BB22FB6D77002A1F23 /* ResultDetails.storyboard */,
 				F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */,
 				F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */,
 			);
@@ -581,6 +584,7 @@
 				F350F9A422F9F757002A1F23 /* Search.storyboard in Resources */,
 				F3B2BD4C22F57AB30009D8B1 /* SearchResultsCollectionViewCell.xib in Resources */,
 				F350F9A822FA0446002A1F23 /* LoadingViewController.storyboard in Resources */,
+				F350F9BC22FB6D77002A1F23 /* ResultDetails.storyboard in Resources */,
 				F3A96D3122E59C31001B4D56 /* .swiftlint.yml in Resources */,
 				F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */,
 				F3A96CEA22E58307001B4D56 /* Assets.xcassets in Resources */,
