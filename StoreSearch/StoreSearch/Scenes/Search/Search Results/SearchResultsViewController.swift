@@ -165,6 +165,17 @@ extension SearchResultsViewController: UITableViewDelegate {
 }
 
 
+// MARK: - SearchResultsCollectionViewControllerDelegate
+extension SearchResultsViewController: SearchResultsCollectionViewControllerDelegate {
+    func viewController(
+        _ controller: SearchResultsLandscapeViewController,
+        didSelectDetailsFor searchResult: SearchResult
+    ) {
+        delegate?.viewController(self, didSelectDetailsFor: searchResult)
+    }
+}
+
+
 // MARK: - Private Helpers
 private extension SearchResultsViewController {
 
@@ -207,25 +218,30 @@ private extension SearchResultsViewController {
 
 
     func searchStateChanged(from oldState: SearchState) {
+        switch (oldState, currentSearchState) {
+        case (.inProgress, .inProgress):
+            break
+        case (_, .inProgress):
+            showLoadingSpinner()
+        case (_, _):
+            hideLoadingSpinner()
+        }
+        
+
         switch currentSearchState {
         case .notStarted:
             emptyStateView.fadeOut()
-            hideLoadingSpinner()
             updateDataSnapshot(withNewItems: [])
         case .inProgress:
-            showLoadingSpinner()
             emptyStateView.fadeOut()
         case .errored:
-            hideLoadingSpinner()
+            break
         case .foundResults(var results):
             SearchResults.sortAscending(&results)
-            
-            hideLoadingSpinner()
             emptyStateView.fadeOut { [weak self] in
                 self?.updateDataSnapshot(withNewItems: results)
             }
         case .foundNoResults:
-            hideLoadingSpinner()
             emptyStateView.fadeIn { [weak self] in
                 self?.updateDataSnapshot(withNewItems: [])
             }
@@ -290,9 +306,9 @@ private extension SearchResultsViewController {
         landscapeVC.currentSearchText = viewModel.currentSearchText
         landscapeVC.imageDownloader = imageDownloader
         landscapeVC.currentSearchState = currentSearchState
+        landscapeVC.delegate = self
         
         landscapeVC.view.frame = view.bounds
-        landscapeVC.view.alpha = 0
         
         addChild(landscapeVC)
         view.addSubview(landscapeVC.view)
@@ -312,7 +328,6 @@ private extension SearchResultsViewController {
     func hideLandscapeViewController(with coordinator: UIViewControllerTransitionCoordinator) {
         if let childLandscapeVC = landscapeVC {
             childLandscapeVC.willMove(toParent: nil)
-//            updateDataSnapshot(withNewItems: [], animate: false)
             
             coordinator.animate(
                 alongsideTransition: { _ in

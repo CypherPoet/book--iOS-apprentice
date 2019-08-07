@@ -9,16 +9,29 @@
 import UIKit
 
 
+protocol SearchResultsCollectionViewControllerDelegate: class {
+    func viewController(
+        _ controller: SearchResultsLandscapeViewController,
+        didSelectDetailsFor searchResult: SearchResult
+    )
+}
+
 
 class SearchResultsLandscapeViewController: UIViewController, LoadingViewControllerToggling {
     @IBOutlet private var collectionView: UICollectionView!
+    @IBOutlet private var emptyStateView: UIView!
     
 
+    weak var delegate: SearchResultsCollectionViewControllerDelegate?
     var currentSearchText: String?
     var imageDownloader: ImageDownloader!
     
     var currentSearchState: SearchState! {
-        didSet { DispatchQueue.main.async { self.searchStateChanged() } }
+        didSet {
+            DispatchQueue.main.async {
+                self.searchStateChanged(from: oldValue)
+            }
+        }
     }
 
 
@@ -45,40 +58,6 @@ private extension SearchResultsLandscapeViewController {
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<LayoutSection, SearchResult>
     typealias SupplementaryViewProvider = UICollectionViewDiffableDataSource<LayoutSection, SearchResult>.SupplementaryViewProvider
 }
-
-
-// MARK: - Collection Layout Structure
-private extension SearchResultsLandscapeViewController {
-    
-    func createLayout() -> UICollectionViewLayout {
-        let resultItemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0 * (1 / 7)),
-            heightDimension: .fractionalWidth(1.0 * (1 / 7))
-        )
-        
-        let resultItem = NSCollectionLayoutItem(layoutSize: resultItemSize)
-        
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(44)
-        )
-        
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [resultItem])
-        group.interItemSpacing = NSCollectionLayoutSpacing.flexible(18)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 18
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-        
-        let sectionHeader = collectionSectionHeader
-        sectionHeader.pinToVisibleBounds = true
-        sectionHeader.extendsBoundary = true
-        section.boundarySupplementaryItems = [sectionHeader]
-        
-        return UICollectionViewCompositionalLayout(section: section)
-    }
-}
-
 
 
 // MARK: - Computeds
@@ -121,11 +100,36 @@ extension SearchResultsLandscapeViewController {
 }
 
 
-// MARK: - Misc Private Helpers
+
+// MARK: - Collection Layout Setup
 private extension SearchResultsLandscapeViewController {
     
-    func setupUI() {
-        view.backgroundColor = UIColor(patternImage: R.image.landscapeResultsBackground()!)
+    func createLayout() -> UICollectionViewLayout {
+        let resultItemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0 * (1 / 7)),
+            heightDimension: .fractionalWidth(1.0 * (1 / 7))
+        )
+        
+        let resultItem = NSCollectionLayoutItem(layoutSize: resultItemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [resultItem])
+        group.interItemSpacing = NSCollectionLayoutSpacing.flexible(18)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 18
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        
+        let sectionHeader = collectionSectionHeader
+        sectionHeader.pinToVisibleBounds = true
+        sectionHeader.extendsBoundary = true
+        section.boundarySupplementaryItems = [sectionHeader]
+        
+        return UICollectionViewCompositionalLayout(section: section)
     }
     
     
@@ -161,6 +165,7 @@ private extension SearchResultsLandscapeViewController {
         )
         
         collectionView.collectionViewLayout = createLayout()
+        collectionView.delegate = self
     }
     
     
@@ -186,6 +191,27 @@ private extension SearchResultsLandscapeViewController {
             
             return headerView
         }
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension SearchResultsLandscapeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let searchResult = dataSource?.itemIdentifier(for: indexPath) else { return }
+        
+        delegate?.viewController(self, didSelectDetailsFor: searchResult)
+    }
+}
+
+
+
+
+// MARK: - Misc Private Helpers
+private extension SearchResultsLandscapeViewController {
+    
+    func setupUI() {
+        view.backgroundColor = UIColor(patternImage: R.image.landscapeResultsBackground()!)
     }
     
     
@@ -231,13 +257,30 @@ private extension SearchResultsLandscapeViewController {
     }
 
     
-    func searchStateChanged() {
+    func searchStateChanged(from oldState: SearchState?) {
+        switch (oldState, currentSearchState) {
+        case (.inProgress, .inProgress):
+            break
+        case (_, .inProgress):
+            showLoadingSpinner()
+        case (_, _):
+            hideLoadingSpinner()
+        }
+        
         switch currentSearchState {
         case .inProgress:
-            showLoadingSpinner()
-        case .foundResults(let results):
-            hideLoadingSpinner()
-            updateDataSource(withNew: results)
+            break
+        case .foundResults(var results):
+            SearchResults.sortAscending(&results)
+            emptyStateView.fadeOut { [weak self] in
+                self?.collectionView.fadeIn()
+                self?.updateDataSource(withNew: results)
+            }
+        case .foundNoResults:
+            collectionView.fadeOut()
+            emptyStateView.fadeIn { [weak self] in
+                self?.updateDataSource(withNew: [])
+            }
         default:
             break
         }

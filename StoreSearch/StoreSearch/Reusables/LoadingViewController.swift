@@ -10,12 +10,8 @@ import UIKit
 
 class LoadingViewController: UIViewController, Storyboarded {
     private lazy var spinner: UIActivityIndicatorView = makeSpinner()
-    private let backgroundColor: UIColor = .red
-
     
-    deinit {
-        print("💥")
-    }
+    var backgroundColor: UIColor = UIColor.systemFill.withAlphaComponent(0.4)
 }
     
 
@@ -56,7 +52,7 @@ private extension LoadingViewController {
     func makeSpinner() -> UIActivityIndicatorView {
         let spinner = UIActivityIndicatorView(style: .large)
 
-//        spinner.sizeToFit()
+        spinner.sizeToFit()
         spinner.translatesAutoresizingMaskIntoConstraints = false
         
         return spinner

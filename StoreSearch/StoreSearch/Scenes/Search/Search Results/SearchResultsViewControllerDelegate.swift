@@ -17,7 +17,4 @@ protocol SearchResultsViewControllerDelegate: class {
         _ controller: SearchResultsViewController,
         with startingSearchText: String?
     )
-    
-    func viewControllerDidStartSearching(_ controller: SearchResultsViewController)
-    func viewControllerDidFinishSearching(_ controller: SearchResultsViewController)
 }

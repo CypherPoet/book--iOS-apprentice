@@ -19,6 +19,7 @@ final class SearchCoordinator: NSObject, NavigationCoordinator {
     private lazy var loadingViewController = LoadingViewController()
     private var searchController: UISearchController!
     private var searchResultsViewController: SearchResultsViewController!
+    private var resultDetailsViewController: SearchResultDetailsViewController!
     private var resultDetailsModalNavController: DimmedModalPresentationNavController?
     
     
@@ -71,11 +72,11 @@ extension SearchCoordinator: SearchResultsViewControllerDelegate {
         _ controller: SearchResultsViewController,
         didSelectDetailsFor searchResult: SearchResult
     ) {
-        let searchResultDetailsVC = SearchResultDetailsViewController.instantiateFromStoryboard(
+        resultDetailsViewController = SearchResultDetailsViewController.instantiateFromStoryboard(
             named: R.storyboard.search.name
         )
         
-        searchResultDetailsVC.viewModel = SearchResultDetailsViewController.ViewModel(
+        resultDetailsViewController.viewModel = SearchResultDetailsViewController.ViewModel(
             artistName: searchResult.artistName,
             contentType: searchResult.contentType,
             contentGenre: searchResult.primaryGenre,
@@ -84,19 +85,18 @@ extension SearchCoordinator: SearchResultsViewControllerDelegate {
             artworkImageURL: searchResult.largeThumbnailURL
         )
 
-        searchResultDetailsVC.imageDownloader = imageDownloader
-        searchResultDetailsVC.title = searchResult.title
-        searchResultDetailsVC.navigationItem.backBarButtonItem?.title = "Search Results"
+        resultDetailsViewController.imageDownloader = imageDownloader
+        resultDetailsViewController.title = searchResult.title
+        resultDetailsViewController.navigationItem.backBarButtonItem?.title = "Search Results"
 
-        // 📝 A standard `.pageSheet` modal style would be sweet here -- but, for the
-        // sake of this project, it's also sweet to experiment with custom presentation view
-        // controllers and animated transitions.
-        resultDetailsModalNavController = DimmedModalPresentationNavController(
-            rootViewController: searchResultDetailsVC,
-            height: searchResultDetailsVC.view.frame.height / 2
-        )
-
-        navController.present(resultDetailsModalNavController!, animated: true)
+        switch searchResultsViewController.traitCollection.verticalSizeClass {
+        case .regular, .unspecified:
+            presentResultDetailsModal()
+        case .compact:
+            presentResultDetailsPageSheet()
+        @unknown default:
+            presentResultDetailsPageSheet()
+        }
     }
     
     
@@ -109,9 +109,9 @@ extension SearchCoordinator: SearchResultsViewControllerDelegate {
         searchController.isActive = false
         
         
-        if resultDetailsModalNavController != nil {
+        if resultDetailsViewController != nil {
             navController.dismiss(animated: true)
-            resultDetailsModalNavController = nil
+            resultDetailsViewController = nil
         }
     }
     
@@ -120,6 +120,15 @@ extension SearchCoordinator: SearchResultsViewControllerDelegate {
         _ controller: SearchResultsViewController,
         with startingSearchText: String?
     ) {
+        navController.navigationBar.isHidden = false
+        Appearance.apply(to: navController.navigationBar)
+        
+        
+        if resultDetailsViewController != nil {
+            navController.dismiss(animated: true)
+            resultDetailsViewController = nil
+        }
+        
         searchController.isActive = true
         searchController.searchBar.isHidden = false
         
@@ -130,21 +139,31 @@ extension SearchCoordinator: SearchResultsViewControllerDelegate {
         searchController.searchBar.text = startingSearchText
         
         searchController.searchBar.becomeFirstResponder()
+    }
+}
+
+
+private extension SearchCoordinator {
+        
+    // 📝 A standard `.pageSheet` modal style would be sweet
+    // here -- but, for the sake of this project, it's also
+    // sweet to experiment with custom presentation controllers.
+    func presentResultDetailsModal() {
+        let resultDetailsModalNavController = DimmedModalPresentationNavController(
+            rootViewController: resultDetailsViewController,
+            height: resultDetailsViewController.view.frame.height / 2
+        )
+        
+        navController.present(resultDetailsModalNavController, animated: true)
+    }
+    
+    
+    func presentResultDetailsPageSheet() {
+        let childNavController = UINavigationController(
+            rootViewController: resultDetailsViewController
+        )
         
         navController.navigationBar.isHidden = false
-        Appearance.apply(to: navController.navigationBar)
-    }
-    
-    
-    func viewControllerDidStartSearching(_ controller: SearchResultsViewController) {
-//        navController.pushViewController(loadingViewController, animated: true)
-//        navController.addChild(loadingViewController)
-//        searchResultsViewController.add(child: loadingViewController)
-//        navController.add(child: loadingViewController)
-    }
-    
-    
-    func viewControllerDidFinishSearching(_ controller: SearchResultsViewController) {
-//        loadingViewController.performRemoval()
+        navController.present(childNavController, animated: true)
     }
 }
