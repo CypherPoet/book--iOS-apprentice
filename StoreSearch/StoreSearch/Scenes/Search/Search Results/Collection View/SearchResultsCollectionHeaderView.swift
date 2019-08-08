@@ -24,7 +24,7 @@ class SearchResultsCollectionHeaderView: UICollectionReusableView {
 // MARK: - Computeds
 extension SearchResultsCollectionHeaderView {
     static var nib: UINib {
-        UINib(nibName: R.nib.searchResultsCollectionHeaderView.name, bundle: nil)
+        UINib(nibName: "SearchResultsCollectionHeaderView", bundle: nil)
     }
 }
 

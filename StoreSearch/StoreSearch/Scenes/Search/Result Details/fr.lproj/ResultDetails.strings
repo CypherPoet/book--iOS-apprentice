@@ -1,0 +1,24 @@
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "1md-pA-w80"; */
+"1md-pA-w80.title" = "Titre";
+
+/* Class = "UILabel"; text = "Artist Name:"; ObjectID = "Ogf-Fd-1Pb"; */
+"Ogf-Fd-1Pb.text" = "Nom d'artiste:";
+
+/* Class = "UILabel"; text = "Type:"; ObjectID = "RrM-e1-suT"; */
+"RrM-e1-suT.text" = "Type de contenu:";
+
+/* Class = "UILabel"; text = "Genre:"; ObjectID = "h8d-sb-XW7"; */
+"h8d-sb-XW7.text" = "Genre:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hV4-Dj-Xwu"; */
+"hV4-Dj-Xwu.text" = "Étiquette";
+
+/* Class = "UIButton"; normalTitle = "$99.99"; ObjectID = "nzf-b2-bRU"; */
+"nzf-b2-bRU.normalTitle" = "$99.99";
+
+/* Class = "UILabel"; text = "An Artist Name that coud be a bit long"; ObjectID = "phe-X9-sWS"; */
+"phe-X9-sWS.text" = "An Artist Name that coud be a bit long";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yE0-Jl-y75"; */
+"yE0-Jl-y75.text" = "Étiquette";
