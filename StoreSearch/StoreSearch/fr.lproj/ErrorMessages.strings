@@ -7,7 +7,7 @@
 */
 
 
-"networking-error.body" = "Une erreur s'est produite lors d'une tentative d'accès à l'iTunes Store.\n\n\Veuillez vérifier votre connexion réseau et réessayer.";
+"error_messages.networking_error.body" = "Une erreur s'est produite lors d'une tentative d'accès à l'iTunes Store.\n\n\Veuillez vérifier votre connexion réseau et réessayer.";
 
 
-"networking-error.title" = "🤔 Quelque chose s'est mal passé";
+"error_messages.networking_error.title" = "🤔 Quelque chose s'est mal passé";

@@ -12,8 +12,8 @@ import Foundation
 enum ErrorMessageStrings {
     
     enum NetworkingError: String {
-        case body = "networking-error.body"
-        case title = "networking-error.title"
+        case body = "error_messages.networking_error.body"
+        case title = "error_messages.networking_error.title"
     }
 }
 

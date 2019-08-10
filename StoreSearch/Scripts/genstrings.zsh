@@ -6,5 +6,6 @@
 
 cd StoreSearch
 
-find ./ -name "*.swift" -print0 | xargs -0 xcrun extractLocStrings -o en.lproj
-# xcodebuild -exportLocalizations -project StoreSearch.xcodeproj -localizationPath ./Resources/Localization/
+# find ./ -name "*.swift" -print0 | xargs -0 genstrings -o en.lproj -s localized
+# find ./ -name "*.swift" -print0 | xargs -0 xcrun extractLocStrings -o en.lproj
+xcodebuild -exportLocalizations -project StoreSearch.xcodeproj -localizationPath ./Resources/Localization/

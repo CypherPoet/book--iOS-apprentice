@@ -149,6 +149,8 @@ __.
 - Custom Presentation Controllers with custom transition animations 💥.
 - Stretchable Images via image slicing.
 - Supporting Dynamic Type.
+- Localizing an app through sound string definition architecture and the various l10n tools
+that Xcode provides.
 
 <br>
 

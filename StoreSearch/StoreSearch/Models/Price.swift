@@ -28,7 +28,7 @@ extension Price {
     
     var formattedString: String? {
         Price.formatter.currencyCode = currencyCode
-
+    
         return Price.formatter.string(from: value as NSNumber)
     }
 }

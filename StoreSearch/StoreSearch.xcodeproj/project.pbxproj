@@ -25,6 +25,8 @@
 		F360E94822FE749E005A0795 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360E94722FE749E005A0795 /* Localizable.swift */; };
 		F360E94F22FE79F9005A0795 /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360E94E22FE79F9005A0795 /* ErrorMessages.swift */; };
 		F360E95022FE83C3005A0795 /* ErrorMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = F360E95222FE83C3005A0795 /* ErrorMessages.strings */; };
+		F360E95B22FF51CD005A0795 /* Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360E95A22FF51CD005A0795 /* Scenes.swift */; };
+		F360E95E22FF881E005A0795 /* Scenes.strings in Resources */ = {isa = PBXBuildFile; fileRef = F360E96022FF881E005A0795 /* Scenes.strings */; };
 		F36ADB0122FC6B330028DEA3 /* LoadingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36ADB0322FC6B330028DEA3 /* LoadingViewController.storyboard */; };
 		F36ADB0622FC79760028DEA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F36ADB0822FC79760028DEA3 /* Localizable.strings */; };
 		F36ADB0F22FCCF120028DEA3 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36ADB0E22FCCF120028DEA3 /* String+Localization.swift */; };
@@ -119,6 +121,8 @@
 		F360E94E22FE79F9005A0795 /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorMessages.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/Strings/ErrorMessages.swift"; sourceTree = "<group>"; };
 		F360E95122FE83C3005A0795 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ErrorMessages.strings; sourceTree = "<group>"; };
 		F360E95322FE83E4005A0795 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ErrorMessages.strings; sourceTree = "<group>"; };
+		F360E95A22FF51CD005A0795 /* Scenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Scenes.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/Strings/Scenes.swift"; sourceTree = "<group>"; };
+		F360E95F22FF881E005A0795 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Scenes.strings; sourceTree = "<group>"; };
 		F36ADB0222FC6B330028DEA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoadingViewController.storyboard; sourceTree = "<group>"; };
 		F36ADB0722FC79760028DEA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F36ADB0922FCB22D0028DEA3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				F360E94E22FE79F9005A0795 /* ErrorMessages.swift */,
+				F360E95A22FF51CD005A0795 /* Scenes.swift */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -374,11 +379,12 @@
 			isa = PBXGroup;
 			children = (
 				F3A96CEE22E58307001B4D56 /* Info.plist */,
-				F360E95222FE83C3005A0795 /* ErrorMessages.strings */,
+				F360E96022FF881E005A0795 /* Scenes.strings */,
 				F3A96D2622E58B9A001B4D56 /* AppCoordinator.swift */,
 				F3A96CE022E58305001B4D56 /* AppDelegate.swift */,
 				F3A96CE222E58305001B4D56 /* SceneDelegate.swift */,
 				F3A96D2822E58C5B001B4D56 /* Content */,
+				F360E95222FE83C3005A0795 /* ErrorMessages.strings */,
 				F36ADB0822FC79760028DEA3 /* Localizable.strings */,
 				F360E94522FE24FE005A0795 /* Localizable.stringsdict */,
 				F3A96D3D22E67C97001B4D56 /* Models */,
@@ -631,6 +637,7 @@
 				F360E94322FE24FE005A0795 /* Localizable.stringsdict in Resources */,
 				F350F9C622FB7A83002A1F23 /* SearchResultDetails.storyboard in Resources */,
 				F3A96D3122E59C31001B4D56 /* .swiftlint.yml in Resources */,
+				F360E95E22FF881E005A0795 /* Scenes.strings in Resources */,
 				F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */,
 				F3A96CEA22E58307001B4D56 /* Assets.xcassets in Resources */,
 				F360E95022FE83C3005A0795 /* ErrorMessages.strings in Resources */,
@@ -768,6 +775,7 @@
 				F36C384922ECBA8900CC001C /* ImageDownloaderFactory.swift in Sources */,
 				F3169BC322EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift in Sources */,
 				F360E94822FE749E005A0795 /* Localizable.swift in Sources */,
+				F360E95B22FF51CD005A0795 /* Scenes.swift in Sources */,
 				F36ADB0F22FCCF120028DEA3 /* String+Localization.swift in Sources */,
 				F3A96D2222E58900001B4D56 /* Coordinator.swift in Sources */,
 				F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */,
@@ -859,6 +867,15 @@
 				F360E95322FE83E4005A0795 /* en */,
 			);
 			name = ErrorMessages.strings;
+			path = "../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch";
+			sourceTree = "<group>";
+		};
+		F360E96022FF881E005A0795 /* Scenes.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F360E95F22FF881E005A0795 /* en */,
+			);
+			name = Scenes.strings;
 			path = "../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch";
 			sourceTree = "<group>";
 		};

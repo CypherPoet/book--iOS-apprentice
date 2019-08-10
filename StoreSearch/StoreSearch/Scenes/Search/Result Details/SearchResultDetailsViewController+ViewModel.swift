@@ -26,12 +26,17 @@ extension SearchResultDetailsViewController {
 // MARK: - Computeds
 extension SearchResultDetailsViewController.ViewModel {
     var headerImage: UIImage? { artworkImage ?? R.image.storeLogo() }
-    var artistNameText: String { artistName ?? "(Unknown Artist)" }
+    
+    var artistNameText: String {
+        artistName ?? "(\(SceneStrings.SearchResultDetails.unknownArtist.localized))"
+    }
+    
+    
     var contentTypeText: String { contentType.displayName }
     
     var priceText: String? {
         if price.value == 0 {
-            return "Free"
+            return SceneStrings.SearchResultDetails.free.localized
         } else {
             return price.formattedString
         }

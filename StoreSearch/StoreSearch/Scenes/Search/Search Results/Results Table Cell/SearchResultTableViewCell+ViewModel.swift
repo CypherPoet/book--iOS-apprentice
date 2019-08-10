@@ -23,9 +23,14 @@ extension SearchResultTableViewCell {
 extension SearchResultTableViewCell.ViewModel {
     var thumbnailImage: UIImage? { downloadedThumbnailImage ?? R.image.storeLogo() }
 
-    var titleText: String { resultTitle ?? "(Untitled)" }
+    var titleText: String {
+        resultTitle ?? "(\(SceneStrings.SearchResults.Item.untitled.localized))"
+    }
 
-    var artistText: String { "\(artistName ?? "(Unknown Artist)")" }
+    var artistText: String {
+        artistName ?? "(\(SceneStrings.SearchResults.Item.unknownArtist.localized))"
+    }
+    
     var contentTypeText: String { "(\(contentType.displayName))" }
 
     var subtitleText: String { "\(artistText) \(contentTypeText)" }

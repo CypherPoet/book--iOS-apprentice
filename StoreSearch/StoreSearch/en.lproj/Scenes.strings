@@ -1,0 +1,15 @@
+/* 
+  Scenes.strings
+  StoreSearch
+
+  Created by Brian Sipple on 8/10/19.
+  Copyright © 2019 CypherPoet. All rights reserved.
+*/
+
+
+"scenes.search_results.item.untitled" = "Untitled";
+"scenes.search_results.item.unknown_artist" = "Unknown Artist";
+
+
+"scenes.search_result_details.unknown_artist" = "Unknown Artist";
+"scenes.search_result_details.free" = "Free";
