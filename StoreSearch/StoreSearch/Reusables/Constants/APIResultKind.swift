@@ -72,35 +72,80 @@ extension APIResultKind {
     var displayName: String {
         switch self {
         case .album:
-            return "Album"
+            return NSLocalizedString(
+                "Album",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Album"
+            )
         case .audioBook:
-            return "Audio Book"
+            return NSLocalizedString(
+                "Audio Book",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Audio Book"
+            )
         case .ebook:
-            return "E-Book"
+            return NSLocalizedString(
+                "E-Book",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: E-Book"
+            )
         case .book:
-            return "Book"
+            return NSLocalizedString(
+                "Book",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Book"
+            )
         case .coachedAudio:
-            return "Coached Audio"
+            return NSLocalizedString(
+                "Coached Audio",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Coached Audio"
+            )
         case .featureMovie:
-            return "Movie"
+            return NSLocalizedString(
+                "Movie",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Movie"
+            )
         case .interactiveBooklet:
-            return "Interactive Book"
+            return NSLocalizedString(
+                "Interactive Book",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Interactive Book"
+            )
         case .musicVideo:
-            return "Music Video"
+            return NSLocalizedString(
+                "Music Video",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Music Video"
+            )
         case .pdf:
-            return "PDF"
+            return NSLocalizedString(
+                "PDF",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: PDF"
+            )
         case .podcast:
-            return "Podcast"
+            return NSLocalizedString(
+                "Podcast",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Podcast"
+            )
         case .podcastEpisode:
-            return "Podcast Episode"
+            return NSLocalizedString(
+                "Podcast Episode",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Podcast Episode"
+            )
         case .software:
-            return "Software"
+            return NSLocalizedString(
+                "Software",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Software"
+            )
         case .song:
-            return "Song"
+            return NSLocalizedString(
+                "Song",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Song"
+            )
         case .tvEpisode:
-            return "TV Episode"
+            return NSLocalizedString(
+                "TV Episode",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: TV Episode"
+            )
         case .unknown:
-            return "Unknown Content Type"
+            return NSLocalizedString(
+                "Unknown Content Type",
+                comment: "Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Unknown Content Type"
+            )
         }
     }
 }

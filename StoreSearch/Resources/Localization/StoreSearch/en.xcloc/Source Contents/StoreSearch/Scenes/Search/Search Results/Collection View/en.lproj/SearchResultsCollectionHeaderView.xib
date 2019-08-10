@@ -15,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Résultats pour &quot;Search Text&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLv-LD-4ka">
-                    <rect key="frame" x="10" y="15" width="229.5" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results for &quot;Search Text&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLv-LD-4ka">
+                    <rect key="frame" x="10" y="15" width="199.5" height="20.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <color key="textColor" name="Tint"/>
                     <nil key="highlightedColor"/>
@@ -31,7 +31,7 @@
             <connections>
                 <outlet property="sectionHeaderLabel" destination="MLv-LD-4ka" id="ElP-0w-bMA"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="131.91964285714286"/>
+            <point key="canvasLocation" x="132" y="132"/>
         </collectionReusableView>
     </objects>
     <resources>

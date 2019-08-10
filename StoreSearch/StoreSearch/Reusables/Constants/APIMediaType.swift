@@ -26,13 +26,25 @@ extension APIMediaType {
     var titleText: String {
         switch self {
         case .all:
-            return "All"
+            return NSLocalizedString(
+                "🔎 All",
+                comment: "Title for the \"All\" search bar scope value"
+            )
         case .music:
-            return "🎵 Music"
+            return NSLocalizedString(
+                "🎵 Music",
+                comment: "Title for the \"Music\" search bar scope value"
+            )
         case .software:
-            return "🖥 Software"
+            return NSLocalizedString(
+                "🖥 Software",
+                comment: "Title for the \"Software\" search bar scope value"
+            )
         case .ebooks:
-            return "📘 E-Books"
+            return NSLocalizedString(
+                "📘 E-Books",
+                comment: "Title for the \"E-Books\" search bar scope value"
+            )
         }
     }
     

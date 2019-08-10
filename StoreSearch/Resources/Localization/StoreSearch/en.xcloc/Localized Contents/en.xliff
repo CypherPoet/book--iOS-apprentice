@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="StoreSearch/Scenes/Search/Result Details/Base.lproj/SearchResultDetails.storyboard" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.0" build-num="11M374r"/>
+    </header>
+    <body>
+      <trans-unit id="1md-pA-w80.title" xml:space="preserve">
+        <source>Title</source>
+        <target>Title</target>
+        <note>Class = "UINavigationItem"; title = "Title"; ObjectID = "1md-pA-w80";</note>
+      </trans-unit>
+      <trans-unit id="Ogf-Fd-1Pb.text" xml:space="preserve">
+        <source>Artist Name:</source>
+        <target>Artist Name:</target>
+        <note>Class = "UILabel"; text = "Artist Name:"; ObjectID = "Ogf-Fd-1Pb";</note>
+      </trans-unit>
+      <trans-unit id="RrM-e1-suT.text" xml:space="preserve">
+        <source>Type:</source>
+        <target>Type:</target>
+        <note>Class = "UILabel"; text = "Type:"; ObjectID = "RrM-e1-suT";</note>
+      </trans-unit>
+      <trans-unit id="h8d-sb-XW7.text" xml:space="preserve">
+        <source>Genre:</source>
+        <target>Genre:</target>
+        <note>Class = "UILabel"; text = "Genre:"; ObjectID = "h8d-sb-XW7";</note>
+      </trans-unit>
+      <trans-unit id="hV4-Dj-Xwu.text" xml:space="preserve">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "hV4-Dj-Xwu";</note>
+      </trans-unit>
+      <trans-unit id="nzf-b2-bRU.normalTitle" xml:space="preserve">
+        <source>$99.99</source>
+        <target>$99.99</target>
+        <note>Class = "UIButton"; normalTitle = "$99.99"; ObjectID = "nzf-b2-bRU";</note>
+      </trans-unit>
+      <trans-unit id="phe-X9-sWS.text" xml:space="preserve">
+        <source>An Artist Name that coud be a bit long</source>
+        <target>An Artist Name that coud be a bit long</target>
+        <note>Class = "UILabel"; text = "An Artist Name that coud be a bit long"; ObjectID = "phe-X9-sWS";</note>
+      </trans-unit>
+      <trans-unit id="yE0-Jl-y75.text" xml:space="preserve">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "yE0-Jl-y75";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreSearch/en.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.0" build-num="11M374r"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>StoreSearch</source>
+        <target>StoreSearch</target>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreSearch/en.lproj/Localizable.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.0" build-num="11M374r"/>
+    </header>
+    <body>
+      <trans-unit id="Album" xml:space="preserve">
+        <source>Album</source>
+        <target>Album</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Album</note>
+      </trans-unit>
+      <trans-unit id="All" xml:space="preserve">
+        <source>All</source>
+        <target>All</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Audio Book" xml:space="preserve">
+        <source>Audio Book</source>
+        <target>Audio Book</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Audio Book</note>
+      </trans-unit>
+      <trans-unit id="Book" xml:space="preserve">
+        <source>Book</source>
+        <target>Book</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Book</note>
+      </trans-unit>
+      <trans-unit id="Coached Audio" xml:space="preserve">
+        <source>Coached Audio</source>
+        <target>Coached Audio</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Coached Audio</note>
+      </trans-unit>
+      <trans-unit id="E-Book" xml:space="preserve">
+        <source>E-Book</source>
+        <target>E-Book</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: E-Book</note>
+      </trans-unit>
+      <trans-unit id="E-Books" xml:space="preserve">
+        <source>E-Books</source>
+        <target>E-Books</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Interactive Book" xml:space="preserve">
+        <source>Interactive Book</source>
+        <target>Interactive Book</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Interactive Book</note>
+      </trans-unit>
+      <trans-unit id="Movie" xml:space="preserve">
+        <source>Movie</source>
+        <target>Movie</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Movie</note>
+      </trans-unit>
+      <trans-unit id="Music" xml:space="preserve">
+        <source>Music</source>
+        <target>Music</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Music Video" xml:space="preserve">
+        <source>Music Video</source>
+        <target>Music Video</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Music Video</note>
+      </trans-unit>
+      <trans-unit id="PDF" xml:space="preserve">
+        <source>PDF</source>
+        <target>PDF</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: PDF</note>
+      </trans-unit>
+      <trans-unit id="Podcast" xml:space="preserve">
+        <source>Podcast</source>
+        <target>Podcast</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Podcast</note>
+      </trans-unit>
+      <trans-unit id="Podcast Episode" xml:space="preserve">
+        <source>Podcast Episode</source>
+        <target>Podcast Episode</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Podcast Episode</note>
+      </trans-unit>
+      <trans-unit id="Software" xml:space="preserve">
+        <source>Software</source>
+        <target>Software</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Software</note>
+      </trans-unit>
+      <trans-unit id="Song" xml:space="preserve">
+        <source>Song</source>
+        <target>Song</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Song</note>
+      </trans-unit>
+      <trans-unit id="TV Episode" xml:space="preserve">
+        <source>TV Episode</source>
+        <target>TV Episode</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: TV Episode</note>
+      </trans-unit>
+      <trans-unit id="Unknown Content Type" xml:space="preserve">
+        <source>Unknown Content Type</source>
+        <target>Unknown Content Type</target>
+        <note>Localized display name for the \"kind\" value returned by the iTunes Search API for a piece of content: Unknown Content Type</note>
+      </trans-unit>
+      <trans-unit id="result(s) found for" xml:space="preserve">
+        <source>result(s) found for</source>
+        <target>result(s) found for</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="🎵 Music" xml:space="preserve">
+        <source>🎵 Music</source>
+        <target>🎵 Music</target>
+        <note>Title for the \"Music\" search bar scope value</note>
+      </trans-unit>
+      <trans-unit id="📘 E-Books" xml:space="preserve">
+        <source>📘 E-Books</source>
+        <target>📘 E-Books</target>
+        <note>Title for the \"E-Books\" search bar scope value</note>
+      </trans-unit>
+      <trans-unit id="🔎 All" xml:space="preserve">
+        <source>🔎 All</source>
+        <target>🔎 All</target>
+        <note>Title for the \"All\" search bar scope value</note>
+      </trans-unit>
+      <trans-unit id="🖥 Software" xml:space="preserve">
+        <source>🖥 Software</source>
+        <target>🖥 Software</target>
+        <note>Title for the \"Software\" search bar scope value</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreSearch/en.lproj/Localizable.stringsdict" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.0" build-num="11M374r"/>
+    </header>
+    <body>
+      <trans-unit id="/result(s) found for:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+        <source>%#@results@</source>
+        <target>%#@results@</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/result(s) found for:dict/results:dict/one:dict/:string" xml:space="preserve">
+        <source>%u result found for</source>
+        <target>%u result found for</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/result(s) found for:dict/results:dict/other:dict/:string" xml:space="preserve">
+        <source>%u results found for</source>
+        <target>%u results found for</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/result(s) found for:dict/results:dict/zero:dict/:string" xml:space="preserve">
+        <source>No results found for</source>
+        <target>No results found for</target>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreSearch/en.lproj/Search-Landscape.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.0" build-num="11M374r"/>
+    </header>
+    <body>
+      <trans-unit id="suj-dr-OuR.text" xml:space="preserve">
+        <source>suj-dr-OuR.text</source>
+        <target>suj-dr-OuR.text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreSearch/en.lproj/Search.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.0" build-num="11M374r"/>
+    </header>
+    <body>
+      <trans-unit id="PUo-iV-f6S.text" xml:space="preserve">
+        <source>PUo-iV-f6S.text</source>
+        <target>PUo-iV-f6S.text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreSearch/en.lproj/SearchResultDetails.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.0" build-num="11M374r"/>
+    </header>
+    <body>
+      <trans-unit id="1md-pA-w80.title" xml:space="preserve">
+        <source>1md-pA-w80.title</source>
+        <target>1md-pA-w80.title</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ogf-Fd-1Pb.text" xml:space="preserve">
+        <source>Ogf-Fd-1Pb.text</source>
+        <target>Ogf-Fd-1Pb.text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="RrM-e1-suT.text" xml:space="preserve">
+        <source>RrM-e1-suT.text</source>
+        <target>RrM-e1-suT.text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="h8d-sb-XW7.text" xml:space="preserve">
+        <source>h8d-sb-XW7.text</source>
+        <target>h8d-sb-XW7.text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="hV4-Dj-Xwu.text" xml:space="preserve">
+        <source>hV4-Dj-Xwu.text</source>
+        <target>hV4-Dj-Xwu.text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="nzf-b2-bRU.normalTitle" xml:space="preserve">
+        <source>nzf-b2-bRU.normalTitle</source>
+        <target>nzf-b2-bRU.normalTitle</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="phe-X9-sWS.text" xml:space="preserve">
+        <source>phe-X9-sWS.text</source>
+        <target>phe-X9-sWS.text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="yE0-Jl-y75.text" xml:space="preserve">
+        <source>yE0-Jl-y75.text</source>
+        <target>yE0-Jl-y75.text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreSearch/Scenes/Search/Search Results/Base.lproj/Search.storyboard" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.0" build-num="11M374r"/>
+    </header>
+    <body>
+      <trans-unit id="PUo-iV-f6S.text" xml:space="preserve">
+        <source>No Results Found</source>
+        <target>No Results Found</target>
+        <note>Class = "UILabel"; text = "No Results Found"; ObjectID = "PUo-iV-f6S";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreSearch/Scenes/Search/Search Results/Collection View/Base.lproj/Search-Landscape.storyboard" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.0" build-num="11M374r"/>
+    </header>
+    <body>
+      <trans-unit id="suj-dr-OuR.text" xml:space="preserve">
+        <source>No Results Found</source>
+        <target>No Results Found</target>
+        <note>Class = "UILabel"; text = "No Results Found"; ObjectID = "suj-dr-OuR";</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -73,7 +73,7 @@ extension SearchCoordinator: SearchResultsViewControllerDelegate {
         didSelectDetailsFor searchResult: SearchResult
     ) {
         resultDetailsViewController = SearchResultDetailsViewController.instantiateFromStoryboard(
-            named: R.storyboard.search.name
+            named: R.storyboard.searchResultDetails.name
         )
         
         resultDetailsViewController.viewModel = SearchResultDetailsViewController.ViewModel(

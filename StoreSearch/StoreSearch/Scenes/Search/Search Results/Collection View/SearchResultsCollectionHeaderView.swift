@@ -55,16 +55,12 @@ extension SearchResultsCollectionHeaderView {
         var searchText: String?
         
         var beginningText: String {
-            if resultCount == 0 {
-                return "No results"
-            } else {
-                return "\(resultCount) \(resultCount == 1 ? "result" : "results")"
-            }
+            "%d result(s) found for".localized(with: resultCount)
         }
         
         
         var headerText: String {
-            "\(beginningText) for \"\(searchText ?? "")\""
+            "\(beginningText) \"\(searchText ?? "")\""
         }
     }
 }

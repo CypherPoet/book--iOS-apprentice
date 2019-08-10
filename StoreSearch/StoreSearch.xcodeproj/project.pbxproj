@@ -18,10 +18,13 @@
 		F350F9A622F9FF48002A1F23 /* LoadingViewControllerToggling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350F9A522F9FF48002A1F23 /* LoadingViewControllerToggling.swift */; };
 		F350F9BD22FB6E3B002A1F23 /* SearchResultsCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F350F9BF22FB6E3B002A1F23 /* SearchResultsCollectionHeaderView.xib */; };
 		F350F9C122FB750D002A1F23 /* SearchResultsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F350F9C322FB750D002A1F23 /* SearchResultsCollectionViewCell.xib */; };
-		F350F9C622FB7A83002A1F23 /* ResultDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F350F9C822FB7A83002A1F23 /* ResultDetails.storyboard */; };
+		F350F9C622FB7A83002A1F23 /* SearchResultDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F350F9C822FB7A83002A1F23 /* SearchResultDetails.storyboard */; };
 		F350F9CB22FB8795002A1F23 /* Search-Landscape.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F350F9CD22FB8795002A1F23 /* Search-Landscape.storyboard */; };
 		F350F9D022FB8868002A1F23 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F350F9D222FB8868002A1F23 /* Search.storyboard */; };
+		F360E94322FE24FE005A0795 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = F360E94522FE24FE005A0795 /* Localizable.stringsdict */; };
 		F36ADB0122FC6B330028DEA3 /* LoadingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36ADB0322FC6B330028DEA3 /* LoadingViewController.storyboard */; };
+		F36ADB0622FC79760028DEA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F36ADB0822FC79760028DEA3 /* Localizable.strings */; };
+		F36ADB0F22FCCF120028DEA3 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36ADB0E22FCCF120028DEA3 /* String+Localization.swift */; };
 		F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36C381D22E6FD4A00CC001C /* Colors.xcassets */; };
 		F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */; };
 		F36C382222E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */; };
@@ -101,13 +104,18 @@
 		F350F9C022FB6F2F002A1F23 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/SearchResultsCollectionHeaderView.xib; sourceTree = "<group>"; };
 		F350F9C222FB750D002A1F23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchResultsCollectionViewCell.xib; sourceTree = "<group>"; };
 		F350F9C522FB79A7002A1F23 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SearchResultsCollectionViewCell.strings; sourceTree = "<group>"; };
-		F350F9C722FB7A83002A1F23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ResultDetails.storyboard; sourceTree = "<group>"; };
-		F350F9CA22FB7A89002A1F23 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "../../../../../../../../../../../../../Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details/fr.lproj/ResultDetails.strings"; sourceTree = "<group>"; };
+		F350F9C722FB7A83002A1F23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchResultDetails.storyboard; sourceTree = "<group>"; };
+		F350F9CA22FB7A89002A1F23 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "../../../../../../../../../../../../../Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details/fr.lproj/SearchResultDetails.strings"; sourceTree = "<group>"; };
 		F350F9CC22FB8795002A1F23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Search-Landscape.storyboard"; sourceTree = "<group>"; };
 		F350F9CF22FB8799002A1F23 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/Search-Landscape.strings"; sourceTree = "<group>"; };
 		F350F9D122FB8868002A1F23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Search.storyboard; sourceTree = "<group>"; };
 		F350F9D422FB8874002A1F23 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Search.strings; sourceTree = "<group>"; };
+		F360E94422FE24FE005A0795 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		F360E94622FE250C005A0795 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F36ADB0222FC6B330028DEA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoadingViewController.storyboard; sourceTree = "<group>"; };
+		F36ADB0722FC79760028DEA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F36ADB0922FCB22D0028DEA3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F36ADB0E22FCCF120028DEA3 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+Localization.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/String/String+Localization.swift"; sourceTree = "<group>"; };
 		F36C381D22E6FD4A00CC001C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Content/Colors.xcassets"; sourceTree = "<group>"; };
 		F36C381F22E6FFCB00CC001C /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Theme.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIColor+Theme.swift"; sourceTree = "<group>"; };
 		F36C382122E70A0D00CC001C /* UIView+SelectedTableCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+SelectedTableCellBackgroundView.swift"; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/UIView/UIView+SelectedTableCellBackgroundView.swift"; sourceTree = "<group>"; };
@@ -208,7 +216,7 @@
 		F3169BC022EE553A00651401 /* Result Details */ = {
 			isa = PBXGroup;
 			children = (
-				F350F9C822FB7A83002A1F23 /* ResultDetails.storyboard */,
+				F350F9C822FB7A83002A1F23 /* SearchResultDetails.storyboard */,
 				F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */,
 				F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */,
 			);
@@ -247,6 +255,14 @@
 				F350F9C322FB750D002A1F23 /* SearchResultsCollectionViewCell.xib */,
 			);
 			path = "Collection View";
+			sourceTree = "<group>";
+		};
+		F36ADB0D22FCCEFA0028DEA3 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				F36ADB0E22FCCF120028DEA3 /* String+Localization.swift */,
+			);
+			path = String;
 			sourceTree = "<group>";
 		};
 		F36C382F22E9BEB500CC001C /* Constants */ = {
@@ -346,9 +362,11 @@
 				F3A96CE022E58305001B4D56 /* AppDelegate.swift */,
 				F3A96CE222E58305001B4D56 /* SceneDelegate.swift */,
 				F3A96D2822E58C5B001B4D56 /* Content */,
+				F36ADB0822FC79760028DEA3 /* Localizable.strings */,
 				F3A96D3D22E67C97001B4D56 /* Models */,
 				F3A96CF722E58829001B4D56 /* Reusables */,
 				F3A96CF522E5881C001B4D56 /* Scenes */,
+				F360E94522FE24FE005A0795 /* Localizable.stringsdict */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -387,6 +405,7 @@
 				F36C382D22E8810700CC001C /* URLQueryItem+InitWithName.swift */,
 				F36C385722ECCBB200CC001C /* URLSession+DownloadTransport.swift */,
 				F36C382722E8190700CC001C /* URLSession+RequestTransport.swift */,
+				F36ADB0D22FCCEFA0028DEA3 /* String */,
 				F3A96CF922E58900001B4D56 /* UIImage */,
 				F3A96D4722E6AC59001B4D56 /* UIView */,
 				F3A96CFF22E58900001B4D56 /* UIViewController */,
@@ -584,13 +603,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F350F9CB22FB8795002A1F23 /* Search-Landscape.storyboard in Resources */,
+				F36ADB0622FC79760028DEA3 /* Localizable.strings in Resources */,
 				F3A96D3822E59D8A001B4D56 /* LaunchScreen.storyboard in Resources */,
 				F3A96D5C22E6E990001B4D56 /* SearchResultTableViewCell.xib in Resources */,
 				F350F9BD22FB6E3B002A1F23 /* SearchResultsCollectionHeaderView.xib in Resources */,
 				F350F9D022FB8868002A1F23 /* Search.storyboard in Resources */,
 				F350F9C122FB750D002A1F23 /* SearchResultsCollectionViewCell.xib in Resources */,
 				F36ADB0122FC6B330028DEA3 /* LoadingViewController.storyboard in Resources */,
-				F350F9C622FB7A83002A1F23 /* ResultDetails.storyboard in Resources */,
+				F360E94322FE24FE005A0795 /* Localizable.stringsdict in Resources */,
+				F350F9C622FB7A83002A1F23 /* SearchResultDetails.storyboard in Resources */,
 				F3A96D3122E59C31001B4D56 /* .swiftlint.yml in Resources */,
 				F36C381E22E6FD4A00CC001C /* Colors.xcassets in Resources */,
 				F3A96CEA22E58307001B4D56 /* Assets.xcassets in Resources */,
@@ -727,6 +748,7 @@
 				F37B7B3622F14A07008CA975 /* DimmedGradientView.swift in Sources */,
 				F36C384922ECBA8900CC001C /* ImageDownloaderFactory.swift in Sources */,
 				F3169BC322EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift in Sources */,
+				F36ADB0F22FCCF120028DEA3 /* String+Localization.swift in Sources */,
 				F3A96D2222E58900001B4D56 /* Coordinator.swift in Sources */,
 				F36C382022E6FFCB00CC001C /* UIColor+Theme.swift in Sources */,
 				F3A96D3322E59D38001B4D56 /* R.generated.swift in Sources */,
@@ -771,13 +793,13 @@
 			name = SearchResultsCollectionViewCell.xib;
 			sourceTree = "<group>";
 		};
-		F350F9C822FB7A83002A1F23 /* ResultDetails.storyboard */ = {
+		F350F9C822FB7A83002A1F23 /* SearchResultDetails.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F350F9C722FB7A83002A1F23 /* Base */,
 				F350F9CA22FB7A89002A1F23 /* fr */,
 			);
-			name = ResultDetails.storyboard;
+			name = SearchResultDetails.storyboard;
 			path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details";
 			sourceTree = "<group>";
 		};
@@ -799,6 +821,16 @@
 			name = Search.storyboard;
 			sourceTree = "<group>";
 		};
+		F360E94522FE24FE005A0795 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F360E94422FE24FE005A0795 /* fr */,
+				F360E94622FE250C005A0795 /* en */,
+			);
+			name = Localizable.stringsdict;
+			path = "../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch";
+			sourceTree = "<group>";
+		};
 		F36ADB0322FC6B330028DEA3 /* LoadingViewController.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -806,6 +838,16 @@
 			);
 			name = LoadingViewController.storyboard;
 			path = "../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables";
+			sourceTree = "<group>";
+		};
+		F36ADB0822FC79760028DEA3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F36ADB0722FC79760028DEA3 /* en */,
+				F36ADB0922FCB22D0028DEA3 /* fr */,
+			);
+			name = Localizable.strings;
+			path = "../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
