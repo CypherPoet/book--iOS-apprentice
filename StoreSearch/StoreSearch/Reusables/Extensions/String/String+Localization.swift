@@ -13,20 +13,22 @@ extension String {
     
     func localized(
         key: String? = nil,
-        comment: String? = nil,
         bundle: Bundle = .main,
         tableName: String = "Localizable"
     ) -> String {
         let key = key ?? self
-        let comment = comment ?? "Localization for \"\(key)\""
         let defaultValue = "🌎🌎\(self)🌎🌎"
         
+        // 📝 `comment` might as well be empty here, because this function won't be making
+        // use of `genstrings` -- which would use the `comment` as the generated comment
+        // in a .strings file.
+        // (See: https://stackoverflow.com/questions/44125665/has-anyone-got-string-type-enums-to-work-with-genstrings)
         return NSLocalizedString(
             key,
             tableName: tableName,
             bundle: bundle,
             value: defaultValue,
-            comment: comment
+            comment: ""
         )
     }
     
@@ -34,11 +36,10 @@ extension String {
     func localized(
         with variable: CVarArg,
         key: String? = nil,
-        comment: String? = nil,
         bundle: Bundle = .main,
         tableName: String = "Localizable"
     ) -> String {
-        let formatString = self.localized(key: key, comment: comment, bundle: bundle, tableName: tableName)
+        let formatString = self.localized(key: key, bundle: bundle, tableName: tableName)
 
         return String(format: formatString, variable)
     }

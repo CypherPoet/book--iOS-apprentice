@@ -9,24 +9,12 @@
 import UIKit
 
 
-fileprivate let errorMessage = """
-    An error occurred while trying to access the iTunes Store.
-        
-    Please check your network connection and try again.
-    """
-
-
 extension UIViewController {
     
     func showNetworkingError() {
         display(
-            alertMessage: "🤔 Something went wrong".localized(
-                comment: "Title for a network error displayed in an alert dialog"
-            ),
-            titled: errorMessage.localized(
-                key: "Networking Error Message",
-                comment: "Message for a network error displayed in an alert dialog"
-            )
+            alertMessage: ErrorMessageStrings.NetworkingError.body.localized,
+            titled: ErrorMessageStrings.NetworkingError.title.localized
         )
     }
 }

@@ -1,0 +1,13 @@
+/* 
+  ErrorMessages.strings
+  StoreSearch
+
+  Created by Brian Sipple on 8/9/19.
+  Copyright © 2019 CypherPoet. All rights reserved.
+*/
+
+
+"networking-error.body" = "Une erreur s'est produite lors d'une tentative d'accès à l'iTunes Store.\n\n\Veuillez vérifier votre connexion réseau et réessayer.";
+
+
+"networking-error.title" = "🤔 Quelque chose s'est mal passé";
