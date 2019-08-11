@@ -99,7 +99,7 @@
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="12" bottom="8" trailing="12"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzf-b2-bRU">
-                                <rect key="frame" x="312" y="800" width="88" height="48"/>
+                                <rect key="frame" x="312" y="816" width="88" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="tintColor" name="Tint"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
@@ -113,6 +113,7 @@
                         <constraints>
                             <constraint firstItem="X4O-kT-n8v" firstAttribute="trailing" secondItem="nzf-b2-bRU" secondAttribute="trailing" constant="14" id="KUg-jE-79o"/>
                             <constraint firstItem="w8D-9m-yih" firstAttribute="leading" secondItem="X4O-kT-n8v" secondAttribute="leading" id="KlE-09-2fR"/>
+                            <constraint firstItem="nzf-b2-bRU" firstAttribute="leading" relation="lessThanOrEqual" secondItem="X4O-kT-n8v" secondAttribute="leading" constant="312" id="M7w-aa-NT8"/>
                             <constraint firstItem="w8D-9m-yih" firstAttribute="centerY" secondItem="W5q-ay-62X" secondAttribute="centerY" id="PV3-X4-Fne"/>
                             <constraint firstItem="X4O-kT-n8v" firstAttribute="bottom" secondItem="nzf-b2-bRU" secondAttribute="bottom" constant="14" id="Swy-dS-Ubq"/>
                             <constraint firstItem="X4O-kT-n8v" firstAttribute="trailing" secondItem="w8D-9m-yih" secondAttribute="trailing" id="ktJ-DH-cWB"/>

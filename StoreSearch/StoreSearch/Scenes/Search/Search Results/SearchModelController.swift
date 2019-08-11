@@ -28,10 +28,14 @@ extension SearchModelController {
         in mediaType: APIMediaType,
         then completionHandler: @escaping CompletionHandler
     ) -> DataTaskToken {
+        let currentLocale = Locale.autoupdatingCurrent
+        
         let queries = [
             URLQueryItem(name: .term, value: searchText),
             URLQueryItem(name: .media, value: mediaType.queryParamValue),
             URLQueryItem(name: .limit, value: "50"),
+            URLQueryItem(name: .language, value: currentLocale.identifier),
+            URLQueryItem(name: .countryCode, value: currentLocale.regionCode ?? "en_US")
         ]
         
         let endpoint = Endpoint.search(matching: queries)

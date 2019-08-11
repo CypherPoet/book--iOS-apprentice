@@ -26,6 +26,7 @@
             <constraints>
                 <constraint firstItem="MLv-LD-4ka" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="N1F-oL-Dj1"/>
                 <constraint firstItem="MLv-LD-4ka" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="b75-mb-l7S"/>
+                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="MLv-LD-4ka" secondAttribute="trailing" constant="80.5" id="oR2-En-r8i"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>

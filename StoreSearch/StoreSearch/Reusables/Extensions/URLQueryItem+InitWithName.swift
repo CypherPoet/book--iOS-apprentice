@@ -16,6 +16,9 @@ extension URLQueryItem {
         case term
         case limit
         case media
+        case language
+        case countryCode
+        
         
         var string: String {
             switch self {
@@ -25,6 +28,10 @@ extension URLQueryItem {
                 return "limit"
             case .media:
                 return "media"
+            case .language:
+                return "lang"
+            case .countryCode:
+                return "country"
             }
         }
     }
