@@ -15,22 +15,22 @@ class SearchResultDetailsViewController: UIViewController {
     @IBOutlet private var contentTypeLabel: UILabel!
     @IBOutlet private var genreLabel: UILabel!
     @IBOutlet private var priceButton: UIButton!
-
+    @IBOutlet var closeButton: UIBarButtonItem!
+    
 
     var viewModel: ViewModel! {
         didSet {
-            DispatchQueue.main.async {
-                guard self.isViewLoaded else { return }
-                self.render(with: self.viewModel)
-            }
+            guard isViewLoaded else { return }
+            DispatchQueue.main.async { self.render(with: self.viewModel) }
         }
     }
     
     var imageDownloader: ImageDownloader!
-    
+    var showsCustomCloseButton = true
     
     private var imageDownloadingToken: DownloadTaskToken?
 
+    
     deinit {
         imageDownloadingToken?.cancel()
     }
@@ -40,7 +40,7 @@ class SearchResultDetailsViewController: UIViewController {
 // MARK: - Computeds
 extension SearchResultDetailsViewController {
     
-    var shouldLoadHeaderImage: Bool {
+    private var shouldLoadHeaderImage: Bool {
         guard imageDownloadingToken != nil else { return true }
 
         if
@@ -68,6 +68,11 @@ extension SearchResultDetailsViewController {
         render(with: viewModel)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationItem.rightBarButtonItem = showsCustomCloseButton ? closeButton : nil
+    }
 }
 
 

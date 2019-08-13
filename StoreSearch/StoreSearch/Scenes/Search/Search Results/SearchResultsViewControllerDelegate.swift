@@ -13,8 +13,16 @@ protocol SearchResultsViewControllerDelegate: class {
     
     func viewControllerDidSwitchToCollectionView(_ controller: SearchResultsViewController)
     
+    func viewControllerShouldDeselectItemsAfterSelection(
+        _ controller: SearchResultsViewController
+    ) -> Bool
+    
     func viewControllerDidSwitchToTableView(
         _ controller: SearchResultsViewController,
         with startingSearchText: String?
     )
+
+    func viewControllerDidAppear(_ controller: SearchResultsViewController)
 }
+
+

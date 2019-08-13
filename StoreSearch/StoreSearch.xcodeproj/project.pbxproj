@@ -50,6 +50,8 @@
 		F36C385622ECCB0E00CC001C /* DownloadingTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C385422ECCB0E00CC001C /* DownloadingTransport.swift */; };
 		F36C385822ECCBB200CC001C /* URLSession+DownloadTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C385722ECCBB200CC001C /* URLSession+DownloadTransport.swift */; };
 		F36C385A22ECCEC300CC001C /* SessionImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C385922ECCEC300CC001C /* SessionImageDownloader.swift */; };
+		F375692D2300C618009DB45B /* SearchSplitViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F375692C2300C618009DB45B /* SearchSplitViewCoordinator.swift */; };
+		F375692F2300E830009DB45B /* SearchSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F375692E2300E830009DB45B /* SearchSplitViewController.swift */; };
 		F37B7B3622F14A07008CA975 /* DimmedGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B3522F14A07008CA975 /* DimmedGradientView.swift */; };
 		F37B7B3922F167EC008CA975 /* BouncePresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B3822F167EC008CA975 /* BouncePresentationAnimator.swift */; };
 		F37B7B3B22F17027008CA975 /* FadeOutPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B3A22F17027008CA975 /* FadeOutPresentationAnimator.swift */; };
@@ -61,6 +63,8 @@
 		F37B7B4D22F2C6AC008CA975 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B4922F2C622008CA975 /* SearchViewModel.swift */; };
 		F37B7B5222F2C7EC008CA975 /* SearchResultsLandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B5122F2C7EB008CA975 /* SearchResultsLandscapeViewController.swift */; };
 		F37B7B5622F3BC3E008CA975 /* UIView+DisableAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37B7B5522F3BC3E008CA975 /* UIView+DisableAutoLayout.swift */; };
+		F387D3D323017661002098C6 /* SplitViewStartingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F387D3D223017661002098C6 /* SplitViewStartingDetailsViewController.swift */; };
+		F387D3D523017675002098C6 /* SplitViewStartingDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F387D3D423017675002098C6 /* SplitViewStartingDetails.storyboard */; };
 		F3934BEC22ECDD95009D7BA1 /* TransportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3934BEB22ECDD95009D7BA1 /* TransportError.swift */; };
 		F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE022E58305001B4D56 /* AppDelegate.swift */; };
 		F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96CE222E58305001B4D56 /* SceneDelegate.swift */; };
@@ -150,6 +154,8 @@
 		F36C385422ECCB0E00CC001C /* DownloadingTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingTransport.swift; sourceTree = "<group>"; };
 		F36C385722ECCBB200CC001C /* URLSession+DownloadTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "URLSession+DownloadTransport.swift"; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Extensions/URLSession+DownloadTransport.swift"; sourceTree = "<group>"; };
 		F36C385922ECCEC300CC001C /* SessionImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionImageDownloader.swift; sourceTree = "<group>"; };
+		F375692C2300C618009DB45B /* SearchSplitViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchSplitViewCoordinator.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/SearchSplitViewCoordinator.swift"; sourceTree = "<group>"; };
+		F375692E2300E830009DB45B /* SearchSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchSplitViewController.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/SearchSplitViewController.swift"; sourceTree = "<group>"; };
 		F37B7B3522F14A07008CA975 /* DimmedGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DimmedGradientView.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/DimmedGradientView.swift"; sourceTree = "<group>"; };
 		F37B7B3822F167EC008CA975 /* BouncePresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BouncePresentationAnimator.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Presentation Animators/BouncePresentationAnimator.swift"; sourceTree = "<group>"; };
 		F37B7B3A22F17027008CA975 /* FadeOutPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FadeOutPresentationAnimator.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/Presentation Animators/FadeOutPresentationAnimator.swift"; sourceTree = "<group>"; };
@@ -161,6 +167,8 @@
 		F37B7B4B22F2C640008CA975 /* SearchModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelController.swift; sourceTree = "<group>"; };
 		F37B7B5122F2C7EB008CA975 /* SearchResultsLandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsLandscapeViewController.swift; sourceTree = "<group>"; };
 		F37B7B5522F3BC3E008CA975 /* UIView+DisableAutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+DisableAutoLayout.swift"; sourceTree = "<group>"; };
+		F387D3D223017661002098C6 /* SplitViewStartingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SplitViewStartingDetailsViewController.swift; path = "../../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details/Split View Starting Details/SplitViewStartingDetailsViewController.swift"; sourceTree = "<group>"; };
+		F387D3D423017675002098C6 /* SplitViewStartingDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = SplitViewStartingDetails.storyboard; path = "../../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details/Split View Starting Details/SplitViewStartingDetails.storyboard"; sourceTree = "<group>"; };
 		F3934BEB22ECDD95009D7BA1 /* TransportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransportError.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Constants/TransportError.swift"; sourceTree = "<group>"; };
 		F3A96CDD22E58305001B4D56 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A96CE022E58305001B4D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -230,6 +238,7 @@
 		F3169BC022EE553A00651401 /* Result Details */ = {
 			isa = PBXGroup;
 			children = (
+				F387D3D1230175D6002098C6 /* Split View Starting Details */,
 				F350F9C822FB7A83002A1F23 /* SearchResultDetails.storyboard */,
 				F3169BC422EE565F00651401 /* SearchResultDetailsViewController.swift */,
 				F3169BC222EE557900651401 /* SearchResultDetailsViewController+ViewModel.swift */,
@@ -358,6 +367,15 @@
 			path = "Search Results";
 			sourceTree = "<group>";
 		};
+		F387D3D1230175D6002098C6 /* Split View Starting Details */ = {
+			isa = PBXGroup;
+			children = (
+				F387D3D223017661002098C6 /* SplitViewStartingDetailsViewController.swift */,
+				F387D3D423017675002098C6 /* SplitViewStartingDetails.storyboard */,
+			);
+			path = "Split View Starting Details";
+			sourceTree = "<group>";
+		};
 		F3A96CD422E58305001B4D56 = {
 			isa = PBXGroup;
 			children = (
@@ -382,18 +400,18 @@
 			isa = PBXGroup;
 			children = (
 				F3A96CEE22E58307001B4D56 /* Info.plist */,
-				F360E96022FF881E005A0795 /* Scenes.strings */,
 				F3A96D2622E58B9A001B4D56 /* AppCoordinator.swift */,
 				F3A96CE022E58305001B4D56 /* AppDelegate.swift */,
 				F3A96CE222E58305001B4D56 /* SceneDelegate.swift */,
 				F3A96D2822E58C5B001B4D56 /* Content */,
 				F360E95222FE83C3005A0795 /* ErrorMessages.strings */,
+				F360E96622FF8A2D005A0795 /* InfoPlist.strings */,
 				F36ADB0822FC79760028DEA3 /* Localizable.strings */,
 				F360E94522FE24FE005A0795 /* Localizable.stringsdict */,
 				F3A96D3D22E67C97001B4D56 /* Models */,
 				F3A96CF722E58829001B4D56 /* Reusables */,
 				F3A96CF522E5881C001B4D56 /* Scenes */,
-				F360E96622FF8A2D005A0795 /* InfoPlist.strings */,
+				F360E96022FF881E005A0795 /* Scenes.strings */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -501,6 +519,8 @@
 			isa = PBXGroup;
 			children = (
 				F3A96D3722E59D8A001B4D56 /* SearchCoordinator.swift */,
+				F375692E2300E830009DB45B /* SearchSplitViewController.swift */,
+				F375692C2300C618009DB45B /* SearchSplitViewCoordinator.swift */,
 				F3169BC022EE553A00651401 /* Result Details */,
 				F37B7B4822F2C5E9008CA975 /* Search Results */,
 			);
@@ -631,6 +651,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F350F9CB22FB8795002A1F23 /* Search-Landscape.storyboard in Resources */,
+				F387D3D523017675002098C6 /* SplitViewStartingDetails.storyboard in Resources */,
 				F360E96422FF8A2D005A0795 /* InfoPlist.strings in Resources */,
 				F36ADB0622FC79760028DEA3 /* Localizable.strings in Resources */,
 				F3A96D3822E59D8A001B4D56 /* LaunchScreen.storyboard in Resources */,
@@ -756,6 +777,7 @@
 				F36C384322EC840900CC001C /* DownloadTaskToken.swift in Sources */,
 				F37B7B4C22F2C640008CA975 /* SearchModelController.swift in Sources */,
 				F37B7B4422F2544F008CA975 /* DimmedModalPresentationManager.swift in Sources */,
+				F375692F2300E830009DB45B /* SearchSplitViewController.swift in Sources */,
 				F37B7B5622F3BC3E008CA975 /* UIView+DisableAutoLayout.swift in Sources */,
 				F36C382E22E8810700CC001C /* URLQueryItem+InitWithName.swift in Sources */,
 				F3A96D1A22E58900001B4D56 /* UIViewController+DisplayAlertMessage.swift in Sources */,
@@ -774,6 +796,7 @@
 				F3169BC522EE565F00651401 /* SearchResultDetailsViewController.swift in Sources */,
 				F36C382822E8190700CC001C /* URLSession+RequestTransport.swift in Sources */,
 				F37B7B4222F2544F008CA975 /* DimmedModalPresentationController.swift in Sources */,
+				F375692D2300C618009DB45B /* SearchSplitViewCoordinator.swift in Sources */,
 				F3934BEC22ECDD95009D7BA1 /* TransportError.swift in Sources */,
 				F3A96D2322E58900001B4D56 /* TableViewDataSource.swift in Sources */,
 				F37B7B3622F14A07008CA975 /* DimmedGradientView.swift in Sources */,
@@ -795,6 +818,7 @@
 				F3A96CE122E58305001B4D56 /* AppDelegate.swift in Sources */,
 				F3169BD122EF93F900651401 /* ContentHeightProviding.swift in Sources */,
 				F3A96D1722E58900001B4D56 /* UIViewController+Computeds.swift in Sources */,
+				F387D3D323017661002098C6 /* SplitViewStartingDetailsViewController.swift in Sources */,
 				F3A96CE322E58305001B4D56 /* SceneDelegate.swift in Sources */,
 				F36C383F22EB663D00CC001C /* APIMediaType.swift in Sources */,
 				F36C385822ECCBB200CC001C /* URLSession+DownloadTransport.swift in Sources */,

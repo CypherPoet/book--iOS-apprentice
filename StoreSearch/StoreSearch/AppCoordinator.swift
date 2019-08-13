@@ -13,12 +13,16 @@ final class AppCoordinator: NavigationCoordinator {
     var navController: UINavigationController
 //    private let stateController: StateController
 
-    private var searchCoordinator: SearchCoordinator?
-    
+//    private var searchCoordinator: SearchCoordinator?
+    private var searchSplitViewCoordinator: SearchSplitViewCoordinator?
+    private var searchSplitViewController: UISplitViewController
 
+    
     init(window: UIWindow, navController: UINavigationController) {
         self.window = window
         self.navController = navController
+        
+        self.searchSplitViewController = UISplitViewController()
     }
 }
 
@@ -26,13 +30,19 @@ final class AppCoordinator: NavigationCoordinator {
 // MARK: - Coordinator
 
 extension AppCoordinator: Coordinator {
-
+//
+//    var rootViewController: UIViewController {
+//        // TODO: Determine if we're always using the split view controller here,
+//        // or if the nav controller might sometimes be the root.
+//        searchSplitViewCoordinator?.rootViewController ?? navController
+//    }
+    
+    
     func start() {
-        window.rootViewController = rootViewController
         window.makeKeyAndVisible()
         
-        
-        showSearch()
+//        showSearch()
+        showSplitViewSearch()
     }
 }
 
@@ -41,9 +51,20 @@ extension AppCoordinator: Coordinator {
 // MARK: - Navigation
 
 extension AppCoordinator {
+//    
+//    func showSearch() {
+//        window.rootViewController = rootViewController
+//        
+//        searchCoordinator = SearchCoordinator(navController: navController)
+//        searchCoordinator?.start()
+//    }
     
-    func showSearch() {
-        searchCoordinator = SearchCoordinator(navController: navController)
-        searchCoordinator?.start()
+    
+    func showSplitViewSearch() {
+        searchSplitViewCoordinator = SearchSplitViewCoordinator(
+            window: window
+        )
+        
+        searchSplitViewCoordinator?.start()
     }
 }

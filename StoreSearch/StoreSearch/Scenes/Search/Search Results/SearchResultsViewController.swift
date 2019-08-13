@@ -19,7 +19,7 @@ class SearchResultsViewController: UIViewController {
     var viewModel: SearchViewModel!
     var imageDownloader: ImageDownloader!
     var isSettingSearchBarOnViewSwitch = false
-    
+    var isInSplitView = false
     
     private var dataSource: DataSource?
     private var currentDataSnapshot: DataSourceSnapshot!
@@ -84,19 +84,28 @@ extension SearchResultsViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        delegate?.viewControllerDidAppear(self)
+    }
+    
+    
     override func willTransition(
         to newCollection: UITraitCollection,
         with coordinator: UIViewControllerTransitionCoordinator
     ) {
         super.willTransition(to: newCollection, with: coordinator)
         
-        switch newCollection.verticalSizeClass {
-        case .compact:
-            showLandscapeViewController(with: coordinator)
-        case .regular, .unspecified:
-            hideLandscapeViewController(with: coordinator)
-        @unknown default:
-            hideLandscapeViewController(with: coordinator)
+        if !isInSplitView {
+            switch newCollection.verticalSizeClass {
+            case .compact:
+                showLandscapeViewController(with: coordinator)
+            case .regular, .unspecified:
+                hideLandscapeViewController(with: coordinator)
+            @unknown default:
+                hideLandscapeViewController(with: coordinator)
+            }
         }
     }
 }
@@ -128,7 +137,9 @@ extension SearchResultsViewController: UISearchResultsUpdating {
 extension SearchResultsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if delegate?.viewControllerShouldDeselectItemsAfterSelection(self) ?? false {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         
         guard let searchResult = dataSource?.itemIdentifier(for: indexPath) else {
             preconditionFailure("No search result found for selected cell.")

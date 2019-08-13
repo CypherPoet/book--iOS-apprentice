@@ -8,9 +8,16 @@
 
 import Foundation
 
+
 enum SceneStrings {
     
-    enum SearchResults {
+    enum SearchResults: String {
+        case title = "scenes.search_results.title"
+        
+        enum SearchBar: String {
+            case placeholder = "scenes.search_results.search_bar.placeholder"
+        }
+        
         enum Item: String {
             case untitled = "scenes.search_results.item.untitled"
             case unknownArtist = "scenes.search_results.item.unknown_artist"
@@ -25,10 +32,17 @@ enum SceneStrings {
 }
 
 
+private let stringsTableName = "Scenes"
 
+extension SceneStrings.SearchResults: Localizable {
+    var tableName: String { stringsTableName }
+}
+extension SceneStrings.SearchResults.SearchBar: Localizable {
+    var tableName: String { stringsTableName }
+}
 extension SceneStrings.SearchResults.Item: Localizable {
-    var tableName: String { "Scenes" }
+    var tableName: String { stringsTableName }
 }
 extension SceneStrings.SearchResultDetails: Localizable {
-    var tableName: String { "Scenes" }
+    var tableName: String { stringsTableName }
 }

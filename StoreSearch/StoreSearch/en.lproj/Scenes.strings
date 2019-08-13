@@ -7,6 +7,8 @@
 */
 
 
+"scenes.search_results.title" = "iTunes Store Search";
+"scenes.search_results.search_bar.placeholder" = "Search the iTunes Store";
 "scenes.search_results.item.untitled" = "Untitled";
 "scenes.search_results.item.unknown_artist" = "Unknown Artist";
 
