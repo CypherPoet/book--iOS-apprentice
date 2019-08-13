@@ -20,8 +20,10 @@ class SearchResultDetailsViewController: UIViewController {
 
     var viewModel: ViewModel! {
         didSet {
-            guard isViewLoaded else { return }
-            DispatchQueue.main.async { self.render(with: self.viewModel) }
+            DispatchQueue.main.async {
+                guard self.isViewLoaded else { return }
+                self.render(with: self.viewModel)
+            }
         }
     }
     

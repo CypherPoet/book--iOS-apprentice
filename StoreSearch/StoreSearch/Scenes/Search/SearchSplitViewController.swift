@@ -9,6 +9,24 @@
 import UIKit
 
 class SearchSplitViewController: UISplitViewController {
+
+    override func loadView() {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            preferredDisplayMode = .automatic
+        default:
+            preferredDisplayMode = .allVisible
+        }
+
+        super.loadView()
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
 }
 
 
