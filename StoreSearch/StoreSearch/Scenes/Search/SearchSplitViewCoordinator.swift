@@ -51,10 +51,7 @@ extension SearchSplitViewCoordinator: Coordinator {
         setup(detailsViewController: startingDetailsViewController)
         
         searchResultsNavController = UINavigationController(rootViewController: searchResultsViewController)
-        
-        resultDetailsNavController = UINavigationController(
-            rootViewController: startingDetailsViewController
-        )
+        resultDetailsNavController = UINavigationController(rootViewController: startingDetailsViewController)
         
         Appearance.apply(to: searchController.searchBar)
         Appearance.apply(to: searchResultsNavController.navigationBar)
@@ -107,14 +104,14 @@ extension SearchSplitViewCoordinator {
     
     
     func show(_ resultDetailsViewController: SearchResultDetailsViewController) {
-        switch UIDevice.current.userInterfaceIdiom {
-        case .phone:
+        if splitViewController.isViewHorizontallyCompact {
             let childNavController = UINavigationController(rootViewController: resultDetailsViewController)
 
             resultDetailsViewController.showsCustomCloseButton = true
             searchResultsNavController.present(childNavController, animated: true)
-        default:
+        } else {
             resultDetailsViewController.showsCustomCloseButton = false
+            resultDetailsNavController.navigationBar.prefersLargeTitles = true
             resultDetailsNavController.setViewControllers([resultDetailsViewController], animated: true)
         }
     }
