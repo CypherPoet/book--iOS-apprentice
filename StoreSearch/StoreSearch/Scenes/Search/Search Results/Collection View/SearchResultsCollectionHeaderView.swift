@@ -60,7 +60,10 @@ extension SearchResultsCollectionHeaderView {
         
         
         var headerText: String {
-            "\(beginningText) \"\(searchText ?? "")\""
+            let beginningQuoteMark = Locale.current.quotationBeginDelimiter ?? "\""
+            let endQuoteMark = Locale.current.quotationEndDelimiter ?? "\""
+            
+            return "\(beginningText) \(beginningQuoteMark)\(searchText ?? "")\(endQuoteMark)"
         }
     }
 }
