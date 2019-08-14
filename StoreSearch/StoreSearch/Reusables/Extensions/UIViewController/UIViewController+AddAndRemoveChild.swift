@@ -19,8 +19,8 @@ import UIKit
         
         childViewController.view.frame = customFrame ?? childViewController.view.frame
         
-        targetView.addSubview(childViewController.view)
         addChild(childViewController)
+        targetView.addSubview(childViewController.view)
         childViewController.didMove(toParent: self)
     }
     

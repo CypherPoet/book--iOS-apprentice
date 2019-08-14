@@ -19,9 +19,10 @@ final class SearchSplitViewCoordinator {
     private var splitViewController: SearchSplitViewController!
     private var searchController: UISearchController!
     private var searchResultsViewController: SearchResultsViewController!
+    private var detailsContainerViewController: SplitViewDetailsContainerViewController!
     private var startingDetailsViewController: SplitViewStartingDetailsViewController!
     private var searchResultsNavController: UINavigationController!
-    private var resultDetailsNavController: UINavigationController!
+    private var detailsViewNavController: UINavigationController!
     private lazy var loadingViewController = LoadingViewController()
     
     private lazy var resultDetailsContainerViewController = UIViewController()
@@ -41,25 +42,19 @@ extension SearchSplitViewCoordinator: Coordinator {
     func start() {
         splitViewController = SearchSplitViewController()
         
-        startingDetailsViewController = SplitViewStartingDetailsViewController.instantiateFromStoryboard(
-            named: R.storyboard.splitViewStartingDetails.name
-        )
-        
-        startingDetailsViewController.title = R.string.infoPlist.cfBundleDisplayName()
-        
         setupSearchResultsController()
-        setup(detailsViewController: startingDetailsViewController)
+        setupDetailsContainer()
         
         searchResultsNavController = UINavigationController(rootViewController: searchResultsViewController)
-        resultDetailsNavController = UINavigationController(rootViewController: startingDetailsViewController)
+        detailsViewNavController = UINavigationController(rootViewController: detailsContainerViewController)
         
         Appearance.apply(to: searchController.searchBar)
         Appearance.apply(to: searchResultsNavController.navigationBar)
-        Appearance.apply(to: resultDetailsNavController.navigationBar)
+        Appearance.apply(to: detailsViewNavController.navigationBar)
 
         searchResultsNavController.navigationBar.prefersLargeTitles = true
         
-        splitViewController.viewControllers = [searchResultsNavController, resultDetailsNavController]
+        splitViewController.viewControllers = [searchResultsNavController, detailsViewNavController]
         splitViewController.delegate = self
         
         window.rootViewController = splitViewController
@@ -97,9 +92,19 @@ extension SearchSplitViewCoordinator {
     }
     
     
-    func setup(detailsViewController: UIViewController) {
-        detailsViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-        detailsViewController.navigationItem.leftItemsSupplementBackButton = true
+    func setupDetailsContainer() {
+        detailsContainerViewController = SplitViewDetailsContainerViewController
+            .instantiateFromStoryboard(named: R.storyboard.search.name)
+
+        detailsContainerViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+        detailsContainerViewController.navigationItem.leftItemsSupplementBackButton = true
+        detailsContainerViewController.delegate = self
+        
+        startingDetailsViewController = SplitViewStartingDetailsViewController
+            .instantiateFromStoryboard(named: R.storyboard.splitViewStartingDetails.name)
+        startingDetailsViewController.title = R.string.infoPlist.cfBundleDisplayName()
+
+        detailsContainerViewController.add(child: startingDetailsViewController)
     }
     
     
@@ -111,13 +116,19 @@ extension SearchSplitViewCoordinator {
             searchResultsNavController.present(childNavController, animated: true)
         } else {
             resultDetailsViewController.showsCustomCloseButton = false
-            resultDetailsNavController.navigationBar.prefersLargeTitles = true
-            resultDetailsNavController.setViewControllers([resultDetailsViewController], animated: true)
+            detailsViewNavController.navigationBar.prefersLargeTitles = true
+//            detailsViewNavController.setViewControllers([resultDetailsViewController], animated: true)
+//            detailsViewNavController.pushViewController(resultDetailsViewController, animated: true)
+            detailsContainerViewController.children.first?.performRemoval()
+            detailsContainerViewController.add(
+                child: resultDetailsViewController,
+                usingFrame: detailsContainerViewController.view.bounds
+            )
         }
     }
 }
 
-
+    
 // MARK: - SearchResultsViewControllerDelegate
 extension SearchSplitViewCoordinator: SearchResultsViewControllerDelegate {
     
@@ -154,7 +165,6 @@ extension SearchSplitViewCoordinator: SearchResultsViewControllerDelegate {
             splitViewController.hideMasterPane()
         }
         
-        setup(detailsViewController: resultDetailsViewController)
         show(resultDetailsViewController)
     }
 
@@ -173,6 +183,19 @@ extension SearchSplitViewCoordinator: SearchResultsViewControllerDelegate {
         if UIDevice.current.userInterfaceIdiom != .pad {
             controller.navigationItem.searchController?.becomeFirstResponder()
         }
+    }
+}
+
+
+// MARK: - SplitViewDetailsContainerViewControllerDelegate
+extension SearchSplitViewCoordinator: SplitViewDetailsContainerViewControllerDelegate {
+    
+    func viewControllerDidTapAppMenuButton(_ controller: SplitViewDetailsContainerViewController) {
+        let appMenuVC = AppMenuTableViewController.instantiateFromStoryboard(
+            named: R.storyboard.appMenu.name
+        )
+        
+        controller.present(appMenuVC, animated: true)
     }
 }
 

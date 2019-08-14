@@ -73,7 +73,7 @@ extension SearchResultDetailsViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationItem.rightBarButtonItem = showsCustomCloseButton ? closeButton : nil
+        navigationItem.leftBarButtonItem = showsCustomCloseButton ? closeButton : nil
     }
 }
 

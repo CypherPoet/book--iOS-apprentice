@@ -18,7 +18,30 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b72-1b-C6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1045" y="889"/>
+            <point key="canvasLocation" x="-1168" y="241"/>
+        </scene>
+        <!--Split View Details Container-->
+        <scene sceneID="5ba-dG-WqT">
+            <objects>
+                <viewController storyboardIdentifier="SplitViewDetailsContainerViewController" id="Ynz-Tx-a0d" userLabel="Split View Details Container" customClass="SplitViewDetailsContainerViewController" customModule="StoreSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NJV-qO-ibb">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="mH4-AV-ufT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="It9-BH-ls6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="qDR-x0-FLU">
+                            <connections>
+                                <action selector="appMenuButtonTapped:" destination="Ynz-Tx-a0d" id="QnK-Cs-0cu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ojh-ZC-LIt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1184" y="959"/>
         </scene>
         <!--Search Split View Controller-->
         <scene sceneID="eo8-lf-xmj">
