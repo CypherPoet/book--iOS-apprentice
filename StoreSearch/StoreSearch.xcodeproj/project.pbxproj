@@ -88,7 +88,6 @@
 		F3A96D3322E59D38001B4D56 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D3222E59D38001B4D56 /* R.generated.swift */; };
 		F3A96D3822E59D8A001B4D56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3A96D3422E59D8A001B4D56 /* LaunchScreen.storyboard */; };
 		F3A96D3922E59D8A001B4D56 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D3622E59D8A001B4D56 /* SearchResultsViewController.swift */; };
-		F3A96D3A22E59D8A001B4D56 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D3722E59D8A001B4D56 /* SearchCoordinator.swift */; };
 		F3A96D4022E67CB9001B4D56 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D3F22E67CB9001B4D56 /* SearchResult.swift */; };
 		F3A96D4322E67CF9001B4D56 /* SearchResultsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D4222E67CF9001B4D56 /* SearchResultsList.swift */; };
 		F3A96D4622E68AEE001B4D56 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D4522E68AEE001B4D56 /* Endpoint.swift */; };
@@ -199,7 +198,6 @@
 		F3A96D3222E59D38001B4D56 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		F3A96D3422E59D8A001B4D56 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../../../../../../../../../../../Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		F3A96D3622E59D8A001B4D56 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
-		F3A96D3722E59D8A001B4D56 /* SearchCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		F3A96D3F22E67CB9001B4D56 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		F3A96D4222E67CF9001B4D56 /* SearchResultsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsList.swift; sourceTree = "<group>"; };
 		F3A96D4522E68AEE001B4D56 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -540,7 +538,6 @@
 		F3A96D3522E59D8A001B4D56 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				F3A96D3722E59D8A001B4D56 /* SearchCoordinator.swift */,
 				F375692E2300E830009DB45B /* SearchSplitViewController.swift */,
 				F375692C2300C618009DB45B /* SearchSplitViewCoordinator.swift */,
 				F3CDD18323040B270025B8D5 /* SearchSplitViewCoordinator+AppMenuViewControllerDelegate.swift */,
@@ -792,7 +789,6 @@
 				F3A96D3922E59D8A001B4D56 /* SearchResultsViewController.swift in Sources */,
 				F3A96D5A22E6E990001B4D56 /* SearchResultTableViewCell+ViewModel.swift in Sources */,
 				F33E46D722F8A51E000BA2A4 /* SearchResultsViewControllerDelegate.swift in Sources */,
-				F3A96D3A22E59D8A001B4D56 /* SearchCoordinator.swift in Sources */,
 				F3A96D1322E58900001B4D56 /* URL+WithQueryParams.swift in Sources */,
 				F350F9A622F9FF48002A1F23 /* LoadingViewControllerToggling.swift in Sources */,
 				F3A96D2722E58B9A001B4D56 /* AppCoordinator.swift in Sources */,

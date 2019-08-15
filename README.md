@@ -16,7 +16,7 @@ _A game testing the user's ability to drag a slider the a specific number_.
   <img src="./BullsEye/Screenshots/screen-recording-gif.gif" width="700px"/>
 </div>
 
-### Topics Covered / Challenges Encountered
+### Topics Covered & Challenges Conquered
 
 - Sliders, labels, and other common UIKit controls.
 - Building responsive interfaces that adapt to all screen sizes.
@@ -47,7 +47,7 @@ _List of lists with scheduling support and reminder notifications... Table Views
   <img src="./Checklists/Screenshots/checklist-items.png" width="500px"/>
 </div>
 
-### Topics Covered / Challenges Encountered
+### Topics Covered & Challenges Conquered
 
 - Table Views and more table views.
 - Designing deep navigation flows, utilizing segues and protocols to communicate and handle actions along the way.
@@ -91,7 +91,7 @@ _An app that uses Core Location to fetch the user's current GPS coordinates, all
 </div>
 
 
-### Topics Covered / Challenges Encountered
+### Topics Covered & Challenges Conquered
 
 - Using Core Location: Fetching the user's current location, checking reading accuracy, handling errors and permissions, creating `CLLocation` and `CLPlacemark` models from location readings, etc.
 
@@ -136,26 +136,31 @@ _An app that uses Core Location to fetch the user's current GPS coordinates, all
 
 ## [Store Search](./StoreSearch/)
 
-__.
+_An app that searches and surfaces content provided by the iTunes Search API_.
 
 <div style="text-align: center;">
-  <img src="" width="500px"/>
+  <img src="./StoreSearch/Screenshots/search-recording-1.gif" width="500px"/>
 </div>
 
 
-### Topics Covered / Challenges Encountered
+### Topics Covered & Challenges Conquered
 
+- Building a networking stack to perform various searches against the iTunes Search API.
+- Building dynamic views with Collection View Compositional Layouts and Diffable Data Sources.
 - Debugging with exception breakpoints.
 - Custom Presentation Controllers with custom transition animations 💥.
 - Stretchable Images via image slicing.
 - Supporting Dynamic Type.
-- Localizing an app through sound string definition architecture and the various l10n tools
+- Localizing an app using thoughtful string definition architecture and the various l10n tools
 that Xcode provides.
+- Implementing a Split View Controller-based presentation that adapts to iPads and iPhones in landscape and portrait orientation 💪.
 
-<br>
+<div style="text-align: center;">
+  <img src="./StoreSearch/Screenshots/split-view-1.png" width="500px"/>
+  <img src="./StoreSearch/Screenshots/split-view-3.png" width="500px"/>
+</div>
 
-### 📸 Moar Screenshots
-
-
+- Dynamic Sizing based upon size classes.
+- Distributing app to the App Store via App Store Connect.
 
 <br>
