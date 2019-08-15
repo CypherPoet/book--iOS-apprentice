@@ -99,8 +99,9 @@
 		F3A96D5F22E6FA31001B4D56 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A96D5E22E6FA31001B4D56 /* Appearance.swift */; };
 		F3B2BD4D22F57AB30009D8B1 /* SearchResultsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2BD4B22F57AB30009D8B1 /* SearchResultsCollectionViewCell.swift */; };
 		F3B2BD5422F5924B0009D8B1 /* SearchResultsCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2BD5222F5924A0009D8B1 /* SearchResultsCollectionHeaderView.swift */; };
-		F3CDD17E2303BA4F0025B8D5 /* AppMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CDD17D2303BA4E0025B8D5 /* AppMenuTableViewController.swift */; };
+		F3CDD17E2303BA4F0025B8D5 /* AppMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CDD17D2303BA4E0025B8D5 /* AppMenuViewController.swift */; };
 		F3CDD1802303C1860025B8D5 /* SplitViewDetailsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CDD17F2303C1860025B8D5 /* SplitViewDetailsContainerViewController.swift */; };
+		F3CDD18423040B270025B8D5 /* SearchSplitViewCoordinator+AppMenuViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CDD18323040B270025B8D5 /* SearchSplitViewCoordinator+AppMenuViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,8 +210,9 @@
 		F3A96D5E22E6FA31001B4D56 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Appearance.swift; path = "../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Helpers/Appearance.swift"; sourceTree = "<group>"; };
 		F3B2BD4B22F57AB30009D8B1 /* SearchResultsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3B2BD5222F5924A0009D8B1 /* SearchResultsCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCollectionHeaderView.swift; sourceTree = "<group>"; };
-		F3CDD17D2303BA4E0025B8D5 /* AppMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppMenuTableViewController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/App Menu/AppMenuTableViewController.swift"; sourceTree = "<group>"; };
+		F3CDD17D2303BA4E0025B8D5 /* AppMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppMenuViewController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Reusables/Views/App Menu/AppMenuViewController.swift"; sourceTree = "<group>"; };
 		F3CDD17F2303C1860025B8D5 /* SplitViewDetailsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SplitViewDetailsContainerViewController.swift; path = "../../../../../../../../../../System/Volumes/Data/Users/briansipple/lxda/swift/book--ios-apprentice/StoreSearch/StoreSearch/Scenes/Search/Result Details/SplitViewDetailsContainerViewController.swift"; sourceTree = "<group>"; };
+		F3CDD18323040B270025B8D5 /* SearchSplitViewCoordinator+AppMenuViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchSplitViewCoordinator+AppMenuViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		FB10CE426DD0FAD3BE4379AE /* Pods-StoreSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch.release.xcconfig"; path = "Target Support Files/Pods-StoreSearch/Pods-StoreSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,7 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				F30D680E2303B7AC00B972FD /* AppMenu.storyboard */,
-				F3CDD17D2303BA4E0025B8D5 /* AppMenuTableViewController.swift */,
+				F3CDD17D2303BA4E0025B8D5 /* AppMenuViewController.swift */,
 			);
 			path = "App Menu";
 			sourceTree = "<group>";
@@ -541,6 +543,7 @@
 				F3A96D3722E59D8A001B4D56 /* SearchCoordinator.swift */,
 				F375692E2300E830009DB45B /* SearchSplitViewController.swift */,
 				F375692C2300C618009DB45B /* SearchSplitViewCoordinator.swift */,
+				F3CDD18323040B270025B8D5 /* SearchSplitViewCoordinator+AppMenuViewControllerDelegate.swift */,
 				F3169BC022EE553A00651401 /* Result Details */,
 				F37B7B4822F2C5E9008CA975 /* Search Results */,
 			);
@@ -797,7 +800,7 @@
 				F3A96D4622E68AEE001B4D56 /* Endpoint.swift in Sources */,
 				F36C384722ECB9CF00CC001C /* ImageDownloader.swift in Sources */,
 				F36C384322EC840900CC001C /* DownloadTaskToken.swift in Sources */,
-				F3CDD17E2303BA4F0025B8D5 /* AppMenuTableViewController.swift in Sources */,
+				F3CDD17E2303BA4F0025B8D5 /* AppMenuViewController.swift in Sources */,
 				F36C607F2302B6D200705F7B /* UIViewController+IsViewCompact.swift in Sources */,
 				F37B7B4C22F2C640008CA975 /* SearchModelController.swift in Sources */,
 				F37B7B4422F2544F008CA975 /* DimmedModalPresentationManager.swift in Sources */,
@@ -848,6 +851,7 @@
 				F36C385822ECCBB200CC001C /* URLSession+DownloadTransport.swift in Sources */,
 				F36C383322E9CEE100CC001C /* SearchResults.swift in Sources */,
 				F360E94F22FE79F9005A0795 /* ErrorMessages.swift in Sources */,
+				F3CDD18423040B270025B8D5 /* SearchSplitViewCoordinator+AppMenuViewControllerDelegate.swift in Sources */,
 				F36C385622ECCB0E00CC001C /* DownloadingTransport.swift in Sources */,
 				F3A96D1222E58900001B4D56 /* UIImage+ResizedWithBounds.swift in Sources */,
 				F36C383122E9BECA00CC001C /* APIResultKind.swift in Sources */,

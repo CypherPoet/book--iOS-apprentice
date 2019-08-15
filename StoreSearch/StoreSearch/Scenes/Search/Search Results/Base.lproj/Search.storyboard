@@ -10,7 +10,7 @@
         <!--Navigation Controller-->
         <scene sceneID="eNT-hU-ADc">
             <objects>
-                <navigationController id="Hkl-PX-Cjq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Mock Search Details View Nav Controller" id="Hkl-PX-Cjq" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7y6-U4-fZp">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -54,7 +54,7 @@
         <!--Navigation Controller-->
         <scene sceneID="iAL-CN-eox">
             <objects>
-                <navigationController id="LFZ-dV-937" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Mock Search Results View Nav Controller" id="LFZ-dV-937" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="y9Z-6c-iAI">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

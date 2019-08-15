@@ -56,8 +56,6 @@ enum Appearance {
     
     
     static func apply(to navBar: UINavigationBar) {
-//        navBar.standardAppearance = NavBar.standard
-//        navBar.compactAppearance = NavBar.standard
-        navBar.backgroundColor = UIColor.Theme.background.withAlphaComponent(0.33)
+        navBar.backgroundColor = UIColor.Theme.background.withAlphaComponent(0.6)
     }
 }

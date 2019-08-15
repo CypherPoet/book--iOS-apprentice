@@ -174,7 +174,7 @@
         <image name="store-logo" width="960" height="960"/>
         <image name="xmark" catalog="system" width="64" height="56"/>
         <namedColor name="Tint">
-            <color red="0.99400001764297485" green="0.23000000417232513" blue="0.46200001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.84313725490196079" green="0.0" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

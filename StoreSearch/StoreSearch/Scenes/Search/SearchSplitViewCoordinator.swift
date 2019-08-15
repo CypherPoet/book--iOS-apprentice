@@ -24,7 +24,6 @@ final class SearchSplitViewCoordinator {
     private var searchResultsNavController: UINavigationController!
     private var detailsViewNavController: UINavigationController!
     private lazy var loadingViewController = LoadingViewController()
-    
     private lazy var resultDetailsContainerViewController = UIViewController()
     private var resultDetailsViewController: SearchResultDetailsViewController!
     
@@ -96,9 +95,10 @@ extension SearchSplitViewCoordinator {
         detailsContainerViewController = SplitViewDetailsContainerViewController
             .instantiateFromStoryboard(named: R.storyboard.search.name)
 
+        detailsContainerViewController.title = R.string.infoPlist.cfBundleDisplayName()
         detailsContainerViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         detailsContainerViewController.navigationItem.leftItemsSupplementBackButton = true
-        detailsContainerViewController.delegate = self
+//        detailsContainerViewController.delegate = self
         
         startingDetailsViewController = SplitViewStartingDetailsViewController
             .instantiateFromStoryboard(named: R.storyboard.splitViewStartingDetails.name)
@@ -117,8 +117,6 @@ extension SearchSplitViewCoordinator {
         } else {
             resultDetailsViewController.showsCustomCloseButton = false
             detailsViewNavController.navigationBar.prefersLargeTitles = true
-//            detailsViewNavController.setViewControllers([resultDetailsViewController], animated: true)
-//            detailsViewNavController.pushViewController(resultDetailsViewController, animated: true)
             detailsContainerViewController.children.first?.performRemoval()
             detailsContainerViewController.add(
                 child: resultDetailsViewController,
@@ -159,8 +157,6 @@ extension SearchSplitViewCoordinator: SearchResultsViewControllerDelegate {
         resultDetailsViewController.imageDownloader = imageDownloader
         resultDetailsViewController.title = searchResult.title
         
-//        resultDetailsViewController.delegate = self
-        
         if splitViewController.displayMode != .allVisible {
             splitViewController.hideMasterPane()
         }
@@ -181,24 +177,10 @@ extension SearchSplitViewCoordinator: SearchResultsViewControllerDelegate {
     
     func viewControllerDidAppear(_ controller: SearchResultsViewController) {
         if UIDevice.current.userInterfaceIdiom != .pad {
-            controller.navigationItem.searchController?.becomeFirstResponder()
+            controller.navigationItem.searchController?.searchBar.becomeFirstResponder()
         }
     }
 }
-
-
-// MARK: - SplitViewDetailsContainerViewControllerDelegate
-extension SearchSplitViewCoordinator: SplitViewDetailsContainerViewControllerDelegate {
-    
-    func viewControllerDidTapAppMenuButton(_ controller: SplitViewDetailsContainerViewController) {
-        let appMenuVC = AppMenuTableViewController.instantiateFromStoryboard(
-            named: R.storyboard.appMenu.name
-        )
-        
-        controller.present(appMenuVC, animated: true)
-    }
-}
-
 
 // MARK: - UISplitViewControllerDelegate
 extension SearchSplitViewCoordinator: UISplitViewControllerDelegate {

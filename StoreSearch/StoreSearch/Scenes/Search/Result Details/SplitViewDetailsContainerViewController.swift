@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 
 protocol SplitViewDetailsContainerViewControllerDelegate: class {
@@ -23,9 +24,36 @@ class SplitViewDetailsContainerViewController: UIViewController {
 extension SplitViewDetailsContainerViewController {
     
     @IBAction func appMenuButtonTapped(_ sender: UIBarButtonItem) {
-        delegate?.viewControllerDidTapAppMenuButton(self)
+        let appMenuVC = AppMenuViewController.instantiateFromStoryboard(
+            named: R.storyboard.appMenu.name
+        )
+        
+        appMenuVC.delegate = self
+        
+        present(appMenuVC, animated: true)
     }
 }
+
+
+extension SplitViewDetailsContainerViewController: AppMenuViewControllerDelegate {
+    
+    func viewControllerDidSelectSendMail(_ controller: AppMenuViewController) {
+        guard MFMailComposeViewController.canSendMail() else {
+            print("Mail services are not available")
+            return
+        }
+        
+        let mailVC = MFMailComposeViewController()
+        
+        // TODO: Localize these strings
+        mailVC.setSubject("Support Request")
+        mailVC.setToRecipients(["cypherpoet@gmail.com"])
+        
+        
+        controller.present(mailVC, animated: true)
+    }
+}
+
 
 
 extension SplitViewDetailsContainerViewController: Storyboarded {}
